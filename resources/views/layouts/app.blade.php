@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>sysMadreTeresa</title>
+    <title>SantaMaria FISIONCENTER</title>
     <meta name="description" content="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="DevOOPS">
@@ -53,7 +53,7 @@
   <div class="container-fluid expanded-panel">
     <div class="row">
       <div id="logo" class="col-xs-12 col-sm-2">
-        <a href="index.html">Madre Teresa</a>
+        <a href="">SANTA MARIA</a>
       </div>
       <div id="top-panel" class="col-xs-12 col-sm-10">
         <div class="row">
@@ -62,7 +62,6 @@
               <i class="fa fa-bars"></i>
             </a>
             &nbsp;
-            Sede: {{Session::get('sedeName')}}
           </div>
           <div class="col-xs-4 col-sm-8 top-panel-right">
             <ul class="nav navbar-nav pull-right panel-menu">
@@ -87,7 +86,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
                   <div class="avatar">
-                    <img src="{{url('img/avatar.jpg')}}" class="img-rounded" alt="avatar" />
+                    <img src="{{url('img/avatarsys.jpeg')}}" class="img-rounded" alt="avatar" />
                   </div>
                   @auth
                   <i class="fa fa-angle-down pull-right"></i>

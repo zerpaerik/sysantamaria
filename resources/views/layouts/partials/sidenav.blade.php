@@ -191,43 +191,19 @@
       <li>
         <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
       </li>
-      <li>
-        <a href="{{route('resultados.informe-index')}}"><i class="fa fa-list-alt"></i> Lista Modelos de Informe</a>
-      </li>
-      <li>
-        <a href="{{route('resultados.informe')}}"><i class="fa fa-plus-circle"></i> Crear Modelo de Informe</a>
-      </li>
     </ul>
   </li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
-      <span class="hidden-xs"> Control Prenatal</span>
+      <span class="hidden-xs"> Control de Evaluaciones</span>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Control</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluaciòn</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Control</a>
-      </li>
-    </ul>
-  </li>
-
-    <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-truck"></i>
-      <span class="hidden-xs">Visitadores</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('visitas.index')}}"><i class="fa fa-truck"></i> Registro de Visitas</a>
-      </li>
-      <li>
-        <a href="{{route('comporentregar.index')}}"><i class="fa fa-square-o"></i> Comisiones Por Entregar</a>
-      </li>
-       <li>
-        <a href="{{route('comentregadas.index')}}"><i class="fa fa-check-square-o"></i> Comisiones Entregadas</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluaciòn</a>
       </li>
     </ul>
   </li>

@@ -61,10 +61,9 @@
                        <label class="col-sm-1 control-label">Tipo</label>
 						<div class="col-sm-2">
 							<select class="form-control" name="tipo">
-							<option value="Especialista">Especialista</option>
-							<option value="Tecnòlogo">Tecnòlogo</option>
-							<option value="ProfSalud">Prof. de Salud</option>
-                            <option value="Otro">Otro</option>
+							<option value="Tecnico">Tecnico(a)</option>
+							<option value="Lic">Licenciado(a)</option>
+							
 
 						</select>
 						</div>							

@@ -65,14 +65,10 @@
 							@endforeach
 						</select>
 						</div>	
-
-						<label class="col-sm-1 control-label">GradoInst.</label>
+						
+                         <label class="col-sm-1 control-label">Zona</label>
 						<div class="col-sm-3">
-							<select class="form-control" name="gradoinstruccion">
-							@foreach($gradoinstruccion as $gdo)
-							<option value="{{$gdo->nombre}}">{{$gdo->nombre}}</option>
-							@endforeach
-						</select>
+							<input type="text" class="form-control" name="gradoinstruccion" placeholder="Zona" data-toggle="tooltip" data-placement="bottom" title="fechanac">
 						</div>
 
 
@@ -86,15 +82,7 @@
 						<div class="col-sm-3">
 							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="fechanac">
 						</div>
-
-						<label class="col-sm-1 control-label">Estado Civìl</label>
-						<div class="col-sm-3">
-							<select class="form-control" name="edocivil">
-							@foreach($edocivil as $edo)
-							<option value="{{$edo->id}}">{{$edo->nombre}}</option>
-							@endforeach
-						</select>
-						</div>									
+								
 
 						<br>
 						<input type="submit" style="margin-left:20px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
