@@ -10,6 +10,7 @@ use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Historiales;
+use App\Models\HistorialCobros;
 use Auth;
 
 
@@ -88,18 +89,32 @@ class CuentasporCobrarController extends Controller
                     //->get();
                     
                     $pendiente = $searchAtencionID->pendiente;
+					$abono = $searchAtencionID->abono;
                     $atencion = $searchAtencionID->id;
+					$paciente = $searchAtencionID->id_paciente;
+				    $monto = $searchAtencionID->monto;
+
 
 
                     $p = Atenciones::find($request->id);
                     $p->pendiente = $pendiente-$request->monto;
+					$p->abono = $abono + $request->monto;
                     $res = $p->save();
-
+					
+					$historialcobros = new HistorialCobros();
+                    $historialcobros->id_atencion = $atencion;
+                    $historialcobros->id_paciente = $paciente;
+                    $historialcobros->monto= $monto;
+                    $historialcobros->abono = $abono + $request->monto;
+					$historialcobros->abono_parcial = $request->monto;
+                    $historialcobros->pendiente = $p->pendiente;
+                    $historialcobros->save();
+					
+					
                     $creditos = new Creditos();
                     $creditos->origen = 'CUENTAS POR COBRAR';
                     $creditos->id_atencion = $atencion;
                     $creditos->monto= $request->monto;
-                    $creditos->id_sede = $request->session()->get('sede');
                     $creditos->tipo_ingreso = $request->tipopago;
                     $creditos->descripcion = 'CUENTAS POR COBRAR';
                     $creditos->save();
@@ -109,7 +124,6 @@ class CuentasporCobrarController extends Controller
           $historial->origen ='Cuentas por Cobrar';
 		  $historial->detalle = $request->monto;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 
 
@@ -125,14 +139,12 @@ class CuentasporCobrarController extends Controller
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
-    //->join('profesionales as f','f.id','a.origen_usuario')
     ->where('b.nombres','like','%'.$nom.'%')
     ->where('b.apellidos','like','%'.$ape.'%')
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.id_sede','=', \Session::get("sede"))
     ->orderby('a.id','desc')
-    ->paginate(15); 
+    ->get(); 
 
     return $cuentasporcobrar;   
   }

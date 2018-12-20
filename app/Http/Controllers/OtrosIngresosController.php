@@ -65,7 +65,6 @@ class OtrosIngresosController extends Controller
           $historial->origen ='Otros Ingresos';
 		  $historial->detalle = $request->monto;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 		return redirect()->action('OtrosIngresosController@index', ["created" => true, "ingresos" => Creditos::all()]);
 	}    

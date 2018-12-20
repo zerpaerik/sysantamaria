@@ -26,31 +26,40 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 
-					    <label class="col-sm-1 control-label">Atenciones</label>
-						<div class="col-sm-4">
-							<select id="el4" name="atencion">
-								@foreach($atenciones as $atec)
+					    <label class="col-sm-1 control-label">Paciente</label>
+						<div class="col-sm-3">
+							<select id="el4" name="paciente">
+								@foreach($pacientes as $atec)
 									<option value="{{$atec->id}}">
-										ID:{{$atec->id}} Paciente:{{$atec->nombres}},{{$atec->apellidos}}-{{$atec->dni}}
+										{{$atec->nombres}},{{$atec->apellidos}} DNI:{{$atec->dni}}
 									</option>
 								@endforeach
 							</select>
 						</div>
 						
-						<label class="col-sm-1 control-label">Especialistas</label>
+						<label class="col-sm-1 control-label">Servicio</label>
 						<div class="col-sm-3">
-							<select id="el1" name="especialista">
-								@foreach($especialistas as $especialista)
-									<option value="{{$especialista->id}}">
-										{{$especialista->name}} {{$especialista->lastname}}
-										/ {{$especialista->tipo}}
+							<select id="el1" name="servicio">
+								@foreach($servicios as $serv)
+									<option value="{{$serv->id}}">
+										{{$serv->detalle}}
 									</option>
 								@endforeach
 							</select>
 						</div>
-
+						
+						<label class="col-sm-1 control-label">Especialista</label>
+						<div class="col-sm-3">
+							<select id="el2" name="especialista">
+								@foreach($especialistas as $esp)
+									<option value="{{$esp->id}}">
+										{{$esp->name}},{{$esp->lastname}}
+									</option>
+								@endforeach
+							</select>
+						</div>
 						<label class="col-sm-1 control-label">Fecha</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date" required="required">
 						</div>
 						<label class="col-sm-1 control-label">Hora</label>

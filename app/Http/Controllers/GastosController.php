@@ -68,7 +68,6 @@ class GastosController extends Controller
           $historial->origen ='Gasto';
 		  $historial->detalle = $request->descripcion;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 		  
 		return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);

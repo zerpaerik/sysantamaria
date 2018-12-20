@@ -72,7 +72,6 @@ class ComporPagarController extends Controller
           $historial->origen ='Comisiones por Pagar';
 		  $historial->detalle ='Comision Por Pagar';
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
      
     Toastr::success('La comisión ha sido pagada.', 'Comisiones!', ['progressBar' => true]);

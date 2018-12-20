@@ -66,7 +66,6 @@ class LabporPagarController extends Controller
                 $debitos = new Debitos();
                 $debitos->origen = 'LAB POR PAGAR';
                 $debitos->monto= $costo;
-                $debitos->id_sede = $request->session()->get('sede');
                 $debitos->descripcion = $name;
                 $debitos->save();  
 
@@ -91,7 +90,6 @@ class LabporPagarController extends Controller
         ->where('a.es_laboratorio','=',1)
         ->where('a.pagado_lab','=',NULL)
         ->whereNotIn('c.costlab',[0])
-        ->where('a.id_sede','=', \Session::get("sede"))
         ->where('b.nombres','like','%'.$nom.'%')
         ->where('b.apellidos','like','%'.$ape.'%')        
         ->orderby('a.id','desc')

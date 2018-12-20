@@ -135,6 +135,9 @@
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
+	  <li>
+        <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Histotorial de Cobros</a>
+      </li>
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>

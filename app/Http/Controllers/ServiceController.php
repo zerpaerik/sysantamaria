@@ -19,6 +19,7 @@ use DB;
 use App\Historial;
 use App\Consulta;
 use App\Service;
+use Toastr;
 
 class ServiceController extends Controller
 {
@@ -87,19 +88,18 @@ class ServiceController extends Controller
   public function createView($extra = []){
   
       $especialistas = Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get();
-      $servicios = Servicios::all();
+      $servicios = Servicios::where("estatus", '=', 1)->get();
       $tiempos = RangoConsulta::all();
       $pacientes = Pacientes::where("estatus", '=', 1)->get();
 	
 	
 	 $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.serv_prog','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.serv_prog','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
-	->where('a.serv_prog','=',1)
     ->orderby('a.id','desc')
     ->get();
 
@@ -117,14 +117,7 @@ class ServiceController extends Controller
       "time" => "required",
     ]);
 	
-	 $searchAtenciones = DB::table('atenciones')
-              ->select('*')
-              ->where('id','=', $request->atencion)
-              ->first();  
-			  
-      $paciente = $searchAtenciones->id_paciente;
-	  $servicio = $searchAtenciones->id_servicio;
-	
+
 	
     if($validator->fails()){
       $this->createView([
@@ -142,38 +135,24 @@ class ServiceController extends Controller
     if(!$exists){
       $evt = Service::create([
         "especialista_id" => $request->especialista,
-        "paciente_id" => $paciente,
+        "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "hora_id" => $request->time,
-        "servicio_id" => $servicio,
-        "title" => $especialista->name." ".$especialista->lastname." "."Personal"
+        "servicio_id" => $request->servicio,
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
       ]);
 	  
-	    Atenciones::where('id', $request->atencion)
-                  ->update([
-                      'serv_prog' => 3,
-                  ]);
 
     $calendar = Calendar::addEvents($this->getEvents())
     ->setOptions([
       'locale' => 'es',
     ]);
+	
+	 Toastr::success('Registrado Exitosamente.', 'Programaciòn!', ['progressBar' => true]);
     return redirect()->action('ServiceController@index');
 
   }
 
 }
- /* public function availableTime($e, $d, $m, $y){
-    $times = Service::where('date', '=', $y."/".$m."/".$d)
-    ->where('especialista_id', '=', $e)->get(['hora_id']);
-    $arrTimes = [];
-    if($times){
-      foreach ($times as $time) {
-        array_push($arrTimes, $time->time);
-      }
-      return response()->json(RangoConsulta::whereNotIn("id", $arrTimes)->get(["start_time", "end_time", "id"]));
-    }
-    return response()->json(RangoConsulta::all()); 
-  }*/
-
+ 
 }

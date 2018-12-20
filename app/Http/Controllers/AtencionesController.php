@@ -131,7 +131,6 @@ class AtencionesController extends Controller
               $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
               $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
-              $paq->id_sede =$request->session()->get('sede');
               $paq->estatus = 1;
               $paq->save(); 
 
@@ -139,7 +138,6 @@ class AtencionesController extends Controller
               $creditos->origen = 'ATENCIONES';
               $creditos->id_atencion = $paq->id;
               $creditos->monto= $request->monto_abop['paquetes'][$key]['abono'];
-              $creditos->id_sede = $request->session()->get('sede');
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'INGRESO DE ATENCIONES';
               $creditos->save();
@@ -202,7 +200,6 @@ class AtencionesController extends Controller
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
-              $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->save(); 
 
@@ -210,7 +207,6 @@ class AtencionesController extends Controller
               $creditos->origen = 'ATENCIONES';
               $creditos->id_atencion = $serv->id;
               $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
-              $creditos->id_sede = $request->session()->get('sede');
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'INGRESO DE ATENCIONES';
               $creditos->save();
@@ -249,7 +245,6 @@ class AtencionesController extends Controller
           $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
           $lab->pendiente = $request->total_g;
-          $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->save();
 
@@ -257,7 +252,6 @@ class AtencionesController extends Controller
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $lab->id;
           $creditos->monto= $request->monto_abol['laboratorios'][$key]['abono'];
-          $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
@@ -359,7 +353,7 @@ class AtencionesController extends Controller
   private function elasticSearch($initial,$nombre,$apellido)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -367,7 +361,6 @@ class AtencionesController extends Controller
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-    //->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('b.nombres','like','%'.$nombre.'%')
     ->where('b.apellidos','like','%'.$apellido.'%')
     ->orderby('a.id','desc')

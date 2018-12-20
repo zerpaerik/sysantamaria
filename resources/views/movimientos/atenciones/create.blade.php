@@ -224,7 +224,7 @@
           </div>
           <br>
 
-            <label class="col-sm-3 control-label">Còmo llego a Madre Teresa:</label>
+            <label class="col-sm-3 control-label">Còmo llego a Santa Maria FISIOCENTER?:</label>
             <div class="col-sm-3">
               <select id="el6" name="comollego">
                   <option value="Seleccione">Seleccione</option>
