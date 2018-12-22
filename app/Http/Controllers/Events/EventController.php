@@ -49,14 +49,13 @@ class EventController extends Controller
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
     $personal = Personal::where('estatus','=',1)->get();
-	$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
     $ciex = Ciex::all();
+
     return view('events.show',[
       'data' => $event,
       'historial' => $historial,
       'consultas' => $consultas,
       'personal' => $personal,
-	  'productos' => $productos,
       'ciex' => $ciex
     ]);
   }
@@ -132,7 +131,6 @@ class EventController extends Controller
         "descripcion" => 'CONSULTAS',
         "monto" => $request->monto,
         "tipo_ingreso" => 'EF',
-        "id_sede" => $request->session()->get('sede'),
       ]);
 	  
 	  $historial = new Historiales();
@@ -140,7 +138,6 @@ class EventController extends Controller
           $historial->origen ='Consultas';
 		  $historial->detalle = $paciente->nombres . " " . $paciente->apellidos . " Paciente.";
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
     }
 

@@ -49,22 +49,15 @@
 							<input type="text" class="form-control" id="medida" name="medida" data-toggle="tooltip" data-placement="bottom" title="Medida" disabled="disabled">
 						</div>
 
-						<label class="col-sm-2 control-label">Cantidad actual</label>
-						<div class="col-sm-2">
+						<label class="col-sm-1 control-label">Cant.Act</label>
+						<div class="col-sm-3">
 							<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad actual" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" disabled="disabled">
 						</div>
 
-						<label class="col-sm-6 control-label">Sede</label>
-						<div class="col-sm-2">
-							<select class="form-control" id="sede" name="sede"  data-toggle="tooltip" data-placement="bottom">
-								@foreach($sedes as $sede)
-									<option value="{{$sede->id}}">{{$sede->name}}</option>
-								@endforeach
-							</select>
-						</div>	
+					
 
-						<label class="col-sm-2 control-label">Salida</label>
-						<div class="col-sm-2">
+						<label class="col-sm-1 control-label">Salida</label>
+						<div class="col-sm-3">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" required="required">
 						</div>
 

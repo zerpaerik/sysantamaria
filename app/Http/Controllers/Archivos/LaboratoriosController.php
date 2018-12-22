@@ -73,7 +73,6 @@ class LaboratoriosController extends Controller
           $historial->origen ='Laboratorio';
 		  $historial->detalle =$request->name;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 
         Toastr::success('Registrado Exitosamente.', 'Laboratorio!', ['progressBar' => true]);

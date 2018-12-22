@@ -102,7 +102,6 @@ class PaquetesController extends Controller
           $historial->origen ='Paquetes';
 		  $historial->detalle =$request->detalle;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
       }
 

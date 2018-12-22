@@ -86,7 +86,6 @@ class AnalisisController extends Controller
           $historial->origen ='Analisis de Laboratorio';
 		  $historial->detalle =$request->name;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();		   
 		
             Toastr::success('Registrado Exitosamente.', 'Analisis de Laboratorio!', ['progressBar' => true]);

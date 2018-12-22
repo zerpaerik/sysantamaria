@@ -69,69 +69,30 @@ class ConsultaController extends Controller
     {
     	
 		$consulta = new Consulta;
-		$consulta->pa =$request->pa;
-		$consulta->pulso =$request->pulso;
-		$consulta->temperatura =$request->temperatura;
-		$consulta->peso =$request->peso;
-		$consulta->fur =$request->fur;
-		$consulta->mac =$request->mac;
-		$consulta->motivo_consulta =$request->motivo_consulta;
-		$consulta->tipo_enfermedad =$request->tipo_enfermedad;
-		$consulta->evolucion_enfermedad =$request->evolucion_enfermedad;
-		$consulta->examen_fisico_regional =$request->examen_fisico_regional;
-		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
-		$consulta->diagnostico_final =$request->diagnostico_final;
+		$consulta->motivo =$request->motivo;
+		$consulta->causa =$request->causa;
+		$consulta->tiempo =$request->tiempo;
+		$consulta->enf =$request->enf;
+		$consulta->fra =$request->fra;
+		$consulta->ope =$request->ope;
+		$consulta->aler =$request->aler;
+		$consulta->pres =$request->pres;
+		$consulta->aux =$request->aux;
+		$consulta->def =$request->def;
+		$consulta->top =$request->top;
 		$consulta->ciex =$request->ciex;
 		$consulta->ciex2=$request->ciex2;
-		$consulta->examen_auxiliar=$request->examen_auxiliar;
-		$consulta->plan_tratamiento =$request->plan_tratamiento;
-		$consulta->observaciones =$request->observaciones;
-		$consulta->paciente_id =$request->paciente_id;
-		$consulta->profesional_id =$request->profesional_id;
-		$consulta->prox =$request->prox;
-		$consulta->personal =$request->personal;
-		$consulta->apetito =$request->apetito;
-		$consulta->sed =$request->sed;
-		$consulta->orina =$request->orina;
-		$consulta->animo =$request->animo;
-		$consulta->g =$request->g;
-		$consulta->p =$request->p;
-		$consulta->pap =$request->pap;
-		$consulta->deposiciones =$request->deposiciones;
-		$consulta->card =$request->card;
+		$consulta->plan=$request->plan;
+		$consulta->ses =$request->ses;
+	    $consulta->paciente_id =$request->paciente_id;
 		$consulta->save();
 		
-		
-	 if (isset($request->id_laboratorio)) {
-      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
-        if (!is_null($laboratorio['laboratorio'])) {
-          $pro = new ConsultaMateriales();
-          $pro->id_consulta = $consulta->id;
-          $pro->id_material =  $laboratorio['laboratorio'];
-          $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
-          $pro->save();
-		  
-		  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
-          ->first();
-		  $cantactual= $SearchMaterial->cantidad;
-	
-		
-	  $p = Producto::find($laboratorio['laboratorio']);
-      $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
-      $res = $p->save();
-	  Toastr::success('Registrado Exitosamente.', 'Consulta!', ['progressBar' => true]);
-      return redirect()->action('Events\EventController@index', ["edited" => $res]);
-		  
-		  
-	
-        } else {
+		return back();
 
-        }
       }
-    }
+    
 
 
-    	return back();
-
-    }
+    	
+    
 }

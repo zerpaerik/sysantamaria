@@ -15,7 +15,7 @@ class ProductoController extends Controller
 
     public function index(){
 		//	$producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get();
+      $producto =Producto::where("almacen",'=', 1)->get();
 			return view('generics.index5', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
@@ -32,7 +32,7 @@ class ProductoController extends Controller
 
       public function index2(){
     //  $producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get();
+      $producto =Producto::where("almacen",'=', 2)->get();
       return view('generics.index5', [
         "icon" => "fa-list-alt",
         "model" => "existencias",
@@ -67,12 +67,13 @@ class ProductoController extends Controller
 
      public function productInView(){
       $sedes = Sede::where("id",'=',1)->get(["id", "name"]);
-      return view('existencias.entrada', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
+      return view('existencias.entrada', ["productos" => Producto::
+where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
     }
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']),
+        "productos" => Producto::where("almacen",'=', 1)->get(['id', 'nombre']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    
@@ -80,7 +81,7 @@ class ProductoController extends Controller
 
     public function productTransView(){
       $sedes = Sede::whereNotIn("id", [\Session::get('sede')])->get(["id", "name"]);
-      return view('existencias.transferir', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']), "sedes" => $sedes]);    
+      return view('existencias.transferir', ["productos" => Producto::where("almacen",'=', 1)->get(['id', 'nombre']), "sedes" => $sedes]);    
     }
 
     public function getProduct($id){
@@ -98,7 +99,7 @@ class ProductoController extends Controller
 
                     $nombre = $searchProduct->nombre;
       
-      $p = Producto::where("id", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
+      $p = Producto::where("id", "=", $request->id)->get()->first();
       if($p){
         $p->cantidad = $p->cantidad + $request->cantidadplus;
         $p->nombre = $nombre;
@@ -116,7 +117,6 @@ class ProductoController extends Controller
         $p = Existencia::create([
           "producto" => $request->id,
           "cantidad" => $request->cantidadplus,
-          "sede_id"  => $request->sede,
           "nombre" => $nombre
         ]);
 
@@ -126,29 +126,17 @@ class ProductoController extends Controller
 
         $res = true;
       }
-      if($res){
-        $trans = Transferencia::create([
-          "code" => $request->code,
-          "producto" => $request->id,
-          "cantidad" => $request->cantidadplus,
-          "origen" => ($request->cantidadplus > 0) ? -1 : 0,
-          "destino" => $request->sede,
-          "proveedor" => $request->proveedor
-        ]);
-      }else{$trans = [];}
-      return response()->json(["success" => $res, "producto" => $p, "trans" => $trans], 200);
+    
+      return response()->json(["success" => $res, "producto" => $p], 200);
     }
 
     public function transfer(Request $request){
-      $pfrom = Producto::where('sede_id', '=', \Session::get("sede"))
-      ->where("id", '=', $request->id)
-      ->get()->first();
+      $pfrom = Producto::where("id", '=', $request->id)->get()->first();
       $pfrom->cantidad = $pfrom->cantidad - $request->cantidadplus;
       $wasSubs = $pfrom->save();
 
-      $p = Producto::where('sede_id', '=', $request->sede)
-      ->where("nombre", '=', $pfrom->nombre)
-      ->get()->first();
+      $p = Producto::where("id", '=', $request->id)->where("almacen",'=',2)->get()->first();
+    
       if($wasSubs){
         if($p){
           $p->cantidad = $p->cantidad + $request->cantidadplus;
@@ -160,7 +148,6 @@ class ProductoController extends Controller
             "categoria" => $pfrom->getOriginal("categoria"),
             "medida" => $pfrom->getOriginal("medida"),
             "cantidad" => $request->cantidadplus,
-            "sede_id" => $request->sede,
             "almacen" => 2
           ]);
           return response()->json(["success" => true, "producto" => $pfrom, "to" => $newprod]);

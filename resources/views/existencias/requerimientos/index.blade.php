@@ -25,7 +25,6 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>Dirigida A:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto Solicitado</th>
 							<th>Cantidad</th>
@@ -38,7 +37,6 @@
 					<tbody>
 						@foreach($requerimientos as $req)					
 							<tr>
-								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
 								<td>{{$req->cantidad}}</td>

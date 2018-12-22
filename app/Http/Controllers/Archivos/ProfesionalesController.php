@@ -103,10 +103,11 @@ class ProfesionalesController extends Controller
           'dni' => 'required|unique:profesionales' 
 
         ]);
-        if($validator->fails()) 
+        if($validator->fails()) {
 	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
-          return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
-		$centros = Profesionales::create([
+        		return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
+		} else {	
+	$centros = Profesionales::create([
 	      'name' => $request->name,
 	      'apellidos' => $request->apellidos,
 	      'cmp' => $request->cmp,
@@ -131,9 +132,8 @@ class ProfesionalesController extends Controller
           $historial->origen ='Profesional de Apoyo';
 		  $historial->detalle = $request->dni;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
-          
+		}   
 
      Toastr::success('Registrado Exitosamente.', 'Profesional de Apoyo!', ['progressBar' => true]);
 

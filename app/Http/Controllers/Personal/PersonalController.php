@@ -126,7 +126,6 @@ class PersonalController extends Controller
           $historial->origen ='Personal';
 		  $historial->detalle =$request->dni;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 	  
 	  

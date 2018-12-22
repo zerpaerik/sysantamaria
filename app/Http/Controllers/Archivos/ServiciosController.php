@@ -92,7 +92,6 @@ class ServiciosController extends Controller
           $historial->origen ='Servicio';
 		  $historial->detalle =$request->detalle;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
           
           return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);

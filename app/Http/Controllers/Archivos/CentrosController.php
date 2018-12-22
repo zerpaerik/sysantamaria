@@ -77,7 +77,6 @@ class CentrosController extends Controller
           $historial->origen ='Centro Mèdico';
 		  $historial->detalle =$request->name;
           $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 
         Toastr::success('Registrado Exitosamente.', 'Centro Mèdico!', ['progressBar' => true]);
