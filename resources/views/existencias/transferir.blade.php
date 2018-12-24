@@ -30,7 +30,7 @@
 
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="producto/add">
+				<form class="form-horizontal" role="form" method="post" action="transfer">
 						<div class="form-group">
 						{{ csrf_field() }}
 
@@ -62,7 +62,7 @@
 						</div>
 
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+							<input type="submit"  class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>						
 
 						<input type="hidden" name="id" id="idp">
@@ -71,21 +71,9 @@
 					</div>			
 			</div>
 		</div>
-		<div class="alert alert-success invisible" id="successalrt" role="alert">Actualizado</div>
 	</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Tipo</th>
-				<th>Para</th>
-				<th>Producto</th>
-				<th>Cantidad</th>
-			</tr>
-		</thead>
-		<tbody id="table-b">
-		</tbody>
-	</table>
+
 
 <script type="text/javascript">
 	document.getElementById("prod").addEventListener('change', function(evt){
@@ -107,46 +95,7 @@
 	});
 </script>
 
-<script type="text/javascript">
 
-	document.getElementById("updatepro").addEventListener('click', function(evt){
-		evt.preventDefault();
-		if($('#idp').val() < 1) return;
-
-
-		if(parseInt($('#cantidadplus').val()) > parseInt($("#cantidad").val())){
-			return alert("La cantidad de salida ("+$('#cantidadplus').val()+") sobrepasa el stock de "+$("#cantidad").val());
-		}
-
-		var d = {
-			"id" : $("#idp").val(),
-			"sede" : $('#sede').val(),
-			"cantidadplus" : ($('#cantidadplus').val())
-		};
-		
-		$.ajax({
-      url: "transfer",
-      headers: {
-    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  		},
-      type: "POST",
-      data: d,
-      success: function(res){
-      	if(res.success){
-      		$( "#table-b" ).append( "<tr><td>Transferencia</td><td>"+res.producto.sede_id+"->"+res.to.sede_id+"</td><td>"+res.producto.nombre+"</td><td>"+$('#cantidadplus').val()+"</td></tr>" );
-	      	$('#cantidad').val(res.producto.cantidad);
-	      	$('#cantidadplus').val(0);      		
-      		$("#successalrt").toggleClass("invisible");
-      		setTimeout(function(){
-      			$("#successalrt").toggleClass("invisible");
-      		}, 3000)
-      	};
-      }
-    });
-	});
-
-	
-</script>
 
 
 

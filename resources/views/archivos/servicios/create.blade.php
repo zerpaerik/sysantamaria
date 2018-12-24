@@ -43,11 +43,6 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" name="por_per" placeholder="porcentaje personal" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
 						</div>
-
-						<label class="col-sm-2 control-label">Personaje Tecnólogo</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="por_tec" placeholder="porcentaje tecnólogo" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
-						</div>
 						
 						<label class="col-sm-2 control-label">Se Programa?</label>
 						<div class="col-sm-3">

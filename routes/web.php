@@ -285,11 +285,12 @@ Route::get('existencias-trans', 'Existencias\ProductoController@productTransView
 Route::get('existencia/{prod}/{sede}', 'Existencias\ProductoController@getExist');
 Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
 Route::post('transfer', 'Existencias\ProductoController@transfer');
-Route::patch('producto', 'Existencias\ProductoController@addCant');
+Route::post('entrada', 'Existencias\ProductoController@entrada');
+Route::post('producto/add', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
-
-
+Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
+Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
 Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
 Route::get('requerimientos-search', 'Existencias\RequerimientosController@search')->name('requerimientos.search')->middleware('auth');

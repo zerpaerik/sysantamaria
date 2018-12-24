@@ -366,8 +366,6 @@ class AtencionesController extends Controller
     ->orderby('a.id','desc')
     ->paginate(20);
 	
-	
-
     return $atenciones;
   }
   

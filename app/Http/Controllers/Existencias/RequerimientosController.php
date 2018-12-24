@@ -122,7 +122,7 @@ class RequerimientosController extends Controller
       $p = Producto::where("codigo", "=", $codigo)->where("almacen","=", 2)->get()->first();
 
       if($p){
-        $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
+        $p->cantidad = $p->cantidad + $request->cantidadd;
         $p->save();
       }else{
 

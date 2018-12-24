@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
+use App\Models\{Creditos, Ventas};
 use DB;
 use Toastr;
+use Auth;
+use Carbon\Carbon;
+
+
 
 
 class ProductoController extends Controller
@@ -73,7 +78,7 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("almacen",'=', 1)->get(['id', 'nombre']),
+        "productos" => Producto::where("almacen",'=', 2)->get(['id', 'nombre']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    
@@ -89,70 +94,86 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
       return response()->json(["producto" => $p], 200);
     }
 
-    public function addCant(Request $request){
-
+      public function addCant(Request $request){
+		  
+		 
+	
        $searchProduct = DB::table('productos')
                     ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
-                    ->first();   
+					->where('almacen','=','2')
+                    ->where('id','=', $request->producto)
+					->where('almacen','=','2')
+                    ->first(); 
+					
 
                     $nombre = $searchProduct->nombre;
-      
-      $p = Producto::where("id", "=", $request->id)->get()->first();
-      if($p){
-        $p->cantidad = $p->cantidad + $request->cantidadplus;
-        $p->nombre = $nombre;
-        $res = $p->save();
-      }else{
-
-        $searchProduct = DB::table('productos')
-                    ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
-                    ->first();   
-
-                    $nombre = $searchProduct->nombre;
-
-        $p = Existencia::create([
-          "producto" => $request->id,
-          "cantidad" => $request->cantidadplus,
-          "nombre" => $nombre
-        ]);
-
-        $p = Producto::find($request->id);
-        $p->cantidad = $request->cantidadplus;
-        $res = $p->update();
-
-        $res = true;
-      }
+					$cantidadactual = $searchProduct->cantidad;
+					
+		
+		if( $request->cantidadplus > $cantidadactual){
+		 Toastr::error('Cantidad excede Maximo en stock', 'Error!', ['progressBar' => true]);
+		 return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
+		} else {
+			
+		  Producto::where('id', $request->producto)
+                  ->update([
+                      'cantidad' => $cantidadactual - $request->cantidadplus,
+                  ]);
+				  
+		      $creditos = new Creditos();
+              $creditos->origen = 'VENTA DE PRODUCTOS';
+              $creditos->id_atencion = NULL;
+              $creditos->monto= $request->monto;
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'VENTA DE PRODUCTOS';
+              $creditos->save();
+			  
+			  $ventas = new Ventas();
+              $ventas->id_producto = $request->producto;
+              $ventas->monto = $request->monto;
+              $ventas->cantidad= $request->cantidadplus;
+              $ventas->id_usuario = Auth::user()->id;
+              $ventas->save();
+			  
+       Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
+      return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
+		}
     
-      return response()->json(["success" => $res, "producto" => $p], 200);
     }
 
     public function transfer(Request $request){
-      $pfrom = Producto::where("id", '=', $request->id)->get()->first();
+      $pfrom = Producto::where("id", '=', $request->producto)->get()->first();
       $pfrom->cantidad = $pfrom->cantidad - $request->cantidadplus;
       $wasSubs = $pfrom->save();
+	  
+	  $arr = [
+          ['codigo', $pfrom->codigo],
+          ['almacen', 2]
+      ];
 
-      $p = Producto::where("id", '=', $request->id)->where("almacen",'=',2)->get()->first();
-    
-      if($wasSubs){
+       $p = Producto::where($arr)->first();
+	   
+   
         if($p){
           $p->cantidad = $p->cantidad + $request->cantidadplus;
           $res = $p->save();
-          return response()->json(["success" => $res, "producto" => $pfrom, "to" => $p]);
+          Toastr::success('La Transferencia se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
+          return redirect()->action('Existencias\ProductoController@index2', ["created" => false]);
         }else{
           $newprod = Producto::create([
             "nombre" => $pfrom->nombre,
             "categoria" => $pfrom->getOriginal("categoria"),
             "medida" => $pfrom->getOriginal("medida"),
+			"preciounidad" => $pfrom->getOriginal("preciounidad"),
+			"precioventa" => $pfrom->getOriginal("precioventa"),
+			"codigo" => $pfrom->getOriginal("codigo"),
             "cantidad" => $request->cantidadplus,
             "almacen" => 2
           ]);
-          return response()->json(["success" => true, "producto" => $pfrom, "to" => $newprod]);
+          Toastr::success('La Transferencia se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
+          return redirect()->action('Existencias\ProductoController@index2', ["created" => false]);
         }
-      }
+
     }
 
     public function edit(Request $request){
@@ -165,6 +186,17 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
       $res = $p->save();
       return redirect()->action('Existencias\ProductoController@index', ["edited" => $res]);
     }
+	
+	 public function entrada(Request $request){
+    
+          $p = Producto::find($request->producto);
+          $p->cantidad = $p->cantidad + $request->cantidadplus;
+          $res = $p->save();
+          Toastr::success('La Entrada se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
+          return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
+  
+    }
+
 
     public function delete($id){
       $p = Producto::find($id);
@@ -260,5 +292,56 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
             $i++; 
         } 
         return $temp_array; 
-    }     
+    }  
+
+    public function indexv(){
+        $total = 0;
+        $inicio = Carbon::now()->toDateString();
+        $final = Carbon::now()->addDay()->toDateString();
+        $atenciones = $this->elasticSearch($inicio,$final,'','');
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->monto; 
+        }
+        return view('existencias.ventas.index', ["atenciones" => $atenciones, "total" => $total]);
+	}
+
+     public function search(Request $request)
+    {
+      $search = $request->nom;
+      $split = explode(" ",$search);
+      $total = 0;
+
+      if (!isset($split[1])) {
+       
+        $split[1] = '';
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->monto; 
+        }
+        return view('existencias.ventas.search', ["atenciones" => $atenciones,"total" => $total]); 
+
+      }else{
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->monto; 
+        } 
+        return view('existencias.ventas.search', ["atenciones" => $atenciones, "total" => $total]);   
+      }    
+    }
+	
+	  private function elasticSearch($initial, $final,$nom)
+  { 
+        $atenciones = DB::table('ventas as a')
+        ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
+        ->join('users as e','e.id','a.id_usuario')
+		->join('productos as b','b.id','a.id_producto')
+        ->where('b.nombre','like','%'.$nom.'%')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
+        ->orderby('a.id','desc')
+        ->get();
+        return $atenciones;
+  }
+
+    	
 }

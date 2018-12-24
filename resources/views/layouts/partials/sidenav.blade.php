@@ -95,6 +95,10 @@
 
         </ul>      
     </li>
+	
+	<li>
+        <a href="{{route('ventas.index')}}"><i class="fa fa-plus-circle"></i> Listado de Ventas</a>
+      </li>
 
   </ul>
 </li>
@@ -126,9 +130,7 @@
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
-      <li>
-        <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comis. Tecnólogos</a>
-      </li>
+    
       <li>
         <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
       </li>
