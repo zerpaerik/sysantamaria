@@ -366,7 +366,6 @@ class ReportesController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.es_servicio','=', 1)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
-        ->where('a.id_sede','=', \Session::get("sede"))
         ->whereNotIn('a.monto',[0,0.00])
         ->orderby('a.id','desc')
         ->get();
@@ -383,7 +382,6 @@ class ReportesController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.es_laboratorio','=', 1)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
-        ->where('a.id_sede','=', \Session::get("sede"))
         ->whereNotIn('a.monto',[0,0.00])
         ->orderby('a.id','desc')
         ->get();
@@ -411,13 +409,11 @@ class ReportesController extends Controller
         ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
         ->where('a.origen','=','OTROS INGRESOS')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
-        ->where('a.id_sede','=', \Session::get("sede"))
         ->orderby('a.id','desc')
         ->get();
 
         $totalotrosingresos = Creditos::where('origen','OTROS INGRESOS')
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
-                                    ->where('id_sede','=', \Session::get("sede"))
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
 
@@ -425,13 +421,11 @@ class ReportesController extends Controller
         ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
         ->where('a.origen','=','CUENTAS POR COBRAR')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
-        ->where('a.id_sede','=', \Session::get("sede"))
         ->orderby('a.id','desc')
         ->get();
 
         $totalcuentasporcobrar = Creditos::where('origen','CUENTAS POR COBRAR')
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
-                                    ->where('id_sede','=', \Session::get("sede"))
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
     
