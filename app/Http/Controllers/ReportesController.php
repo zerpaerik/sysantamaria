@@ -360,7 +360,7 @@ class ReportesController extends Controller
     {
 
         $servicios = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -376,7 +376,7 @@ class ReportesController extends Controller
                                     ->first();
 
          $laboratorios = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.name as laboratorio','e.name','e.lastname')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.name as laboratorio','e.name','e.lastname')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as c','c.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -406,7 +406,7 @@ class ReportesController extends Controller
                                     ->first();
 
         $otrosingresos = DB::table('creditos as a')
-        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.monto','a.created_at')
         ->where('a.origen','=','OTROS INGRESOS')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->orderby('a.id','desc')
@@ -418,7 +418,7 @@ class ReportesController extends Controller
                                     ->first();
 
         $cuentasporcobrar = DB::table('creditos as a')
-        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.monto','a.created_at')
         ->where('a.origen','=','CUENTAS POR COBRAR')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->orderby('a.id','desc')
