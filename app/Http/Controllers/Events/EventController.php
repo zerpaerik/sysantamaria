@@ -26,7 +26,7 @@ class EventController extends Controller
   {
     if($request->isMethod('get')){
       $calendar = false;
-      return view('events.index', ["calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
+      return view('events.index', ["calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->get()]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
@@ -164,7 +164,7 @@ class EventController extends Controller
 
   public function createView($extra = []){
     $data = [
-	  "especialistas" => Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get(),
+	  "especialistas" => Personal::where('estatus','=','1')->get(),
       "pacientes" => Paciente::where('estatus','=',1)->get(),
       "tiempos" => RangoConsulta::all(),
 	  "ciex" => Ciex::all(),
