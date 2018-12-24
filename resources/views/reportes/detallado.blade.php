@@ -76,7 +76,6 @@
 			<th>Paciente</th>
 			<th>Monto Total</th>
 		    <th>Monto Abonado</th>
-			<th>Tipo de Pago</th>
 		</tr>
 		@foreach ($servicios as $serv)
 			<tr>
@@ -85,7 +84,6 @@
 				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
 				<td>{{ $serv->monto }}</td>
 				<td>{{ $serv->abono }}</td>
-			    <td>{{ $serv->tipopago }}</td>
 			</tr>
 		@endforeach
 		<tr>
@@ -94,7 +92,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{$totalServicios}}</td>
+			<td width="80">{{$totalServicios->monto}}</td>
 		</tr>
 	</table>
 </div>
@@ -109,7 +107,6 @@
 			<th>Paciente</th>
 			<th>Monto Total</th>
 		    <th>Monto Abonado</th>
-			<th>Tipo de Pago</th>
 		</tr>
 		@foreach ($laboratorios as $lab)
 			<tr>
@@ -118,7 +115,6 @@
 				<td>{{ $lab->nombres }},{{ $serv->apellidos }}</td>
 				<td>{{ $lab->monto }}</td>
 				<td>{{ $lab->abono }}</td>
-			    <td>{{ $lab->tipopago }}</td>
 			</tr>
 		@endforeach
 		<tr>
@@ -127,7 +123,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalLaboratorios }}</td>
+			<td width="80">{{ $totalLaboratorios->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -140,7 +136,6 @@
 			<th>Paciente</th>
 			<th>Doctor</th>
 			<th>Monto</th>
-			<th>Tipo de Pago</th>
 		</tr>
 		@foreach ($consultas as $con)
 			<tr>
@@ -155,7 +150,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalconsultas }}</td>
+			<td width="80">{{ $totalconsultas->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -182,7 +177,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalotrosingresos }}</td>
+			<td width="80">{{ $totalotrosingresos->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -209,7 +204,34 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalcuentasporcobrar }}</td>
+			<td width="80">{{ $totalcuentasporcobrar->monto }}</td>
+		</tr>
+	</table>
+</div>
+
+<div style="font-weight: bold; font-size: 14px">
+		VENTAS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Monto</th>
+		</tr>
+		@foreach ($ventas as $ven)
+			<tr>
+				<td>{{ $ven->nombre }}</td>
+				<td>{{ $ven->cantidad }}</td>
+				<td>{{ $ven->monto }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalventas->monto }}</td>
 		</tr>
 	</table>
 </div>

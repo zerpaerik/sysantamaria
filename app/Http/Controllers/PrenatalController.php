@@ -132,4 +132,21 @@ class PrenatalController extends Controller
     }
 
   
+
+
+    public function verControl2($id)
+    {
+
+    	$paciente = Paciente::where('id',$id)->first();
+    	$prenatal = Prenatal::where('paciente',$id)->get();
+		
+		return view('prenatal.show',[
+    		 'paciente' => $paciente,
+			 'prenatal' => $prenatal
+    	]); 
+		
+    
+    }
+
+  
 }

@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Controles Prenatales</strong></span>
+					<span><strong>Evaluaciones</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -32,7 +32,8 @@
 							<th>Paciente</th>
 							<th>DNI</th>
 							<th>Registro</th>
-							<th>Ver Ficha</th>
+							<th>Mostrar Evaluaciones</th>
+							<th>Descargar Evaluaciones</th>
 							
 						</tr>
 					</thead>
@@ -42,7 +43,8 @@
 								<td>{{$d->nombres}} {{$d->apellidos}}</td>
 								<td>{{$d->dni}}</td>
 								<td>{{$d->created_at}}</td>
-								<td><a href="prenatal-vercontrol-{{$d->idPaciente}}" target="_blank" class="btn btn-danger">Mostrar</a></td>
+							    <td><a href="prenatal-vercontrol2-{{$d->idPaciente}}"  class="btn btn-primary">Mostrar</a></td>
+								<td><a href="prenatal-vercontrol-{{$d->idPaciente}}" target="_blank" class="btn btn-danger">Descargar</a></td>
 							</tr>
 						@endforeach
 					</tbody>

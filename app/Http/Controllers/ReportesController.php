@@ -213,6 +213,14 @@ class ReportesController extends Controller
         if ($cuentasXcobrar->cantidad == 0) {
             $cuentasXcobrar->monto = 0;
         }
+		
+		 $ventas = Creditos::where('origen', 'VENTA DE PRODUCTOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
+        }
 
         $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
                             ->select(DB::raw('origen, descripcion, monto'))
@@ -235,7 +243,7 @@ class ReportesController extends Controller
             $tarjeta->monto = 0;
         }
 
-        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto;
+        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto;
 
         $totalEgresos = 0;
 
@@ -243,7 +251,7 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
 
-        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos'));
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','ventas'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -429,11 +437,21 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
     
-    
+         $ventas = DB::table('ventas as a')
+        ->select('a.id','a.id_producto','a.cantidad','a.monto','a.created_at','b.nombre')
+		->join('productos as b','b.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalventas = Creditos::where('origen','VENTA DE PRODUCTOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
      
 
        
-        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar'));
+        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','ventas','totalventas'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

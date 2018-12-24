@@ -1,50 +1,7 @@
-<style>
-	.row{
-		width: 1024px;
-		margin: 0 auto;
-	}
+@extends('layouts.app')
 
-	.col-12{
-		width: 100%;
-	}
-	
-	.col-6{
-		width: 49%;
-		float: left;
-		padding: 8px 5px;
-		font-size: 18px;
-	}
+@section('content')
 
-	.text-center{
-		text-align: center;
-	}
-	
-	.text-right{
-		text-align: right;
-	}
-
-	.title-header{
-		font-size: 22px; 
-		text-transform: uppercase; 
-		padding: 12px 0;
-	}
-	table{
-		width: 100%;
-		text-align: center;
-		margin: 10px 0;
-	}
-	
-	tr th{
-		font-size: 14px;
-		text-transform: uppercase;
-		padding: 8px 5px;
-	}
-
-	tr td{
-		font-size: 14px;
-		padding: 8px 5px;
-	}
-</style>
 
 <div>
 	<div class="text-center title-header col-12">
@@ -52,7 +9,11 @@
 	</div>
 </div>
 
-@foreach($data as $pre)					
+<div class="col-6 text-right">
+		<strong>Paciente:</strong>{{$paciente->nombres}},{{$paciente->apellidos}}- DNI:{{$paciente->dni}}
+	</div> 
+
+@foreach($prenatal as $pre)					
 
 <div style="font-weight: bold; font-size: 14px">
 		FECHA: {{$pre->created_at}}
@@ -62,7 +23,7 @@
 		PROCEDIMIENTO
 </div>
 <div style="background: #eaeaea;">
-	<table>
+	<table width="100%">
 		<tr>
 			<th>CHC</th>
 			<th>CF</th>
@@ -123,15 +84,15 @@
 			</tr>
 	</table>
 </div>
-
+<br>
 <div style="font-weight: bold; font-size: 14px">
 		EVALUACI?N
 </div>
 <div style="background: #eaeaea;">
-	<table>
+	<table width="100%">
 		<tr>
-			<th>DESFAVORABLE</th>
-			<th>SE MANTIENE</th>
+			<th width="30%">DESFAVORABLE</th>
+			<th width="30%">SE MANTIENE</th>
 			<th>FAVORABLE</th>
 		</tr>
 		<tr>
@@ -152,8 +113,11 @@
 			    @endif
 			</tr>
 	</table>
+	<br>
 </div>
 @endforeach
+
+@endsection
 
 
 
