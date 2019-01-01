@@ -49,8 +49,10 @@
 						<div class="col-sm-3">
 							<select id="el2" name="origen">
 								    <option value="0">Seleccione el Origen</option>
-									<option value="1">Personal</option>
-									<option value="2">Profesional</option>
+									<option value="1">Particular</option>
+									<option value="2">Referido</option>
+                  <option value="3">Convenio</option>
+                  <option value="4">Recomendaciòn</option>
 							</select>
 						</div>
 
@@ -452,7 +454,10 @@
             calculo_general();
          }
       });
+
+
     })
+
 
     $(document).on('change', '.selectLab', function(){
       var labId = $(this).attr('id');
@@ -581,8 +586,14 @@ function createPac(e){
           var link;
           if ($(this).val() ==  1) {
             link = '/movimientos/atencion/personal/';
-          }else{
+          }else if($(this).val() ==  2){
             link = '/movimientos/atencion/profesional/';
+          }else if($(this).val() ==  3){
+            link = '/movimientos/atencion/convenio/';
+          }else if($(this).val() ==  4){
+            link = '/movimientos/atencion/recomendacion/';
+          }else {
+            link = '/movimientos/atencion/nada/';
           }
 
           $.ajax({

@@ -26,7 +26,10 @@
 					<thead>
 						<tr>
 							<th>Detalle</th>
-							<th>Precio</th>
+							<th>Precio Particular</th>
+							<th>Precio Convenio</th>
+							<th>Precio Otro</th>
+
 							
 						</tr>
 					</thead>
@@ -35,6 +38,9 @@
 							<tr>
 								<td>{{$serv->detalle}}</td>
 								<td>{{$serv->precio}}</td>
+								<td>{{$serv->precio1}}</td>
+								<td>{{$serv->precio2}}</td>
+
 								
 								<td><a href="servicios/{{$serv->id}}" class="btn btn-danger">Eliminar</a></td>
 							</tr>

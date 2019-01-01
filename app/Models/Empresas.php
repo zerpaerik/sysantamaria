@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Paquetes extends Model
+class Empresas extends Model
 {
     protected $fillable = [
-    	'detalle', 'precio','porcentaje','usuario','precio1','precio2'
+    	'nombre','rif','direccion','personacontacto','telefono','estatus','user'
     ];
-
 }

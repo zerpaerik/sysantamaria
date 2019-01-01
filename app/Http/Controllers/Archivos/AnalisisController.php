@@ -18,7 +18,7 @@ class AnalisisController extends Controller
 
 
 	$analisis = DB::table('analises as a')
-        ->select('a.id','a.name','a.preciopublico','a.costlab','a.usuario','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio','c.name as user','c.lastname')
+        ->select('a.id','a.name','a.preciopublico','precio1','precio2','a.costlab','a.usuario','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio','c.name as user','c.lastname')
         ->join('laboratorios as b','a.laboratorio','b.id')
 		->join('users as c','c.id','a.usuario')
         ->orderby('a.id','desc')
@@ -27,9 +27,9 @@ class AnalisisController extends Controller
         return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "analisis",
-        "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Precio Particular","Precio Convenio","Precio Recomendaciòn", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
         "data" => $analisis,
-        "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio","user"],
+        "fields" => [ "name", "preciopublico","precio1","precio2", "costlab", "tiempo", "material","laboratorio","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -40,7 +40,7 @@ class AnalisisController extends Controller
   public function search(Request $request)
   {
     $analisis = DB::table('analises as a')
-          ->select('a.id','a.name','a.preciopublico','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
+          ->select('a.id','a.name','a.preciopublico','precio1','precio2','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
           ->join('laboratorios as b','a.laboratorio','b.id')
           ->orderby('a.id','desc')
           ->where('a.estatus','=', 1)
@@ -49,9 +49,9 @@ class AnalisisController extends Controller
           return view('generics.index', [
           "icon" => "fa-list-alt",
           "model" => "analisis",
-          "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio", "Editar", "Eliminar"],
+          "headers" => ["Nombre", "Precio Particular","Precio Convenio","Precio Recomendaciòn", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
           "data" => $analisis,
-          "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio"],
+          "fields" => [ "name", "preciopublico","precio1","precio2", "costlab", "tiempo", "material","laboratorio"],
             "actions" => [
               '<button type="button" class="btn btn-info">Transferir</button>',
               '<button type="button" class="btn btn-warning">Editar</button>'
@@ -70,6 +70,8 @@ class AnalisisController extends Controller
 		$analisis = Analisis::create([
 	      'name' => $request->name,
 	      'preciopublico' => $request->preciopublico,
+        'precio1' => $request->precio1,
+        'precio2' => $request->precio2,
 	      'costlab' => $request->costlab,
 	      'laboratorio' => $request->laboratorio,
         'porcentaje' => $request->porcentaje,
@@ -109,13 +111,15 @@ class AnalisisController extends Controller
 
     public function editView($id){
       $p = Analisis::find($id);
-      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name, "preciopublico" => $p->preciopublico,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio,"porcentaje" => $p->porcentaje, "material" => $p->material,"id" => $p->id]);
+      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name,"precio1" => $p->precio1, "preciopublico" => $p->preciopublico,"precio2" => $p->precio2,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio,"porcentaje" => $p->porcentaje, "material" => $p->material,"id" => $p->id]);
     }
 
       public function edit(Request $request){
       $p = Analisis::find($request->id);
       $p->name = $request->name;
       $p->preciopublico = $request->preciopublico;
+      $p->precio1 = $request->precio1;
+      $p->precio2 = $request->precio2;
       $p->costlab = $request->costlab;
       $p->laboratorio = $request->laboratorio;
       $p->tiempo = $request->tiempo;

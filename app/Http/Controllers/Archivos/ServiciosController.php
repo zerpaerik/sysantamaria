@@ -19,7 +19,7 @@ class ServiciosController extends Controller
 
       //$servicios =Servicios::where("estatus", '=', 1)->get();
 	  $servicios = DB::table('servicios as a')
-        ->select('a.id','a.detalle','a.precio','a.porcentaje','a.por_per','a.por_tec','a.usuario','c.name as user','c.lastname')
+        ->select('a.id','a.detalle','a.precio','precio1','precio2','a.porcentaje','a.por_per','a.por_tec','a.usuario','c.name as user','c.lastname')
 		->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
@@ -27,9 +27,9 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal","Registrado Por:", "Opciones"],
+        "headers" => ["id", "Detalle", "Precio Particular","Precio Convenio","Precio Recomendaciòn","Porcentaje", "Porcentaje Personal","Registrado Por:", "Opciones"],
         "data" => $servicios,
-        "fields" => ["id", "detalle", "precio","porcentaje","por_per","user"],
+        "fields" => ["id", "detalle", "precio","precio1","precio2","porcentaje","por_per","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -68,6 +68,8 @@ class ServiciosController extends Controller
           $servicio = new Servicios;
           $servicio->detalle = $request->detalle;
           $servicio->precio  = $request->precio;
+          $servicio->precio1  = $request->precio1;
+          $servicio->precio2  = $request->precio2;
           $servicio->porcentaje  = $request->porcentaje;
           $servicio->por_per  = $request->por_per;
           $servicio->por_tec  = $request->por_tec;
@@ -113,7 +115,7 @@ class ServiciosController extends Controller
    
      public function editView($id){
       $p = Servicios::find($id);
-      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"porcentaje" => $p->porcentaje,"id" => $p->id,]);
+      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio, "precio1" => $p->precio1, "precio2" => $p->precio2,"porcentaje" => $p->porcentaje,"id" => $p->id,]);
       
     } 
 

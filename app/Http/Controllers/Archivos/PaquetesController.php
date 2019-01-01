@@ -26,8 +26,8 @@ class PaquetesController extends Controller
         
 
         $paquetes = DB::table('paquetes as a')
-        ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus','a.usuario','b.name as user','b.lastname')
-		->join('users as b','b.id','a.usuario')
+        ->select('a.id','a.detalle','a.precio','precio1','precio2', 'a.porcentaje','a.estatus','a.usuario','b.name as user','b.lastname')
+	     	->join('users as b','b.id','a.usuario')
         ->where('a.estatus','=',1)
         ->paginate(5000);
         $paquetes_servicios = new PaqueteServ();
@@ -44,7 +44,7 @@ class PaquetesController extends Controller
     public function search(Request $request)
     {
       $paquetes = DB::table('paquetes as a')
-      ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus')
+      ->select('a.id','a.detalle','a.precio','precio1','precio2', 'a.porcentaje','a.estatus')
       ->where('a.estatus','=',1)
       ->where('a.detalle','like','%'.$request->nom.'%')
       ->paginate(5000);
@@ -74,6 +74,8 @@ class PaquetesController extends Controller
       $paquete = new Paquetes;
       $paquete->detalle    = $request->detalle;
       $paquete->precio     = $request->precio;
+      $paquete->precio1     = $request->precio1;
+      $paquete->precio2     = $request->precio2;
       $paquete->porcentaje = $request->porcentaje;
 	  $paquete->usuario = 	Auth::user()->id;
 
@@ -133,6 +135,8 @@ class PaquetesController extends Controller
       $paquete = Paquetes::where('id',$id)
                           ->update([
                               'precio' => $request->precio,
+                              'precio1' => $request->precio1,
+                              'precio2' => $request->precio2,
                               'porcentaje' => $request->porcentaje
                           ]);
       if ($paquete) {

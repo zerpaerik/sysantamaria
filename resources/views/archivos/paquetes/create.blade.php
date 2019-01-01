@@ -30,9 +30,18 @@
 							<input type="text" class="form-control" name="detalle" placeholder="Nombre" title="Nombre">
 						</div>
 					
-						<label class="col-sm-1 control-label">Precio</label>
+						<label class="col-sm-1 control-label">PrecioP</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="precio" placeholder="Precio" title="Precio">
+							<input type="text" class="form-control" name="precio1" placeholder="Precio Particular" title="Precio">
+						</div>
+
+						<label class="col-sm-1 control-label">PrecioC</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio2" placeholder="Precio Convenio" title="Precio">
+						</div>
+						<label class="col-sm-1 control-label">PrecioR</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio" placeholder="Precio Recomendación" title="Precio">
 						</div>
 					
 						<label class="col-sm-1 control-label">Porcentaje</label>

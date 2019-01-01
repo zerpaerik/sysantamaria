@@ -104,8 +104,7 @@ class AtencionesController extends Controller
                     ->where('id','=', $request->origen_usuario)
                     ->first();    
 
-
-
+ 
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
     }
@@ -285,6 +284,37 @@ class AtencionesController extends Controller
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));
+  }
+
+
+   public function convenio(){
+     
+        $convenio = DB::table('users')
+                    ->select('*')
+                    ->where('tipo','=','4')
+                  // ->where('estatus','=','1')
+                    ->get();  
+
+    return view('movimientos.atenciones.convenio', compact('convenio'));
+  }
+
+
+   public function recomendacion(){
+     
+        $recomendacion = DB::table('users')
+                    ->select('*')
+                    ->where('tipo','=','3')
+                  // ->where('estatus','=','1')
+                    ->get();  
+
+    return view('movimientos.atenciones.recomendacion', compact('recomendacion'));
+  }
+
+
+   public function seleccione(){
+     
+
+    return view('movimientos.atenciones.seleccione');
   }
 
   public function editView($id)

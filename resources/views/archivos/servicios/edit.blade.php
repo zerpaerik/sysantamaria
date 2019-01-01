@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Editar Personal</strong></span>
+					<span><strong>Editar Servicio</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -34,6 +34,18 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="precio" placeholder="precio" data-toggle="tooltip" data-placement="bottom" value="{{$precio}}" title="precio">
 						</div>
+
+						<label class="col-sm-1 control-label">Precio.Conv</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio1" placeholder="" data-toggle="tooltip" data-placement="bottom" value="{{$precio1}}" title="precio">
+						</div>
+
+                        
+                        <label class="col-sm-1 control-label">Precio.Otro</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio2" placeholder="precio" data-toggle="tooltip" data-placement="bottom" value="{{$precio2}}" title="precio">
+						</div>
+
 
 						<label class="col-sm-1 control-label">Porcentaje</label>
 						<div class="col-sm-3">

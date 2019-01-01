@@ -29,9 +29,17 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="name" data-toggle="tooltip" data-placement="bottom" value="{{$name}}" title="name">
 						</div>
-						<label class="col-sm-1 control-label">Precio al Pùblico</label>
+						<label class="col-sm-1 control-label">PrecioP</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="preciopublico" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$preciopublico}}" title="preciopublico">
+						</div>
+							<label class="col-sm-1 control-label">PrecioC</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio1" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$precio1}}" title="preciopublico">
+						</div>
+							<label class="col-sm-1 control-label">PrecioR</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio2" placeholder="preciopublico" data-toggle="tooltip" data-placement="bottom" value="{{$precio2}}" title="preciopublico">
 						</div>
 						<label class="col-sm-1 control-label">Costo</label>
 						<div class="col-sm-3">

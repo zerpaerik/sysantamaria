@@ -35,10 +35,13 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>Nombre</th>
-							<th>Precio</th>
+							<th width="20%">Nombre</th>
+							<th>Precio Particular</th>
+							<th>Precio Convenio</th>
+							<th>Precio Recomendación</th>
 							<th>Porcentaje</th>
 							<th>Registrado Por:</th>
+							<th width="15%">Acciones:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,6 +49,8 @@
 							<tr>
 								<td>{{$paq->detalle}}</td>
 								<td>{{$paq->precio}}</td>
+								<td>{{$paq->precio1}}</td>
+								<td>{{$paq->precio2}}</td>
 								<td>{{$paq->porcentaje}}</td>
 							    <td>{{$paq->user}}-{{$paq->lastname}}</td>
 

@@ -67,6 +67,8 @@ class ConsultaController extends Controller
 
     public function create(Request $request)
     {
+
+
     	
 		$consulta = new Consulta;
 		$consulta->motivo =$request->motivo;
@@ -84,7 +86,14 @@ class ConsultaController extends Controller
 		$consulta->ciex2=$request->ciex2;
 		$consulta->plan=$request->plan;
 		$consulta->ses =$request->ses;
-	    $consulta->paciente_id =$request->paciente_id;
+    $consulta->pa =$request->pa;
+    $consulta->fc =$request->fc;
+    $consulta->fr =$request->fr;
+    $consulta->spo2 =$request->spo2;
+    $consulta->peso =$request->peso;
+    $consulta->talla =$request->talla;
+	  $consulta->paciente_id =$request->paciente_id;
+    $consulta->personal =$request->personal;
 		$consulta->save();
 		
 		return back();

@@ -30,9 +30,19 @@
 							<input type="text" class="form-control" value="{{$paquete->detalle}}" name="detalle" placeholder="Nombre" title="Nombre">
 						</div>
 					
-						<label class="col-sm-1 control-label">Precio</label>
+						<label class="col-sm-1 control-label">PrecioP</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" value="{{$paquete->precio}}" name="precio" placeholder="Precio" title="Precio">
+						</div>
+
+						<label class="col-sm-1 control-label">PrecioC</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" value="{{$paquete->precio1}}" name="precio1" placeholder="Precio" title="Precio">
+						</div>
+
+						<label class="col-sm-1 control-label">PrecioR</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" value="{{$paquete->precio2}}" name="precio2" placeholder="Precio" title="Precio">
 						</div>
 					
 						<label class="col-sm-1 control-label">Porcentaje</label>

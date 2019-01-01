@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-	<h1>Cita medica {{$data->title}}</h1>
+	<h2>CONSULTA {{$data->title}}</h2>
 	<p>Paciente: {{$data->nombres}} {{$data->apellidos}} </p>
 	<p>Doctor: {{$data->nombrePro}} {{$data->apellidoPro}}</p>
 	<p>Fecha de cita: {{$data->date}}</p>
 	<p>Hora: {{$data->start_time}} Hasta las {{$data->end_time}}</p>
 	<br>
 
-	<h2>Datos del paciente</h2>
+	<h2>DATOS DE FILIACIÒN</h2>
 	<p>Nombre: {{$data->nombres}} {{$data->apellidos}} </p>
 	<p>DNI paciente: {{$data->dni}}</p>
 	<p>Direccion del paciente: {{$data->direccion}}</p>
@@ -15,6 +15,7 @@
 	<p>Fecha de nacimiento: {{$data->fechanac}}</p>
 	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
 	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
+	<p>Edad del paciente: {{$edad}} años</p>	
 	<br>	
 	<br>
 	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
@@ -27,10 +28,17 @@
 				<p class="col-sm-6"><strong>Causa Relacionada:</strong> {{ $consulta->causa }}</p>
 				<p class="col-sm-6"><strong>Tiempo de Lesión:</strong> {{ $consulta->tiempo }}</p>
 				<br>
-				<p class="col-sm-6"><strong>Ant.ENFERMEDADES:</strong> {{ $consulta->enf }}</p>
-				<p class="col-sm-6"><strong>Ant.FRACTURAS:</strong> {{ $consulta->fra }}</p>
-				<p class="col-sm-6"><strong>Ant.OPERACIONES:</strong> {{ $consulta->ope }}</p>
-				<p class="col-sm-6"><strong>Ant.ALERGIAS:</strong> {{ $consulta->aler }}</p>
+				<p class="col-sm-6"><strong>Antecedentes.ENFERMEDADES:</strong> {{ $consulta->enf }}</p>
+				<p class="col-sm-6"><strong>Antecedentes.OPERACIONES:</strong> {{ $consulta->fra }}</p>
+				<p class="col-sm-6"><strong>Antecedentes.TRATAMIENTOS HABITUALES:</strong> {{ $consulta->ope }}</p>
+				<p class="col-sm-6"><strong>Antecedentes.ALERGIAS:</strong> {{ $consulta->aler }}</p>
+			    <p class="col-sm-6"><strong>Examen Fisico:</strong> Funciones Vitales</p>
+			    <p class="col-sm-1"><strong>P/A:</strong> {{ $consulta->pa }}</p>
+			    <p class="col-sm-1"><strong>FC:</strong> {{ $consulta->fc }}</p>
+			    <p class="col-sm-1"><strong>FR:</strong> {{ $consulta->fr }}</p>
+			    <p class="col-sm-1"><strong>SPO2:</strong> {{ $consulta->spo2 }}</p>
+			    <p class="col-sm-1"><strong>Peso:</strong> {{ $consulta->peso }}</p>
+			    <p class="col-sm-1"><strong>Talla:</strong>{{ $consulta->talla }}</p>
 				<p class="col-sm-6"><strong>Examen General:</strong> {{ $consulta->exa }}</p>
 				<p class="col-sm-6"><strong>Diag.Presuntivo:</strong> {{ $consulta->pres }}</p>
 				<p class="col-sm-6"><strong>CIE-X:</strong> {{ $consulta->ciex }}</p>
@@ -40,7 +48,7 @@
 				<p class="col-sm-6"><strong>Diag.Topogràfico:</strong> {{ $consulta->top }}</p>
 				<p class="col-sm-6"><strong>Plan de Tratamiento:</strong> {{ $consulta->plan }}</p>
 				<p class="col-sm-6"><strong>Nro Sesiones:</strong> {{ $consulta->ses }}</p>
-				<p class="col-sm-6"><strong>Atentido Por:</strong> {{ $consulta->atendido }}</p>
+				<p class="col-sm-6"><strong>Atentido Por:</strong> {{ $consulta->personal }}</p>
 				
 				<br>
 			</div>
@@ -56,46 +64,79 @@
 			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
            <div class="row">
-            <label for="" class="col-sm-2 control-label">ANAMNESIS</label>
+            <label for="" class="col-sm-2 control-label">PARTE I - ANAMNESIS</label>
 		  </div>
 
-			<label for="" class="col-sm-2 control-label">Motivo de Consulta:</label>
+			<label for="" class="col-sm-2 control-label">a) Motivo de Consulta:</label>
 			<div class="col-sm-10">
 				<input type="text" name="motivo" class="form-control">
 			</div>
 			
-			<label for="" class="col-sm-2 control-label">Causa Relacionada:</label>
+			<label for="" class="col-sm-2 control-label">b) Causa Relacionada:</label>
 			<div class="col-sm-10">	
 				<input  class="form-control" type="text" name="causa">
 			</div>
 			
-			<label for="" class="col-sm-2 control-label">Tiempo de Lesiòn:</label>
+			<label for="" class="col-sm-2 control-label">c) Tiempo de Lesiòn:</label>
 			<div class="col-sm-10">	
 				<input   class="form-control" placeholder="" type="text" name="tiempo">
 			</div>
 			<br>
 			<div class="row">
-            <label for="" class="col-sm-2 control-label">ANTECEDENTES</label>
+            <label for="" class="col-sm-2 control-label">PARTE II - ANTECEDENTES</label>
 		    </div>
 			
-			<label for="" class="col-sm-2 control-label">Enfermedades:</label>
+			<label for="" class="col-sm-2 control-label">a) Enfermedades:</label>
 			<div class="col-sm-10">			
 				<input  class="form-control" type="text" name="enf">
 			</div>
-			<label for="" class="col-sm-2 control-label">Fracturas:</label>
+			<label for="" class="col-sm-2 control-label">b) Operaciones:</label>
 			<div class="col-sm-10">	
 				<input   class="form-control" type="text" name="fra">
 			</div>
-			<label for="" class="col-sm-2 control-label">Operaciones:</label>
+			<label for="" class="col-sm-2 control-label">c) Trat.Habit:</label>
 			<div class="col-sm-10">	
-				<input   class="form-control" type="text" name="ope">
+				<input   class="form-control" placeholder="Tratamientos Habituales" type="text" name="ope">
 			</div>
-			<label for="" class="col-sm-2 control-label">Alérgias:</label>
+			<label for="" class="col-sm-2 control-label">d) Alérg.Medic:</label>
 			<div class="col-sm-10">	
-				<input  class="form-control" placeholder="" type="text" name="aler">
+				<input  class="form-control" placeholder="Alergias Medicamentosas" type="text" name="aler">
+			</div>
+
+			<div class="row">
+            <label for="" class="col-sm-2 control-label">PARTE III - EXAMEN FISICO</label>
+		    </div>
+		    <div class="row">
+		    <label for="" class="col-sm-2 control-label">a) Funciones Vitales</label>
+		    </div>
+             
+             <label for="" class="col-sm-1 control-label">P/A</label>
+			<div class="col-sm-1">	
+				<input  class="form-control"  type="text" name="pa">
+			</div>
+			<label for="" class="col-sm-1 control-label">FC</label>
+			<div class="col-sm-1">	
+				<input  class="form-control" type="text" name="fc">
+			</div>
+			<label for="" class="col-sm-1 control-label">FR</label>
+			<div class="col-sm-1">	
+				<input  class="form-control"  type="text" name="fr">
+			</div>
+			<label for="" class="col-sm-1 control-label">SPO2</label>
+			<div class="col-sm-1">	
+				<input  class="form-control"  type="text" name="spo2">
+			</div>
+			<label for="" class="col-sm-1 control-label">Peso</label>
+			<div class="col-sm-1">	
+				<input  class="form-control" type="text" name="peso">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Talla</label>
+			<div class="col-sm-1">	
+				<input  class="form-control" type="text" name="talla">
 			</div>
 			
-			<label for="" class="col-sm-2 control-label">Examen General</label>
+			<label for="" class="col-sm-2 control-label">b) Examen General</label>
 			<div class="col-sm-10">	
 				<textarea name="exa" cols="10" rows="10" class="form-control" ></textarea>
 			</div>
@@ -103,7 +144,7 @@
 			
 			<br>
             <div class="row">
-			<label for="" class="col-sm-2 control-label">Diagnòstico Presuntivo</label>
+			<label for="" class="col-sm-2 control-label">c) Diagnòstico Presuntivo</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" placeholder="Diagnóstico Presuntivo" type="text" name="pres">
 			</div>
@@ -120,14 +161,14 @@
 			</div> 
 			
 			</div>
-			<label for="" class="col-sm-2 control-label">Examenes Auxiliares</label>
+			<label for="" class="col-sm-2 control-label">d) Examenes Auxiliares</label>
 			<div class="col-sm-10">	
 				<textarea name="aux" cols="10" rows="10" class="form-control" ></textarea>
 			</div>
 			<br>
 			<br>
             <div class="row">
-			<label for="" class="col-sm-2 control-label">Diagnòstivo Definitivo</label>
+			<label for="" class="col-sm-2 control-label">e) Diagnòstivo Definitivo</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" placeholder="Diagnóstico Definitivo" type="text" name="def">
 			</div>
@@ -145,23 +186,38 @@
 			
 			</div>
 			
-			<label for="" class="col-sm-2 control-label">Diag.Topográfico:</label>
+			<label for="" class="col-sm-2 control-label">f) Diag.Topográfico:</label>
 			<div class="col-sm-10">	
-				<input  class="form-control" placeholder="" type="text" name="top">
+				<select id="el6" name="top">
+					<option value="Cabeza">Cabeza</option>
+					<option value="Cuello">Cuello</option>
+					<option value="Hombro">Hombro</option>
+					<option value="Codo">Codo</option>
+					<option value="Muñeca">Muñeca</option>
+					<option value="Mano">Mano</option>
+					<option value="Espalda">Espalda</option>
+					<option value="Cintura">Cintura</option>
+					<option value="Cadera">Cadera</option>
+					<option value="Rodilla">Rodilla</option>
+					<option value="Pierna">Pierna</option>
+					<option value="Tobillo">Tobillo</option>
+					<option value="Pie">Pie</option>
+
+				</select>
 			</div>
 			
-				<label for="" class="col-sm-2 control-label">Plan.Tratamiento:</label>
+				<label for="" class="col-sm-2 control-label">g) Plan.Tratamiento:</label>
 			<div class="col-sm-10">	
 				<input  class="form-control" placeholder="" type="text" name="plan">
 			</div>
-			<label for="" class="col-sm-2 control-label">Nro de Sesiones:</label>
+			<label for="" class="col-sm-2 control-label">h) Nro de Sesiones:</label>
 			<div class="col-sm-10">	
 				<input  class="form-control" placeholder="" type="text" name="ses">
 			</div>
 			
-			<label class="col-sm-2">Atendido Por:</label>
+			<label class="col-sm-2">i) Atendido Por:</label>
 			<div class="col-sm-10">
-				<select id="el5" name="paciente_id">
+				<select id="el5" name="personal">
 					@foreach($personal as $c)
 					<option value="{{$c->name}}-{{$c->lastname}}">
 						{{$c->name}}-{{$c->lastname}}
@@ -344,6 +400,7 @@ function Select2Test(){
 	$("#el1").select2();
 	$("#el3").select2();
   $("#el5").select2();
+   $("#el6").select2();
   $("#el4").select2();
 }
 $(document).ready(function() {

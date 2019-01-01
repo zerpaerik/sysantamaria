@@ -45,13 +45,13 @@ class EventController extends Controller
   public function show(Request $request,$id)
   {
     $event = DB::table('events as e')
-    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.fechanac','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->where('e.id','=',$id)
     ->first();
-
+    $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
     $personal = Personal::where('estatus','=',1)->get();
@@ -62,7 +62,8 @@ class EventController extends Controller
       'historial' => $historial,
       'consultas' => $consultas,
       'personal' => $personal,
-      'ciex' => $ciex
+      'ciex' => $ciex,
+      'edad' => $edad
     ]);
   }
 

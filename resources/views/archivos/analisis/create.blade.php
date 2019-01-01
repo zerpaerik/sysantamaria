@@ -29,9 +29,17 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 						</div>
-						<label class="col-sm-1 control-label">Precio</label>
+						<label class="col-sm-1 control-label">PrecioP</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="preciopublico" placeholder="Precio al Pùblico" data-toggle="tooltip" data-placement="bottom" title="Precio">
+							<input type="text" class="form-control" name="preciopublico" placeholder="Precio Particular" data-toggle="tooltip" data-placement="bottom" title="Precio">
+						</div>
+						<label class="col-sm-1 control-label">PrecioC</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio1" placeholder="Precio Convenio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+						</div>
+						<label class="col-sm-1 control-label">PrecioR</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precio2" placeholder="Precio Recomendaciòn" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>
 						<label class="col-sm-1 control-label">Costo</label>
 						<div class="col-sm-3">

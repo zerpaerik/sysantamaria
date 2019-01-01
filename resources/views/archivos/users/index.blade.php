@@ -39,17 +39,13 @@
 								<td>{{$user->name}}</td>
 								<td>{{$user->lastname}}</td>
 								<td>{{$user->email}}</td>
-								<td>{{($user->role_id == 1) ? 'admin' : 'regular'}}</td>
+						        <td>{{$user->rol}}</td>
+
+							
 							</tr>
 						@endforeach
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
+				
 				</table>
 			</div>
 		</div>

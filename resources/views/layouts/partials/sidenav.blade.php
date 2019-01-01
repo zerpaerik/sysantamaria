@@ -4,6 +4,9 @@
     <span class="hidden-xs">Archivos</span>
   </a>
   <ul class="dropdown-menu">
+     <li>
+      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Empresas</a>
+    </li> 
     <li>
       <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
     </li>
@@ -231,7 +234,7 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
-      @if(\Auth::user()->role_id == 1)
+      @if(\Auth::user()->role_id == 4)
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>

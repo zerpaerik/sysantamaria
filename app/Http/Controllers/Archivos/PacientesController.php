@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Archivos;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Models\Pacientes;
 use App\Models\EdoCivil;
 use App\Models\Provincias;
@@ -11,6 +12,7 @@ use App\Models\Distritos;
 use App\Models\GradoInstruccion;
 use App\Models\HistoriaPacientes;
 use App\Models\Historiales;
+use App\Models\Empresas;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -24,7 +26,7 @@ class PacientesController extends Controller
      // $pacientes =Pacientes::where("estatus", '=', 1)->get();
 	  
 	  $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
+        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.convenio','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
 		->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
@@ -32,9 +34,9 @@ class PacientesController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "pacientes",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","Registrado Por:", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","Por Convenio","Registrado Por:", "Editar", "Eliminar"],
         "data" => $pacientes,
-        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion","user"],
+        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion","convenio","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -57,9 +59,9 @@ class PacientesController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "pacientes",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","Por Convenio", "Editar", "Eliminar"],
         "data" => $pacientes,
-        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion"],
+        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion","convenio"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -126,11 +128,39 @@ class PacientesController extends Controller
 	      'referencia' => $request->referencia,
 	      'gradoinstruccion' => $request->gradoinstruccion,
 	      'ocupacion' => $request->ocupacion,
+        'convenio' => $request->convenio,
+        'empresa' => $request->empresa,
 	      'estatus' => 1,
 		  'usuario' => 	Auth::user()->id,
 	      'historia' => HistoriaPacientes::generarHistoria()
 	  
    		]);
+    if($request->convenio == 1){
+
+       $users= User::create([
+        'name' => $request->nombres,
+        'lastname' => $request->apellidos,
+        'tipo' => 4,
+        'dni' => $request->dni
+      ]);
+
+    } elseif($request->convenio == 2){
+
+      $users= User::create([
+        'name' => $request->nombres,
+        'lastname' => $request->apellidos,
+        'tipo' => 3,
+        'dni' => $request->dni
+      ]);
+    } else {
+
+       $users= User::create([
+        'name' => $request->nombres,
+        'lastname' => $request->apellidos,
+        'tipo' => 3,
+        'dni' => $request->dni
+      ]);
+    }
 		
 		  $historial = new Historiales();
           $historial->accion ='Registro';
@@ -141,7 +171,27 @@ class PacientesController extends Controller
 		}  
 		Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
 		return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
-	}   
+	}  
+
+    
+     public function empresas(){
+     
+       $empresas = DB::table('empresas')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('estatus','=','1')
+                    ->get();  
+
+    return view('archivos.pacientes.empresas', compact('empresas'));
+  }
+
+   public function nada(){
+     
+      
+
+    return view('archivos.pacientes.nada');
+  }
+
 
     public function create2(Request $request){
         

@@ -68,6 +68,15 @@ Route::get('analisis-edit-{id}', 'Archivos\AnalisisController@editView')->name('
 Route::post('analisis/edit', 'Archivos\AnalisisController@edit');
 Route::get('analisis-delete-{id}','Archivos\AnalisisController@delete');
 
+Route::get('empresas', 'Archivos\EmpresasController@index')->name('empresas.index')->middleware('auth');
+Route::get('empresas-search', 'Archivos\EmpresasController@search')->name('empresas.search')->middleware('auth');
+Route::get('empresas-create', 'Archivos\EmpresasController@createView')->name('empresas.create')->middleware('auth');
+Route::post('empresas/create', 'Archivos\EmpresasController@create')->middleware('auth');
+Route::get('empresas/{id}', 'Archivos\EmpresasController@delete')->middleware('auth');
+Route::get('empresas-edit-{id}', 'Archivos\EmpresasController@editView')->name('empresas.edit');
+Route::post('empresas/edit', 'Archivos\EmpresasController@edit');
+Route::get('empresas-delete-{id}','Archivos\EmpresasController@delete');
+
 
 Route::get('analisis/getAnalisi/{id}', 'Archivos\AnalisisController@getAnalisi');
 
@@ -98,6 +107,10 @@ Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
 Route::get('pacientes-createpac','Archivos\PacientesController@createpac');
 Route::get('pacientes/view/{id}', 'Archivos\PacientesController@show');
+
+Route::get('archivos/pacientes/empresas','Archivos\PacientesController@empresas');
+Route::get('archivos/pacientes/nada','Archivos\PacientesController@nada');
+
 
 
 
@@ -225,6 +238,11 @@ Route::get('historialcobros-search', 'HistorialCobrosController@search')->name('
 
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
+Route::get('movimientos/atencion/convenio','AtencionesController@convenio');
+Route::get('movimientos/atencion/recomendacion','AtencionesController@recomendacion');
+Route::get('movimientos/atencion/seleccione','AtencionesController@seleccione');
+
+
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
 Route::get('resultados-search', 'ResultadosController@search')->name('resultados.search')->middleware('auth');
