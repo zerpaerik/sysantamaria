@@ -5,6 +5,7 @@
 	<p>Doctor: {{$data->nombrePro}} {{$data->apellidoPro}}</p>
 	<p>Fecha de cita: {{$data->date}}</p>
 	<p>Hora: {{$data->start_time}} Hasta las {{$data->end_time}}</p>
+    <p>Evaluaciòn: {{$data->evaluacion}}</p>
 	<br>
 
 	<h2>DATOS DE FILIACIÒN</h2>

@@ -200,8 +200,10 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
 
     public function delete($id){
       $p = Producto::find($id);
-      $res = $p->delete();
-      return response()->json(["deleted" => $res]);
+      $p = $p->delete();
+      
+       Toastr::success('Eliminado Exitosamente.', 'Producto!', ['progressBar' => true]);
+        return redirect()->action('Existencias\ProductoController@index2', ["created" => false]);
     }
 
     public function getExist($prod, $sede){
@@ -342,6 +344,14 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
         ->get();
         return $atenciones;
   }
+
+   public function delete($id){
+    $productos = Producto::find($id);
+    $analisis->delete();
+
+    return redirect()->action('Archivos\AnalisisController@index', ["deleted" => true, "analisis" => Analisis::all()]);
+  }
+
 
     	
 }

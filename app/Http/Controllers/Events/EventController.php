@@ -10,6 +10,7 @@ use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
 use App\Models\Events;
+use App\Models\Evaluaciones;
 use App\Models\Ciex;
 use App\Models\Historiales;
 use Calendar;
@@ -45,10 +46,11 @@ class EventController extends Controller
   public function show(Request $request,$id)
   {
     $event = DB::table('events as e')
-    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.fechanac','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.evaluacion','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.fechanac','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','ev.nombre as evaluacion')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->join('evaluaciones as ev','ev.id','=','e.evaluacion')
     ->where('e.id','=',$id)
     ->first();
     $edad = Carbon::parse($event->fechanac)->age;
@@ -123,6 +125,8 @@ class EventController extends Controller
       ->where("time", "=", $request->time)
       ->get()->first();
     if(!$exists){
+
+
       $evt = Event::create([
         "paciente" => $request->paciente,
         "profesional" => $request->especialista,
@@ -130,13 +134,21 @@ class EventController extends Controller
         "time" => $request->time,
         "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
         "monto" => $request->monto,
+        "evaluacion" => $request->evaluaciones,
         "sede" => $request->session()->get('sede')
       ]);
+
+
+      $precioeva = DB::table('evaluaciones')
+      ->select('*')
+      ->where('id','=',$request->evaluaciones)
+      ->first();
+     
 
       $credito = Creditos::create([
         "origen" => 'CONSULTAS',
         "descripcion" => 'CONSULTAS',
-        "monto" => $request->monto,
+        "monto" => $precioeva->precio,
         "tipo_ingreso" => 'EF',
       ]);
 	  
@@ -175,6 +187,7 @@ class EventController extends Controller
       "pacientes" => Paciente::where('estatus','=',1)->get(),
       "tiempos" => RangoConsulta::all(),
 	  "ciex" => Ciex::all(),
+    "evaluaciones" => Evaluaciones::all()
     ];
     return view('consultas.create', $data + $extra);
   }

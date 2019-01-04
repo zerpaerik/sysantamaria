@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Nueva consulta</strong></span>
+					<span><strong>Nueva Consulta</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -50,9 +50,15 @@
 							</select>
 						</div>
 
-						<label class="col-sm-1 control-label">Monto</label>
+						<label class="col-sm-1 control-label">Evaluaciones</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" placeholder="Monto" name="monto" required="required">
+							<select id="el4" name="evaluaciones">
+								@foreach($evaluaciones as $eva)
+									<option value="{{$eva->id}}">
+										{{$eva->nombre}} -Precio:{{$eva->precio}} 
+									</option>
+								@endforeach
+							</select>
 						</div>
 
 						<label class="col-sm-1 control-label">Fecha</label>
@@ -71,9 +77,8 @@
 							</div>						
 
 						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
+						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
 
-						<a href="#" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>			
 				</form>	
 			</div>
@@ -88,6 +93,7 @@ $(document).ready(function() {
 	LoadSelect2Script(function (){
 		$("#el2").select2();
 		$("#el1").select2();
+		$("#el4").select2();
 		$("#el3").select2({disabled : true});
 	});
 	WinMove();
