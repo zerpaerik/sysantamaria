@@ -48,9 +48,9 @@
 						@foreach($paquetes as $paq)					
 							<tr>
 								<td>{{$paq->detalle}}</td>
+								<td>{{$paq->precio}}</td>
 								<td>{{$paq->precio1}}</td>
 								<td>{{$paq->precio2}}</td>
-								<td>{{$paq->precio}}</td>
 								<td>{{$paq->porcentaje}}</td>
 							    <td>{{$paq->user}}-{{$paq->lastname}}</td>
 
