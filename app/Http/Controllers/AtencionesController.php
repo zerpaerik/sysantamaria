@@ -170,18 +170,7 @@ class AtencionesController extends Controller
                                         ->with('material', 'servicio')
                                         ->get();
 
-              foreach ($serMateriales as $sm) {
-                if ($sm->material->cantidad < $sm->cantidad) {
-                  Toastr::error('El servicio '.$sm->servicio->detalle.' no se puede ofrecer', 'Servicio', ['progressBar' => true]);
-                  Toastr::error('No se tiene la cantidad suficiente de '.$sm->material->nombre, 'Material', ['progressBar' => true]);
-                  return back();
-                }
-              }
-
-              foreach ($serMateriales as $sm) {
-                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
-                $sm->material->save();
-              }
+            
 
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
