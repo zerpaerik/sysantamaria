@@ -20,14 +20,14 @@ class ServiciosController extends Controller
       //$servicios =Servicios::where("estatus", '=', 1)->get();
 	  $servicios = DB::table('servicios as a')
         ->select('a.id','a.detalle','a.precio','precio1','precio2','a.porcentaje','a.por_per','a.por_tec','a.usuario','c.name as user','c.lastname')
-		->join('users as c','c.id','a.usuario')
+		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
 	  
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio Particular","Precio Convenio","Precio Recomendaciòn","Porcentaje", "Porcentaje Personal","Registrado Por:", "Opciones"],
+        "headers" => ["id", "Detalle", "Precio Particular","Precio Convenio","Precio Recomendaciòn","Porcentaje", "Porcentaje Personal","Registrado Por:", "Editar","Eliminar"],
         "data" => $servicios,
         "fields" => ["id", "detalle", "precio","precio1","precio2","porcentaje","por_per","user"],
           "actions" => [

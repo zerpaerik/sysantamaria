@@ -16,34 +16,40 @@ class HistorialCobrosController extends Controller
 
 {
 
-	public function index(){
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','');
+	public function index(Request $request){
+
+
+
+      if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
+        
+
+
+        $atenciones = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->orderby('a.id','ASC')
+        ->get();
+
+      } else {
+
+        
+        $atenciones = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+        ->orderby('a.id','ASC')
+        ->get();
+
+      }
        
         return view('movimientos.historialcobros.index', ["atenciones" => $atenciones]);
 	}
 
-    public function search(Request $request)
-    {
-      $search = $request->nom;
-      $split = explode(" ",$search);
-      $total = 0;
-
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
-      
-        return view('movimientos.historialcobros.search', ["atenciones" => $atenciones]); 
-
-      }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
-       
-        return view('movimientos.historialcobros.search', ["atenciones" => $atenciones]);   
-      }    
-    }
-
+   
 	
 
   private function elasticSearch($initial,$final,$nom,$ape)

@@ -86,13 +86,20 @@
 						<div class="col-sm-3">
 							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="fechanac">
 						</div>
-
-						
+                        <div class="row">
+						<label class="col-sm-1 control-label">Convenio</label>
+						<div class="col-sm-3">
+							<select id="conv" name="convenio">
+								    <option value="0">Seleccione</option>
+									<option value="1">Si</option>
+									<option value="2">No</option>
+							</select>
+						</div>
 
 						<br>
 						<input type="submit" style="margin-left:20px; margin-top: 20px;" class="col-sm-4 btn btn-primary" value="Agregar">
 
-						<a href="{{route('pacientes.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-4 btn btn-danger">Volver</a>
+						<a href="{{route('atenciones.create')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-4 btn btn-danger">Volver</a>
 					</div>	
 						<br>
 						

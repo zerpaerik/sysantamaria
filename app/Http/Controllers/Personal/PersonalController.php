@@ -26,66 +26,13 @@ class PersonalController extends Controller
     //  $personal =Personal::where("estatus", '=', 1)->get();
 	  $personal = DB::table('personals as a')
         ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
-		->join('users as c','c.id','a.usuario')
+		     ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
 		
-      return view('archivos.personal.index', [
-        "icon" => "fa-list-alt",
-        "model" => "personal",
-        "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $personal,
-        "fields" => ["name", "apellido", "dni", "phone", "address","email","cargo","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
-
-         
+      return view('archivos.personal.index', ['personal' => $personal]);  
     }
 
-    public function search(Request $request)
-    {
-      $search = $request->nom;
-      $split = explode(" ",$search);
-      
-      if (!isset($split[1])) {
-
-        $split[1] = '';
-        $personal = Personal::where('name','like','%'.$split[0].'%')
-                    ->where('lastname','like','%'.$split[1].'%')
-                    ->get();
-       return view('archivos.personal.show', [
-        "icon" => "fa-list-alt",
-        "model" => "personal",
-        "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
-        "data" => $personal,
-        "fields" => ["name", "lastname", "dni", "phone", "address","email","cargo"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);                      
-
-      }else{
-        $personal = Personal::where('name','like','%'.$split[0].'%')
-                    ->where('lastname','like','%'.$split[1].'%')
-                    ->get();
-       return view('archivos.personal.show', [
-        "icon" => "fa-list-alt",
-        "model" => "personal",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
-        "data" => $personal,
-        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);      
-      }
-      
-    }
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [

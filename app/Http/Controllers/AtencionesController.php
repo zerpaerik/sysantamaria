@@ -23,62 +23,49 @@ class AtencionesController extends Controller
 
 {
 
-	public function index(){
-    $initial = Carbon::now()->toDateString();
-    $atenciones = $this->elasticSearch($initial,'','');
-    return view('movimientos.atenciones.index', [
-      "icon" => "fa-list-alt",
-      "model" => "atenciones",
-	  "model1" => "ticket",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-      "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-      "actions" => [
-        '<button type="button" class="btn btn-info">Transferir</button>',
-        '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]); 
+	public function index(Request $request){
+
+
+        if(! is_null($request->fecha)) {
+
+
+          $atenciones = DB::table('atenciones as a')
+          ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->join('servicios as c','c.id','a.id_servicio')
+          ->join('analises as d','d.id','a.id_laboratorio')
+          ->join('users as e','e.id','a.origen_usuario')
+          ->join('paquetes as f','f.id','a.id_paquete')
+          ->whereNotIn('a.monto',[0,0.00,99999])
+          ->whereDate('a.created_at', '=',$request->fecha)
+          ->orderby('a.id','desc')
+          ->get();
+
+
+
+        } else {
+
+          $atenciones = DB::table('atenciones as a')
+          ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->join('servicios as c','c.id','a.id_servicio')
+          ->join('analises as d','d.id','a.id_laboratorio')
+          ->join('users as e','e.id','a.origen_usuario')
+          ->join('paquetes as f','f.id','a.id_paquete')
+          ->whereNotIn('a.monto',[0,0.00,99999])
+          ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+          ->orderby('a.id','desc')
+          ->get();
+
+
+        }
+
+
+    return view('movimientos.atenciones.index', ['atenciones' => $atenciones]); 
 
 	}
 
-    public function search(Request $request){
-
-    $search = $request->nom;
-    $split = explode(" ",$search);
-
-    if (!isset($split[1])) {
-     
-      $split[1] = '';
-      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);
-      
-      return view('movimientos.atenciones.search', [
-      "icon" => "fa-list-alt",
-      "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-      "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-        "actions" => [
-          '<button type="button" class="btn btn-info">Transferir</button>',
-          '<button type="button" class="btn btn-warning">Editar</button>'
-        ]
-    ]); 
-    }else{
-      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);  
-      $fecha = $request->inicio;
-      return view('movimientos.atenciones.search', [
-      "icon" => "fa-list-alt",
-      "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-      "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-        "actions" => [
-          '<button type="button" class="btn btn-info">Transferir</button>',
-          '<button type="button" class="btn btn-warning">Editar</button>'
-        ]
-    ]);         
-    }      
-  }
-
+  
 
 	public function createView() {
 
@@ -146,6 +133,93 @@ class AtencionesController extends Controller
 
         }
       }
+
+ //////
+     if(! is_null($request->id_paquete)){
+     foreach ($request->id_paquete as $key => $value) {
+
+        $searchServPaq = DB::table('paquete_servicios')
+        ->select('*')
+                   // ->where('estatus','=','1')
+        ->where('paquete_id','=', $value)
+        ->get();
+    
+    
+
+        foreach ($searchServPaq as $serv) {
+            $id_servicio = $serv->servicio_id;
+      
+      $servdetalle =  DB::table('servicios')
+      ->select('*')
+      ->where('id','=',$id_servicio)
+      ->first();
+      
+      $detalle = $servdetalle->detalle;
+
+            if(! is_null($id_servicio)){
+              $s = new Atenciones();
+              $s->id_paciente = $request->id_paciente;
+              $s->origen = $request->origen;
+              $s->origen_usuario = $searchUsuarioID->id;
+              $s->id_laboratorio =  1;
+              $s->id_servicio =  $id_servicio;
+              $s->id_paquete = 1;
+              $s->comollego = $request->comollego;
+              $s->es_paquete =  FALSE;
+        $s->es_servicio =  1;
+              $s->es_laboratorio =  FALSE;
+        $s->serv_prog = FALSE;
+              $s->tipopago = $request->tipopago;
+              $s->porc_pagar = 0;
+              $s->pendiente = 0;
+              $s->monto = 99999;
+              $s->abono = 0;
+              $s->porcentaje =0;
+              $s->estatus = 1;
+              $s->save(); 
+             
+         }
+        }
+
+        $searchLabPaq = DB::table('paquete_laboratorios')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+         foreach ($searchLabPaq as $lab) {
+            $id_laboratorio = $lab->laboratorio_id;
+
+
+            if(! is_null($id_laboratorio)){
+        $l = new Atenciones();
+              $l->id_paciente = $request->id_paciente;
+              $l->origen = $request->origen;
+              $l->origen_usuario = $searchUsuarioID->id;
+              $l->id_laboratorio = $id_laboratorio;
+              $l->id_servicio = 1;
+              $l->id_paquete = 1;
+              $l->comollego = $request->comollego;
+              $l->es_paquete =  FALSE;
+        $l->es_servicio =  FALSE;
+              $l->es_laboratorio = 1;
+        $l->serv_prog = FALSE;
+              $l->tipopago = $request->tipopago;
+              $l->porc_pagar = 0;
+              $l->pendiente = 0;
+              $l->monto = 99999;
+              $l->abono = 0;
+              $l->porcentaje =0;
+              $l->estatus = 1;
+              $l->save(); 
+
+         }
+        }
+
+
+}
+}
+    //////
+
     }
 
     if (isset($request->id_servicio)) {
@@ -400,4 +474,27 @@ class AtencionesController extends Controller
      return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
 	
   }
+
+
+   public function atender(Request $request){
+
+     
+      $p = Atenciones::find($request->id);
+      $p->atendido = $request->atendido;
+      $p->fecha_atencion = Carbon::today()->toDateString();
+      $res = $p->save();
+
+      Toastr::success('Atendido Exitosamente.', 'Paciente!', ['progressBar' => true]);
+      return redirect()->action('ResultadosController@index', ["edited" => $res]);
+    }
+
+
+
+
+
+
+
+
+
+
 }

@@ -20,6 +20,7 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
+		<a href="{{route('pacientes.create3')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes<a>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
 				<form class="form-horizontal" role="form" method="post" action="consulta/create">

@@ -8,6 +8,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
+use App\Models\Personal;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Informe;
@@ -22,27 +23,21 @@ class ResultadosController extends Controller
 
 
       	$resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.atendido','=',NULL)
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+
         ->orderby('a.id','desc')
         ->paginate(10);
         $informe = Informe::all();
+        $personal = Personal::all();
 
-         return view('resultados.index', [
-        "icon" => "fa-list-alt",
-        "model" => "resultados",
-        "data" => $resultados,
-        "informes" => $informe,
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]); 
+         return view('resultados.index', ['resultados' => $resultados, 'personal' => $personal]); 
 	}
 
   public function search(Request $request)
@@ -210,6 +205,19 @@ class ResultadosController extends Controller
       return redirect()->action('ResultadosController@index');
 
     }
+
+
+      public function atender(Request $request){
+
+     
+      $p = Atenciones::find($request->id);
+      $p->atendido = $request->atendido;
+      $res = $p->save();
+
+      Toastr::success('Atendido Exitosamente.', 'Paciente!', ['progressBar' => true]);
+      return redirect()->action('ResultadosController@index', ["edited" => $res]);
+    }
+
 
     private function elasticSearch($nom, $ape)
     {     

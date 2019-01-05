@@ -18,22 +18,48 @@ class ResultadosGuardadosController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
 
-     $initial = Carbon::now()->toDateString();
-     $resultadosguardados = $this->elasticSearch($initial);
 
-       return view('resultadosguardados.index', [
-      "icon" => "fa-list-alt",
-      "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-      "data" => $resultadosguardados,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-      "actions" => [
-        '<button type="button" class="btn btn-info">Transferir</button>',
-        '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]); 
+      if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
+
+
+        $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('personals as p','a.atendido','p.id')
+        ->where('a.es_paquete','<>',1)
+        ->whereNotIn('a.monto',[0,0.00])
+        ->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.atendido','<>',NULL)
+        ->orderby('a.fecha_atencion','desc')
+        ->get();
+
+      } else {
+
+         $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('personals as p','a.atendido','p.id')
+        ->whereNotIn('a.monto',[0,0.00])
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+        ->where('a.atendido','<>',NULL)
+        ->where('a.es_paquete','<>',1)
+        ->orderby('a.fecha_atencion','desc')
+        ->get();
+
+      }
+
+       return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados]); 
 	}
 
    public function search(Request $request){

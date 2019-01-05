@@ -175,14 +175,14 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
-      <span class="hidden-xs">Resultados</span>
+      <span class="hidden-xs">Control de Sesiones</span>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
+        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Registrar Sesión</a>
       </li>
       <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Sesiones</a>
       </li>
     </ul>
   </li>

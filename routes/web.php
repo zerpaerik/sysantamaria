@@ -99,8 +99,10 @@ Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.i
 Route::get('pacientes-search', 'Archivos\PacientesController@search')->name('pacientes.search')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::get('pacientes-create2', 'Archivos\PacientesController@createView2')->name('pacientes.create2')->middleware('auth');
+Route::get('pacientes-create3', 'Archivos\PacientesController@createView3')->name('pacientes.create3')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
 Route::post('pacientes/create2', 'Archivos\PacientesController@create2')->middleware('auth');
+Route::post('pacientes/create3', 'Archivos\PacientesController@create3')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
@@ -156,6 +158,8 @@ Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth')
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
+Route::get('atenciones-atender', 'AtencionesController@atender');
+
 
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
@@ -165,6 +169,8 @@ Route::post('gastos/create', 'GastosController@create')->middleware('auth');
 Route::get('gastos/{id}', 'GastosController@delete')->middleware('auth');
 Route::get('gastos-edit-{id}', 'GastosController@editView')->name('gastos.edit');
 Route::post('gastos/edit', 'GastosController@edit');
+Route::get('gastos-delete-{id}','GastosController@delete');
+
 
 Route::get('labporpagar', 'LabporPagarController@index')->name('labporpagar.index')->middleware('auth');
 Route::get('labporpagar-search', 'LabporPagarController@search')->name('labporpagar.search')->middleware('auth');
@@ -221,7 +227,7 @@ Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')-
 Route::get('ingresos-search', 'OtrosIngresosController@search')->name('ingresos.search')->middleware('auth');
 Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');
 Route::post('ingresos/create', 'OtrosIngresosController@create')->middleware('auth');
-Route::get('ingresos/{id}', 'OtrosIngresosController@delete')->middleware('auth');
+Route::get('ingresos-delete-{id}', 'OtrosIngresosController@delete')->middleware('auth');
 Route::get('ingresos-edit-{id}', 'OtrosIngresosController@editView')->name('ingresos.edit');
 Route::post('ingresos/edit', 'OtrosIngresosController@edit');
 
@@ -321,6 +327,8 @@ Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@edi
 Route::get('procesar/{id}', 'Existencias\RequerimientosController@procesar')->middleware('auth');
 //Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
 Route::get('requerimientos-edit', 'Existencias\RequerimientosController@edit');
+Route::get('requerimientos-delete-{id}', 'Existencias\RequerimientosController@delete');
+
 
 
 

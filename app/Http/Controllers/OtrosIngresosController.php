@@ -12,22 +12,35 @@ use DB;
 class OtrosIngresosController extends Controller
 {
 
-	public function index()
+  public function index(Request $request)
   {
         $inicio = Carbon::now()->toDateString();
-        $ingresos = $this->elasticSearch($inicio);
-        return view('movimientos.otrosingresos.index', [
-        "icon" => "fa-list-alt",
-        "model" => "ingresos",
-        "headers" => ["id", "Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
-        "data" => $ingresos,
-        "fields" => ["id", "descripcion", "monto","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
-	}
+
+       if(! is_null($request->fecha)) {  
+
+             $ingresos = DB::table('creditos as a')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->orderby('a.id','desc')
+            ->whereDate('a.created_at','=', $request->fecha)
+            ->where('a.origen','=','OTROS INGRESOS')
+            ->paginate(2000000); 
+            
+            } else {
+              
+
+               $ingresos = DB::table('creditos as a')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->orderby('a.id','desc')
+            ->whereDate('a.created_at','=', Carbon::now()->toDateString())
+            ->where('a.origen','=','OTROS INGRESOS')
+            ->paginate(2000000); 
+
+            }  
+
+
+       
+        return view('movimientos.otrosingresos.index', ['ingresos' => $ingresos]);  
+  }
 
   public function search(Request $request)
   {
@@ -56,8 +69,7 @@ class OtrosIngresosController extends Controller
 	      'descripcion' => $request->descripcion,
 	      'monto' => $request->monto,
 	      'origen' => 'OTROS INGRESOS',
-	      'tipo_ingreso' => $request->tipo_ingreso,
-	      'id_sede' => $request->session()->get('sede')
+	      'tipo_ingreso' => $request->tipo_ingreso
    		]);
 		
 		 $historial = new Historiales();

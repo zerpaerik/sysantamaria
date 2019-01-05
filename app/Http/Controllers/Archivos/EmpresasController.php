@@ -36,27 +36,7 @@ class EmpresasController extends Controller
       ]);  
 	}
 
-  public function search(Request $request)
-  {
-  	    $empresas = DB::table('empresas as a')
-        ->select('a.id','a.nombre','a.rif','a.direccion','a.personacontacto','a.telefono','a.estatus','a.user','b.name','b.lastname')
-        ->join('users as b','b.id','a.user')
-        ->orderby('a.id','desc')
-        ->where('a.estatus','=', 1)
-          ->where('a.nombre','like', '%'.$request->nom.'%')
-          ->paginate(5000);     
-          return view('generics.index', [
-          "icon" => "fa-list-alt",
-          "model" => "analisis",
-          "headers" => ["Nombre", "Rif", "Direcciòn", "Persona Contacto", "Telefono Contacto","Registrado Por:", "Editar", "Eliminar"],
-          "data" => $analisis,
-          "fields" => ["nombre", "rif", "direccion", "personacontacto", "telefono","user"],
-            "actions" => [
-              '<button type="button" class="btn btn-info">Transferir</button>',
-              '<button type="button" class="btn btn-warning">Editar</button>'
-            ]
-        ]);  
-  }
+
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [

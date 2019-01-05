@@ -296,62 +296,57 @@ where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" =
         return $temp_array; 
     }  
 
-    public function indexv(){
-        $total = 0;
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','');
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->monto; 
+    public function indexv(Request $request){
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
+
+
+          $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('productos as b','b.id','a.id_producto')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderby('a.id','desc')
+            ->get();
+
+           $aten = Ventas::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
         }
-        return view('existencias.ventas.index', ["atenciones" => $atenciones, "total" => $total]);
+
+
+        } else {
+
+
+           $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('productos as b','b.id','a.id_producto')
+            ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+            ->orderby('a.id','desc')
+            ->get();
+           
+
+        $aten = Ventas::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+
+
+        }
+
+
+        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten]);
 	}
 
-     public function search(Request $request)
-    {
-      $search = $request->nom;
-      $split = explode(" ",$search);
-      $total = 0;
-
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->monto; 
-        }
-        return view('existencias.ventas.search', ["atenciones" => $atenciones,"total" => $total]); 
-
-      }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->monto; 
-        } 
-        return view('existencias.ventas.search', ["atenciones" => $atenciones, "total" => $total]);   
-      }    
-    }
+   
 	
-	  private function elasticSearch($initial, $final,$nom)
-  { 
-        $atenciones = DB::table('ventas as a')
-        ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
-        ->join('users as e','e.id','a.id_usuario')
-		->join('productos as b','b.id','a.id_producto')
-        ->where('b.nombre','like','%'.$nom.'%')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
-        ->orderby('a.id','desc')
-        ->get();
-        return $atenciones;
-  }
-
-   public function delete($id){
-    $productos = Producto::find($id);
-    $analisis->delete();
-
-    return redirect()->action('Archivos\AnalisisController@index', ["deleted" => true, "analisis" => Analisis::all()]);
-  }
-
-
     	
 }

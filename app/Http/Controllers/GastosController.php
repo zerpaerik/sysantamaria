@@ -12,41 +12,35 @@ use Carbon\Carbon;
 class GastosController extends Controller
 {
 
-	public function index(){
+	public function index(Request $request){
 
-    $initial = Carbon::now()->toDateString();
-    $gastos = $this->elasticSearch($initial);
 
-        return view('movimientos.gastos.index', [
-        "icon" => "fa-list-alt",
-        "model" => "gastos",
-        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
-        "data" => $gastos,
-        "fields" => ["descripcion", "monto","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+     if(! is_null($request->fecha)) {
+
+      $gastos = DB::table('debitos as a')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->whereDate('a.created_at','=' ,$request->fecha)
+      ->orderby('a.id','ASC')
+      ->paginate(200000);  
+
+    } else {
+
+       $gastos = DB::table('debitos as a')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
+      ->orderby('a.id','ASC')
+      ->paginate(200000);  
+
+
+    }  
+
+   
+
+        return view('movimientos.gastos.index', ['gastos' => $gastos]);  
 	}
 
 
-  public function search(Request $request){
-    
-       $gastos = $this->elasticSearch($request->inicio);
 
-        return view('movimientos.gastos.search', [
-        "icon" => "fa-list-alt",
-        "model" => "gastos",
-        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
-        "data" => $gastos,
-        "fields" => ["descripcion", "monto","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
-  }
   
 
 	public function create(Request $request){
@@ -76,7 +70,7 @@ class GastosController extends Controller
   public function delete($id){
     $gastos = Debitos::find($id);
     $gastos->delete();
-    return redirect()->action('GastosController@index', ["deleted" => true, "analisis" => Debitos::all()]);
+    return redirect()->action('GastosController@index', ["deleted" => true, "gastos" => Debitos::all()]);
   }
 
   public function createView() {
@@ -99,15 +93,5 @@ class GastosController extends Controller
       return redirect()->action('GastosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial)
-    {
-      $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.created_at')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        ->orderby('a.id','desc')
-        ->paginate(20);  
-
-        return $gastos;
-    }
 
 }

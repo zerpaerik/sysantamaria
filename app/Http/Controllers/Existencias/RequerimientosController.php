@@ -22,7 +22,8 @@ class RequerimientosController extends Controller
                     ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','a.created_at','c.name as solicitante','d.nombre')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
-					->where('id_sede_solicita','=',2)
+					           ->where('id_sede_solicita','=',2)
+                      ->orderby('a.created_at','desc')
                     ->get();  
 
 			return view('existencias.requerimientos.index',compact('requerimientos'));   	
@@ -30,9 +31,16 @@ class RequerimientosController extends Controller
 
      public function index2(){
 
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $requerimientos2 = $this->elasticSearch($inicio,$final,'','');
+       
+
+        $requerimientos2 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->where('a.id_sede_solicita', '=', 2)
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
         return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]);   	
     }
 
@@ -63,6 +71,16 @@ class RequerimientosController extends Controller
     public function createView(){
     	return view('existencias.requerimientos.create', ["productos" => Producto::where('almacen','=',1)->get(["id", "nombre"])]);
     }
+
+
+          public function delete($id){
+      $p = Requerimientos::find($id);
+      $res = $p->delete();
+      
+       Toastr::success('Eliminado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
+        return redirect()->action('Existencias\RequerimientosController@index', ["created" => false]);
+    }
+
 
 
     public function create(Request $request){
