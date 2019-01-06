@@ -36,7 +36,7 @@ class ReporteIngresosController extends Controller
         ->paginate(20000000);
 
 
-         $aten = Atenciones::whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',             strtotime($f2))])
+         $aten = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',             strtotime($f2))])
                        ->whereNotIn('monto',[0,0.00])
                        ->select(DB::raw('SUM(abono) as monto'))
                        ->first();
