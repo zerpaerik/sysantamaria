@@ -33,7 +33,7 @@ class ResultadosController extends Controller
         ->where('a.resultado','=', NULL)
 
         ->orderby('a.id','desc')
-        ->paginate(10);
+        ->paginate(100000000);
         $informe = Informe::all();
         $personal = Personal::all();
 
