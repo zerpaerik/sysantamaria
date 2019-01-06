@@ -44,8 +44,6 @@ class ReporteIngresosController extends Controller
         }
 
 
-
-
       } else {
 
           $atenciones = DB::table('atenciones as a')
