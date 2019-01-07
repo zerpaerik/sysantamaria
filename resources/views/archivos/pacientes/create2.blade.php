@@ -54,21 +54,23 @@
 
 						<label class="col-sm-1 control-label">Provincia</label>
 						<div class="col-sm-3">
-							<select class="form-control" name="provincia">
+
+							<select id="pro" class="form-control" name="provincia">
+							<option value="0">Seleccione</option>
 							@foreach($provincias as $pro)
 							<option value="{{$pro->id}}">{{$pro->nombre}}</option>
 							@endforeach
 						</select>
 						</div>	
 
-							<label class="col-sm-1 control-label">Distritos</label>
+                         <label class="col-sm-1 control-label">Distritos</label>
+
 						<div class="col-sm-3">
-							<select class="form-control" name="distrito">
-							@foreach($distritos as $dis)
-							<option value="{{$dis->id}}">{{$dis->nombre}}</option>
-							@endforeach
-						</select>
-						</div>	
+							  <div id="distbypro">
+						</div>
+					   </div>
+
+					
 
 						<label class="col-sm-1 control-label">Zona</label>
 						<div class="col-sm-3">
@@ -95,18 +97,66 @@
 									<option value="2">No</option>
 							</select>
 						</div>
+                       <label class="col-sm-1 control-label"></label>
 
-						<br>
-						<input type="submit" style="margin-left:20px; margin-top: 20px;" class="col-sm-4 btn btn-primary" value="Agregar">
+						<div class="col-sm-3">
+							  <div id="origen1">
+						</div>
+					   </div>
 
-						<a href="{{route('atenciones.create')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-4 btn btn-danger">Volver</a>
-					</div>	
-						<br>
 						
+
+						<input type="submit" style="margin-left:20px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
+
+						<a href="{{route('pacientes.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-danger">Volver</a>
 					</div>			
 				</form>	
 			</div>
 		</div>
 	</div>
 </div>
+@section('scripts')
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#conv').on('change',function(){
+          var link;
+          if ($(this).val() ==  1) {
+            link = '/archivos/pacientes/empresas/';
+          }else{
+            link = '/archivos/pacientes/nada/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#origen1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+ <script type="text/javascript">
+    $('#pro').on('change',function(){
+      var id= $('#pro').val();
+      var link= '/pacientes/distbypro/id';
+      link= link.replace('id',id);
+      $.ajax({
+       type: "get",
+       url: link ,
+       success: function(a) {
+        $('#distbypro').html(a);
+    }
+});
+
+  });
+</script>
+    @endsection
 @endsection
