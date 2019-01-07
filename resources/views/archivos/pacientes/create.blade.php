@@ -54,21 +54,23 @@
 
 						<label class="col-sm-1 control-label">Provincia</label>
 						<div class="col-sm-3">
-							<select class="form-control" name="provincia">
+
+							<select id="pro" class="form-control" name="provincia">
+							<option value="0">Seleccione</option>
 							@foreach($provincias as $pro)
 							<option value="{{$pro->id}}">{{$pro->nombre}}</option>
 							@endforeach
 						</select>
 						</div>	
 
-							<label class="col-sm-1 control-label">Distritos</label>
+                         <label class="col-sm-1 control-label">Distritos</label>
+
 						<div class="col-sm-3">
-							<select class="form-control" name="distrito">
-							@foreach($distritos as $dis)
-							<option value="{{$dis->id}}">{{$dis->nombre}}</option>
-							@endforeach
-						</select>
-						</div>	
+							  <div id="distbypro">
+						</div>
+					   </div>
+
+					
 
 						<label class="col-sm-1 control-label">Zona</label>
 						<div class="col-sm-3">
@@ -139,5 +141,22 @@
       });
        
     </script>
+
+
+ <script type="text/javascript">
+    $('#pro').on('change',function(){
+      var id= $('#pro').val();
+      var link= '/pacientes/distbypro/id';
+      link= link.replace('id',id);
+      $.ajax({
+       type: "get",
+       url: link ,
+       success: function(a) {
+        $('#distbypro').html(a);
+    }
+});
+
+  });
+</script>
     @endsection
 @endsection

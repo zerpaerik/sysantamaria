@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Agregar nuevo proveedor</strong></span>
+					<span><strong>Editar Proveedor</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,27 +22,28 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="proveedor/create">
+				<form class="form-horizontal" role="form" method="post" action="proveedores/edit">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
+							<input type="text" class="form-control"  name="nombre" value="{{$nombre}}" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
 						</div>
 
 						<label class="col-sm-1 control-label">Codigo</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="codigo" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
+							<input type="text" class="form-control" name="codigo" value="{{$codigo}}" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
+						</div>	
+						
+						<label class="col-sm-1 control-label">Telèfono</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="telefono" value="{{$telefono}}" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
 						</div>	
 
-						<label class="col-sm-1 control-label">Telefono</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="telefono" placeholder="Telefono" data-toggle="tooltip" data-placement="bottom">
-						</div>						
-											
-						
+						<input type="hidden" name="id" value="{{$id}}">
+
 						<div class="col-sm-8">
-							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
+							<input type="submit" class="col-sm-2 btn btn-primary" value="Editar">
 							<a href="{{route('proveedores.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			

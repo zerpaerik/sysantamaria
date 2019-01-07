@@ -13,9 +13,9 @@ class ProveedorController extends Controller
 		return view('generics.index', [
 			"icon" => "fa-truck",
 			"model" => "proveedores",
-			"headers" => ["id", "nombre", "codigo", "editar", "eliminar"],
+			"headers" => ["id", "nombre", "codigo","telefono", "editar", "eliminar"],
 			"data" => $proveedores,
-			"fields" => ["id", "nombre", "codigo"],
+			"fields" => ["id", "nombre", "codigo","telefono"],
 		]);
 	}
 
@@ -24,12 +24,31 @@ class ProveedorController extends Controller
 		return redirect()->action('Config\ProveedorController@index', ["created" => $res]);  
 	}
 
-	public function editView(){
-		return view('config.proveedores.edit');
-	}
+
 
 	public function createView(){
 		return view('config.proveedores.create');
 	}
+
+	public function editView($id){
+		 $p = Proveedor::find($id);
+      return view('config.proveedores.edit', ["id" => $p->id,"nombre" => $p->nombre, "codigo" => $p->codigo,"telefono" => $p->telefono]);
+	}
+
+	 public function edit(Request $request){
+      $p = Proveedor::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->codigo = $request->codigo;
+	  $p->telefono = $request->telefono;
+      $res = $p->save();
+      return redirect()->action('Config\ProveedorController@index', ["edited" => $res]);
+    }
+public function delete($id){
+    $proveedor = Proveedor::find($id);
+    $proveedor->delete();
+	
+     return redirect()->action('Config\ProveedorController@index', ["created" => true, "proveedor" => Proveedor::all()]);
+	
+  }
 
 }

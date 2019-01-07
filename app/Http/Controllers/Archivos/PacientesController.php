@@ -34,6 +34,21 @@ class PacientesController extends Controller
       return view('archivos.pacientes.index', ['pacientes' => $pacientes]);  
   }
 
+
+ 
+
+     public static function distbypro($id){
+
+                $distritos = DB::table('distritos as a')
+                ->select('a.nombre','a.provincia','a.id')
+                ->where('a.provincia','=', $id)
+                ->get();
+
+              return view('archivos.pacientes.distbypro', ['distritos' => $distritos]);
+
+
+    }
+
   public function search(Request $request){
 
       $search = $request->nom;

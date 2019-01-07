@@ -109,6 +109,8 @@ Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
 Route::get('pacientes-createpac','Archivos\PacientesController@createpac');
 Route::get('pacientes/view/{id}', 'Archivos\PacientesController@show');
+Route::get('pacientes/distbypro/{id}','Archivos\PacientesController@distbypro');
+
 
 Route::get('archivos/pacientes/empresas','Archivos\PacientesController@empresas');
 Route::get('archivos/pacientes/nada','Archivos\PacientesController@nada');
@@ -342,6 +344,10 @@ Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores
 Route::get('proveedores-create', 'Config\ProveedorController@createView')->name('proveedores.create');
 Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name('proveedores.edit');
 Route::post('proveedor/create', 'Config\ProveedorController@create');
+Route::get('proveedores-delete-{id}','Config\ProveedorController@delete');
+Route::post('proveedores/edit', 'Config\ProveedorController@edit');
+
+
 
 //Categorias
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
