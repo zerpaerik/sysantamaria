@@ -72,10 +72,16 @@
 
 					
 
-						<label class="col-sm-1 control-label">Zona</label>
+						<label class="col-sm-1 control-label">Zonas</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="gradoinstruccion" placeholder="Zona" data-toggle="tooltip" data-placement="bottom" title="fechanac">
-						</div>
+
+							<select id="pro" class="form-control" name="gradoinstruccion">
+							<option value="0">Seleccione</option>
+							@foreach($zonas as $pro)
+							<option value="{{$pro->nombre}}">{{$pro->nombre}}</option>
+							@endforeach
+						</select>
+						</div>	
 
 
 						<label class="col-sm-1 control-label">Ocupaciòn</label>

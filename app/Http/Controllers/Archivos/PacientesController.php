@@ -13,6 +13,7 @@ use App\Models\GradoInstruccion;
 use App\Models\HistoriaPacientes;
 use App\Models\Historiales;
 use App\Models\Empresas;
+use App\Models\Zonas;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -358,8 +359,9 @@ class PacientesController extends Controller
   	$provincias = Provincias::all();
   	$distritos = Distritos::all();
   	$edocivil = EdoCivil::all();
+    $zonas = Zonas::all();
   	$gradoinstruccion = GradoInstruccion::all();
-    return view('archivos.pacientes.create', compact('provincias','distritos','edocivil','gradoinstruccion'));
+    return view('archivos.pacientes.create', compact('provincias','distritos','edocivil','gradoinstruccion','zonas'));
   }
 
     public function createView2() {
@@ -368,7 +370,8 @@ class PacientesController extends Controller
     $distritos = Distritos::all();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
-    return view('archivos.pacientes.create2', compact('provincias','distritos','edocivil','gradoinstruccion'));
+    $zonas = Zonas::all();
+    return view('archivos.pacientes.create2', compact('provincias','distritos','edocivil','gradoinstruccion','zonas'));
   }
 
 
@@ -378,7 +381,8 @@ class PacientesController extends Controller
     $distritos = Distritos::all();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
-    return view('archivos.pacientes.create3', compact('provincias','distritos','edocivil','gradoinstruccion'));
+    $zonas = Zonas::all();
+    return view('archivos.pacientes.create3', compact('provincias','distritos','edocivil','gradoinstruccion','zonas'));
   }
 
    public function createpac() {

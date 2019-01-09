@@ -226,6 +226,19 @@
 					@endforeach
 				</select>
 			</div> 
+
+
+
+			<label class="col-sm-1">Adjunto:</label>
+
+				<div class="form-group row">
+					<label for="form-1-1" class="col-md-12 control-label">
+					</label>
+					<div class="col-md-10">
+						{{Form::file('informe', ["class"=>"form-control"])}}
+					</div>
+			</div>
+
             
 
 		
