@@ -23,7 +23,7 @@ class ProfesionalesController extends Controller
         ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro','d.name as user','d.lastname')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
-		->join('users as d','d.id','a.usuario')
+		    ->join('users as d','d.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->orderby('a.dni','desc')
         ->paginate(5000);
@@ -87,7 +87,7 @@ class ProfesionalesController extends Controller
 
   public function createView() {
 
-    $centros =Centros::where("estatus", '=', 1)->get();
+    $centros =Centros::all();
     $especialidades = Especialidades::all();
 
     return view('archivos.profesionales.create', compact('centros','especialidades'));
