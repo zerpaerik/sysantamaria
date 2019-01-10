@@ -366,10 +366,10 @@ Route::get('available-time/{e}/{d}/{m}/{y}', 'Events\EventController@availableTi
 Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');
 Route::post('consulta/create', 'Events\EventController@create');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
-Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
+Route::post('observacion-create','ConsultaController@create')->name('observacions.create');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
-
+Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');
 Route::get('services-create','ServiceController@createView')->name('service.create');
