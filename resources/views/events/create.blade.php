@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<h3>REGISTRAR NUEVA HISTORIA</h3>
+	<h3></h3>
 	    <br>
 	<form action="treatment/create" method="post" class="form-horizontal">
 		{{ csrf_field() }}
