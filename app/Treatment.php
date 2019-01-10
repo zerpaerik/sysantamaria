@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Consulta extends Model
+class Treatment extends Model
 {
     protected $guarded = [];
 
-    public function Treatment()
+    public function Consultas()
     {
-    	return $this->hasOne('App\Treatment');
+    	return $this->belongsTo('App\Consulta');
     }
 }

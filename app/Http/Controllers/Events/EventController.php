@@ -19,6 +19,7 @@ use DB;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
+use App\treatment;
 
 class EventController extends Controller
 {
@@ -55,7 +56,9 @@ class EventController extends Controller
     ->first();
     $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
-    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+     $consultas->load('treatment');
+
     $personal = Personal::where('estatus','=',1)->get();
     $ciex = Ciex::all();
 

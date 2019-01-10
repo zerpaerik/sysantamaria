@@ -50,7 +50,65 @@
 				<p class="col-sm-6"><strong>Plan de Tratamiento:</strong> {{ $consulta->plan }}</p>
 				<p class="col-sm-6"><strong>Nro Sesiones:</strong> {{ $consulta->ses }}</p>
 				<p class="col-sm-6"><strong>Atentido Por:</strong> {{ $consulta->personal }}</p>
-				
+				@if(!empty($consulta->treatment))
+				 	<p class="col-sm-6"><strong>ficha eval:</strong>{{ $consulta->treatment->ficha_eval }}</p>
+            		<p class="col-sm-6"><strong>evalauacion eval:</strong>{{ $consulta->treatment->eva_eval }}</p>
+            		<p class="col-sm-6"><strong>frecuencia eval:</strong>{{ $consulta->treatment->frecuencia_eval }}</p>
+            		<p class="col-sm-6"><strong>exac_eval:</strong>{{ $consulta->treatment->exac_eval }}</p>
+            		<p class="col-sm-6"><strong>inicio_eval:</strong>{{ $consulta->treatment->inicio_eval }}</p>
+            		<p class="col-sm-6"><strong>inicio_tiempo_eval:</strong>{{ $consulta->treatment->inicio_tiempo_eval }}</p>
+            		<p class="col-sm-6"><strong>dolor_eval:</strong>{{ $consulta->treatment->dolor_eval }}</p>
+            		<p class="col-sm-6"><strong>retraccion_eval:</strong>{{ $consulta->treatment->retraccion_eval }}</p>
+            		<p class="col-sm-6"><strong>parestecia_eval:</strong>{{ $consulta->treatment->parestecia_eval }}</p>
+            		<p class="col-sm-6"><strong>hiperalgesia_eval:</strong>{{ $consulta->treatment->hiperalgesia_eval }}</p>
+            		<p class="col-sm-6"><strong>hiperalgesia_zona_eval:</strong>{{ $consulta->treatment->hiperalgesia_zona_eval }}</p>
+            		<p class="col-sm-6"><strong>limitacion_eval:</strong>{{ $consulta->treatment->limitacion_eval }}</p>
+            		<p class="col-sm-6"><strong>localizacion_eval:</strong>{{ $consulta->treatment->localizacion_eval }}</p>
+            		<p class="col-sm-6"><strong>irradiacion_eval:</strong>{{ $consulta->treatment->irradiacion_eval }}</p>
+            		<p class="col-sm-6"><strong>irradiacion_zona_eval:</strong>{{ $consulta->treatment->irradiacion_zona_eval }}</p>
+            		<p class="col-sm-6"><strong>observaciones_eval:</strong>{{ $consulta->treatment->observaciones_eval }}</p>
+            		<p class="col-sm-6"><strong>diagnostico_eval:</strong>{{ $consulta->treatment->diagnostico_eval }}</p>
+            		<p class="col-sm-6"><strong>chc_trat:</strong>{{ $consulta->treatment->chc_trat }}</p>
+            		<p class="col-sm-6"><strong>cf_trat:</strong>{{ $consulta->treatment->cf_trat }}</p>
+            		<p class="col-sm-6"><strong>tiempo_trat:</strong>{{ $consulta->treatment->tiempo_trat }}</p>
+            		<p class="col-sm-6"><strong>frecuencia_ultrasonido_trat:</strong>{{ $consulta->treatment->frecuencia_ultrasonido_trat }}</p>
+            		<p class="col-sm-6"><strong>intensidad_ultrasonido_trat:</strong>{{ $consulta->treatment->intensidad_ultrasonido_trat }}</p>
+            		<p class="col-sm-6"><strong>ciclo_ultrasonido_trat:</strong>{{ $consulta->treatment->ciclo_ultrasonido_trat }}</p>
+            		<p class="col-sm-6"><strong>tiempo_ultrasonido_trat:</strong>{{ $consulta->treatment->tiempo_ultrasonido_trat }}</p>
+            		<p class="col-sm-6"><strong>dolor_laser_trat:</strong>{{ $consulta->treatment->dolor_laser_trat }}</p>
+            		<p class="col-sm-6"><strong>tenosinovitis_laser_trat:</strong>{{ $consulta->treatment->tenosinovitis_laser_trat }}</p>
+            		<p class="col-sm-6"><strong>esguince_laser_trat:</strong>{{ $consulta->treatment->esguince_laser_trat }}</p>
+            		<p class="col-sm-6"><strong>tension_laser_trat:</strong>{{ $consulta->treatment->tension_laser_trat }}</p>
+            		<p class="col-sm-6"><strong>rusa_corriente_trat:</strong>{{ $consulta->treatment->rusa_corriente_trat }}</p>
+            		<p class="col-sm-6"><strong>interferencial_corriente_trat:</strong>{{ $consulta->treatment->interferencial_corriente_trat }}</p>
+            		<p class="col-sm-6"><strong>alto_corriente_trat:</strong>{{ $consulta->treatment->alto_corriente_trat }}</p>
+            		<p class="col-sm-6"><strong>tens_corriente_trat:</strong>{{ $consulta->treatment->tens_corriente_trat }}</p>
+            		<p class="col-sm-6"><strong>estiramiento_trat:</strong>{{ $consulta->treatment->estiramiento_trat }}</p>
+            		<p class="col-sm-6"><strong>klapp_metodo_trat:</strong>{{ $consulta->treatment->klapp_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>william_metodo_trat:</strong>{{ $consulta->treatment->william_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>wilson_metodo_trat:</strong>{{ $consulta->treatment->wilson_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>fnp_metodo_trat:</strong>{{ $consulta->treatment->fnp_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>codman_metodo_trat:</strong>{{ $consulta->treatment->codman_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>burguer_metodo_trat:</strong>{{ $consulta->treatment->burguer_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>kaltenbron_metodo_trat:</strong>{{ $consulta->treatment->kaltenbron_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>feldenkrais_metodo_trat:</strong>{{ $consulta->treatment->feldenkrais_metodo_trat }}</p>
+            		<p class="col-sm-6"><strong>isometrico_fortalecimiento_trat:</strong>{{ $consulta->treatment->isometrico_fortalecimiento_trat }}</p>
+            		<p class="col-sm-6"><strong>isocarga_fortalecimiento_trat:</strong>{{ $consulta->treatment->isocarga_fortalecimiento_trat }}</p>
+            		<p class="col-sm-6"><strong>nocarga_fortalecimiento_trat:</strong>{{ $consulta->treatment->nocarga_fortalecimiento_trat }}</p>
+            		<p class="col-sm-6"><strong>bozu_fortalecimiento_trat:</strong>{{ $consulta->treatment->bozu_fortalecimiento_trat }}</p>
+            		<p class="col-sm-6"><strong>theraband_fortalecimiento_trat:</strong>{{ $consulta->treatment->theraband_fortalecimiento_trat }}</p>
+            		<p class="col-sm-6"><strong>reduccion_trat:</strong>{{ $consulta->treatment->reduccion_trat }}</p>
+            		<p class="col-sm-6"><strong>rolido_marcha_trat:</strong>{{ $consulta->treatment->rolido_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>sentado_marcha_trat:</strong>{{ $consulta->treatment->sentado_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>arrastre_marcha_trat:</strong>{{ $consulta->treatment->arrastre_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>puntos_marcha_trat:</strong>{{ $consulta->treatment->puntos_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>rodillas_marcha_trat:</strong>{{ $consulta->treatment->rodillas_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>bipedo_marcha_trat:</strong>{{ $consulta->treatment->bipedo_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>descarga_marcha_trat:</strong>{{ $consulta->treatment->descarga_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>equilibrio_marcha_trat:</strong>{{ $consulta->treatment->equilibrio_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>coordinacion_marcha_trat:</strong>{{ $consulta->treatment->coordinacion_marcha_trat }}</p>
+            		<p class="col-sm-6"><strong>disocion_marcha_trat:</strong>{{ $consulta->treatment->disocion_marcha_trat }}</p>
+				@endif				
 				<br>
 			</div>
 		</div>
@@ -238,10 +296,212 @@
 						{{Form::file('informe', ["class"=>"form-control"])}}
 					</div>
 			</div>
+			
+            <label class="col-sm-2">Ficha de Evaluacion Terapeutica</label>
+			<div class="col-sm-10">
+				<input type="radio" name="ficha_eval" value="Nuevo">Nuevo
+				<input type="radio" name="ficha_eval" value="Reevaluacion">Reevaluacion
+				<input type="radio" name="ficha_eval" value="Reingresante">Reingresante
+			</div>  
+			
+			<br>
+			<br><br>
 
-            
+			<label class="col-sm-2">Eva</label>
+			<div class="col-sm-10">
+				<input type="radio" name="eva_eval" value="Antes">Antes
+				<input type="radio" name="eva_eval" value="Despues">Despues
+			</div>  
 
-		
+			<br>
+			<br>
+
+			<label class="col-sm-2">Frecuencia</label>
+			<div class="col-sm-10">
+				<input type="radio" name="frecuencia_eval" value="Continuo">Continuo
+				<input type="radio" name="frecuencia_eval" value="Intermitente">Intermitente 
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Exacervacion</label>
+			<div class="col-sm-10">
+				<input type="radio" name="exac_eval" value="Actividad">Actividad
+				<input type="radio" name="exac_eval" value="Reposo">Reposo 
+				<input type="radio" name="exac_eval" value="Levantarse">Levantarse
+				<input type="radio" name="exac_eval" value="Dia">Dia 
+				<input type="radio" name="exac_eval" value="Noche">Noche								
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Forma de inicio</label>
+			<div class="col-sm-10">
+				<input type="radio" name="inicio_eval" value="Progesivo">Progesivo
+				<input type="radio" name="inicio_eval" value="Subito">Subito
+				<input type="text" name="inicio_tiempo_eval">Tiempo  
+			</div>  
+			<br><br>	
+
+			<label class="col-sm-2">Tipo de dolor</label>
+			<div class="col-sm-10">
+				<input type="radio" name="dolor_eval" value="Quemante">Quemante
+				<input type="radio" name="dolor_eval" value="Punzante">Punzante 
+				<input type="radio" name="dolor_eval" value="Electrico">Electrico
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Retraccion</label>
+			<div class="col-sm-10">
+				<input type="radio" name="retraccion_eval" value="Fascia">Fascia
+				<input type="radio" name="retraccion_eval" value="Muscular">Muscular
+				<input type="radio" name="retraccion_eval" value="Articular">Articular
+			</div>  
+			<br><br>	
+
+			<label class="col-sm-2">Parestecia</label>
+			<div class="col-sm-10">
+				<input type="radio" name="parestecia_eval" value="Si">Si
+				<input type="radio" name="parestecia_eval" value="No">No
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Hiperalgesia</label>
+			<div class="col-sm-10">
+				<input type="radio" name="hiperalgesia_eval" value="Si">Si
+				<input type="radio" name="hiperalgesia_eval" value="No">No
+				<input type="text" name="hiperalgesia_zona_eval">Zona
+			</div>  
+			<br><br>		
+
+			<label class="col-sm-2">Limitacion</label>
+			<div class="col-sm-10">
+				<input type="text" name="limitacion_eval">
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Localizacion</label>
+			<div class="col-sm-10">
+				<input type="text" name="localizacion_eval">
+			</div>  
+			<br><br>	
+
+
+			<label class="col-sm-2">Irradiacion</label>
+			<div class="col-sm-10">
+				<input type="radio" name="irradiacion_eval" value="Si">Si
+				<input type="radio" name="irradiacion_eval" value="No">No
+				<input type="text" name="irradiacion_zona_eval">Zona
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Observaciones</label>
+			<div class="col-sm-10">
+				<input type="text" name="observaciones_eval">
+			</div>  
+			<br><br>
+
+			<label class="col-sm-2">Diagnostico</label>
+			<div class="col-sm-10">
+				<input type="text" name="diagnostico_eval">
+			</div>  
+			<br><br>																				
+
+			<h3 class="col-sm-12">Tratamiento</h3>
+
+			<label class="col-sm-2">CHC</label>
+			<div class="col-sm-10">
+				<input type="text" name="chc_trat">
+			</div>  
+			<br><br><br>
+
+
+			<label class="col-sm-2">CF</label>
+			<div class="col-sm-10">
+				<input type="text" name="cf_trat">
+			</div>  
+			<br><br>
+
+
+			<label class="col-sm-2">Tiempo </label>
+			<div class="col-sm-10">
+				<input type="text" name="tiempo_trat">
+			</div>  
+			<br><br><br>
+			
+			<label class="col-sm-2">Ultrasonido</label>
+			<div class="col-sm-12">
+				Frecuencia<input type="text" name="frecuencia_ultrasonido_trat">
+				Intensidad<input type="text" name="intensidad_ultrasonido_trat">
+				Ciclo<input type="text" name="ciclo_ultrasonido_trat">
+				Tiempo<input type="text" name="tiempo_ultrasonido_trat">
+			</div>  
+			<br><br><br>
+
+			<label class="col-sm-1">Laser</label>
+			<div class="col-sm-12">
+				Dolor<input type="text" name="dolor_laser_trat">
+				Tenosinovitis<input type="text" name="tenosinovitis_laser_trat">
+				Esguince<input type="text" name="esguince_laser_trat">
+				Tension Repetitiva<input type="text" name="tension_laser_trat">
+			</div>  
+			<br><br><br>
+
+			<label class="col-sm-2">Corriente</label>
+			<div class="col-sm-12">
+				Rusa<input type="text" name="rusa_corriente_trat">
+				interferencial<input type="text" name="interferencial_corriente_trat">
+				alto vontaje<input type="text" name="alto_corriente_trat">
+				Tens<input type="text" name="tens_corriente_trat">
+			</div>  
+			<br><br><br>
+
+			<label class="col-sm-1">Estiramiento </label>
+			<div class="col-sm-11">
+				<input type="text" name="estiramiento_trat">
+			</div>  
+			<br><br><br>
+
+			<label class="col-sm-2">Metodo Terapeutico</label>
+			<div class="col-sm-12">
+				Klapp<input type="checkbox" name="klapp_metodo_trat">
+				William<input type="checkbox" name="william_metodo_trat">
+				Wilson<input type="checkbox" name="wilson_metodo_trat">
+				FNP<input type="checkbox" name="fnp_metodo_trat">
+				Codman<input type="checkbox" name="codman_metodo_trat">
+				Burguer<input type="checkbox" name="burguer_metodo_trat">
+				KaltenBron<input type="checkbox" name="kaltenbron_metodo_trat">
+				Feldenkrais<input type="checkbox" name="feldenkrais_metodo_trat">				
+			</div>  
+			<br><br><br>	
+
+			<label class="col-sm-2">Fortalecimiento</label>
+			<div class="col-sm-12">
+				Isomentrico<input type="checkbox" name="isometrico_fortalecimiento_trat">
+				Isotonico con carga<input type="checkbox" name="isocarga_fortalecimiento_trat">
+				Sin carga<input type="checkbox" name="nocarga_fortalecimiento_trat">
+				Bozu<input type="checkbox" name="bozu_fortalecimiento_trat">
+				THERABAND<input type="checkbox" name="theraband_fortalecimiento_trat">			
+			</div>  
+			<br><br><br>	
+
+			<label class="col-sm-5">Reduccion de la marcha</label>
+			<div class="col-sm-12">
+				<input type="radio" name="reduccion_trat" value="Si">Si
+				<input type="radio" name="reduccion_trat" value="No">No
+			</div>  
+			<div class="col-sm-12">
+				Rolido<input type="checkbox" name="rolido_marcha_trat"><br>
+				Sentado<input type="checkbox" name="sentado_marcha_trat"><br>
+				Arrastre<input type="checkbox" name="arrastre_marcha_trat"><br>
+				4 Puntos<input type="checkbox" name="puntos_marcha_trat"><br>
+				Rodillas<input type="checkbox" name="rodillas_marcha_trat"><br>
+				Bipedo<input type="checkbox" name="bipedo_marcha_trat"><br>
+				Descarga de peso<input type="checkbox" name="descarga_marcha_trat"><br>
+				Equilibrio<input type="checkbox" name="equilibrio_marcha_trat"><br>		
+				Coordinacion<input type="checkbox" name="coordinacion_marcha_trat"><br>
+				Disocion<input type="checkbox" name="disocion_marcha_trat"><br>								
+			</div>  			
+			<br><br>																
+	
             <div id="laboratorios" class="embed ">
             
                 <!-- Form template-->
