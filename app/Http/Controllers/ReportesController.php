@@ -258,7 +258,7 @@ class ReportesController extends Controller
         $pdf->loadHTML($view);
      
        
-        return $pdf->download('diario_'.$request->fecha.'.pdf');
+        return $pdf->stream('diario_'.$request->fecha.'.pdf');
 
     }
 
@@ -458,7 +458,7 @@ class ReportesController extends Controller
         $pdf->loadHTML($view);
      
        
-        return $pdf->download('detallado'.$request->fecha.'.pdf');
+        return $pdf->stream('detallado'.$request->fecha.'.pdf');
 
     }
     
