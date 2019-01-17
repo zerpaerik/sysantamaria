@@ -52,11 +52,12 @@
 						<td>{{$p->name}},{{$p->lastname}}</td>
 						@if($p->es_servicio =='1')
 						<td>{{$p->servicio}}</td>
-						@else
+						@elseif($p->es_laboratorio == '1')
 						<td>{{$p->laboratorio}}</td>
+						@else
+						<td>{{$p->paquete}}</td>
 						@endif
-					
-					
+			
 								<td>
 							   <form method="get" action="atenciones-atender">	
 							   <input type="hidden" value="{{$p->id}}" name="id">		
