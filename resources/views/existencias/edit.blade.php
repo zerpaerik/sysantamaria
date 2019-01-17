@@ -26,14 +26,24 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
-						<div class="col-sm-3">
+						<div class="col-sm-12">
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" value="{{$nombre}}" title="Nombre">
 						</div>
 
 						<label class="col-sm-1 control-label">Còdigo</label>
-						<div class="col-sm-3">
+						<div class="col-sm-12">
 							<input type="text" class="form-control" name="codigo" placeholder="codigo" data-toggle="tooltip" data-placement="bottom" value="{{$codigo}}" title="codigo">
 						</div>
+
+						<label class="col-sm-2 control-label">Precio Unitario</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="unidad" placeholder="Precio Unitario" data-toggle="tooltip" data-placement="bottom" value="{{$preciounidad}}" title="unidad">
+						</div>
+
+						<label class="col-sm-2 control-label">Precio de venta</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="venta" placeholder="venta" data-toggle="tooltip" data-placement="bottom" value="{{$precioventa}}" title="venta">
+						</div>						
 
 						<label class="col-sm-1 control-label">Categoria</label>
 						<div class="col-sm-3">

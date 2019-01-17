@@ -30,6 +30,7 @@
 					<thead>
 						<tr>
 							<th>Paciente</th>
+							<th>Profesional</th>
 							<th>DNI</th>
 							<th>Registro</th>
 							<th>Mostrar Evaluaciones</th>
@@ -41,6 +42,7 @@
 						@foreach($prenatal as $d)					
 							<tr>
 								<td>{{$d->nombres}} {{$d->apellidos}}</td>
+								<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>								
 								<td>{{$d->dni}}</td>
 								<td>{{$d->created_at}}</td>
 							    <td><a href="prenatal-vercontrol2-{{$d->idPaciente}}"  class="btn btn-primary">Mostrar</a></td>

@@ -30,7 +30,7 @@ class AtencionesController extends Controller
 
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -46,7 +46,7 @@ class AtencionesController extends Controller
         } else {
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -102,6 +102,9 @@ class AtencionesController extends Controller
         if (!is_null($paquete['paquete'])) {
               $paquete = Paquetes::findOrFail($paquete['paquete']);
               $paq = new Atenciones();
+              $paq->tipo_factura = $request->factura_tipo;               
+              $paq->numero_serie = $request->numero_serie;             
+              $paq->numero_factura = $request->numero_factura;              
               $paq->id_paciente = $request->id_paciente;
               $paq->origen = $request->origen;
               $paq->origen_usuario = $searchUsuarioID->id;
@@ -158,6 +161,9 @@ class AtencionesController extends Controller
 
             if(! is_null($id_servicio)){
               $s = new Atenciones();
+              $s->tipo_factura = $request->factura_tipo;               
+              $s->numero_serie = $request->numero_serie;             
+              $s->numero_factura = $request->numero_factura;             
               $s->id_paciente = $request->id_paciente;
               $s->origen = $request->origen;
               $s->origen_usuario = $searchUsuarioID->id;
@@ -192,7 +198,10 @@ class AtencionesController extends Controller
 
             if(! is_null($id_laboratorio)){
         $l = new Atenciones();
-              $l->id_paciente = $request->id_paciente;
+        $l->tipo_factura = $request->factura_tipo;         
+        $l->numero_serie = $request->numero_serie;        
+        $l->numero_factura = $request->numero_factura;              
+        $l->id_paciente = $request->id_paciente;
               $l->origen = $request->origen;
               $l->origen_usuario = $searchUsuarioID->id;
               $l->id_laboratorio = $id_laboratorio;
@@ -247,6 +256,9 @@ class AtencionesController extends Controller
             
 
               $serv = new Atenciones();
+              $serv->tipo_factura = $request->factura_tipo;              
+              $serv->numero_serie = $request->numero_serie;               
+              $serv->numero_factura = $request->numero_factura;             
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
               $serv->origen_usuario = $searchUsuarioID->id;
@@ -291,6 +303,9 @@ class AtencionesController extends Controller
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
           $lab = new Atenciones();
+          $lab->tipo_factura = $request->factura_tipo;           
+          $lab->numero_serie = $request->numero_serie;           
+          $lab->numero_factura = $request->numero_factura;         
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
           $lab->origen_usuario = $searchUsuarioID->id;

@@ -117,7 +117,7 @@
             </div> 
             <br>
             <div class="col-sm-3">
-            <input type="submit" class="btn btn-primary" value="Guardar">  
+            <input type="submit" class="btn btn-primary" value="Guardar" onclick="form.submit()" >  
             </div>                         
           </div>
           </div>                                                                                                                    

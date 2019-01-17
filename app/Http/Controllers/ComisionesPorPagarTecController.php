@@ -19,7 +19,6 @@ class ComisionesPorPagarTecController extends Controller
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
         $atenciones = $this->elasticSearch($inicio,$final,'','');
-        
         foreach ($atenciones as $aten) {
           $total = $total + ($aten->monto * $aten->por_tec / 100); 
         }

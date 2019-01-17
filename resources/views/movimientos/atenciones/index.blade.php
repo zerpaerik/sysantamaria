@@ -60,10 +60,14 @@
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
+							<th>DNI</th>
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>Factura/Boleta</th>
+							<th>Numero de serie</th>
+							<th>Numero factura</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
 						</tr>
@@ -74,6 +78,7 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->dni}}</td>						
 						<td>{{$d->name}},{{$d->lastname}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
@@ -84,6 +89,9 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
+						<td>{{$d->tipo_factura}}</td>
+						<td>{{$d->numero_serie}}</td>
+						<td>{{$d->numero_factura}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
 
@@ -107,6 +115,9 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>Factura/Boleta</th>
+							<th>Numero de serie</th>
+							<th>Numero factura</th>							
 							<th>Fecha</th>
 							<th>Acciones:</th>
 						</tr>

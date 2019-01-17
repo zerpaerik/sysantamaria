@@ -62,8 +62,11 @@ margin-top: -20px;
 <body>
 
 
-<div class="paciente">
+	<div class="paciente">
 		<p><strong>{{$ticket->nombres}},{{$ticket->apellidos}}</strong></p>
+	</div>
+	<div class="paciente">
+		<p><strong>DNI: {{$ticket->dni}}</strong></p>
 	</div>
 
 	<div class="fecha">

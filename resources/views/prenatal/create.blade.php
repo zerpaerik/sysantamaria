@@ -31,6 +31,14 @@
 						@endforeach
 						</select>
 						<br><br>
+						<h3>Datos de profesional</h3>
+						<label for="">Seleccione un profesional</label>
+						<select name="profesional" id="el9">
+						@foreach($profesional as $p)
+							<option value="{{$p->id}}">{{$p->name}} {{$p->apellidos}}</option>
+						@endforeach
+						</select>
+						<br><br>						
 						<h3>Procedimiento</h3>
 
 						<label class="col-sm-1 control-label">CHC</label>
@@ -96,7 +104,7 @@
 						</div>
 						 <br>
 						
-						<input type="submit" class="btn btn-primary" value="Guardar">														
+						<input type="submit" class="btn btn-primary" value="Guardar" onclick="form.submit()" >														
 					</div>
 					</div>																																																										
 					</div>
@@ -117,6 +125,7 @@ function Select2Test(){
 	$("#el2").select2();
 	$("#el1").select2();
 	$("#el3").select2();
+	$("#el9").select2();
   $("#el5").select2();
   $("#el4").select2();
 }

@@ -7,6 +7,7 @@ use App\Models\Pacientes\Paciente;
 use App\Models\Historiales;
 use App\Prenatal;
 use App\Control;
+use App\Models\Profesionales\Profesional;
 use DB;
 use Toastr;
 
@@ -52,6 +53,7 @@ class PrenatalController extends Controller
 			'a.laser',
 			'a.masaje',
 			'a.us',
+      'a.id_profesional',
 			'a.mag',
 			'a.otros',
 			'a.desf',
@@ -61,8 +63,9 @@ class PrenatalController extends Controller
 			 'p.nombres',
 			 'p.apellidos',
 			 'p.dni',
-			 'p.id as idPaciente')
+			 'p.id as idPaciente','pro.name as nombrePro','pro.apellidos as apellidoPro')
     	->join('pacientes as p','p.id','a.paciente')
+      ->join('profesionales as pro','pro.id','a.id_profesional')
         ->where('p.dni','like','%'.$dni.'%')
         ->paginate(20);
         return $prenatal;
@@ -71,9 +74,10 @@ class PrenatalController extends Controller
     public function createView()
     {
     	$paciente = Paciente::all();
-
+      $especialista = Profesional::all();
     	return view('prenatal.create',[
-    		 'pacientes' => $paciente
+    		 'pacientes' => $paciente,
+         'profesional' => $especialista
     	]); 
     }
 	
@@ -90,7 +94,7 @@ class PrenatalController extends Controller
     public function create(Request $request)
     {
     		Prenatal::create([
-		    	'paciente' =>$request->paciente,
+		    'paciente' =>$request->paciente,
 				'chc' =>$request->chc,
 				'elect' =>$request->elect,
 				'ej' =>$request->ej,
@@ -103,6 +107,7 @@ class PrenatalController extends Controller
 				'desf' =>$request->desf,
 				'man' =>$request->man,
 				'fav' =>$request->fav,
+        'id_profesional' => $request->profesional
 				
 			]);
 			

@@ -36,7 +36,7 @@
 						</div>						
 						
 						<div class="col-sm-8">
-							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
+							<input onclick="form.submit()"  type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
 							<a href="{{route('sedes.create')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			

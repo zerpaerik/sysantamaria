@@ -129,7 +129,7 @@ class ReportesController extends Controller
                 if (!is_null($es_servicio)) {
 
                 $ticket = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
                 ->join('users as b','b.id','a.origen_usuario')
                 ->join('pacientes as c','c.id','a.id_paciente')
                 ->join('servicios as e','e.id','a.id_servicio')
@@ -141,7 +141,7 @@ class ReportesController extends Controller
                 } else {
 
                 $ticket = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
                 ->join('users as b','b.id','a.origen_usuario')
                 ->join('pacientes as c','c.id','a.id_paciente')
                 ->join('analises as e','e.id','a.id_laboratorio')

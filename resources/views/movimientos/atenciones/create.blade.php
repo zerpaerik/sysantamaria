@@ -245,6 +245,24 @@
               </select>
             </div>
 
+            <label class="col-sm-3 control-label">Tipo de factura</label>
+            <div class="col-sm-3">
+              <select id="el99" name="factura_tipo">
+                  <option value="Boleta">Boleta</option>
+                  <option value="Recibo">Recibo</option>
+              </select>
+            </div>
+
+            <div class="col-sm-12">
+            <label class=" control-label">Numero de serie</label>
+              <input type="text" name="numero_serie" class="number form-control"  data-toggle="tooltip" data-placement="bottom" >
+            </div>  
+
+            <div class="col-sm-12">
+            <label class="control-label">Numero de recibo</label>
+              <input type="text" name="numero_factura" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
+            </div>                                    
+
           <hr>
            <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
@@ -290,7 +308,7 @@
 
 											
 						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
+						<input type="submit" style="margin-left:15px; margin-top: 20px;" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Agregar">
 
 						<a href="{{route('atenciones.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>			
@@ -548,6 +566,7 @@ function Select2Test(){
   $("#el5").select2();
   $("#el4").select2();
   $("#el6").select2();
+   $("#el99").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this

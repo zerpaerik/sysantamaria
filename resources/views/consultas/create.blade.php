@@ -78,7 +78,7 @@
 							</div>						
 
 						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
+						<input onclick="form.submit()"  type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
 
 					</div>			
 				</form>	

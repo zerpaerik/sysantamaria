@@ -244,7 +244,7 @@
 			
 		
 			<div class="col-sm-12">
-				<input type="submit" value="Registrar" class="btn btn-success" class="form-control">
+				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
 			</div>
 		</div>
 		</div>
