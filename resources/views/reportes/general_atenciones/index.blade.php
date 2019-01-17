@@ -70,6 +70,7 @@
 					<thead>
 						<tr>
 							<th>Paciente</th>
+							<th>DNI</th>
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>
@@ -86,6 +87,7 @@
 
 							<tr>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->dni}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>

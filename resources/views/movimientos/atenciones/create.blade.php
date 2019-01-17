@@ -253,15 +253,17 @@
               </select>
             </div>
 
-            <div class="col-sm-12">
+
+            <div class="col-md-12">
             <label class=" control-label">Numero de serie</label>
               <input type="text" name="numero_serie" class="number form-control"  data-toggle="tooltip" data-placement="bottom" >
             </div>  
 
-            <div class="col-sm-12">
+            <div class="col-md-12">
             <label class="control-label">Numero de recibo</label>
               <input type="text" name="numero_factura" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
-            </div>                                    
+            </div>   
+
 
           <hr>
            <div class="form-group form-inline">
