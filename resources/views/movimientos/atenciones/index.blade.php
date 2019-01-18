@@ -65,9 +65,9 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
-							<th>Factura/Boleta</th>
-							<th>Numero de serie</th>
-							<th>Numero factura</th>
+							<th>Documento</th>
+							<th>Serie</th>
+							<th>Numeraciòn</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
 						</tr>
