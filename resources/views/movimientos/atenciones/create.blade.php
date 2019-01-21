@@ -52,7 +52,6 @@
 									<option value="1">Particular</option>
 									<option value="2">Referido</option>
                   <option value="3">Convenio</option>
-                  <option value="4">Recomendaciòn</option>
 							</select>
 						</div>
 
