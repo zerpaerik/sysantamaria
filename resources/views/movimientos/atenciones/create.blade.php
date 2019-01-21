@@ -252,10 +252,10 @@
                      <input type="text" name="numero_serie" placeholder="Número de Serie" class="number form-control"  data-toggle="tooltip" data-placement="bottom" >
                     </div>
 
-                    <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Fáctura</label>
+                    <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Numeración</label>
                     <div class="col-sm-2">
 
-                      <input type="text" name="numero_factura" placeholder="Número de Factura" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
+                      <input type="text" name="numero_factura" placeholder="Numeración" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
                     </div>
 
                   
