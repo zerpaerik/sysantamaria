@@ -226,7 +226,55 @@
           </div>
           <br>
 
-            <label class="col-sm-3 control-label">Còmo llego a Santa Maria FISIOCENTER?:</label>
+       
+
+                  <div class="row">
+
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i>Datos de Documentos:</label>
+            <!-- sheepIt Form -->
+            <div id="paquetes" class="embed ">
+                <!-- Form template-->
+                <div id="paquetes_template" class="template row">
+
+
+                     <label class="col-sm-1 control-label">Documento:</label>
+                      <div class="col-sm-3">
+                        <select id="el99" name="factura_tipo">
+                            <option value="Boleta">Boleta</option>
+                            <option value="Recibo">Nota de Venta</option>
+                        </select>
+                      </div>
+                    
+
+                    <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Serie</label>
+                    <div class="col-sm-2">
+
+                     <input type="text" name="numero_serie" placeholder="Número de Serie" class="number form-control"  data-toggle="tooltip" data-placement="bottom" >
+                    </div>
+
+                    <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Fáctura</label>
+                    <div class="col-sm-2">
+
+                      <input type="text" name="numero_factura" placeholder="Número de Factura" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
+                    </div>
+
+                  
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+             
+                <!-- /Controls -->
+            </div>
+            <!-- /sheepIt Form --> 
+            
+          </div>
+          <hr>
+
+               <label class="col-sm-3 control-label">Còmo llego a Santa Maria FISIOCENTER?:</label>
             <div class="col-sm-3">
               <select id="el6" name="comollego">
                   <option value="Seleccione">Seleccione</option>
@@ -245,24 +293,7 @@
               </select>
             </div>
 
-            <label class="col-sm-3 control-label">Tipo de factura</label>
-            <div class="col-sm-3">
-              <select id="el99" name="factura_tipo">
-                  <option value="Boleta">Boleta</option>
-                  <option value="Recibo">Recibo</option>
-              </select>
-            </div>
-
-
-            <div class="col-md-12">
-            <label class=" control-label">Numero de serie</label>
-              <input type="text" name="numero_serie" class="number form-control"  data-toggle="tooltip" data-placement="bottom" >
-            </div>  
-
-            <div class="col-md-12">
-            <label class="control-label">Numero de recibo</label>
-              <input type="text" name="numero_factura" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
-            </div>   
+      
 
 
           <hr>
