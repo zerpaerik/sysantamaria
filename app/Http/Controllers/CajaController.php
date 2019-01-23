@@ -30,7 +30,7 @@ class CajaController extends Controller
 
 
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname','a.created_at')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.usuario','b.name','b.lastname','a.created_at')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->get();
@@ -60,7 +60,7 @@ class CajaController extends Controller
 	 //  $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->where('fecha','=',Carbon::now()->toDateString())->get();
 
         $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname','a.created_at')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.usuario','b.name','b.lastname','a.created_at')
         ->join('users as b','b.id','a.usuario')
         ->where('a.fecha','=',Carbon::now()->toDateString())
         ->get();
@@ -95,41 +95,7 @@ class CajaController extends Controller
 	    	'fecha' => Carbon::now()->toDateString()
 	    ]);    	
     }
-/*
-    public function create(Request $request)
-    {
-    	
-    	$caja = DB::table('cajas')
-    	->select('*')
-    	->where('fecha','=',Carbon::now()->toDateString())
-    	->where('sede','=', $request->session()->get('sede'))
-    	->get();
 
-    	if (count($caja) == 0) {
-    		Caja::create([
-    			'cierre_matutino' => $request->total,
-    			'cierre_vespertino' => 0,
-    			'fecha' => Carbon::now()->toDateString(),
-    			'balance' => $request->total,
-                'usuario' => Auth::user()->id,
-    			'sede' =>  $request->session()->get('sede')
-    		]);
-    	}
-
-    	if(count($caja) == 1)
-    	{
-    		 Caja::create([
-    			'cierre_matutino' => 0,
-    			'cierre_vespertino' => $request->total - $caja[0]->cierre_matutino,
-    			'fecha' => Carbon::now()->toDateString(),
-    			'balance' => $request->total,
-                'usuario' => Auth::user()->id,
-    			'sede' =>  $request->session()->get('sede')
-    		]);
-    	}
-    	return redirect('/cierre-caja');
-
-    }*/
 
         public function create(Request $request)
     {
