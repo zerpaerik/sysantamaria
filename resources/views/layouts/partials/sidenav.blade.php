@@ -240,6 +240,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li>
       @if(\Auth::user()->role_id == 4)
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>

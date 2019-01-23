@@ -20,6 +20,9 @@ Route::get('role-create', 'Users\RoleController@createView')->name('role.create'
 Route::post('role/create', 'Users\RoleController@create')->middleware('auth');
 Route::get('role/{id}', 'Users\RoleController@delete')->middleware('auth');
 
+Route::get('users-password-edit', 'Users\UserController@updatepasswd')->name('users.password');
+Route::post('users/updatepassw', 'Users\UserController@updatepass');
+
 Route::get('personal', 'Personal\PersonalController@index')->name('personal.index')->middleware('auth');
 Route::get('personal-search', 'Personal\PersonalController@search')->name('personal.search')->middleware('auth');
 Route::get('personal-create', 'Personal\PersonalController@createView')->name('personal.create')->middleware('auth');
