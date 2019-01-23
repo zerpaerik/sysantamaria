@@ -116,6 +116,14 @@ Route::get('archivos/pacientes/empresas','Archivos\PacientesController@empresas'
 Route::get('archivos/pacientes/nada','Archivos\PacientesController@nada');
 
 
+Route::get('cierre-caja','CajaController@index')->name('cierre.index')->middleware('auth');
+Route::get('cierre-caja-reporte-{fecha}','CajaController@reporte_pdf')->name('cierre.reporte')->middleware('auth');
+Route::post('cierre-caja-create','CajaController@create')->name('cierre.create')->middleware('auth');
+Route::get('caja-delete-{id}','CajaController@delete');
+
+
+Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
+Route::get('recibo_caja_ver2/{id}','ReportesController@recibo_caja_ver2');
 
 
 /**

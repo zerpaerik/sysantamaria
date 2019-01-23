@@ -104,6 +104,263 @@ class ReportesController extends Controller
     }
 
 
+      public function recibo_caja_ver(Request $request,$id) 
+    {
+
+    
+      
+      $caja = DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->where('a.id','=',$id)
+        ->first();
+
+
+        $fecha=$caja->created_at;
+        $fechainic=date('Y-m-d H:i:s', strtotime($caja->fecha));
+        $fechafin=$caja->fecha." 23:59:59";
+   
+        
+
+
+        $atenciones = Creditos::where('origen', 'ATENCIONES')
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                    //->whereBetween('created_at', [strtotime($fechainic),strtotime($fecha)])
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    //->where('created_at','<=',$fecha)
+                                   // ->whereBetween('created_at', [$fecha, $fecha])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+                           
+                                
+
+        if ($atenciones->cantidad == 0) {
+            $atenciones->monto = 0;
+        }
+
+         $consultas = Creditos::where('origen', 'CONSULTAS')
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($consultas->cantidad == 0) {
+            $consultas->monto = 0;
+        }
+
+        $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($otros_servicios->cantidad == 0) {
+            $otros_servicios->monto = 0;
+        }
+
+        $cuentasXcobrar = Creditos::where('origen', 'CUENTAS POR COBRAR')
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($cuentasXcobrar->cantidad == 0) {
+            $cuentasXcobrar->monto = 0;
+        }
+
+         $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($metodos->cantidad == 0) {
+            $metodos->monto = 0;
+        }
+
+        $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->get();
+
+        $efectivo = Creditos::where('tipo_ingreso', 'EF')
+                            ->whereNotIn('monto',[0,0.00,99999])
+                            ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+        if (is_null($efectivo->monto)) {
+            $efectivo->monto = 0;
+        }
+
+        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+                            ->whereNotIn('monto',[0,0.00,99999])
+                            ->whereRaw("created_at >= ? AND created_at <= ?", 
+                                     array($fechainic, $fecha))
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+
+        if (is_null($tarjeta->monto)) {
+            $tarjeta->monto = 0;
+        }
+
+         $totalEgresos = 0;
+
+        foreach ($egresos as $egreso) {
+            $totalEgresos += $egreso->monto;
+        }
+    
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
+
+        
+ 
+
+
+       
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos'));
+      
+       //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
+       $pdf = \App::make('dompdf.wrapper');
+       //$pdf->setPaper('A4', 'landscape');
+       $pdf->loadHTML($view);
+       return $pdf->stream('recibo_cierre_caja_ver');
+    /* }else{
+      return response()->json([false]);
+     }*/
+    }
+
+     public function recibo_caja_ver2(Request $request,$id) 
+    {
+
+     $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->whereDate('fecha','=',Carbon::today()->toDateString())
+        ->first();  
+
+      $fechamañana=$cajamañana->created_at;   
+    
+      
+      $caja = DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->where('a.id','=',$id)
+        ->first();
+
+        $fecha=$caja->created_at;
+
+
+           
+
+  
+      //  $ver=Carbon::toDateTimeString($caja->created_at);
+
+        $atenciones = Creditos::where('origen', 'ATENCIONES')
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                    //->whereBetween('created_at', [strtotime($fechainic),strtotime($fecha)])
+                                    ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    //->where('created_at','>',Carbon::toDateTimeString($caja->created_at))
+                                 //   ->whereBetween('created_at', ['2019-01-20 11','2019-01-20 23'])
+                                    //->where('created_at','>=',$fecha)
+                                    //->whereTime('created_at', '>=', $fecha)
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+             
+
+
+        if ($atenciones->cantidad == 0) {
+            $atenciones->monto = 0;
+        }
+
+         $consultas = Creditos::where('origen', 'CONSULTAS')
+                                      ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($consultas->cantidad == 0) {
+            $consultas->monto = 0;
+        }
+
+        $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
+                                      ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($otros_servicios->cantidad == 0) {
+            $otros_servicios->monto = 0;
+        }
+
+        $cuentasXcobrar = Creditos::where('origen', 'CUENTAS POR COBRAR')
+                                       ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($cuentasXcobrar->cantidad == 0) {
+            $cuentasXcobrar->monto = 0;
+        }
+
+         $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+                                    ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($metodos->cantidad == 0) {
+            $metodos->monto = 0;
+        }
+
+
+        $egresos = Debitos::whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->get();
+
+        $efectivo = Creditos::where('tipo_ingreso', 'EF')
+                            ->whereNotIn('monto',[0,0.00,99999])
+                            ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+        if (is_null($efectivo->monto)) {
+            $efectivo->monto = 0;
+        }
+
+        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+                            ->whereNotIn('monto',[0,0.00,99999])
+                            ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fecha))
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+
+        if (is_null($tarjeta->monto)) {
+            $tarjeta->monto = 0;
+        }
+
+         $totalEgresos = 0;
+
+        foreach ($egresos as $egreso) {
+            $totalEgresos += $egreso->monto;
+        }
+    
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
+
+    
+
+        
+ 
+
+       // $fecha = $caja->fecha;
+
+       
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta'));
+      
+       //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
+       $pdf = \App::make('dompdf.wrapper');
+       //$pdf->setPaper('A4', 'landscape');
+       $pdf->loadHTML($view);
+       return $pdf->stream('recibo_cierre_caja_ver');
+    /* }else{
+     }*/
+    }
+
+
 
     public function resultados_ver($id) 
     {
