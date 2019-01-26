@@ -195,15 +195,38 @@ class EventController extends Controller
     return view('consultas.create', $data + $extra);
   }
 
-  public function all()
+  public function all(Request $request)
   {
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+
+
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.title','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->select('e.id as EventId','e.paciente','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
+    ->whereDate('e.created_at','=',$f1)
     ->get();
+
+  } else {
+
+    $event = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
+    ->whereDate('e.created_at','=',Carbon::today()->toDateString())
+    ->get();
+
+
+
+  }
+  
 
     return view('consultas.index',[
       'eventos' => $event

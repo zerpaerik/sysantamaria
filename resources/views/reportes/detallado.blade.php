@@ -128,6 +128,37 @@
 	</table>
 </div>
 <div style="font-weight: bold; font-size: 14px">
+		PAQUETES
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Ticket</th>
+			<th>Detalle</th>
+			<th>Paciente</th>
+			<th>Monto Total</th>
+		    <th>Monto Abonado</th>
+		</tr>
+		@foreach ($paquetes as $lab)
+			<tr>
+				<td>{{ $lab->id }}</td>
+				<td>{{ $lab->paquete }}</td>
+				<td>{{ $lab->nombres }},{{ $lab->apellidos }}</td>
+				<td>{{ $lab->monto }}</td>
+				<td>{{ $lab->abono }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total Abonado</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalpaquetes->monto }}</td>
+		</tr>
+	</table>
+</div>
+<div style="font-weight: bold; font-size: 14px">
 		CONSULTAS
 </div>
 <div style="margin-top:10px; background: #eaeaea;">
