@@ -382,10 +382,14 @@ Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
 Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 //Servicios
-Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');
-Route::get('services-create','ServiceController@createView')->name('service.create');
-Route::post('services/create', 'ServiceController@create');
-Route::get('service-{id}','ServiceController@show');
+Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index')->middleware('auth');
+Route::get('services-create','ServiceController@createView')->name('service.create')->middleware('auth');
+Route::get('services-delete-{id}','ServiceController@delete')->name('service.delete')->middleware('auth');
+Route::get('services-edit-{id}','ServiceController@editView')->name('service.edit')->middleware('auth');
+Route::post('services/edit','ServiceController@edit')->name('service.editar')->middleware('auth');
+Route::get('services-inicio','ServiceController@inicio')->name('service.inicio')->middleware('auth');
+Route::post('services/create', 'ServiceController@create')->middleware('auth');
+Route::get('service-{id}','ServiceController@show')->middleware('auth');
 //Route::get('service-available-time/{e}/{d}/{m}/{y}', 'ServiceController@availableTime');
 /**
  * Reportes

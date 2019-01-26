@@ -169,6 +169,9 @@
     <ul class="dropdown-menu">
       <li>
         <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
+      </li>
+      <li>
+        <a href="{{route('service.inicio')}}"><i class="fa fa-plus-circle"></i> Listado de Programacion</a>
       </li> 
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
