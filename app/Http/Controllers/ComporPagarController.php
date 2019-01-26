@@ -25,6 +25,7 @@ class ComporPagarController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as pa','pa.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00,99999])
+    ->whereNotIn('a.origen',[1])
     //->whereDate('a.created_at', '=',Carbon::today()->toDateString())
     ->orderby('a.id','desc')
     ->get();
