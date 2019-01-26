@@ -72,7 +72,7 @@
 						@foreach($eventos as $d)
 						<tr>
 						<td>{{$d->EventId}}</td>
-						<td>{{$d->nombres}} {{$d->nombres}}</td>
+						<td>{{$d->nombres}} {{$d->apellidos}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->nombreEval}}</td>
 						<td>{{$d->date}}</td>

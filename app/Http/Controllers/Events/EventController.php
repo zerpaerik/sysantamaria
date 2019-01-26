@@ -130,13 +130,19 @@ class EventController extends Controller
     if(!$exists){
 
 
+       $precioeva = DB::table('evaluaciones')
+      ->select('*')
+      ->where('id','=',$request->evaluaciones)
+      ->first();
+
+
       $evt = Event::create([
         "paciente" => $request->paciente,
         "profesional" => $request->especialista,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "time" => $request->time,
         "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
-        "monto" => $request->monto,
+        "monto" => $precioeva->precio,
         "evaluacion" => $request->evaluaciones,
         "sede" => $request->session()->get('sede')
       ]);
