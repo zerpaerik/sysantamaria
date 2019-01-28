@@ -63,7 +63,6 @@ $vallas = $this->elasticSearch1($inicio,$final);
       $carteles = Atenciones::where('comollego', 'Carteles publicitarios en el mismo local')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
 									->whereNotIn('monto',[0,0.00,99999])
-                  ->where('id_paquete','=',1)
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
