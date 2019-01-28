@@ -20,11 +20,16 @@ class ComollegoController extends Controller
         return view('reportes.comollego.index');
 	}
 	
-	public function search(){
+	public function search(Request $request){
 
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $vallas = $this->elasticSearch1($inicio,$final);
+       // $inicio = Carbon::now()->toDateString();
+        //$final = Carbon::now()->addDay()->toDateString();
+
+    $inicio = $request->inicio;
+    $final= $request->final;
+
+       
+$vallas = $this->elasticSearch1($inicio,$final);
 	       $carteles = $this->elasticSearch2($inicio,$final);
         $pacientes = $this->elasticSearch3($inicio,$final);
         $medicos = $this->elasticSearch4($inicio,$final);
@@ -45,9 +50,9 @@ class ComollegoController extends Controller
   { 
       $vallas = Atenciones::where('comollego', 'Vallas publicitarias externas')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
-                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                
                                     ->first();
 
         return $vallas;
@@ -57,9 +62,9 @@ class ComollegoController extends Controller
   { 
       $carteles = Atenciones::where('comollego', 'Carteles publicitarios en el mismo local')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
+                  ->where('id_paquete','=',1)
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
-                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
         return $carteles;
@@ -69,9 +74,9 @@ class ComollegoController extends Controller
   { 
       $pacientes = Atenciones::where('comollego', 'Recomendación por pacientes')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
-                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                  
                                     ->first();
 
         return $pacientes;
@@ -81,7 +86,7 @@ class ComollegoController extends Controller
   { 
       $medicos = Atenciones::where('comollego', 'Recomendación por médicos')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -93,7 +98,7 @@ class ComollegoController extends Controller
   { 
       $redes = Atenciones::where('comollego', 'Redes sociales (Facebook, Instagram, Twitter)s')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -106,7 +111,7 @@ class ComollegoController extends Controller
   { 
       $radio = Atenciones::where('comollego', 'Radio (AM/FM/XM)')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00])
+                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -119,7 +124,7 @@ class ComollegoController extends Controller
   { 
       $radioi = Atenciones::where('comollego', 'Radio por Internet')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00])
+                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -132,7 +137,7 @@ class ComollegoController extends Controller
   { 
       $tv = Atenciones::where('comollego', 'Televisión')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00])
+                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -145,7 +150,7 @@ class ComollegoController extends Controller
   { 
       $motor = Atenciones::where('comollego', 'Motor de búsqueda (Google, Bing, Yahoo!')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00])
+                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -158,9 +163,9 @@ class ComollegoController extends Controller
   { 
       $otro = Atenciones::where('comollego', 'Otros')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00])
+                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
-                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
         return $otro;
