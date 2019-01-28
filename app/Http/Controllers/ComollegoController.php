@@ -24,54 +24,74 @@ class ComollegoController extends Controller
 
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
-        $seleccione = $this->elasticSearch1($inicio,$final);
-	    $recomendacion = $this->elasticSearch2($inicio,$final);
-        $avisos = $this->elasticSearch3($inicio,$final);
-        $redes = $this->elasticSearch4($inicio,$final);
-        $otros = $this->elasticSearch5($inicio,$final);
+        $vallas = $this->elasticSearch1($inicio,$final);
+	       $carteles = $this->elasticSearch2($inicio,$final);
+        $pacientes = $this->elasticSearch3($inicio,$final);
+        $medicos = $this->elasticSearch4($inicio,$final);
+        $redes = $this->elasticSearch5($inicio,$final);
+        $radio = $this->elasticSearch6($inicio,$final);
+                $radioi = $this->elasticSearch7($inicio,$final);
+                                $tv = $this->elasticSearch8($inicio,$final);
+                                                                $motor = $this->elasticSearch9($inicio,$final);
 
-        return view('reportes.comollego.search', ["otros" => $otros,"seleccione" => $seleccione,"recomendacion" => $recomendacion,"redes" => $redes, "avisos" => $avisos]);
+                                $otro = $this->elasticSearch10($inicio,$final);
+
+
+
+        return view('reportes.comollego.search', ["redes" => $redes,"vallas" => $vallas,"carteles" => $carteles,"medicos" => $medicos, "pacientes" => $pacientes,"radio" => $radio,"radioi" => $radioi,"tv" => $tv,"motor" => $motor,"otro" => $otro]);
 	}
 	
 	private function elasticSearch1($initial, $final)
   { 
-      $seleccione = Atenciones::where('comollego', 'Seleccione')
+      $vallas = Atenciones::where('comollego', 'Vallas publicitarias externas')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
 									->whereNotIn('monto',[0,0.00])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
-        return $seleccione;
+        return $vallas;
   }
   
   private function elasticSearch2($initial, $final)
   { 
-      $recomendacion = Atenciones::where('comollego', 'Recomendacion')
+      $carteles = Atenciones::where('comollego', 'Carteles publicitarios en el mismo local')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
 									->whereNotIn('monto',[0,0.00])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
-        return $recomendacion;
+        return $carteles;
   }
   
    private function elasticSearch3($initial, $final)
   { 
-      $avisos = Atenciones::where('comollego', 'Avisos')
+      $pacientes = Atenciones::where('comollego', 'Recomendación por pacientes')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
 									->whereNotIn('monto',[0,0.00])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
-        return $avisos;
+        return $pacientes;
   }
   
    private function elasticSearch4($initial, $final)
   { 
-      $redes = Atenciones::where('comollego', 'Redes')
+      $medicos = Atenciones::where('comollego', 'Recomendación por médicos')
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+									->whereNotIn('monto',[0,0.00])
+									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->first();
+
+        return $medicos;
+  }
+	
+	 private function elasticSearch5($initial, $final)
+  { 
+      $redes = Atenciones::where('comollego', 'Redes sociales (Facebook, Instagram, Twitter)s')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
 									->whereNotIn('monto',[0,0.00])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
@@ -80,18 +100,72 @@ class ComollegoController extends Controller
 
         return $redes;
   }
-	
-	 private function elasticSearch5($initial, $final)
+
+
+     private function elasticSearch6($initial, $final)
   { 
-      $otros = Atenciones::where('comollego', 'Otros')
+      $radio = Atenciones::where('comollego', 'Radio (AM/FM/XM)')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00])
-									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                  ->whereNotIn('monto',[0,0.00])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
-        return $otros;
+        return $radio;
   }
+  
+
+     private function elasticSearch7($initial, $final)
+  { 
+      $radioi = Atenciones::where('comollego', 'Radio por Internet')
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                  ->whereNotIn('monto',[0,0.00])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->first();
+
+        return $radioi;
+  }
+  
+
+     private function elasticSearch8($initial, $final)
+  { 
+      $tv = Atenciones::where('comollego', 'Televisión')
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                  ->whereNotIn('monto',[0,0.00])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->first();
+
+        return $tv;
+  }
+  
+
+     private function elasticSearch9($initial, $final)
+  { 
+      $motor = Atenciones::where('comollego', 'Motor de búsqueda (Google, Bing, Yahoo!')
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                  ->whereNotIn('monto',[0,0.00])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->first();
+
+        return $motor;
+  }
+  
+
+     private function elasticSearch10($initial, $final)
+  { 
+      $otro = Atenciones::where('comollego', 'Otros')
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                  ->whereNotIn('monto',[0,0.00])
+                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+                                    ->first();
+
+        return $otro;
+  }
+  
 	
 	
 	

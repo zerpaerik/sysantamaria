@@ -32,11 +32,18 @@
 					</form>
 				<thead>
 						<tr>
-							<th>No Selecciono</th>
-							<th>Recomendaciòn</th>
-							<th>Redes</th>
-							<th>Aviso</th>
-						    <th>Otro</th>
+							<th>Vallas</th>
+							<th>Carteles</th>
+							<th>Recomendacion.Paciente</th>
+					        <th>Recomendacion.Medico</th>
+							<th>Redes Sociales</th>
+						    <th>Radio</th>
+						    <th>Radio Internet</th>
+						    <th>TV</th>
+						    <th>Google</th>
+						    <th>Otros</th>
+						   
+
 						
 						</tr>
 					</thead>

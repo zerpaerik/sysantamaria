@@ -32,22 +32,32 @@
 					</form>
 				<thead>
 						<tr>
-							<th>No Selecciono</th>
-							<th>Recomendaciòn</th>
-							<th>Redes</th>
-							<th>Aviso</th>
-						    <th>Otro</th>
-						
+							<th>Vallas</th>
+							<th>Carteles</th>
+							<th>Recomendacion.Paciente</th>
+					        <th>Recomendacion.Medico</th>
+							<th>Redes Sociales</th>
+						    <th>Radio</th>
+						    <th>Radio Internet</th>
+						    <th>TV</th>
+						    <th>Google</th>
+						    <th>Otros</th>
 						</tr>
 					</thead>
 					<tbody>
 
 							<tr>
-								<td>{{$seleccione->cantidad}}</td>
-								<td>{{$recomendacion->cantidad}}</td>
+								<td>{{$vallas->cantidad}}</td>
+								<td>{{$carteles->cantidad}}</td>
+								<td>{{$pacientes->cantidad}}</td>
+								<td>{{$medicos->cantidad}}</td>
 								<td>{{$redes->cantidad}}</td>
-								<td>{{$avisos->cantidad}}</td>
-								<td>{{$otros->cantidad}}</td>
+							    <td>{{$radio->cantidad}}</td>
+								<td>{{$radioi->cantidad}}</td>
+								<td>{{$tv->cantidad}}</td>
+								<td>{{$motor->cantidad}}</td>
+								<td>{{$otro->cantidad}}</td>
+
 							</tr>
 					</tbody>
 					
