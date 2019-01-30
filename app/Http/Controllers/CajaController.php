@@ -31,7 +31,7 @@ class CajaController extends Controller
 
     
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname','a.created_at')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.usuario','b.name','b.lastname','a.created_at')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->get();
