@@ -64,6 +64,27 @@ class ConsultaController extends Controller
 
   }
 
+  
+     public function indexh(){
+
+
+      $historias = DB::table('events as e')
+        ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
+    'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
+    'a.motivo','a.causa','a.tiempo','a.enf','a.fra','a.ope','a.aler','a.pres','a.aux','a.def','a.top','a.ciex','a.ciex2','a.plan','a.ses','a.atendido','a.paciente_id','a.profesional_id','a.created_at','a.exa','a.pa','a.fc','a.spo2','a.peso','a.talla','a.personal',
+    'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
+    ->join('consultas as a','a.paciente_id','e.paciente')
+    ->join('historials as b','e.paciente','b.paciente_id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->groupBy('e.paciente')
+    ->get();
+    
+   
+        return view('consultas.historias.index', ["historias" => $historias]);
+  }
+
 
 
     public function create(Request $request)
