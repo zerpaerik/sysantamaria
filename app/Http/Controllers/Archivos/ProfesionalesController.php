@@ -37,12 +37,10 @@ class ProfesionalesController extends Controller
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
           'apellidos' => 'required|string|max:255',
-          'cmp' => 'required|unique:profesionales' ,
-          'dni' => 'required|unique:profesionales' 
 
         ]);
         if($validator->fails()) {
-	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
+	      Toastr::error('Error Registrando.', 'DATO DUPLICADO O ERROR REGISTRANDO!', ['progressBar' => true]);
         		return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
 		} else {	
 	$centros = Profesionales::create([
@@ -68,7 +66,7 @@ class ProfesionalesController extends Controller
 	      $historial = new Historiales();
           $historial->accion ='Registro';
           $historial->origen ='Profesional de Apoyo';
-		  $historial->detalle = $request->dni;
+		  $historial->detalle = $request->name;
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
 		}   
