@@ -73,12 +73,12 @@ class ProductoController extends Controller
      public function productInView(){
       $sedes = Sede::where("id",'=',1)->get(["id", "name"]);
       return view('existencias.entrada', ["productos" => Producto::
-where("almacen",'=', 1)->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
+where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
     }
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("almacen",'=', 2)->get(['id', 'nombre']),
+        "productos" => Producto::where("almacen",'=', 2)->get(['id', 'nombre','codigo']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    
