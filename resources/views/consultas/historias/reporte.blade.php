@@ -6,37 +6,40 @@
 </head>
 <body>
 
+	 <img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
 	<br><br>
 	<CENTER><p><strong>HISTORIA CLINICA</strong></p></CENTER>
 <br>
+
      <div style="width: 100%;">
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>RESUMEN DATOS GENERALES DE INGRESO</strong></legend>
-            <p style="margin-bottom: 8px;">Nombre:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Historia Clìnica:</p>
-            <p style="margin-bottom: 8px;">Fecha de Ingreso:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Hora de Ingreso:</p>
-            <p style="margin-bottom: 8px;">Counter:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Evaluador:</p>
+            <p style="margin-bottom: 8px;">Nombre:{{$historias->nombres}},{{$historias->apellidos}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Historia Clìnica:{{$historias->historia}}</p>
+            <p style="margin-bottom: 8px;">Fecha de Ingreso:{{date('d-m-Y', strtotime($historias->created_at))}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Hora de Ingreso:{{date('H:i:s', strtotime($historias->created_at))}}</p>
+            <p style="margin-bottom: 8px;">Counter:{{Auth::user()->name}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Evaluador:{{$historias->personal}}</p>
 
         </fieldset> 
      </div>
 
-     @foreach($historias as $h)
+
+
 
      <div style="width: 100%;">
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>I. DATOS DE FILIACIÓN</strong></legend>
-            <p style="margin-bottom: 8px;">Nombre y Apellidos:{{$h->nombres}},{{$h->apellidos}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Edad:</p>
+            <p style="margin-bottom: 8px;">Nombre y Apellidos:{{$historias->nombres}},{{$historias->apellidos}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Edad:{{$edad}}</p>
             <p style="margin-bottom: 8px;">Sexo:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Identifación:{{$h->dni}}</p>
-            <p style="margin-bottom: 8px;">Teléfono:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Dirección:{{$h->direccion}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Identifación:{{$historias->dni}}</p>
+            <p style="margin-bottom: 8px;">Teléfono:{{$historias->telefono}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Dirección:{{$historias->direccion}}</p>
              <p style="margin-bottom: 8px;">Referencia:</p>
-            <p style="margin-left:380px;margin-top: -30px;">Fecha Nacimiento:{{$h->fechanac}}</p>
-             <p style="margin-bottom: 8px;">Ocupación:{{$h->ocupacion}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Grado Instrucción:{{$h->gradoinstruccion}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Fecha Nacimiento:{{$historias->fechanac}}</p>
+             <p style="margin-bottom: 8px;">Ocupación:{{$historias->ocupacion}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Grado Instrucción:{{$historias->gradoinstruccion}}</p>
 
         </fieldset> 
      </div>
@@ -44,10 +47,10 @@
       <div style="width: 100%;">
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>II. ANAMNESIS</strong></legend>
-             <p>1. Motivo de Consulta:{{$h->motivo}}</p>
-             <p>2. Causa Relacionada:{{$h->causa}}</p>
-             <p>3. Tiempo Lesión:{{$h->tiempo}}</p>
-             <p>4. Evolución de Enfermedad:{{$h->enf}}</p>
+             <p>1. Motivo de Consulta:{{$historias->motivo}}</p>
+             <p>2. Causa Relacionada:{{$historias->causa}}</p>
+             <p>3. Tiempo Lesión:{{$historias->tiempo}}</p>
+             <p>4. Evolución de Enfermedad:{{$historias->enf}}</p>
 
         </fieldset> 
      </div>
@@ -56,10 +59,10 @@
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>III. ANTECEDENTES</strong></legend>
              <p>a) Personales</p>
-             <p>1. Enfermedades:{{$h->enf}}</p>
-             <p>2. Quirurgicos:{{$h->fra}}</p>
-             <p>3. Alérgicos:{{$h->aler}}</p>
-             <p>4. Medicación Habitual:{{$h->ope}}</p>
+             <p>1. Enfermedades:{{$historias->enf}}</p>
+             <p>2. Quirurgicos:{{$historias->fra}}</p>
+             <p>3. Alérgicos:{{$historias->aler}}</p>
+             <p>4. Medicación Habitual:{{$historias->ope}}</p>
              <br>
              <p>b) Familiares</p>
 
@@ -71,25 +74,25 @@
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>EXAMEN FÍSICO</strong></legend>
             <p>1) Funciones Vitales</p>
-            <p style="margin-bottom: 8px;">Presión Arterial:{{$h->pa}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Frecuencia Cardíaca:{{$h->fc}}</p>
-            <p style="margin-bottom: 8px;">Frecuencia Respiratoria:{{$h->fr}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Peso:{{$h->peso}}</p>
-            <p style="margin-bottom: 8px;">Talla: {{$h->talla}}</p>
+            <p style="margin-bottom: 8px;">Presión Arterial:{{$historias->pa}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Frecuencia Cardíaca:{{$historias->fc}}</p>
+            <p style="margin-bottom: 8px;">Frecuencia Respiratoria:{{$historias->fr}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Peso:{{$historias->peso}}</p>
+            <p style="margin-bottom: 8px;">Talla: {{$historias->talla}}</p>
             
-            <p>2) Examen General: {{$h->exa}}</p>
+            <p>2) Examen General: {{$historias->exa}}</p>
           
-            <p style="margin-bottom: 8px;">3) Diágnóstico Presuntivo: {{$h->pres}}</p>
-            <p style="margin-left:380px;margin-top: -30px;"> CIEX: {{$h->ciex}}</p>
+            <p style="margin-bottom: 8px;">3) Diágnóstico Presuntivo: {{$historias->pres}}</p>
+            <p style="margin-left:380px;margin-top: -30px;"> CIEX: {{$historias->ciex}}</p>
            
-            <p>4) Examenes y Pruebas Auxiliares: {{$h->aux}}</p>
+            <p>4) Examenes y Pruebas Auxiliares: {{$historias->aux}}</p>
            
-            <p style="margin-bottom: 8px;">5) Diágnóstico Definitivo: {{$h->def}}</p>
-            <p style="margin-left:380px;margin-top: -30px;"> CIEX: {{$h->ciex2}}</p>
+            <p style="margin-bottom: 8px;">5) Diágnóstico Definitivo: {{$historias->def}}</p>
+            <p style="margin-left:380px;margin-top: -30px;"> CIEX: {{$historias->ciex2}}</p>
         
-             <p>6) Diágnóstico Topográfico: {{$h->top}}</p>
-          <p>7) Plan de Tratamiento: {{$h->plan}}</p>
-            <p>8) Número de Sesiones: {{$h->ses}}</p>
+             <p>6) Diágnóstico Topográfico: {{$historias->top}}</p>
+          <p>7) Plan de Tratamiento: {{$historias->plan}}</p>
+            <p>8) Número de Sesiones: {{$historias->ses}}</p>
 
 
  
@@ -98,7 +101,6 @@
 
    
 
-     @endforeach
 
     
 

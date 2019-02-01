@@ -85,12 +85,14 @@ class ConsultaController extends Controller
 
 
       $historias = DB::table('consultas as a')
-        ->select('p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId','a.id','a.motivo','a.causa','a.tiempo','a.enf','a.fra','a.ope','a.aler','a.pres','a.aux','a.def','a.top','a.ciex','a.ciex2','a.plan','a.ses','a.atendido','a.paciente_id','a.profesional_id','a.fr','a.created_at','a.exa','a.pa','a.fc','a.spo2','a.peso','a.talla','a.personal')
+        ->select('p.dni','p.direccion','p.telefono','p.fechanac','p.historia','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId','a.id','a.motivo','a.causa','a.tiempo','a.enf','a.fra','a.ope','a.aler','a.pres','a.aux','a.def','a.top','a.ciex','a.ciex2','a.plan','a.ses','a.atendido','a.paciente_id','a.profesional_id','a.fr','a.created_at','a.exa','a.pa','a.fc','a.spo2','a.peso','a.talla','a.personal')
     ->join('pacientes as p','p.id','=','a.paciente_id')
     ->where('a.id','=',$id)
-    ->get();
+    ->first();
+
+      $edad = Carbon::parse($historias->fechanac)->age;
    
-       $view = \View::make('consultas.historias.reporte')->with('historias', $historias);
+       $view = \View::make('consultas.historias.reporte')->with('historias', $historias)->with('edad', $edad);
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('historia_pdf');
