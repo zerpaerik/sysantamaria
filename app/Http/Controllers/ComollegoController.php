@@ -8,6 +8,7 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\Events\Event;
 use Auth;
 use Toastr;
 
@@ -48,9 +49,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 	
 	private function elasticSearch1($initial, $final)
   { 
-      $vallas = Atenciones::where('comollego', 'Vallas publicitarias externas')
+      $vallas = Event::where('comollego', 'Vallas publicitarias externas')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                 
                                     ->first();
@@ -60,9 +60,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
   
   private function elasticSearch2($initial, $final)
   { 
-      $carteles = Atenciones::where('comollego', 'Carteles publicitarios en el mismo local')
+      $carteles = Event::where('comollego', 'Carteles publicitarios en el mismo local')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
 
@@ -71,9 +70,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
   
    private function elasticSearch3($initial, $final)
   { 
-      $pacientes = Atenciones::where('comollego', 'Recomendación por pacientes')
+      $pacientes = Event::where('comollego', 'Recomendación por pacientes')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                   
                                     ->first();
@@ -83,9 +81,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
   
    private function elasticSearch4($initial, $final)
   { 
-      $medicos = Atenciones::where('comollego', 'Recomendación por médicos')
+      $medicos = Event::where('comollego', 'Recomendación por médicos')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -95,9 +92,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 	
 	 private function elasticSearch5($initial, $final)
   { 
-      $redes = Atenciones::where('comollego', 'Redes sociales (Facebook, Instagram, Twitter)s')
+      $redes = Event::where('comollego', 'Redes sociales (Facebook, Instagram, Twitter)s')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-									->whereNotIn('monto',[0,0.00,99999])
 									->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -108,9 +104,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 
      private function elasticSearch6($initial, $final)
   { 
-      $radio = Atenciones::where('comollego', 'Radio (AM/FM/XM)')
+      $radio = Event::where('comollego', 'Radio (AM/FM/XM)')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -121,9 +116,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 
      private function elasticSearch7($initial, $final)
   { 
-      $radioi = Atenciones::where('comollego', 'Radio por Internet')
+      $radioi = Event::where('comollego', 'Radio por Internet')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -134,9 +128,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 
      private function elasticSearch8($initial, $final)
   { 
-      $tv = Atenciones::where('comollego', 'Televisión')
+      $tv = Event::where('comollego', 'Televisión')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -147,9 +140,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 
      private function elasticSearch9($initial, $final)
   { 
-      $motor = Atenciones::where('comollego', 'Motor de búsqueda (Google, Bing, Yahoo!')
+      $motor = Event::where('comollego', 'Motor de búsqueda (Google, Bing, Yahoo!')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();
@@ -160,9 +152,8 @@ $vallas = $this->elasticSearch1($inicio,$final);
 
      private function elasticSearch10($initial, $final)
   { 
-      $otro = Atenciones::where('comollego', 'Otros')
+      $otro = Event::where('comollego', 'Otros')
                                     ->select(DB::raw('COUNT(*) as cantidad'))
-                  ->whereNotIn('monto',[0,0.00,99999])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
                                     ->first();

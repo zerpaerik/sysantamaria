@@ -273,24 +273,7 @@
           </div>
           <hr>
 
-               <label class="col-sm-3 control-label">Còmo llego a Santa Maria FISIOCENTER?:</label>
-            <div class="col-sm-3">
-              <select id="el6" name="comollego">
-                  <option value="Seleccione">Seleccione</option>
-                  <option value="Vallas publicitarias externas">Vallas publicitarias externas</option>
-                  <option value="Carteles publicitarios en el mismo local">Carteles publicitarios en el mismo local</option>
-                  <option value="Recomendación por pacientes">Recomendación por pacientes</option>
-                  <option value="Recomendación por médicos">Recomendación por médicos</option>
-                  <option value="Redes sociales (Facebook, Instagram, Twitter)s">Redes sociales (Facebook, Instagram, Twitter)</option>
-                  <option value="Radio (AM/FM/XM)">Radio (AM/FM/XM)</option>
-                  <option value="Radio por Internet">Radio por Internet</option>
-                  <option value="Televisión">Televisión</option>
-                  <option value="Motor de búsqueda (Google, Bing, Yahoo!">Motor de búsqueda (Google, Bing, Yahoo!)</option>
-                  <option value="Otros">Otros</option>
-
-
-              </select>
-            </div>
+           
 
       
 

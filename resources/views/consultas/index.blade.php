@@ -62,6 +62,7 @@
 							<th>Paciente</th>
 							<th>Especialista</th>
 							<th>Eval</th>
+						    <th>Como Llego</th>
 							<th>Fecha</th>
 							<th>Horas</th>
 							<th>Acciones:</th>
@@ -75,6 +76,7 @@
 						<td>{{$d->nombres}} {{$d->apellidos}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->nombreEval}}</td>
+						<td>{{$d->comollego}}</td>
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						<td>
