@@ -37,6 +37,8 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="dni" placeholder="DNI" data-toggle="tooltip" data-placement="bottom" title="DNI">
 						</div>
+	
+
 						<label class="col-sm-1 control-label">Telèfono</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="telefono" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telèfono">
@@ -94,7 +96,6 @@
 						<div class="col-sm-3">
 							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="fechanac">
 						</div>
-                        <div class="row">
 						<label class="col-sm-1 control-label">Convenio</label>
 						<div class="col-sm-3">
 							<select id="conv" name="convenio">
@@ -110,12 +111,23 @@
 						</div>
 					   </div>
 
+						<div class="col-sm-3">
+
+							<select  class="form-control" name="sexo">
+							<option value="0">Seleccione Sexo</option>
+							<option value="M">Masculino</option>
+						    <option value="F">Femenino</option>
+						</select>
+						</div>	
+
+
+					
+
 						
 
 						<input type="submit" onclick="form.submit()"  style="margin-left:20px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
 
 						<a href="{{route('pacientes.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-danger">Volver</a>
-					</div>			
 				</form>	
 			</div>
 		</div>

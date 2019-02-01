@@ -111,6 +111,15 @@
 						</div>
 					   </div>
 
+					   	<div class="col-sm-3">
+
+							<select  class="form-control" name="sexo">
+							<option value="0">Seleccione Sexo</option>
+							<option value="M">Masculino</option>
+						    <option value="F">Femenino</option>
+						</select>
+						</div>	
+
 						
 
 						<input type="submit" onclick="form.submit()"  style="margin-left:20px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">

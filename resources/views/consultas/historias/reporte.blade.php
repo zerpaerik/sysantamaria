@@ -32,11 +32,11 @@
             <legend style="border-radius: 5px;"><strong>I. DATOS DE FILIACIÓN</strong></legend>
             <p style="margin-bottom: 8px;">Nombre y Apellidos:{{$historias->nombres}},{{$historias->apellidos}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Edad:{{$edad}}</p>
-            <p style="margin-bottom: 8px;">Sexo:</p>
+            <p style="margin-bottom: 8px;">Sexo:{{$historias->sexo}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Identifación:{{$historias->dni}}</p>
             <p style="margin-bottom: 8px;">Teléfono:{{$historias->telefono}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Dirección:{{$historias->direccion}}</p>
-             <p style="margin-bottom: 8px;">Referencia:</p>
+            <p style="margin-left:380px;margin-top: -30px;">Referencia:{{$historias->direccion}}</p>
+             <p style="margin-bottom: 8px;">Direcciòn:{{$historias->direccion}}<</p>
             <p style="margin-left:380px;margin-top: -30px;">Fecha Nacimiento:{{$historias->fechanac}}</p>
              <p style="margin-bottom: 8px;">Ocupación:{{$historias->ocupacion}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Grado Instrucción:{{$historias->gradoinstruccion}}</p>
@@ -74,11 +74,12 @@
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>EXAMEN FÍSICO</strong></legend>
             <p>1) Funciones Vitales</p>
-            <p style="margin-bottom: 8px;">Presión Arterial:{{$historias->pa}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Frecuencia Cardíaca:{{$historias->fc}}</p>
-            <p style="margin-bottom: 8px;">Frecuencia Respiratoria:{{$historias->fr}}</p>
+            <p style="margin-bottom: 8px;">P/A:{{$historias->pa}}mmHg</p>
+            <p style="margin-left:380px;margin-top: -30px;">F/C:{{$historias->fc}}X</p>
+            <p style="margin-bottom: 8px;">F/R:{{$historias->fr}}X</p>
             <p style="margin-left:380px;margin-top: -30px;">Peso:{{$historias->peso}}</p>
             <p style="margin-bottom: 8px;">Talla: {{$historias->talla}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Temperatura:{{$historias->peso}}T</p>
             
             <p>2) Examen General: {{$historias->exa}}</p>
           

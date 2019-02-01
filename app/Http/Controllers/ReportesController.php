@@ -509,7 +509,9 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
 
-        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','ventas'));
+        $fecha= $request->fecha;
+
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','ventas','fecha'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -724,9 +726,10 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
      
+               $fecha= $request->fecha;
 
        
-        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','ventas','totalventas','paquetes','totalpaquetes'));
+        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','ventas','totalventas','paquetes','totalpaquetes','fecha'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
