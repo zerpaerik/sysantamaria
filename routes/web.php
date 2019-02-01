@@ -382,6 +382,8 @@ Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
 Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
+Route::get('historias-{id}', 'ConsultaController@report');
+
 
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index')->middleware('auth');
