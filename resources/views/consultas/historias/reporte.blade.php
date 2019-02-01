@@ -37,9 +37,9 @@
             <p style="margin-bottom: 8px;">Teléfono:{{$historias->telefono}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Referencia:{{$historias->direccion}}</p>
              <p style="margin-bottom: 8px;">Direcciòn:{{$historias->direccion}}<</p>
-            <p style="margin-left:380px;margin-top: -30px;">Fecha Nacimiento:{{$historias->fechanac}}</p>
              <p style="margin-bottom: 8px;">Ocupación:{{$historias->ocupacion}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Grado Instrucción:{{$historias->gradoinstruccion}}</p>
+            <p style="margin-bottom: 8px;">Fecha Nacimiento:{{$historias->fechanac}}</p>
 
         </fieldset> 
      </div>
@@ -75,10 +75,10 @@
             <legend style="border-radius: 5px;"><strong>EXAMEN FÍSICO</strong></legend>
             <p>1) Funciones Vitales</p>
             <p style="margin-bottom: 8px;">P/A:{{$historias->pa}}mmHg</p>
-            <p style="margin-left:380px;margin-top: -30px;">F/C:{{$historias->fc}}X</p>
-            <p style="margin-bottom: 8px;">F/R:{{$historias->fr}}X</p>
-            <p style="margin-left:380px;margin-top: -30px;">Peso:{{$historias->peso}}</p>
-            <p style="margin-bottom: 8px;">Talla: {{$historias->talla}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">F/C:{{$historias->fc}}X'</p>
+            <p style="margin-bottom: 8px;">F/R:{{$historias->fr}}X'</p>
+            <p style="margin-left:380px;margin-top: -30px;">Peso:{{$historias->peso}}Kg</p>
+            <p style="margin-bottom: 8px;">Talla: {{$historias->talla}}Mtrs</p>
             <p style="margin-left:380px;margin-top: -30px;">Temperatura:{{$historias->peso}}T</p>
             
             <p>2) Examen General: {{$historias->exa}}</p>
