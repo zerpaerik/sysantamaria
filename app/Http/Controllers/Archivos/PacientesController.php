@@ -36,6 +36,58 @@ class PacientesController extends Controller
   }
 
 
+
+   public function indexr(Request $request){
+
+ if($request->mes == '01'){
+        $mes='Enero';
+       }elseif($request->mes == '02'){
+        $mes='Febrero';
+        }elseif($request->mes == '03'){
+        $mes='Marzo';
+        }elseif($request->mes == '04'){
+        $mes='Abril';
+        }elseif($request->mes == '05'){
+        $mes='Mayo';
+        }elseif($request->mes == '06'){
+        $mes='Junio';
+        }elseif($request->mes == '07'){
+        $mes='Julio';
+        }elseif($request->mes == '08'){
+        $mes='Agosto';
+        }elseif($request->mes == '09'){
+        $mes='Septiembre';
+        }elseif($request->mes == '10'){
+        $mes='Octubre';
+        }elseif($request->mes == '11'){
+        $mes='Noviembre';
+        }elseif($request->mes == '12'){
+        $mes='Diciembre';
+        }else{
+          $mes='Ninguno';
+        }
+
+
+     // $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    
+    $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.created_at','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
+        ->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->whereMonth('a.created_at','=',$request->mes)
+        ->get(); 
+
+         $total = DB::table('pacientes as a')
+        ->select(DB::raw('COUNT(a.id) as total'))
+        ->whereMonth('a.created_at','=',$request->mes)
+        ->first();
+
+      
+    
+      return view('archivos.pacientes.reporte', ['pacientes' => $pacientes,'mes' => $mes,'total' => $total]);  
+  }
+
+
  
 
      public static function distbypro($id){

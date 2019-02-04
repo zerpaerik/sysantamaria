@@ -99,6 +99,7 @@ Route::get('servicios-addItems-{servicio}', 'Archivos\ServiciosController@addIte
 Route::post('servicios/storeItems/{servicio}', 'Archivos\ServiciosController@storeItems');
 
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
+Route::get('clientesmes', 'Archivos\PacientesController@indexr')->name('pacientes.indexr')->middleware('auth');
 Route::get('pacientes-search', 'Archivos\PacientesController@search')->name('pacientes.search')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::get('pacientes-create2', 'Archivos\PacientesController@createView2')->name('pacientes.create2')->middleware('auth');
