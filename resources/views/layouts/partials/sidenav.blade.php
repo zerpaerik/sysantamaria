@@ -703,10 +703,79 @@
   </li>
 
 
+@endif
 
+@if(\Auth::user()->role_id == 7)
 
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Consultas</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
+      </li>        
+     <li>
+        <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
+      </li>  
+      <li>
+        <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
+      </li>  
+       <li>
+        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
+      </li>              
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Programaciones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
+      </li> 
+      <li>
+        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
+      </li>                  
+    </ul>
+  </li>
 
-
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>  
+          <li>
+        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
+      </li>          
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs">Resultados</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados Serv.</a>
+      </li>
+      <li>
+        <a href="{{route('resultados.index1')}}"><i class="fa fa-list-alt"></i> Redactar Resultados Lab.</a>
+      </li>
+      <li>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>
+      </li>
+      <li>
+        <a href="{{route('resultadosguardados1.index1')}}"><i class="fa fa-search"></i> Consultar Resultados Lab.</a>
+      </li>
+    </ul>
+  </li>
 
 @endif
 

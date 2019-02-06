@@ -82,7 +82,7 @@
 						<td>
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
-											    @if(\Auth::user()->role_id <> 6)	
+						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 
 
 						<a  class="btn btn-success" href="consulta-edit-{{$d->EventId}}">Editar</a>	
