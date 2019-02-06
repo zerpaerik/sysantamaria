@@ -235,7 +235,7 @@ class ReportesController extends Controller
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
-      $fechamañana=$cajamañana->created_at;   
+      $fechamañana=$cajamañana->fecha;   
     
       
       $caja = DB::table('cajas as  a')
