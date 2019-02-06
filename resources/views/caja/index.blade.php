@@ -99,9 +99,9 @@
                 <td>{{$c->name}},{{$c->lastname}}</td>
                 <td>
                   @if($c->cierre_matutino > 0)
-                  <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM</a>
+                  <a target="_blank" href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM</a>
                   @else
-                  <a  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT</a>
+                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT</a>
                   @endif
                   @if(\Auth::user()->role_id <> 6)               
                   <a class="btn btn-danger" href="caja-delete-{{$c->id}}"  onclick="return confirm('¿Desea Reversar este Cierre de Caja?')">Reversar</a> 
