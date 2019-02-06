@@ -75,7 +75,10 @@
 						<td>{{$d->created_at}}</td>
 						<td>
 						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
+																	    @if(\Auth::user()->role_id <> 6)	
+
 						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
+						@endif
 						</td>
 
 				        @endforeach

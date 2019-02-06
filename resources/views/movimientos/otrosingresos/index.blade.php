@@ -75,10 +75,13 @@
 						<td>{{$d->created_at}}</td>
 						<td>
 
+																		    @if(\Auth::user()->role_id <> 6)	
+
+
 						<a  class="btn btn-success" href="ingresos-edit-{{$d->id}}">Editar</a>	
 
 						<a  class="btn btn-warning" href="ingresos-delete-{{$d->id}}">Eliminar</a>	
-							
+							@endif
 
 						</td>
 
