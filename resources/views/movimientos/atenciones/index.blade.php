@@ -95,11 +95,17 @@
 						<td>{{$d->created_at}}</td>
 						<td>
 
+
+
 						<a target="_blank" class="btn btn-primary" href="ticket-ver-{{$d->id}}">Ver Ticket</a>
+
+					    @if(\Auth::user()->role_id <> 6)	
 
 						<a  class="btn btn-success" href="atenciones-edit-{{$d->id}}">Editar</a>	
 
 						<a _blank" class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
+
+						@endif
 							
 
 						</td>
