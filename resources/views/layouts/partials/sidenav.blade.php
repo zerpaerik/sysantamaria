@@ -731,6 +731,9 @@
       <span class="hidden-xs">Programaciones</span>
     </a>
     <ul class="dropdown-menu">
+         <li>
+        <a href="{{route('service.inicio')}}"><i class="fa fa-plus-circle"></i> Listado de Programacion</a>
+      </li> 
       <li>
         <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
       </li> 
