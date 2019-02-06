@@ -59,6 +59,10 @@
         </div>
       </div>  
 
+            <input type="hidden" name="f1" value="{{$fecha1}}">
+            <input type="hidden" name="f2" value="{{$fecha2}}">
+
+
       
 
       <div class="row">
@@ -97,12 +101,14 @@
                   @if($c->cierre_matutino > 0)
                   <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM</a>
                   @else
-                  <a  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerT</a>
+                  <a  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT</a>
                   @endif
-                                    @if(\Auth::user()->role_id <> 6)               
+                  @if(\Auth::user()->role_id <> 6)               
                   <a class="btn btn-danger" href="caja-delete-{{$c->id}}"  onclick="return confirm('¿Desea Reversar este Cierre de Caja?')">Reversar</a> 
                   @endif
                 </td>
+
+            
 
             </tr>
             

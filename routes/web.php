@@ -127,7 +127,7 @@ Route::get('caja-delete-{id}','CajaController@delete');
 
 
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
-Route::get('recibo_caja_ver2/{id}','ReportesController@recibo_caja_ver2');
+Route::get('recibo_caja_ver2/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2');
 
 
 /**

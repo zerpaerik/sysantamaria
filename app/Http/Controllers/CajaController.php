@@ -94,7 +94,9 @@ class CajaController extends Controller
 	    	'total' => $aten,
 	    	'mensaje' => $mensaje,
 	    	'caja' => $caja,
-	    	'fecha' => Carbon::now()->toDateString()
+	    	'fecha' => Carbon::now()->toDateString(),
+            'fecha1' => $request->fecha,
+            'fecha2' =>$request->fecha2
 	    ]);    	
     }
 

@@ -226,23 +226,25 @@ class ReportesController extends Controller
      }*/
     }
 
-     public function recibo_caja_ver2(Request $request,$id) 
+     public function recibo_caja_ver2(Request $request,$id,$fecha1=NULL,$fecha2=NULL) 
     {
+      
 
 
-    if(!is_null($request->fecha) && (!is_null($request->fecha2))){
+    
+
+    if(!is_null($request->fecha1) && (!is_null($request->fecha2))){
 
         $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
-        ->whereRaw("created_at >= ? AND created_at <= ?", 
-          array($request->fecha, $request->fecha2))
+        ->whereDate('a.fecha','=',$request->fecha1)
         ->first(); 
         
         $fechamañana=$cajamañana->created_at; 
 
+ 
         
-
 
    } else {
 
