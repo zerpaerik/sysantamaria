@@ -85,7 +85,8 @@ class AtencionesController extends Controller
 
   public function create(Request $request)
   {
-    
+
+   
     $searchUsuarioID = DB::table('users')
                     ->select('*')
                     ->where('id','=', $request->origen_usuario)

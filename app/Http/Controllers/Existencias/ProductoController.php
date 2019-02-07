@@ -317,8 +317,19 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
            $aten = Ventas::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
-        if ($aten->monto == 0) {
+
+            if ($aten->monto == 0) {
         }
+          
+           $cantidad = Ventas::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
+        
 
 
         } else {
@@ -339,13 +350,21 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
         if ($aten->monto == 0) {
         }
 
+            $cantidad = Ventas::whereDate('created_at', '=',Carbon::today()->toDateString())
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
 
 
 
         }
 
 
-        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten]);
+        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad]);
 	}
 
    

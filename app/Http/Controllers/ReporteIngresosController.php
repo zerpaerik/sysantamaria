@@ -30,17 +30,45 @@ class ReporteIngresosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-        ->whereNotIn('a.monto',[0,0.00])
+        ->whereNotIn('a.monto',[0,0.00,99999])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
         ->paginate(20000000);
 
 
-         $aten = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',             strtotime($f2))])
-                       ->whereNotIn('monto',[0,0.00])
+         $monto = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
+        if ($monto->monto == 0) {
+        }
+
+          $abono = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                       ->whereNotIn('monto',[0,0.00,99999])
                        ->select(DB::raw('SUM(abono) as monto'))
                        ->first();
-        if ($aten->monto == 0) {
+        if ($abono->monto == 0) {
+        }
+
+         $pendiente = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(pendiente) as monto'))
+                       ->first();
+        if ($pendiente->monto == 0) {
+        }
+
+          $comision = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(porcentaje) as monto'))
+                       ->first();
+        if ($comision->monto == 0) {
+        }
+
+          $cantidad = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+        if ($cantidad->cantidad == 0) {
         }
 
 
@@ -52,24 +80,52 @@ class ReporteIngresosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-        ->whereNotIn('a.monto',[0,0.00])
+        ->whereNotIn('a.monto',[0,0.00,99999])
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
         ->paginate(20000000);
 
 
-         $aten = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
-                       ->whereNotIn('monto',[0,0.00])
+        $monto = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
+        if ($monto->monto == 0) {
+        }
+
+          $abono = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->whereNotIn('monto',[0,0.00,99999])
                        ->select(DB::raw('SUM(abono) as monto'))
                        ->first();
-        if ($aten->monto == 0) {
+        if ($abono->monto == 0) {
+        }
+
+         $pendiente = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(pendiente) as monto'))
+                       ->first();
+        if ($pendiente->monto == 0) {
+        }
+
+          $comision = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->whereNotIn('monto',[0,0.00,99999])
+                       ->select(DB::raw('SUM(porcentaje) as monto'))
+                       ->first();
+        if ($comision->monto == 0) {
+        }
+
+          $cantidad = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+        if ($cantidad->cantidad == 0) {
         }
 
 
       }
 
 
-        return view('reportes.general_atenciones.index', ["atenciones" => $atenciones,"aten" => $aten]);
+        return view('reportes.general_atenciones.index', ["atenciones" => $atenciones,"monto" => $monto,"pendiente" => $pendiente,"abono" => $abono,"cantidad" => $cantidad,"comision" => $comision]);
   }
 
     public function searcha(Request $request)
@@ -104,44 +160,65 @@ class ReporteIngresosController extends Controller
           $f2 = $request->fecha2;    
 
 
-
         $atenciones = DB::table('debitos as a')
         ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
-        ->whereNotIn('a.monto',[0,0.00])
+        ->whereNotIn('a.monto',[0,0.00,99999])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
-        ->paginate(200000000);
+        ->get();
 
-          $aten = Debitos::whereNotIn('monto',[0,0.00])
+          $aten = Debitos::whereNotIn('monto',[0,0.00,99999])
                         ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
+
         if ($aten->monto == 0) {
         }
+
+        $cantidad = Debitos::whereNotIn('monto',[0,0.00,99999])
+                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+        
+
+
 
       } else {
 
 
         $atenciones = DB::table('debitos as a')
         ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
-        ->whereNotIn('a.monto',[0,0.00])
+        ->whereNotIn('a.monto',[0,0.00,99999])
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
-        ->paginate(200000000);
+        ->get();
 
 
           $aten = Debitos::whereDate('created_at', '=',Carbon::today()->toDateString())
-                        ->whereNotIn('monto',[0,0.00])
+                        ->whereNotIn('monto',[0,0.00,99999])
                        ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
         if ($aten->monto == 0) {
         }
 
+            $cantidad = Debitos::whereNotIn('monto',[0,0.00,99999])
+                        ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
 
 
       }
         
-        return view('reportes.general_egresos.index', ["atenciones" => $atenciones, "aten" => $aten]);
+        return view('reportes.general_egresos.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad]);
   }
 
   

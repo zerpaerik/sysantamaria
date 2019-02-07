@@ -60,7 +60,13 @@
 			</div>	
 
 			<div class="row">
+				<div class="col-md-1">
 				<strong>Total:</strong>{{$aten->monto}}
+			   </div>
+
+			   <div class="col-md-1">
+				<strong>Cantidad:</strong>{{$cantidad->cantidad}}
+			   </div>
 				
 			</div>
 

@@ -60,7 +60,21 @@
 			</div>	
 
 			<div class="row">
-				<strong>Total:</strong>{{$aten->monto}}
+				<div class="col-md-1">
+				<strong>Cantidad:</strong>{{$cantidad->cantidad}}
+			    </div>
+			    <div class="col-md-1">
+				<strong>Total Abono:</strong>{{$abono->monto}}
+			    </div>
+			    <div class="col-md-1">
+				<strong>Total Pendiente:</strong>{{$pendiente->monto}}
+			    </div>
+			    <div class="col-md-1">
+				<strong>Total Comision:</strong>{{$comision->monto}}
+			    </div>
+				<div class="col-md-1">
+				<strong>Total Atenciones:</strong>{{$monto->monto}}
+			    </div>
 				
 			</div>
 
@@ -106,6 +120,7 @@
 					</tbody>
 					<tfoot>
 						   <th>Paciente</th>
+							<th>DNI</th>
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>
@@ -113,7 +128,7 @@
 							<th>Pendiente</th>
 							<th>Porcentaje</th>
 					        <th>Com.Pagar</th>
-					         <th>Atendido:</th>
+					        <th>Atendido:</th>
 							<th>Fecha Atenciòn</th>
 						
 					</tfoot>

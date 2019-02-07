@@ -1,6 +1,7 @@
 <label class="col-sm-5 control-label">Personal</label>
 						<div class="col-sm-3">
 							<select id="el4" name="origen_usuario">
+							<option value="">Seleccione</option>
 								@foreach($personal as $pac)
 									<option value="{{$pac->id}}">
 										{{$pac->name}} {{$pac->lastname}}-{{$pac->dni}}
