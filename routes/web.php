@@ -255,6 +255,12 @@ Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
 Route::get('historialcobros', 'HistorialCobrosController@index')->name('historialcobros.index')->middleware('auth');
 Route::get('historialcobros-search', 'HistorialCobrosController@search')->name('historialcobros.search')->middleware('auth');
+Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
+
+
+
+
+//////////7
 
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');

@@ -63,16 +63,16 @@
 				<div class="col-md-1">
 				<strong>Cantidad:</strong>{{$cantidad->cantidad}}
 			    </div>
-			    <div class="col-md-1">
+			    <div class="col-md-2">
 				<strong>Total Abono:</strong>{{$abono->monto}}
 			    </div>
-			    <div class="col-md-1">
+			    <div class="col-md-2">
 				<strong>Total Pendiente:</strong>{{$pendiente->monto}}
 			    </div>
-			    <div class="col-md-1">
+			    <div class="col-md-2">
 				<strong>Total Comision:</strong>{{$comision->monto}}
 			    </div>
-				<div class="col-md-1">
+				<div class="col-md-2">
 				<strong>Total Atenciones:</strong>{{$monto->monto}}
 			    </div>
 				
@@ -105,8 +105,10 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>
-								@else
+								@elseif($atec->es_laboratorio == '1')
 								<td>{{$atec->laboratorio}}</td>
+								@else
+								<td>{{$atec->paquete}}</td>
 								@endif
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->abono}}</td>

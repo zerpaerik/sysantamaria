@@ -9,6 +9,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Historiales;
+use App\Models\HistorialCobros;
 use Auth;
 use Toastr;
 
@@ -61,8 +62,46 @@ class HistorialCobrosController extends Controller
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
         ->orderby('a.id','desc')
-        ->paginate(20);
+        ->get();
         return $atenciones;
+  }
+
+  public function delete($id){
+
+
+    $historiac = DB::table('historialcobros as a')
+        ->select('*')
+       ->where('id_atencion','=',$id)
+        ->first();
+
+        $abono= $historiac->abono_parcial;
+
+     $atenciones = DB::table('atenciones as a')
+        ->select('*')
+       ->where('id','=',$id)
+        ->first();
+
+      $pendiente= $atenciones->pendiente; 
+      $abonado= $atenciones->abono;
+
+    
+    $atec = Atenciones::find($id);
+    $atec->pendiente=$pendiente + $abono;
+    $atec->abono= $abonado - $abono;
+    $atec->update();
+
+
+    $creditos = HistorialCobros::where('id_atencion','=',$id);
+    $creditos->delete();
+
+    Toastr::success('Eliminado Exitosamente.', 'Cobro!', ['progressBar' => true]);
+        return redirect()->route('historialcobros.index');
+
+
+
+
+
+
   }
 
 
