@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Atenciones;
+use App\Models\Creditos;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Historiales;
@@ -93,6 +94,10 @@ class HistorialCobrosController extends Controller
 
     $creditos = HistorialCobros::where('id_atencion','=',$id);
     $creditos->delete();
+
+
+    $creditoss = Creditos::where('id_atencion','=',$id);
+    $creditoss->delete();
 
     Toastr::success('Eliminado Exitosamente.', 'Cobro!', ['progressBar' => true]);
         return redirect()->route('historialcobros.index');
