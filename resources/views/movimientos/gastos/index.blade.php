@@ -62,6 +62,7 @@
 							<th>Descripcion</th>
 							<th>Monto</th>
 							<th>Fecha</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -73,6 +74,8 @@
 						<td>{{$d->descripcion}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->created_at}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+
 						<td>
 						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
 																	    @if(\Auth::user()->role_id <> 6)	
@@ -86,10 +89,11 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>Id</th>
+								<th>Id</th>
 							<th>Descripcion</th>
 							<th>Monto</th>
 							<th>Fecha</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</tfoot>

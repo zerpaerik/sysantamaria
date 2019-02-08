@@ -8,6 +8,8 @@ use App\Models\Debitos;
 use App\Models\Historiales;
 use DB;
 use Carbon\Carbon;
+use Auth;
+
 
 class GastosController extends Controller
 {
@@ -18,7 +20,8 @@ class GastosController extends Controller
      if(! is_null($request->fecha)) {
 
       $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+      ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,$request->fecha)
       ->orderby('a.id','ASC')
       ->paginate(200000);  
@@ -26,8 +29,10 @@ class GastosController extends Controller
     } else {
 
        $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+            ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
+
       ->orderby('a.id','ASC')
       ->paginate(200000);  
 
@@ -54,7 +59,9 @@ class GastosController extends Controller
 	      'descripcion' => $request->descripcion,
 	      'monto' => $request->monto,
 	      'origen' => 'RELACION DE GASTOS',
-	      'id_sede' => $request->session()->get('sede')
+	      'id_sede' => $request->session()->get('sede'),
+        'usuario' => Auth::user()->id
+
    		]);
 		
 		  $historial = new Historiales();

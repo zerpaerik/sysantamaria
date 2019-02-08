@@ -66,9 +66,9 @@
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Documento</th>
-							<th>Serie</th>
-							<th>Numeraciòn</th>
+					
 							<th>Fecha</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -90,9 +90,10 @@
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->tipo_factura}}</td>
-						<td>{{$d->numero_serie}}</td>
-						<td>{{$d->numero_factura}}</td>
+					
 						<td>{{$d->created_at}}</td>
+						<td>{{$d->username}},{{$d->userlast}}</td>
+
 						<td>
 
 
@@ -126,7 +127,9 @@
 							<th>Serie</th>
 							<th>Numeraciòn</th>
 							<th>Fecha</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
+						</tr>
 						</tr>
 					</tfoot>
 				</table>

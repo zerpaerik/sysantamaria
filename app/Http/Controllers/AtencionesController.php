@@ -30,12 +30,13 @@ class AtencionesController extends Controller
 
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
+          ->join('users as u','u.id','a.usuario')
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',$request->fecha)
           ->orderby('a.id','desc')
@@ -46,12 +47,13 @@ class AtencionesController extends Controller
         } else {
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
+                    ->join('users as u','u.id','a.usuario')
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
           ->orderby('a.id','desc')
@@ -122,6 +124,7 @@ class AtencionesController extends Controller
               $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->estatus = 1;
+              $paq->usuario = Auth::user()->id;
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -183,6 +186,8 @@ class AtencionesController extends Controller
               $s->abono = 0;
               $s->porcentaje =0;
               $s->estatus = 1;
+          
+              $s->usuario = Auth::user()->id;
               $s->save(); 
              
          }
@@ -220,6 +225,7 @@ class AtencionesController extends Controller
               $l->abono = 0;
               $l->porcentaje =0;
               $l->estatus = 1;
+                            $l->usuario = Auth::user()->id;
               $l->save(); 
 
          }
@@ -276,6 +282,7 @@ class AtencionesController extends Controller
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->estatus = 1;
+                            $serv->usuario = Auth::user()->id;
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -324,6 +331,7 @@ class AtencionesController extends Controller
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
           $lab->pendiente = $request->total_g;
           $lab->estatus = 1;
+                        $lab->usuario = Auth::user()->id;
           $lab->save();
 
           $creditos = new Creditos();
