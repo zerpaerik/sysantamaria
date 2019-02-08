@@ -66,7 +66,11 @@ class TreatmentController extends Controller
       "equilibrio_marcha_trat" => $request->equilibrio_marcha_trat,
       "coordinacion_marcha_trat" => $request->coordinacion_marcha_trat,
       "disocion_marcha_trat" => $request->disocion_marcha_trat,
-      "consulta_id" => $request->consulta_id
+      "consulta_id" => $request->consulta_id,
+      "metodo" => $request->metodo,
+      "reduccion" => $request->reduccion,
+      "fortale" => $request->fortale,
+      "tratamiento" => $request->tratamiento
     ]);
 	
 

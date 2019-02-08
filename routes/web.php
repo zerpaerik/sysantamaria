@@ -129,10 +129,11 @@ Route::get('caja-delete-{id}','CajaController@delete');
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
 Route::get('recibo_caja_ver2/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2');
 
+Route::get('events/si','Events\EventController@si');
+Route::get('events/no','Events\EventController@no');
 
-/**
- * Paquetes
- */
+
+
 Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
 Route::get('paquetes-search', 'Archivos\PaquetesController@search')->name('paquetes.search')->middleware('auth');
 Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
@@ -390,6 +391,9 @@ Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita
 Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
 Route::get('historias-{id}', 'ConsultaController@report');
+
+Route::get('ficha-create', 'Events\EventControllerr@createficha')->name('ficha.create')->middleware('auth');
+
 
 
 //Servicios

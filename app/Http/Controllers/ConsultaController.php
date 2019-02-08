@@ -8,6 +8,7 @@ use App\Http\Requests\CreateConsultaRequest;
 use Carbon\Carbon;
 use DB;
 use App\Models\ConsultaMateriales;
+use App\Models\Ciex;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use Toastr;
 use App\Treatment;
@@ -128,13 +129,16 @@ class ConsultaController extends Controller
     $consulta->personal =$request->personal;
 		$consulta->save();
 
-            return redirect('/historias');
+
+        $ciex = Ciex::all();
+
 
 
    
 		return view('events.create',[
       'consulta' => $consulta->id,
-      'evento' => $request->evento_id
+      'evento' => $request->evento_id,
+      'ciex' => $ciex
     ]);
 
     }

@@ -7,209 +7,324 @@
 		<div class="form-group">
 			<input type="hidden" name="consulta_id" value="{{$consulta}}">
 			<input type="hidden" name="evento_id" value="{{$evento}}">
-            <label class="col-sm-2">Ficha de Evaluacion Terapeutica</label>
-			<div class="col-sm-10">
-				<input type="radio" name="ficha_eval" value="Nuevo">Nuevo
-				<input type="radio" name="ficha_eval" value="Reevaluacion">Reevaluacion
-				<input type="radio" name="ficha_eval" value="Reingresante">Reingresante
-			</div>  
+            <label class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong></label>
+		
 			
 			<br>
 			<br><br>
-			<label class="col-sm-2">Eva</label>
-			<div class="col-sm-10">
-				<input type="radio" name="eva_eval" value="Antes">Antes
-				<input type="radio" name="eva_eval" value="Despues">Despues
-			</div>  
 
-			<br>
-			<br>
+			<div class="row">
+				<div class="col-md-1">
+			<label class="col-sm-2 control-label">EVA</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="eva_eval">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
 
-			<label class="col-sm-2">Frecuencia</label>
-			<div class="col-sm-10">
-				<input type="radio" name="frecuencia_eval" value="Continuo">Continuo
-				<input type="radio" name="frecuencia_eval" value="Intermitente">Intermitente 
-			</div>  
-			<br><br>
+						</select>
+						</div>	
+					</div>
 
-			<label class="col-sm-2">Exacervacion</label>
-			<div class="col-sm-10">
-				<input type="radio" name="exac_eval" value="Actividad">Actividad
-				<input type="radio" name="exac_eval" value="Reposo">Reposo 
-				<input type="radio" name="exac_eval" value="Levantarse">Levantarse
-				<input type="radio" name="exac_eval" value="Dia">Dia 
-				<input type="radio" name="exac_eval" value="Noche">Noche								
-			</div>  
-			<br><br>
+						<div class="col-md-3">
+			<label class="col-sm-4 control-label">Frecuencia</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="frecuencia_eval">
+							<option value="Continuo">Continuo</option>
+							<option value="Intermitente">Intermitente</option>
+						
+						</select>
+						</div>	
+					</div>
 
-			<label class="col-sm-2">Forma de inicio</label>
-			<div class="col-sm-10">
-				<input type="radio" name="inicio_eval" value="Progesivo">Progesivo
-				<input type="radio" name="inicio_eval" value="Subito">Subito
-				<input type="text" name="inicio_tiempo_eval">Tiempo  
-			</div>  
-			<br><br>	
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Exacervación</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="exac_eval">
+							<option value="Actividad">Actividad</option>
+							<option value="Reposo">Reposo</option>
 
-			<label class="col-sm-2">Tipo de dolor</label>
-			<div class="col-sm-10">
-				<input type="radio" name="dolor_eval" value="Quemante">Quemante
-				<input type="radio" name="dolor_eval" value="Punzante">Punzante 
-				<input type="radio" name="dolor_eval" value="Electrico">Electrico
-			</div>  
-			<br><br>
+							<option value="Levantarse">Levantarse</option>
+							<option value="Dia">Dia</option>
+							<option value="Noche">Noche</option>
 
-			<label class="col-sm-2">Retraccion</label>
-			<div class="col-sm-10">
-				<input type="radio" name="retraccion_eval" value="Fascia">Fascia
-				<input type="radio" name="retraccion_eval" value="Muscular">Muscular
-				<input type="radio" name="retraccion_eval" value="Articular">Articular
-			</div>  
-			<br><br>	
+						
+						</select>
+						</div>	
+					</div>
 
-			<label class="col-sm-2">Parestecia</label>
-			<div class="col-sm-10">
-				<input type="radio" name="parestecia_eval" value="Si">Si
-				<input type="radio" name="parestecia_eval" value="No">No
-			</div>  
-			<br><br>
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Forma de Inicio</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="inicio_eval">
+							<option value="Progesivo">Progesivo</option>
+							<option value="Subito">Subito</option>
+						</select>
+						</div>
 
-			<label class="col-sm-2">Hiperalgesia</label>
-			<div class="col-sm-10">
-				<input type="radio" name="hiperalgesia_eval" value="Si">Si
-				<input type="radio" name="hiperalgesia_eval" value="No">No
-				<input type="text" name="hiperalgesia_zona_eval">Zona
-			</div>  
-			<br><br>		
+					</div>
 
-			<label class="col-sm-2">Limitacion</label>
-			<div class="col-sm-10">
+					<div class="col-md-1">
+					<input type="text" name="inicio_tiempo_eval" placeholder="Tiempo" style="max-width: 100px;">
+					</div>
+
+			</div> 
+
+			<div class="row">
+				<div class="col-md-2">
+			<label class="col-sm-3 control-label">Dolor</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="dolor_eval">
+							<option value="Quemante">Quemante</option>
+							<option value="Punzante">Punzante</option>
+							<option value="Electrico">Electrico</option>
+
+						</select>
+						</div>	
+					</div>
+
+						<div class="col-md-3">
+			<label class="col-sm-4 control-label">Retractación</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="retraccion_eval">
+							<option value="Fascia">Fascia</option>
+							<option value="Muscular">Muscular</option>
+						    <option value="Articular">Articular</option>
+
+						
+						</select>
+						</div>	
+					</div>
+
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Parestesia</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="parestecia_eval">
+							<option value="Si">Si</option>
+							<option value="No">No</option>
+						</select>
+						</div>	
+					</div>
+
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Hiperalgesia</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="hiperalgesia_eval">
+							<option value="Si">Si</option>
+							<option value="No">No</option>
+						</select>
+						</div>
+
+					</div>
+
+					<div class="col-md-1">
+					<input type="text" name="hiperalgesia_zona_eval" placeholder="Zona" style="max-width: 50px;">
+					</div>
+
+			</div> 
+	
+
+		<div class="row">
+			<div class="col-md-4">
+
+			<label class="col-sm-3">Limitacion</label>
+			<div class="col-sm-6">
 				<input type="text" name="limitacion_eval">
 			</div>  
-			<br><br>
+			</div>
 
-			<label class="col-sm-2">Localizacion</label>
-			<div class="col-sm-10">
+						<div class="col-md-4">
+
+
+			<label class="col-sm-3">Localizacion</label>
+			<div class="col-sm-6">
 				<input type="text" name="localizacion_eval">
 			</div>  
-			<br><br>	
+			</div>
+
+			<div class="col-md-4">
+
+			<label class="col-sm-3">Irradiacion</label>
+			<div class="col-sm-6">
+                             <select class="form-control" name="irradiacion_eval">
+							<option value="Si">Si</option>
+							<option value="No">No</option>
+						</select>			
+					</div>  
+			</div>
+
+	</div>  
+	      <div class="row">
+	      				<div class="col-md-4">
 
 
-			<label class="col-sm-2">Irradiacion</label>
-			<div class="col-sm-10">
-				<input type="radio" name="irradiacion_eval" value="Si">Si
-				<input type="radio" name="irradiacion_eval" value="No">No
-				<input type="text" name="irradiacion_zona_eval">Zona
-			</div>  
-			<br><br>
-
-			<label class="col-sm-2">Observaciones</label>
-			<div class="col-sm-10">
+			<label class="col-sm-3">Observacion</label>
+			<div class="col-sm-6">
 				<input type="text" name="observaciones_eval">
-			</div>  
-			<br><br>
+			</div> 
+			</div> 
+						<div class="col-md-4">
 
-			<label class="col-sm-2">Diagnostico</label>
-			<div class="col-sm-10">
-				<input type="text" name="diagnostico_eval">
+
+			<label class="col-sm-3">Diagnostico</label>
+			<div class="col-sm-9">
+				<select id="el1"  name="diagnostico_eval">
+			    @foreach($ciex as $lab)
+				<option value="{{$lab->codigo}}-{{$lab->nombre}}">{{$lab->codigo}}-{{$lab->nombre}}</option>
+				@endforeach
+			    </select>
 			</div>  
-			<br><br>																				
+			</div>
+		</div>																				
 
 			<h3 class="col-sm-12">Tratamiento</h3>
+			<div class="row">
 
-			<label class="col-sm-2">CHC</label>
-			<div class="col-sm-10">
-				<input type="text" name="chc_trat">
+			<div class="col-md-4">
+
+			<label class="col-sm-3">Tratamiento</label>
+			<div class="col-sm-9">
+				 <select class="form-control" name="tratamiento">
+							<option value="CHF">CHF</option>
+							<option value="CF">CD</option>
+						    <option value="Tiempo">Tiempo</option>
+						</select>	
+			</div>
 			</div>  
-			<br><br><br>
 
+			<div class="col-md-4">
 
-			<label class="col-sm-2">CF</label>
-			<div class="col-sm-10">
-				<input type="text" name="cf_trat">
-			</div>  
-			<br><br>
-
-
-			<label class="col-sm-2">Tiempo </label>
-			<div class="col-sm-10">
-				<input type="text" name="tiempo_trat">
-			</div>  
-			<br><br><br>
 			
-			<label class="col-sm-2">Ultrasonido</label>
-			<div class="col-sm-12">
-				Frecuencia<input type="text" name="frecuencia_ultrasonido_trat">
-				Intensidad<input type="text" name="intensidad_ultrasonido_trat">
-				Ciclo<input type="text" name="ciclo_ultrasonido_trat">
-				Tiempo<input type="text" name="tiempo_ultrasonido_trat">
-			</div>  
-			<br><br><br>
+			<label class="col-sm-3">Ultrasonido</label>
+			<div class="col-sm-9">
+				 <select class="form-control" name="frecuencia_ultrasonido_trat">
+							<option value="Frecuencia">Frecuencia</option>
+							<option value="Intensidad">Intensidad</option>
+						    <option value="Ciclo">Ciclo</option>
+						     <option value="Ciclo">Tiempo</option>
+						</select>	
+			</div> 
+			</div> 
 
-			<label class="col-sm-1">Laser</label>
-			<div class="col-sm-12">
-				Dolor<input type="text" name="dolor_laser_trat">
-				Tenosinovitis<input type="text" name="tenosinovitis_laser_trat">
-				Esguince<input type="text" name="esguince_laser_trat">
-				Tension Repetitiva<input type="text" name="tension_laser_trat">
-			</div>  
-			<br><br><br>
+				<div class="col-md-4">
 
-			<label class="col-sm-2">Corriente</label>
-			<div class="col-sm-12">
-				Rusa<input type="text" name="rusa_corriente_trat">
-				interferencial<input type="text" name="interferencial_corriente_trat">
-				alto vontaje<input type="text" name="alto_corriente_trat">
-				Tens<input type="text" name="tens_corriente_trat">
-			</div>  
-			<br><br><br>
+			
+			<label class="col-sm-3">Laser</label>
+			<div class="col-sm-9">
+				 <select class="form-control" name="dolor_laser_trat">
+							<option value="Dolor">Dolor</option>
+							<option value="Tenosinovitis">Tenosinovitis</option>
+						    <option value="TensionRepetitiva">Tension Repetitiva</option>
+						     <option value="Esguince">Esguince</option>
+						</select>	
+			</div> 
+			</div> 
+           </div>
 
-			<label class="col-sm-1">Estiramiento </label>
-			<div class="col-sm-11">
+           <div class="row">
+           	<div class="col-md-4">
+
+
+			<label class="col-sm-3">Corriente</label>
+			<div class="col-sm-9">
+				 <select class="form-control" name="rusa_corriente_trat">
+							<option value="Rusa">Rusa</option>
+							<option value="interferencial">interferencial</option>
+						    <option value="alto vontaje">alto vontaje</option>
+						     <option value="Tens">Tens</option>
+						</select>	
+			</div>
+           		
+           	</div>
+
+           		<div class="col-md-4">
+
+   
+			<label class="col-sm-3">Estiramiento</label>
+			<div class="col-sm-9">
 				<input type="text" name="estiramiento_trat">
 			</div>  
-			<br><br><br>
+           		
+           	</div>
 
-			<label class="col-sm-2">Metodo Terapeutico</label>
-			<div class="col-sm-12">
-				Klapp<input type="checkbox" name="klapp_metodo_trat">
-				William<input type="checkbox" name="william_metodo_trat">
-				Wilson<input type="checkbox" name="wilson_metodo_trat">
-				FNP<input type="checkbox" name="fnp_metodo_trat">
-				Codman<input type="checkbox" name="codman_metodo_trat">
-				Burguer<input type="checkbox" name="burguer_metodo_trat">
-				KaltenBron<input type="checkbox" name="kaltenbron_metodo_trat">
-				Feldenkrais<input type="checkbox" name="feldenkrais_metodo_trat">				
-			</div>  
-			<br><br><br>	
+           		<div class="col-md-4">
 
-			<label class="col-sm-2">Fortalecimiento</label>
-			<div class="col-sm-12">
-				Isomentrico<input type="checkbox" name="isometrico_fortalecimiento_trat">
-				Isotonico con carga<input type="checkbox" name="isocarga_fortalecimiento_trat">
-				Sin carga<input type="checkbox" name="nocarga_fortalecimiento_trat">
-				Bozu<input type="checkbox" name="bozu_fortalecimiento_trat">
-				THERABAND<input type="checkbox" name="theraband_fortalecimiento_trat">			
-			</div>  
-			<br><br><br>	
 
-			<label class="col-sm-5">Reduccion de la marcha</label>
-			<div class="col-sm-12">
-				<input type="radio" name="reduccion_trat" value="Si">Si
-				<input type="radio" name="reduccion_trat" value="No">No
-			</div>  
-			<div class="col-sm-12">
-				Rolido<input type="checkbox" name="rolido_marcha_trat"><br>
-				Sentado<input type="checkbox" name="sentado_marcha_trat"><br>
-				Arrastre<input type="checkbox" name="arrastre_marcha_trat"><br>
-				4 Puntos<input type="checkbox" name="puntos_marcha_trat"><br>
-				Rodillas<input type="checkbox" name="rodillas_marcha_trat"><br>
-				Bipedo<input type="checkbox" name="bipedo_marcha_trat"><br>
-				Descarga de peso<input type="checkbox" name="descarga_marcha_trat"><br>
-				Equilibrio<input type="checkbox" name="equilibrio_marcha_trat"><br>		
-				Coordinacion<input type="checkbox" name="coordinacion_marcha_trat"><br>
-				Disocion<input type="checkbox" name="disocion_marcha_trat"><br>								
-			</div>  			
-			<br><br>																
+			<label class="col-sm-4">M.Terapeutico</label>
+			<div class="col-sm-8">
+				 <select class="form-control" name="metodo">
+							<option value="Klapp">Klapp</option>
+							<option value="William">William</option>
+						    <option value="Wilson">Wilson</option>
+						     <option value="FNP">FNP</option>
+
+						     <option value="Codman">Codman</option>
+						     <option value="Burguer">Burguer</option>
+						     <option value="KaltenBron">KaltenBron</option>
+						     <option value="FNP">FNP</option>
+						    <option value="Feldenkrais">Feldenkrais</option>
+						</select>	
+			</div>
+           		
+           	</div>
+           	
+           </div>
+
+                  <div class="row">
+           	<div class="col-md-4">
+
+
+			<label class="col-sm-3">Fortalecimiento</label>
+			<div class="col-sm-9">
+				 <select class="form-control" name="fortale">
+							<option value="Isomentrico">Isomentrico</option>
+							<option value="Isotonico con carga">Isotonico con carga</option>
+						    <option value="Sin carga">Sin carga</option>
+						    <option value="Bozu">Bozu</option>
+					        <option value="THERABAND">THERABAND</option>
+						</select>	
+			</div>
+           		
+           	</div>
+
+           	 	<div class="col-md-4">
+
+
+			<label class="col-sm-3">Reduccion Marcha</label>
+			<div class="col-sm-9">
+				 <select id="reduc"  class="form-control" name="rrrrr">
+				 			<option value="">Seleccione</option>
+							<option value="1">Si</option>
+							<option value="2">No</option>
+					
+						</select>	
+			</div>
+           		
+           	</div>
+
+           	<div class="col-md-4">
+
+
+			<label class="col-sm-3"></label>
+			<div class="col-sm-9" id="origen1">
+					
+			</div>
+           		
+           	</div>
+
+           	
+           	
+           </div>
+	
+
+																		
 	
             <div id="laboratorios" class="embed ">
             
@@ -407,6 +522,31 @@ function DemoTimePicker(){
 	});
 }
 </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#reduc').on('change',function(){
+          var link;
+          if ($(this).val() ==  1) {
+            link = '/events/si/';
+          }else {
+            link = '/events/no/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#origen1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
 
 
 @endsection

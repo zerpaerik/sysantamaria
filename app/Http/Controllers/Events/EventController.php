@@ -202,6 +202,24 @@ class EventController extends Controller
     return view('consultas.create', $data + $extra);
   }
 
+    public function createficha(){
+
+    return view('events.create');
+  }
+
+  public function si(){
+
+       return view('events.si');
+
+  }
+
+  public function no(){
+
+     return view('events.no');
+
+
+  }
+
   public function all(Request $request)
   {
 
