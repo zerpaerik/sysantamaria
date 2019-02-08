@@ -62,6 +62,7 @@
 	<div class="rows">
 		<div class="col-sm-12">
 			<div class="rows">
+		@foreach($treatment as $treatment)
 
 			<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong></p>
 			  <p class="col-sm-6"><strong>Eva:</strong>{{ $treatment->eva_eval }}</p>
@@ -85,6 +86,7 @@
                 <p class="col-sm-6"><strong>Mètodo:</strong>{{ $treatment->metodo }}</p>
                 <p class="col-sm-6"><strong>Fortalecimiento:</strong>{{ $treatment->fortale }}</p>
                 <p class="col-sm-6"><strong>Reducciòn Marcha:</strong>{{ $treatment->reduccion }}</p>
+          @endforeach
 
 
 				
