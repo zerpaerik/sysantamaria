@@ -54,7 +54,7 @@
 
 
 
-				 	<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong>{{ $treatment->ficha_eval }}</p>
+				 	<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong></p>
             		<p class="col-sm-6"><strong>Eva:</strong>{{ $treatment->eva_eval }}</p>
             		<p class="col-sm-6"><strong>Frecuencia</strong>{{ $treatment->frecuencia_eval }}</p>
             		<p class="col-sm-6"><strong>Exacervacion:</strong>{{ $treatment->exac_eval }}</p>
