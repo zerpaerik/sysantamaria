@@ -28,8 +28,10 @@ class EventController extends Controller
   {
 	  $personal = DB::table('personals as e')
     ->select('e.id','e.name','e.lastname','e.dni')
-    ->join('events as p','p.id','=','e.id')
+    ->join('events as p','p.profesional','=','e.id')
     ->get();
+
+ 
 	
     if($request->isMethod('get')){
       $calendar = false;
@@ -57,7 +59,7 @@ class EventController extends Controller
     $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
      $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
-     $consultas->load('treatment');
+     $treatment = treatment::where('consulta_id','=',$event->id)->first();;
 
     $personal = Personal::where('estatus','=',1)->get();
     $ciex = Ciex::all();
@@ -67,6 +69,7 @@ class EventController extends Controller
       'historial' => $historial,
       'consultas' => $consultas,
       'personal' => $personal,
+      'treatment' => $treatment,
       'ciex' => $ciex,
       'edad' => $edad
     ]);

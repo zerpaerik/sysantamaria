@@ -50,177 +50,38 @@
 				<p class="col-sm-6"><strong>Plan de Tratamiento:</strong> {{ $consulta->plan }}</p>
 				<p class="col-sm-6"><strong>Nro Sesiones:</strong> {{ $consulta->ses }}</p>
 				<p class="col-sm-6"><strong>Atentido Por:</strong> {{ $consulta->personal }}</p>
-				@if(!empty($consulta->treatment))
-				 	<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong>{{ $consulta->treatment->ficha_eval }}</p>
-            		<p class="col-sm-6"><strong>Eva:</strong>{{ $consulta->treatment->eva_eval }}</p>
-            		<p class="col-sm-6"><strong>Frecuencia</strong>{{ $consulta->treatment->frecuencia_eval }}</p>
-            		<p class="col-sm-6"><strong>Exacervacion:</strong>{{ $consulta->treatment->exac_eval }}</p>
-            		<p class="col-sm-6"><strong>Forma de inicio:</strong>{{ $consulta->treatment->inicio_eval }}</p>
-            		<p class="col-sm-6"><strong>Tiempo de inicio:</strong>{{ $consulta->treatment->inicio_tiempo_eval }}</p>
-            		<p class="col-sm-6"><strong>Tipo de dolor:</strong>{{ $consulta->treatment->dolor_eval }}</p>
-            		<p class="col-sm-6"><strong>Retraccion:</strong>{{ $consulta->treatment->retraccion_eval }}</p>
-            		<p class="col-sm-6"><strong>Parestecia:</strong>{{ $consulta->treatment->parestecia_eval }}</p>
-            		<p class="col-sm-6"><strong>Hiperalgesia:</strong>{{ $consulta->treatment->hiperalgesia_eval }}</p>
-            		<p class="col-sm-6"><strong>hiperalgesia Zona:</strong>{{ $consulta->treatment->hiperalgesia_zona_eval }}</p>
-            		<p class="col-sm-6"><strong>Limitacion:</strong>{{ $consulta->treatment->limitacion_eval }}</p>
-            		<p class="col-sm-6"><strong>Localizacion:</strong>{{ $consulta->treatment->localizacion_eval }}</p>
-            		<p class="col-sm-6"><strong>Irradiacion:</strong>{{ $consulta->treatment->irradiacion_eval }}</p>
-            		<p class="col-sm-6"><strong>irradiacion zona:</strong>{{ $consulta->treatment->irradiacion_zona_eval }}</p>
-            		<p class="col-sm-6"><strong>Observaciones:</strong>{{ $consulta->treatment->observaciones_eval }}</p>
-            		<p class="col-sm-6"><strong>Diagnostico:</strong>{{ $consulta->treatment->diagnostico_eval }}</p>
-            		<p class="col-sm-6"><strong>CHC:</strong>{{ $consulta->treatment->chc_trat }}</p>
-            		<p class="col-sm-6"><strong>CF:</strong>{{ $consulta->treatment->cf_trat }}</p>
-            		<p class="col-sm-6"><strong>Tiempo:</strong>{{ $consulta->treatment->tiempo_trat }}</p>
-            		<p class="col-sm-12">Ultrasonido</p>
+				@endforeach
 
-            		<p class="col-sm-6"><strong>Ultrasonido:</strong>{{ $consulta->treatment->frecuencia_ultrasonido_trat }}</p>
-            		<p class="col-sm-6"><strong>Intensidad Ultrasonido:</strong>{{ $consulta->treatment->intensidad_ultrasonido_trat }}</p>
-            		<p class="col-sm-6"><strong>Ciclo Ultra Sonido:</strong>{{ $consulta->treatment->ciclo_ultrasonido_trat }}</p>
-            		<p class="col-sm-6"><strong>Tiempo ultrasonido:</strong>{{ $consulta->treatment->tiempo_ultrasonido_trat }}</p>            		<p class="col-sm-12">Laser</p>
 
-            		<p class="col-sm-6"><strong>Dolor Laser:</strong>{{ $consulta->treatment->dolor_laser_trat }}</p>
-            		<p class="col-sm-6"><strong>tenosinovitis laser:</strong>{{ $consulta->treatment->tenosinovitis_laser_trat }}</p>
-            		<p class="col-sm-6"><strong>esguince_laser:</strong>{{ $consulta->treatment->esguince_laser_trat }}</p>
-            		<p class="col-sm-6"><strong>tension_laser:</strong>{{ $consulta->treatment->tension_laser_trat }}</p>
-            		<p class="col-sm-12">Corriente</p>
-            		<p class="col-sm-6"><strong>rusa corriente:</strong>{{ $consulta->treatment->rusa_corriente_trat }}</p>
-            		<p class="col-sm-6"><strong>interferencial corriente:</strong>{{ $consulta->treatment->interferencial_corriente_trat }}</p>
-            		<p class="col-sm-6"><strong>alto corriente:</strong>{{ $consulta->treatment->alto_corriente_trat }}</p>
-            		<p class="col-sm-6"><strong>tens corriente:</strong>{{ $consulta->treatment->tens_corriente_trat }}</p>
-            		<p class="col-sm-6"><strong>estiramiento:</strong>{{ $consulta->treatment->estiramiento_trat }}</p>
-					<p class="col-sm-12">Metodo terapeutico</p>
-            		<p class="col-sm-6"><strong>klapp:</strong>@if($consulta->treatment->klapp_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>william:</strong>@if($consulta->treatment->william_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>wilson:</strong>@if($consulta->treatment->wilson_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>fnp:</strong>@if($consulta->treatment->fnp_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>codman:</strong>@if($consulta->treatment->codman_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>burguer:</strong>@if($consulta->treatment->burguer_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>kaltenbron:</strong>@if($consulta->treatment->kaltenbron_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
-            		<p class="col-sm-6"><strong>feldenkrais:</strong>@if($consulta->treatment->feldenkrais_metodo_trat == 'on')
-            		SI @else
-            	NO
-            @endif</p>
 
-            		<p class="col-sm-12">Fortalecimiento</p>
-            		<p class="col-sm-6"><strong>isometrico:</strong>@if($consulta->treatment->isometrico_fortalecimiento_trat == 'on')
-            		SI
-            	@else
-            NO
-        @endif</p>
-            		<p class="col-sm-6"><strong>isocarga:</strong>@if($consulta->treatment->isocarga_fortalecimiento_trat == 'on')
-            		SI
-            	@else
-            NO
-        @endif</p>
-            		<p class="col-sm-6"><strong>nocargat:</strong>@if($consulta->treatment->nocarga_fortalecimiento_trat == 'on')
-            		SI
-            	@else
-            NO
-        @endif</p>
-            		<p class="col-sm-6"><strong>bozu:</strong>@if($consulta->treatment->bozu_fortalecimiento_trat == 'on')
-            		SI
-            	@else
-            NO
-        @endif</p>
-            		<p class="col-sm-6"><strong>theraband:</strong>@if($consulta->treatment->theraband_fortalecimiento_trat == 'on')
-            		SI
-            	@else
-            NO
-        @endif</p>
+				 	<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong>{{ $treatment->ficha_eval }}</p>
+            		<p class="col-sm-6"><strong>Eva:</strong>{{ $treatment->eva_eval }}</p>
+            		<p class="col-sm-6"><strong>Frecuencia</strong>{{ $treatment->frecuencia_eval }}</p>
+            		<p class="col-sm-6"><strong>Exacervacion:</strong>{{ $treatment->exac_eval }}</p>
+            		<p class="col-sm-6"><strong>Forma de inicio:</strong>{{ $treatment->inicio_eval }}</p>
+            		<p class="col-sm-6"><strong>Tiempo de inicio:</strong>{{ $treatment->inicio_tiempo_eval }}</p>
+            		<p class="col-sm-6"><strong>Tipo de dolor:</strong>{{ $treatment->dolor_eval }}</p>
+            		<p class="col-sm-6"><strong>Retraccion:</strong>{{ $treatment->retraccion_eval }}</p>
+            		<p class="col-sm-6"><strong>Parestecia:</strong>{{ $treatment->parestecia_eval }}</p>
+            		<p class="col-sm-6"><strong>Hiperalgesia:</strong>{{ $treatment->hiperalgesia_eval }}</p>
+            		<p class="col-sm-6"><strong>hiperalgesia Zona:</strong>{{ $treatment->hiperalgesia_zona_eval }}</p>
+            		<p class="col-sm-6"><strong>Limitacion:</strong>{{ $treatment->limitacion_eval }}</p>
+            		<p class="col-sm-6"><strong>Localizacion:</strong>{{ $treatment->localizacion_eval }}</p>
+            		<p class="col-sm-6"><strong>irradiacion zona:</strong>{{ $treatment->irradiacion_zona_eval }}</p>
+            		<p class="col-sm-6"><strong>Observaciones:</strong>{{ $treatment->observaciones_eval }}</p>
+            		<p class="col-sm-6"><strong>Diagnostico:</strong>{{ $treatment->diagnostico_eval }}</p>
+            		<p class="col-sm-6"><strong>Tratamiento:</strong>{{ $treatment->tratamiento }}</p>
+            		<p class="col-sm-6"><strong>Ultrasonido:</strong>{{ $treatment->frecuencia_ultrasonido_trat }}</p>
+            		<p class="col-sm-6"><strong>Corriente:</strong>{{ $treatment->rusa_corriente_trat }}</p>
+            		<p class="col-sm-6"><strong>Mètodo:</strong>{{ $treatment->metodo }}</p>
+            		<p class="col-sm-6"><strong>Fortalecimiento:</strong>{{ $treatment->fortale }}</p>
+            		<p class="col-sm-6"><strong>Reducciòn Marcha:</strong>{{ $treatment->reduccion }}</p>
 
-            		<p class="col-sm-6"><strong>reduccion:</strong>@if($consulta->treatment->reduccion_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>rolido:</strong>@if($consulta->treatment->rolido_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>sentado:</strong>@if($consulta->treatment->sentado_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>arrastre:</strong>@if($consulta->treatment->arrastre_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>puntos:</strong>@if($consulta->treatment->puntos_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>rodillas:</strong>@if($consulta->treatment->rodillas_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>bipedo:</strong>@if($consulta->treatment->bipedo_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>descarga:</strong>@if($consulta->treatment->descarga_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>equilibrio:</strong>@if($consulta->treatment->equilibrio_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>coordinacion:</strong>@if($consulta->treatment->coordinacion_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-            		<p class="col-sm-6"><strong>disocion:</strong>@if($consulta->treatment->disocion_marcha_trat == 'on') 
-            		SI
-            	@else
-            NO
-        @endif
-    </p>
-				@endif				
+            			
 				<br>
 			</div>
 		</div>
 	
-	@endforeach
 	<div class="col-sm-12">
 	<h3>REGISTRAR NUEVA HISTORIA</h3>
 	    <br>
