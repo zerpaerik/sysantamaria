@@ -29,10 +29,10 @@ class EventController extends Controller
 	  $personal = DB::table('personals as e')
     ->select('e.id','e.name','e.lastname','e.dni')
     ->join('events as p','p.profesional','=','e.id')
+    ->groupBy('e.id')
     ->get();
 
  
-	
     if($request->isMethod('get')){
       $calendar = false;
 	  
@@ -139,17 +139,19 @@ class EventController extends Controller
       ->first();
 
 
-      $evt = Event::create([
-        "paciente" => $request->paciente,
-        "profesional" => $request->especialista,
-        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
-        "time" => $request->time,
-        "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
-        "monto" => $precioeva->precio,
-        "comollego" => $request->comollego,
-        "evaluacion" => $request->evaluaciones,
-        "sede" => $request->session()->get('sede')
-      ]);
+    
+
+        $evt = new Event;
+        $evt->paciente=$request->paciente;
+        $evt->profesional=$request->especialista;
+        $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
+        $evt->time=$request->time;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=$request->monto;
+        $evt->sede=$request->session()->get('sede');
+        $evt->comollego=$request->comollego;
+        $evt->evaluacion=$request->evaluaciones;
+        $evt->save();
 
 
       $precioeva = DB::table('evaluaciones')
@@ -163,6 +165,7 @@ class EventController extends Controller
         "descripcion" => 'CONSULTAS',
         "monto" => $precioeva->precio,
         "tipo_ingreso" => 'EF',
+        "id_event" => $evt->id
       ]);
 	  
 	  $historial = new Historiales();
@@ -261,12 +264,18 @@ class EventController extends Controller
     ]);
   }  
 
-  public function delete_consulta($id)
+   public function delete_consulta($id)
   {
     $consulta = Event::find($id);
     $consulta->delete();
+
+
+    $creditos = Creditos::where('id_event','=',$id);
+    $creditos->delete();
+
+
     return back();
-  }
+  } 
 
 public function editView_consulta($id)
   {

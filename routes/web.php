@@ -259,6 +259,7 @@ Route::get('historialcobros-search', 'HistorialCobrosController@search')->name('
 Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
 
 
+Route::get('labpagados', 'LaboratoriosPagadosController@index')->name('labpagados.index')->middleware('auth');
 
 
 //////////7
