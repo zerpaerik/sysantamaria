@@ -19,7 +19,7 @@ use DB;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
-use App\treatment;
+use App\Treatment;
 
 class EventController extends Controller
 {
@@ -33,6 +33,7 @@ class EventController extends Controller
     ->get();
 
  
+	
     if($request->isMethod('get')){
       $calendar = false;
 	  
@@ -59,7 +60,8 @@ class EventController extends Controller
     $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
      $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
-     $treatment = treatment::where('consulta_id','=',$event->id)->first();;
+    $treatment = Treatment::where('consulta_id','=',$event->id)->first();
+
 
     $personal = Personal::where('estatus','=',1)->get();
     $ciex = Ciex::all();
@@ -133,15 +135,7 @@ class EventController extends Controller
     if(!$exists){
 
 
-       $precioeva = DB::table('evaluaciones')
-      ->select('*')
-      ->where('id','=',$request->evaluaciones)
-      ->first();
-
-
-    
-
-        $evt = new Event;
+     $evt = new Event;
         $evt->paciente=$request->paciente;
         $evt->profesional=$request->especialista;
         $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
@@ -264,18 +258,12 @@ class EventController extends Controller
     ]);
   }  
 
-   public function delete_consulta($id)
+  public function delete_consulta($id)
   {
     $consulta = Event::find($id);
     $consulta->delete();
-
-
-    $creditos = Creditos::where('id_event','=',$id);
-    $creditos->delete();
-
-
     return back();
-  } 
+  }
 
 public function editView_consulta($id)
   {
