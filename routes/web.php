@@ -196,6 +196,9 @@ Route::get('labporpagar-edit-{id}', 'LabporPagarController@editView')->name('lab
 Route::post('labporpagar/edit', 'LabporPagarController@edit');
 Route::get('pagar/{id}', 'LabporPagarController@pagar')->middleware('auth');
 
+Route::get('labpagados', 'LaboratoriosPagadosController@index')->name('labpagados.index')->middleware('auth');
+
+
 Route::get('comporpagar', 'ComporPagarController@index')->name('comporpagar.index')->middleware('auth');
 Route::get('comporpagar-search', 'ComporPagarController@search')->name('comporpagar.search')->middleware('auth');
 Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');

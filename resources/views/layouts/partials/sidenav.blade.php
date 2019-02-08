@@ -123,8 +123,11 @@
       <li>
         <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
       </li>
+       <li>
+        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
+      </li>
       <li>
-        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
+        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>s
       </li>
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
@@ -135,7 +138,6 @@
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
-    
       <li>
         <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
       </li>
@@ -394,6 +396,9 @@
       </li>
       <li>
         <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
+      </li>
+       <li>
+        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
       </li>
       <li>
         <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
