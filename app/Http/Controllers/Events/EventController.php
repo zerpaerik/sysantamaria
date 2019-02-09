@@ -264,8 +264,13 @@ class EventController extends Controller
 
   public function delete_consulta($id)
   {
-    $consulta = Event::find($id);
+     $consulta = Event::find($id);
     $consulta->delete();
+
+
+    $creditos = Creditos::where('id_event','=',$id);
+    $creditos->delete();
+    
     return back();
   }
 
