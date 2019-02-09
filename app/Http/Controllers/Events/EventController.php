@@ -20,6 +20,7 @@ use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
 use App\Treatment;
+use Auth;
 
 class EventController extends Controller
 {
@@ -59,8 +60,8 @@ class EventController extends Controller
     ->first();
     $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
-     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
-    $treatment = Treatment::where('consulta_id','=',$event->id)->get();
+    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $treatment = Treatment::where('evento','=',$event->id)->get();
 
 
     $personal = Personal::where('estatus','=',1)->get();
@@ -145,6 +146,7 @@ class EventController extends Controller
         $evt->sede=$request->session()->get('sede');
         $evt->comollego=$request->comollego;
         $evt->evaluacion=$request->evaluaciones;
+        $evt->usuario =Auth::user()->id;
         $evt->save();
 
 
@@ -229,22 +231,24 @@ class EventController extends Controller
 
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
+    ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',$f1)
     ->get();
 
   } else {
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
+        ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
     ->get();
 

@@ -70,7 +70,8 @@ class TreatmentController extends Controller
       "metodo" => $request->metodo,
       "reduccion" => $request->reduccion,
       "fortale" => $request->fortale,
-      "tratamiento" => $request->tratamiento
+      "tratamiento" => $request->tratamiento,
+      "evento" => $request->evento_id
     ]);
 	
 

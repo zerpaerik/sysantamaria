@@ -62,30 +62,30 @@
 	<div class="rows">
 		<div class="col-sm-12">
 			<div class="rows">
-		@foreach($treatment as $treatment)
+		@foreach($treatment as $t)
 
 			<p class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong></p>
-			  <p class="col-sm-6"><strong>Eva:</strong>{{ $treatment->eva_eval }}</p>
-                <p class="col-sm-6"><strong>Frecuencia</strong>{{ $treatment->frecuencia_eval }}</p>
-                <p class="col-sm-6"><strong>Exacervacion:</strong>{{ $treatment->exac_eval }}</p>
-                <p class="col-sm-6"><strong>Forma de inicio:</strong>{{ $treatment->inicio_eval }}</p>
-                <p class="col-sm-6"><strong>Tiempo de inicio:</strong>{{ $treatment->inicio_tiempo_eval }}</p>
-                <p class="col-sm-6"><strong>Tipo de dolor:</strong>{{ $treatment->dolor_eval }}</p>
-                <p class="col-sm-6"><strong>Retraccion:</strong>{{ $treatment->retraccion_eval }}</p>
-                <p class="col-sm-6"><strong>Parestecia:</strong>{{ $treatment->parestecia_eval }}</p>
-                <p class="col-sm-6"><strong>Hiperalgesia:</strong>{{ $treatment->hiperalgesia_eval }}</p>
-                <p class="col-sm-6"><strong>hiperalgesia Zona:</strong>{{ $treatment->hiperalgesia_zona_eval }}</p>
-                <p class="col-sm-6"><strong>Limitacion:</strong>{{ $treatment->limitacion_eval }}</p>
-                <p class="col-sm-6"><strong>Localizacion:</strong>{{ $treatment->localizacion_eval }}</p>
-                <p class="col-sm-6"><strong>irradiacion zona:</strong>{{ $treatment->irradiacion_zona_eval }}</p>
-                <p class="col-sm-6"><strong>Observaciones:</strong>{{ $treatment->observaciones_eval }}</p>
-                <p class="col-sm-6"><strong>Diagnostico:</strong>{{ $treatment->diagnostico_eval }}</p>
-                <p class="col-sm-6"><strong>Tratamiento:</strong>{{ $treatment->tratamiento }}</p>
-                <p class="col-sm-6"><strong>Ultrasonido:</strong>{{ $treatment->frecuencia_ultrasonido_trat }}</p>
-                <p class="col-sm-6"><strong>Corriente:</strong>{{ $treatment->rusa_corriente_trat }}</p>
-                <p class="col-sm-6"><strong>Mètodo:</strong>{{ $treatment->metodo }}</p>
-                <p class="col-sm-6"><strong>Fortalecimiento:</strong>{{ $treatment->fortale }}</p>
-                <p class="col-sm-6"><strong>Reducciòn Marcha:</strong>{{ $treatment->reduccion }}</p>
+			  <p class="col-sm-6"><strong>Eva:</strong>{{ $t->eva_eval }}</p>
+                <p class="col-sm-6"><strong>Frecuencia</strong>{{ $t->frecuencia_eval }}</p>
+                <p class="col-sm-6"><strong>Exacervacion:</strong>{{ $t->exac_eval }}</p>
+                <p class="col-sm-6"><strong>Forma de inicio:</strong>{{ $t->inicio_eval }}</p>
+                <p class="col-sm-6"><strong>Tiempo de inicio:</strong>{{ $t->inicio_tiempo_eval }}</p>
+                <p class="col-sm-6"><strong>Tipo de dolor:</strong>{{ $t->dolor_eval }}</p>
+                <p class="col-sm-6"><strong>Retraccion:</strong>{{ $t->retraccion_eval }}</p>
+                <p class="col-sm-6"><strong>Parestecia:</strong>{{ $t->parestecia_eval }}</p>
+                <p class="col-sm-6"><strong>Hiperalgesia:</strong>{{ $t->hiperalgesia_eval }}</p>
+                <p class="col-sm-6"><strong>hiperalgesia Zona:</strong>{{ $t->hiperalgesia_zona_eval }}</p>
+                <p class="col-sm-6"><strong>Limitacion:</strong>{{ $t->limitacion_eval }}</p>
+                <p class="col-sm-6"><strong>Localizacion:</strong>{{ $t->localizacion_eval }}</p>
+                <p class="col-sm-6"><strong>irradiacion zona:</strong>{{ $t->irradiacion_zona_eval }}</p>
+                <p class="col-sm-6"><strong>Observaciones:</strong>{{ $t->observaciones_eval }}</p>
+                <p class="col-sm-6"><strong>Diagnostico:</strong>{{ $t->diagnostico_eval }}</p>
+                <p class="col-sm-6"><strong>Tratamiento:</strong>{{ $t->tratamiento }}</p>
+                <p class="col-sm-6"><strong>Ultrasonido:</strong>{{ $t->frecuencia_ultrasonido_trat }}</p>
+                <p class="col-sm-6"><strong>Corriente:</strong>{{ $t->rusa_corriente_trat }}</p>
+                <p class="col-sm-6"><strong>Mètodo:</strong>{{ $t->metodo }}</p>
+                <p class="col-sm-6"><strong>Fortalecimiento:</strong>{{ $t->fortale }}</p>
+                <p class="col-sm-6"><strong>Reducciòn Marcha:</strong>{{ $t->reduccion }}</p>
           @endforeach
 
 

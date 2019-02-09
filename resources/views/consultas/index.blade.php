@@ -65,6 +65,7 @@
 						    <th>Como Llego</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Registrado Por</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -79,6 +80,7 @@
 						<td>{{$d->comollego}}</td>
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
+						<td>{{$d->username}}-{{$d->userlast}}</td>
 						<td>
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
@@ -103,8 +105,10 @@
 							<th>Paciente</th>
 							<th>Especialista</th>
 							<th>Eval</th>
+						    <th>Como Llego</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Registrado Por</th>
 							<th>Acciones:</th>
 						</tr>
 					</tfoot>
