@@ -35,17 +35,17 @@
 						{{ csrf_field() }}
 
 						<label class="col-sm-1 control-label">Producto</label>
-						<div class="col-sm-3">
+						<div class="col-sm-5">
 							<select id="prod" name="producto"  data-toggle="tooltip" data-placement="bottom">
 								<option value="0">Seleccione un producto</option>
 								@foreach($productos as $producto)
-									<option value="{{$producto->id}}">{{$producto->nombre}}</option>
+									<option value="{{$producto->id}}">{{$producto->nombre}}-<strong>Còdigo:</strong>{{$producto->codigo}}</option>
 								@endforeach
 							</select>
 						</div>						
 
 						<label class="col-sm-1 control-label">Medida</label>
-						<div class="col-sm-3">
+						<div class="col-sm-5">
 							<input type="text" class="form-control" id="medida" name="medida" data-toggle="tooltip" data-placement="bottom" title="Medida" disabled="disabled">
 						</div>
 						

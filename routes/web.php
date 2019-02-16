@@ -219,6 +219,10 @@ Route::post('comporpagartec/edit', 'ComisionesPorPagarTecController@edit');
 Route::post('pagarmultipletec', 'ComisionesPorPagarTecController@pagarmultiple');
 Route::get('pagarcomtec/{id}', 'ComisionesPorPagarTecController@pagarcom')->middleware('auth');
 
+Route::get('compunziones', 'ComisionesPunzionesController@index')->name('compunziones.index')->middleware('auth');
+Route::post('pagarmultiplep', 'ComisionesPunzionesController@pagarmultiple');
+Route::get('pagarcomp/{id}', 'ComisionesPunzionesController@pagarcom')->middleware('auth');
+
 
 Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.index')->middleware('auth');
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');

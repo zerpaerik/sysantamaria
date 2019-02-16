@@ -144,6 +144,9 @@
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
       <li>
+        <a href="{{route('compunziones.index')}}"><i class="fa fa-list-alt"></i> Comis. Punziones.</a>
+      </li>
+      <li>
         <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
       </li>
 

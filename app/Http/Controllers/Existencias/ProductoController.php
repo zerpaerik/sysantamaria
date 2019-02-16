@@ -78,7 +78,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("almacen",'=', 2)->get(['id', 'nombre','codigo']),
+        "productos" => Producto::where("almacen",'=', 2)->orderby('nombre','asc')->get(['id', 'nombre','codigo']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    

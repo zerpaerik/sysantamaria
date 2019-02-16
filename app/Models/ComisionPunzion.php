@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ComisionPunzion extends Model
 {
     protected $fillable = [
-    	'origen', 'comision','usuario','monto','estatus'
+    	'origen', 'comision','usuario','monto','estatus','fechapago','recibo'
     ];
 }
