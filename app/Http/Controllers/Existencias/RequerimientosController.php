@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Toastr;
 use Carbon\Carbon;
-use Auth;
 
 
 
@@ -94,7 +93,7 @@ class RequerimientosController extends Controller
           $lab->id_producto =  $laboratorio['laboratorio'];
           $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];;
           $lab->id_sede_solicita =2;
-          $lab->usuario = Auth::user()->id;
+          $lab->usuario = 1;
           $lab->id_sede_solicitada = 1;
           $lab->estatus = 'Solicitado';
           $lab->save();
