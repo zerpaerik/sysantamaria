@@ -52,7 +52,7 @@
 	<tr>
 							   @if($req->estatus == 'Solicitado')
 								<td>{{$req->solicitante}}</td>
-								<td>{{$req->nombre}}</td>
+								<td>{{$req->nombre}}-<strong>Còdigo:</strong>{{$req->codigo}}</td>
 							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>

@@ -46,7 +46,7 @@
 					@foreach($requerimientos as $req)					
 							<tr>
 								<td>{{$req->solicitante}}</td>
-								<td>{{$req->nombre}}</td>
+								<td>{{$req->nombre}}-<strong>Còdigo:</strong>{{$req->codigo}}</td>
 								<td>{{$req->cantidad}}</td>
 								<td>{{$req->cantidadd}}</td>
 								<td>{{$req->estatus}}</td>

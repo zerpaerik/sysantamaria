@@ -19,7 +19,7 @@ class RequerimientosController extends Controller
     public function index(){
 
       $requerimientos = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','a.created_at','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','a.created_at','c.name as solicitante','d.nombre','d.codigo')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
 					           ->where('id_sede_solicita','=',2)
@@ -34,7 +34,7 @@ class RequerimientosController extends Controller
        
 
         $requerimientos2 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.codigo')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->where('a.id_sede_solicita', '=', 2)
@@ -53,7 +53,7 @@ class RequerimientosController extends Controller
      private function elasticSearch($initial, $final)
   { 
          $requerimientos2 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.codigo')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->where('a.id_sede_solicita', '=', 2)
@@ -69,7 +69,7 @@ class RequerimientosController extends Controller
 
 
     public function createView(){
-    	return view('existencias.requerimientos.create', ["productos" => Producto::where('almacen','=',1)->get(["id", "nombre"])]);
+    	return view('existencias.requerimientos.create', ["productos" => Producto::where('almacen','=',1)->get(["id", "nombre","codigo"])]);
     }
 
 

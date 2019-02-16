@@ -307,7 +307,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
 
 
           $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -336,7 +336,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
 
 
            $atenciones = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())

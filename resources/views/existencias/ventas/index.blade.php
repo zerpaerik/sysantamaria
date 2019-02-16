@@ -88,7 +88,7 @@
 
 							<tr>
 								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombre}}</td>
+								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
