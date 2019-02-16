@@ -115,7 +115,7 @@ class PunzionesController extends Controller
 
           $lab = new Punziones();
           $lab->id_producto =  $laboratorio['laboratorio'];
-          $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];;
+          $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];
           $lab->precio =$request->precio;
           $lab->origen = $request->origen;
           $lab->paciente = $request->paciente;
@@ -123,6 +123,12 @@ class PunzionesController extends Controller
           $lab->tipo_servicio = $request->tipo_servicio;
           $lab->usuario = Auth::user()->id;
           $lab->save();
+
+
+          $pfrom = Producto::where("id", '=', $laboratorio['laboratorio'])->get()->first();
+	      $pfrom->cantidad = $pfrom->cantidad - $request->monto_abol['laboratorios'][$key]['abono'];
+	      $wasSubs = $pfrom->save();
+
 
         } 
       }
