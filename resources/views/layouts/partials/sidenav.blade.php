@@ -97,6 +97,11 @@
             <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
           </li>
 
+           <li>
+            <!--{{route('productos.trans')}}-->
+            <a href="{{route('punziones.index')}}"><i class="fa fa-refresh"></i> Punziones</a>
+          </li>
+
 
         </ul>      
     </li>

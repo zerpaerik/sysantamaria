@@ -341,6 +341,13 @@ Route::post('entrada', 'Existencias\ProductoController@entrada');
 Route::post('producto/add', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
+
+Route::get('punziones', 'Existencias\PunzionesController@index')->name('punziones.index');
+Route::get('punziones-create', 'Existencias\PunzionesController@createView')->name('punziones.create');
+Route::post('punzion/create', 'Existencias\PunzionesController@create');
+
+
+
 Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
 Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');

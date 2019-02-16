@@ -96,6 +96,11 @@
 			<td>{{ $ventas->monto }}</td>
 		</tr>
 		<tr>
+			<td>Ventas Punziones</td>
+			<td>{{ $punziones->cantidad }}</td>
+			<td>{{ $punziones->monto }}</td>
+		</tr>
+		<tr>
 			<td>TOTAL</td>
 			<td></td>
 			<td></td>

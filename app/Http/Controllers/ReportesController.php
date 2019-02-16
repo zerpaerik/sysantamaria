@@ -500,6 +500,14 @@ class ReportesController extends Controller
             $ventas->monto = 0;
         }
 
+        $punziones = Creditos::where('origen', 'VENTA DE PUNZIONES')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($punziones->cantidad == 0) {
+            $punziones->monto = 0;
+        }
+
         $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
                             ->select(DB::raw('origen, descripcion, monto'))
                             ->get();
@@ -521,7 +529,7 @@ class ReportesController extends Controller
             $tarjeta->monto = 0;
         }
 
-        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto;
+        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto + $punziones->monto;
 
         $totalEgresos = 0;
 
@@ -531,7 +539,7 @@ class ReportesController extends Controller
 
         $fecha= $request->fecha;
 
-        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','ventas','fecha'));
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','ventas','punziones','fecha'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
