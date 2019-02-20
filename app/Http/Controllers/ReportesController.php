@@ -508,9 +508,11 @@ class ReportesController extends Controller
             $punziones->monto = 0;
         }
 
-        $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
+        $egresos = Debitos::whereDate('created_at','=',$request->fecha)
                             ->select(DB::raw('origen, descripcion, monto'))
                             ->get();
+
+      
 
         $efectivo = Creditos::where('tipo_ingreso', 'EF')
                             ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
