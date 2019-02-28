@@ -219,13 +219,21 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Descripciòn</th>
+			<th>Paciente</th>
+			<th>Detalle</th>
 			<th>Monto</th>
 			<th>Tipo de INGRESO</th>
 		</tr>
 		@foreach ($cuentasporcobrar as $con)
 			<tr>
-				<td>{{ $con->descripcion }}</td>
+				<td>{{ $con->nombres }},{{ $con->apellidos }}</td>
+				@if($con->es_servicio == 1)
+				<td>{{ $con->servicio }}</td>
+				@elseif($con->es_laboratorio == 1)
+				<td>{{ $con->laboratorio }}</td>
+				@else
+				<td>{{ $con->paquete }}</td>
+				@endif
 				<td>{{ $con->monto }}</td>
 				<td>{{ $con->tipo_ingreso }}</td>
 			</tr>

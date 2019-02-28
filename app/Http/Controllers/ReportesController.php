@@ -733,7 +733,12 @@ class ReportesController extends Controller
                                     ->first();
 
         $cuentasporcobrar = DB::table('creditos as a')
-        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.monto','a.created_at')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.monto','a.created_at','a.id_atencion','b.id_paciente','b.id_servicio','b.id_laboratorio','b.id_paquete','b.es_servicio','b.es_laboratorio','b.es_paquete','c.nombres','c.apellidos','s.detalle as servicio','l.name as laboratorio','p.detalle as paquete')
+        ->join('atenciones as b','b.id','a.id_atencion')
+        ->join('pacientes as c','c.id','b.id_paciente')
+        ->join('servicios as s','s.id','b.id_servicio')
+        ->join('analises as l','l.id','b.id_laboratorio')
+        ->join('paquetes as p','p.id','b.id_paquete')
         ->where('a.origen','=','CUENTAS POR COBRAR')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->orderby('a.id','desc')

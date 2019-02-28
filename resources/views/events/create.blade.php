@@ -192,8 +192,8 @@
 			<label class="col-sm-3">Tratamiento</label>
 			<div class="col-sm-9">
 				 <select class="form-control" name="tratamiento">
-							<option value="CHF">CHF</option>
-							<option value="CF">CD</option>
+							<option value="CHc">CHC</option>
+							<option value="CF">CF</option>
 						    <option value="Tiempo">Tiempo</option>
 						</select>	
 			</div>

@@ -406,6 +406,8 @@ Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita
 Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
 Route::get('historias-{id}', 'ConsultaController@report');
+Route::get('historiasp-ver-{id}', 'ConsultaController@ver');
+
 
 Route::get('ficha-create', 'Events\EventControllerr@createficha')->name('ficha.create')->middleware('auth');
 

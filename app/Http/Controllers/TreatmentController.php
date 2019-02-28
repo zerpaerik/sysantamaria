@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Treatment;
+use Toastr;
 
 class TreatmentController extends Controller
 {
@@ -75,6 +76,8 @@ class TreatmentController extends Controller
     ]);
 	
 
-	return redirect('events');
+	Toastr::success('Registrado Exitosamente.', '!', ['progressBar' => true]);
+
+    return redirect()->route('consultas.inicio');
 	}
 }

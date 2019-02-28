@@ -9,10 +9,11 @@ use Carbon\Carbon;
 use DB;
 use App\Models\ConsultaMateriales;
 use App\Models\Ciex;
+use App\Models\Personal;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use Toastr;
+use App\Historial;
 use App\Treatment;
-
 
 class ConsultaController extends Controller
 {
@@ -72,6 +73,7 @@ class ConsultaController extends Controller
       $historias = DB::table('consultas as a')
         ->select('p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId','a.id','a.motivo','a.causa','a.tiempo','a.enf','a.fra','a.ope','a.aler','a.pres','a.aux','a.def','a.top','a.ciex','a.ciex2','a.plan','a.ses','a.atendido','a.paciente_id','a.profesional_id','a.created_at','a.exa','a.pa','a.fc','a.spo2','a.peso','a.talla','a.personal')
     ->join('pacientes as p','p.id','=','a.paciente_id')
+    ->groupBy('pacienteId')
     ->get();
 
 
@@ -97,6 +99,39 @@ class ConsultaController extends Controller
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('historia_pdf');
+  }
+
+    public function ver($id){
+
+
+
+      $event = DB::table('events as e')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.evaluacion','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.fechanac','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','ev.nombre as evaluacion')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->join('evaluaciones as ev','ev.id','=','e.evaluacion')
+    ->where('e.paciente','=',$id)
+    ->first();
+    $edad = Carbon::parse($event->fechanac)->age;
+    $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
+    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $treatment = Treatment::where('evento','=',$event->id)->get();
+
+
+    $personal = Personal::where('estatus','=',1)->get();
+    $ciex = Ciex::all();
+
+    return view('consultas.historias.ver',[
+      'data' => $event,
+      'historial' => $historial,
+      'consultas' => $consultas,
+      'personal' => $personal,
+      'treatment' => $treatment,
+      'ciex' => $ciex,
+      'edad' => $edad
+    ]);
+
   }
 
 

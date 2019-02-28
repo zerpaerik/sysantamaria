@@ -161,7 +161,7 @@
     <ul class="dropdown-menu">
 
        <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista Consultas</a>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
       </li>  
    
          <li>
@@ -435,8 +435,8 @@
     </a>
     <ul class="dropdown-menu">
 
-       <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista Consultas</a>
+     <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
       </li>  
    
          <li>
@@ -448,7 +448,7 @@
          
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
-      </li>              
+      </li>                
     </ul>
   </li>
   <li class="dropdown">
@@ -622,8 +622,8 @@
     </a>
     <ul class="dropdown-menu">
 
-       <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista Consultas</a>
+      <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
       </li>  
    
          <li>
@@ -635,7 +635,7 @@
          
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
-      </li>              
+      </li>                
     </ul>
   </li>
   <li class="dropdown">
@@ -726,20 +726,20 @@
       <span class="hidden-xs">Consultas</span>
     </a>
     <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
-      </li>        
-     <li>
+        <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+      </li>  
+   
+         <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
-
-       <li>
+      <li>
         <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
       </li>  
-      
+         
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
-      </li>              
+      </li>                 
     </ul>
   </li>
     <li class="dropdown">

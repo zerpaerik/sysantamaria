@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Consultas</span>
+					<span>Lista de Consultas</span>
 					<a href="{{route('consultas.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
@@ -82,12 +82,12 @@
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						<td>{{$d->username}}-{{$d->userlast}}</td>
 						<td>
+						<a  class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>	
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 
 
-						<a  class="btn btn-success" href="consulta-edit-{{$d->EventId}}">Editar</a>	
 
 						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 

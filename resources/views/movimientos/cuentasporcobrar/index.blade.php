@@ -29,6 +29,11 @@
 				<div class="no-move"></div>
 				
 			</div>
+
+			<div class="row">
+				<strong>Monto por Cobrar:</strong>{{$aten->monto}}
+				
+			</div>
 			
 
 			<div class="box-content no-padding">

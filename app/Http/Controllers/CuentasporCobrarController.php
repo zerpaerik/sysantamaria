@@ -30,9 +30,15 @@ class CuentasporCobrarController extends Controller
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
     ->orderby('a.id','desc')
-    ->paginate(2000000); 
+    ->get(); 
+
+    $aten = Atenciones::whereNotIn('origen_usuario',[99999999])
+                      ->where('pendiente','>',0)
+                      ->whereNotIn('monto',[0,0.00])
+                      ->select(DB::raw('SUM(pendiente) as monto'))
+                      ->first();
         
-        return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar]); 
+        return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar,'aten' => $aten]); 
   }
 
 

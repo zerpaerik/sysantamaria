@@ -33,9 +33,11 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->whereNotIn('a.es_paquete',[1])
         ->where('a.resultado','=', NULL)
-
         ->orderby('a.id','desc')
-        ->paginate(100000000);
+        ->get();
+
+
+      
         $informe = Informe::all();
         $personal = Personal::all();
 
