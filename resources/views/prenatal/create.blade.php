@@ -35,7 +35,7 @@
 						<label for="">Seleccione un profesional</label>
 						<select name="profesional" id="el9">
 						@foreach($profesional as $p)
-							<option value="{{$p->id}}">{{$p->name}} {{$p->apellidos}}</option>
+							<option value="{{$p->id}}">{{$p->lastname}} {{$p->name}}</option>
 						@endforeach
 						</select>
 						<br><br>						
@@ -101,6 +101,12 @@
 							<label class="col-sm-1 control-label">FAVORABLE</label>
 						<div class="col-sm-3">
 							<input type="checkbox" class="form-control" name="fav" placeholder="cesarea" data-toggle="tooltip" data-placement="bottom" title="cesaria">
+						</div>
+
+
+							<label class="col-sm-2 control-label">OBSERVACIÒN</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="observacion" placeholder="Observacion" data-toggle="tooltip" data-placement="bottom" title="cesaria">
 						</div>
 						 <br>
 						

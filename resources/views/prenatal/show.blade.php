@@ -115,6 +115,11 @@
 	</table>
 	<br>
 </div>
+<div style="font-weight: bold; font-size: 14px">
+		OBSERVACIÒN:{{$pre->observacion}}
+</div>
+
+
 @endforeach
 
 @endsection
