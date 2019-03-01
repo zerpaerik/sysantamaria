@@ -420,7 +420,7 @@ class AtencionesController extends Controller
 
     $atencion = Atenciones::findOrFail($id);
     
-    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users'));
+    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users','paquetes'));
   }
 
   public function edit(Request $request, $id)
@@ -447,7 +447,7 @@ class AtencionesController extends Controller
 
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
-    } else {
+    } else if(isset($request->id_laboratorio)) {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
@@ -458,7 +458,22 @@ class AtencionesController extends Controller
 
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+    } else {
+
+      $atencion->origen = $request->origen;
+      $atencion->origen_usuario = $searchUsuarioID->id;
+      $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
+      $atencion->tipopago = $request->tipopago;
+      $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
+      $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
+      $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];
+
+      $creditos->monto= $request->monto_abop['paquetes'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
+
     }
+
+
 
     if ($atencion->save() && $creditos->save()) {
       return redirect()->route('atenciones.index');
