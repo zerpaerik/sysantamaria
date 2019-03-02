@@ -709,9 +709,12 @@ class ReportesController extends Controller
         ->select('a.id','a.profesional','a.paciente','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
-        ->whereDate('a.date','=',$request->fecha)
+        ->whereDate('a.created_at','=',$request->fecha)
         ->orderby('a.id','desc')
         ->get();
+
+        dd($consultas);
+        die();
 
        
 
