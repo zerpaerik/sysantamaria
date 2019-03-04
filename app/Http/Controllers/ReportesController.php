@@ -713,8 +713,7 @@ class ReportesController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-        dd($consultas);
-        die();
+  
 
        
 
