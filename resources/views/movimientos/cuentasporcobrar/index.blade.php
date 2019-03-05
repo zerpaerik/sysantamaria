@@ -31,12 +31,16 @@
 			</div>
 
 			<div class="row">
+				<div class="col-sm-4">
 				<strong>Monto por Cobrar:</strong>{{$aten->monto}}
-				
-			</div>
-			
+			   </div>
+			   <div class="col-sm-4">
+				<strong>Total Items:</strong>{{$total->total}}
+			   </div>
+			 </div>
 
 			<div class="box-content no-padding">
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
