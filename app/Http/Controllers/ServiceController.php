@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Profesionales\Especialidad;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
+use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Creditos;
 use App\Models\Servicios;
 use App\Models\Personal;
 use App\Models\Events;
 use App\Models\Atenciones;
 use App\Models\Pacientes;
+use App\Models\Evaluaciones;
 use Calendar;
 use Carbon\Carbon;
 use DB;
@@ -71,14 +73,39 @@ class ServiceController extends Controller
     return $events;    
   }
 
+   public function servicios(){
+     
+        $servicios= Servicios::where('estatus','=',1)->get(); 
+
+    return view('service.servicios', compact('servicios'));
+  }
+
+    public function consultas(){
+     
+          $consultas= Evaluaciones::all(); 
+
+
+    return view('service.consulta', compact('consultas'));
+  }
+
+   public function punziones(){
+     
+        $punziones = Producto::where('categoria','=',6)->get();
+
+    return view('service.punziones', compact('punziones'));
+  }
+
+
   public function show($id)
   {
     $services = DB::table('services as s')
-    ->select('s.id','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
+    ->select('s.id','s.especialista_id','s.title','s.tipo','s.punsion','s.consulta','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','pr.nombre as punsion','eva.nombre as evaluacion')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
+    ->join('productos as pr','pr.id','s.punsion')
+    ->join('evaluaciones as eva','eva.id','s.consulta')
     ->where('s.id','=',$id)
     ->first();
     return view('service.show',[
@@ -176,39 +203,57 @@ class ServiceController extends Controller
   }
 
    public function create(Request $request){
-    $validator = \Validator::make($request->all(), [
-      "espcialidad" => "required", 
-      "especialista" => "required", 
-      "servicios" => "required", 
-      "date" => "required", 
-      "time" => "required",
-    ]);
-	
 
-	
-    if($validator->fails()){
-      $this->createView([
-        "fail" => true,
-        "errors" => $validator->errors()
-      ]);
-    }
-   $exists = Service::where('date',  Carbon::createFromFormat('d/m/Y', $request->date))
-    ->where("hora_id", "=", $request->time)
-    ->first();
 
-    $especialista = Personal::find($request->especialista);
-    //$servicio = Servicios::find($request->servicio);
+   $especialista = Personal::find($request->especialista);
 
-    if(!$exists){
+    
+  
+
+      if($request->tipo == 1){ // servicios
+  
+
       $evt = Service::create([
         "especialista_id" => $request->especialista,
         "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "hora_id" => $request->time,
-        "servicio_id" => $request->servicio,
+        "tipo" => $request->tipo,
+        "servicio_id" => $request->servicio_id,
+        "consulta" =>10,
+        "punsion" =>1,
         "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
       ]);
-	  
+
+	  } else if($request->tipo == 2){//consultas
+        $evt = Service::create([
+        "especialista_id" => $request->especialista,
+        "paciente_id" => $request->paciente,
+        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+        "hora_id" => $request->time,
+        "tipo" => $request->tipo,
+        "servicio_id" => 1,
+        "consulta" =>$request->consulta,
+        "punsion" =>1,
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
+      ]);
+
+    } else if($request->tipo == 3){//punziones
+        $evt = Service::create([
+        "especialista_id" => $request->especialista,
+        "paciente_id" => $request->paciente,
+        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+        "hora_id" => $request->time,
+        "tipo" => $request->tipo,
+        "servicio_id" => 1,
+        "consulta" =>10,
+        "punsion" =>$request->punzion,
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
+      ]);
+
+    } else {
+
+    }
 
     $calendar = Calendar::addEvents($this->getEvents())
     ->setOptions([
@@ -218,7 +263,7 @@ class ServiceController extends Controller
 	 Toastr::success('Registrado Exitosamente.', 'Programaciòn!', ['progressBar' => true]);
     return redirect()->action('ServiceController@index');
 
-  }
+  
 
 }
  

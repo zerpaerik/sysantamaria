@@ -71,6 +71,10 @@
             <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
           </li>
 
+          <li>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
+          </li>
+
 
         </ul>      
     </li>
@@ -351,6 +355,11 @@
 
           <li>
             <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
+          </li>
+
+          
+          <li>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
           </li>
 
 

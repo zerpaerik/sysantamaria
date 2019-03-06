@@ -37,11 +37,32 @@ class RequerimientosController extends Controller
                     ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.codigo')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
+                    ->where('a.estatus','=','Solicitado')
                     ->where('a.id_sede_solicita', '=', 2)
                     ->orderby('a.created_at','desc')
                     ->get();
 
         return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]);   	
+    }
+
+      public function index3(Request $request){
+
+
+
+       $requerimientos3 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.estatus','=','Procesado')
+                    ->where('a.id_sede_solicita', '=', 2)
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
+          
+
+        return view('existencias.requerimientos.index3', ["requerimientos3" => $requerimientos3]);    
     }
 
      public function search(Request $request)
@@ -161,6 +182,84 @@ class RequerimientosController extends Controller
 
       return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
     }
+
+     public function reversar(Request $request,$id){
+
+
+        $searchRequerimiento = DB::table('requerimientos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();                    
+                    //->get();
+
+                  
+                    $producto = $searchRequerimiento->id_producto;
+                    $solicitada = $searchRequerimiento->cantidad;
+                    $entregada = $searchRequerimiento->cantidadd;
+                    $sede_solicita = 2;
+
+
+            
+
+         
+        $searchProducto = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $producto)
+                    ->first();  
+
+                    $cantidadactual = $searchProducto->cantidad;
+                    $codigo = $searchProducto->codigo;
+                    $nombre = $searchProducto->nombre;
+                    $categoria = $searchProducto->categoria;
+                    $medida = $searchProducto->medida;
+                    $preciounidad = $searchProducto->preciounidad;
+                    $precioventa = $searchProducto->precioventa;
+                    $id= $searchProducto->id; 
+
+         $searchProductoSedeSolicitad =  DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('nombre','=', $nombre)
+                    ->where('almacen','=',2)
+                    ->first();
+
+
+                    
+
+                    if($searchProductoSedeSolicitad == NULL){
+                      $cantidadactualsedesolicita=0;
+                    }else{
+                    $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
+                    } 
+
+
+                  
+           
+      $p = Requerimientos::find($request->id);
+      $p->estatus = 'Solicitado';
+      $p->cantidadd=NULL;
+      $res = $p->update();
+
+      $p = Producto::find($producto);
+      $p->cantidad= $cantidadactual + $entregada;
+      $res = $p->save();
+
+
+     
+      $p = Producto::where("id", "=", $id)->get()->first();
+
+
+      $p->cantidad = $cantidadactualsedesolicita - $entregada;
+      $p->update();
+  
+
+        Toastr::success('Reversado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
+
+      return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
+    }
+
 
        
 }

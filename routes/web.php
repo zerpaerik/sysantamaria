@@ -356,10 +356,12 @@ Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.inde
 Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
 Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
+Route::get('requerimientos2', 'Existencias\RequerimientosController@index3')->name('requerimientos.index3')->middleware('auth');
 Route::get('requerimientos-search', 'Existencias\RequerimientosController@search')->name('requerimientos.search')->middleware('auth');
 Route::get('requerimientos-create', 'Existencias\RequerimientosController@createView')->name('requerimientos.create')->middleware('auth');
 Route::post('requerimientos/create', 'Existencias\RequerimientosController@create')->middleware('auth');
 Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
+Route::get('requerimientos-reversar-{id}', 'Existencias\RequerimientosController@reversar');
 Route::get('procesar/{id}', 'Existencias\RequerimientosController@procesar')->middleware('auth');
 //Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
 Route::get('requerimientos-edit', 'Existencias\RequerimientosController@edit');
@@ -422,6 +424,12 @@ Route::post('services/edit','ServiceController@edit')->name('service.editar')->m
 Route::get('services-inicio','ServiceController@inicio')->name('service.inicio')->middleware('auth');
 Route::post('services/create', 'ServiceController@create')->middleware('auth');
 Route::get('service-{id}','ServiceController@show')->middleware('auth');
+
+Route::get('service/consultas','ServiceController@consultas');
+Route::get('service/servicios','ServiceController@servicios');
+Route::get('service/punziones','ServiceController@punziones');
+
+
 //Route::get('service-available-time/{e}/{d}/{m}/{y}', 'ServiceController@availableTime');
 /**
  * Reportes

@@ -84,7 +84,7 @@
 						<td>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 
-						<a target="_blank" class="btn btn-primary" href="service-{{$d->SerId}}">Ver</a>
+						<a class="btn btn-primary" href="service-{{$d->SerId}}">Ver</a>
 
 						<a  class="btn btn-success" href="services-edit-{{$d->SerId}}">Editar</a>	
 

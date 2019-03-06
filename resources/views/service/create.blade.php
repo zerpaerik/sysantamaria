@@ -25,6 +25,7 @@
 				<form class="form-horizontal" role="form" method="post" action="services/create">
 					{{ csrf_field() }}
 					<div class="form-group">
+						<div class="row">
 
 					    <label class="col-sm-1 control-label">Paciente</label>
 						<div class="col-sm-3">
@@ -36,17 +37,21 @@
 								@endforeach
 							</select>
 						</div>
-						
-						<label class="col-sm-1 control-label">Servicio</label>
+
+						<label class="col-sm-1 control-label">Tipo</label>
 						<div class="col-sm-3">
-							<select id="el1" name="servicio">
-								@foreach($servicios as $serv)
-									<option value="{{$serv->id}}">
-										{{$serv->detalle}}
-									</option>
-								@endforeach
+							<select id="el9" name="tipo">
+									<option value="0">Seleccione</option>
+									<option value="1">Servicios</option>
+									<option value="2">Consulta</option>
+									<option value="3">Punziòn</option>
 							</select>
 						</div>
+						
+						<div id="origen1">
+							
+						</div>
+					</div>
 						
 						<label class="col-sm-1 control-label">Especialista</label>
 						<div class="col-sm-3">
@@ -127,5 +132,33 @@ function DemoTimePicker(){
 	minDate: 0});
 }
 </script>
+
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el9').on('change',function(){
+          var link;
+          if ($(this).val() ==  1) {
+            link = '/service/servicios/';
+          }else if($(this).val() ==  2){
+            link = '/service/consultas/';
+          }else {
+            link = '/service/punziones/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#origen1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
 @endsection
 @endsection

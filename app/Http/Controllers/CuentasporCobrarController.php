@@ -34,14 +34,18 @@ class CuentasporCobrarController extends Controller
 
     $aten = Atenciones::whereNotIn('origen_usuario',[99999999])
                       ->where('pendiente','>',0)
-                      ->whereNotIn('monto',[0,0.00])
+                      ->whereNotIn('monto',[0,0.00,99999])
                       ->select(DB::raw('SUM(pendiente) as monto'))
                       ->first();
 
       $totalorigen = Atenciones::where('pendiente','>',0)
-                                     ->whereNotIn('monto',[0,0.00])
+                                     //->whereNotIn('origen_usuario',[99999999])
+                                     ->whereNotIn('monto',[0,0.00,99999])
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
+
+        dd($totalorigen);
+        die();
         
         return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar,'aten' => $aten,'total' => $totalorigen]); 
   }
