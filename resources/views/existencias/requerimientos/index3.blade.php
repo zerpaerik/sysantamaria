@@ -33,7 +33,6 @@
 					<thead>
 						<tr>
 						   <th>ID:</th>
-							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
 							<th>Cantidad Solicitada</th>
@@ -49,7 +48,6 @@
 
 						<tr>
 								<td>{{$req->id}}</td>
-								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
 							    <td>{{$req->cantidad}}</td>
