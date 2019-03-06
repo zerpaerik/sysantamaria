@@ -44,8 +44,6 @@ class CuentasporCobrarController extends Controller
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
 
-        dd($totalorigen);
-        die();
         
         return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar,'aten' => $aten,'total' => $totalorigen]); 
   }
