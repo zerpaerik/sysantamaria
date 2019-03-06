@@ -7,6 +7,7 @@
 		<div class="form-group">
 			<input type="hidden" name="consulta_id" value="{{$consulta}}">
 			<input type="hidden" name="evento_id" value="{{$evento}}">
+			<input type="hidden" name="paciente" value="{{$paciente}}">
             <label class="col-sm-6"><strong>Ficha de Evaluacion Terapeutica</strong></label>
 		
 			

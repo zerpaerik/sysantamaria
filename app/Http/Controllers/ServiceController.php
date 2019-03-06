@@ -15,6 +15,7 @@ use App\Models\Events;
 use App\Models\Atenciones;
 use App\Models\Pacientes;
 use App\Models\Evaluaciones;
+use App\Models\Punsion;
 use Calendar;
 use Carbon\Carbon;
 use DB;
@@ -90,7 +91,7 @@ class ServiceController extends Controller
 
    public function punziones(){
      
-        $punziones = Producto::where('categoria','=',6)->get();
+        $punziones = Punsion::all();
 
     return view('service.punziones', compact('punziones'));
   }
@@ -104,7 +105,7 @@ class ServiceController extends Controller
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
-    ->join('productos as pr','pr.id','s.punsion')
+    ->join('punsions as pr','pr.id','s.punsion')
     ->join('evaluaciones as eva','eva.id','s.consulta')
     ->where('s.id','=',$id)
     ->first();
@@ -221,7 +222,7 @@ class ServiceController extends Controller
         "tipo" => $request->tipo,
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
-        "punsion" =>1,
+        "punsion" =>4,
         "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
       ]);
 
@@ -234,7 +235,7 @@ class ServiceController extends Controller
         "tipo" => $request->tipo,
         "servicio_id" => 1,
         "consulta" =>$request->consulta,
-        "punsion" =>1,
+        "punsion" =>4,
         "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
       ]);
 

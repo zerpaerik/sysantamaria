@@ -173,7 +173,8 @@ class ConsultaController extends Controller
 		return view('events.create',[
       'consulta' => $consulta->id,
       'evento' => $request->evento_id,
-      'ciex' => $ciex
+      'ciex' => $ciex,
+      'paciente' => $request->paciente_id
     ]);
 
     }

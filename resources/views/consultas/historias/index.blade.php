@@ -32,7 +32,7 @@
 							<th>Paciente</th>
 							<th>DNI</th>
 							<th>Registro</th>
-							<th>Historia</th>
+							<th>Reportes</th>
 
 
 						</tr>
@@ -45,7 +45,8 @@
 								<td>{{$h->created_at}}</td>
 								<td>
 								<a  class="btn btn-danger" href="historiasp-ver-{{$h->pacienteId}}">Ver</a>
-								<a  target="_blank" class="btn btn-success" href="historias-{{$h->id}}">Imprimir</a>	
+								<a  target="_blank" class="btn btn-success" href="historias-{{$h->id}}">Historia</a>
+								<a  target="_blank" class="btn btn-primary" href="ficha-{{$h->pacienteId}}">Ficha Terapeutica</a>	
 								</td>
 							</tr>
 						@endforeach

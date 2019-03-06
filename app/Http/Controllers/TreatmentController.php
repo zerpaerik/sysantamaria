@@ -4,10 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Treatment;
+use App\Models\Pacientes;
+
 use Toastr;
 
 class TreatmentController extends Controller
 {
+
+      public function report($id){
+
+
+      $ficha = Treatment::where('paciente','=',$id)->get();
+
+      $paciente = Pacientes::where('id','=',$id)->first();
+
+     
+
+       $view = \View::make('consultas.historias.ficha')->with('ficha', $ficha)->with('paciente', $paciente);
+       $pdf = \App::make('dompdf.wrapper');
+       $pdf->loadHTML($view);
+       return $pdf->stream('ficha_pdf');
+
+  }
+
+
+
+
 	public function create(Request $request){
 	Treatment::create([
       "ficha_eval" => $request->ficha_eval, 
@@ -72,7 +94,8 @@ class TreatmentController extends Controller
       "reduccion" => $request->reduccion,
       "fortale" => $request->fortale,
       "tratamiento" => $request->tratamiento,
-      "evento" => $request->evento_id
+      "evento" => $request->evento_id,
+      "paciente" => $request->paciente 
     ]);
 	
 
@@ -80,4 +103,7 @@ class TreatmentController extends Controller
 
     return redirect()->route('consultas.inicio');
 	}
+
+
+
 }
