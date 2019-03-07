@@ -16,8 +16,8 @@
 
 			<div class="row">
 				<div class="col-md-1">
-			<label class="col-sm-2 control-label">EVA</label>
-						<div class="col-sm-3">
+			<label class="col-sm-4 control-label">EVA</label>
+						<div class="col-sm-6">
 							<select class="form-control" name="eva_eval">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -38,8 +38,8 @@
 			<label class="col-sm-4 control-label">Frecuencia</label>
 						<div class="col-sm-8">
 							<select class="form-control" name="frecuencia_eval">
-							<option value="Continuo">Continuo</option>
-							<option value="Intermitente">Intermitente</option>
+							<option value="1MHZ">1MHZ</option>
+							<option value="3MHZ">3MHZ</option>
 						
 						</select>
 						</div>	
@@ -74,6 +74,49 @@
 
 					<div class="col-md-1">
 					<input type="text" name="inicio_tiempo_eval" placeholder="Tiempo" style="max-width: 100px;">
+					</div>
+
+			</div> 
+
+				<div class="row">
+				<div class="col-md-3">
+			<label class="col-sm-4 control-label">Intensidad</label>
+						<div class="col-sm-6">
+							<input type="text" name="intensidad" placeholder="Intensidad" style="max-width: 100px;">
+						</div>	
+					</div>
+
+						<div class="col-md-3">
+			<label class="col-sm-4 control-label"></label>
+						<div class="col-sm-6">Tiempo
+							<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 100px;">
+						</div>	
+					</div>
+
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Ciclo</label>
+						<div class="col-sm-8">
+							<select  name="ciclo" multiple="" id="el3">
+							<option value="Continuo">Continuo</option>
+							<option value="50%">50%</option>
+							<option value="20%">20%</option>
+						    <option value="10%">10%</option>
+		
+						</select>
+						</div>	
+					</div>
+
+					<div class="col-md-3">
+			<label class="col-sm-4 control-label">Magneto</label>
+						<div class="col-sm-8">
+							<select  name="magneto" multiple="" id="el4">
+							<option value="Vascularizacion">Vascularizacion</option>
+							<option value="Inflamaciòn">Inflamaciòn</option>
+						    <option value="Dolor">Dolor</option>
+						    <option value="Regeneraciòn">Regeneraciòn</option>
+						    <option value="ConsolidaHueso">ConsolidaHueso</option>
+						</select>
+						</div>	
 					</div>
 
 			</div> 
@@ -260,12 +303,11 @@
 
 			<label class="col-sm-4">M.Terapeutico</label>
 			<div class="col-sm-8">
-				 <select class="form-control" name="metodo">
+				 <select  name="metodo[]" multiple="" id="el6">
 							<option value="Klapp">Klapp</option>
 							<option value="William">William</option>
 						    <option value="Wilson">Wilson</option>
 						     <option value="FNP">FNP</option>
-
 						     <option value="Codman">Codman</option>
 						     <option value="Burguer">Burguer</option>
 						     <option value="KaltenBron">KaltenBron</option>
@@ -284,7 +326,7 @@
 
 			<label class="col-sm-3">Fortalecimiento</label>
 			<div class="col-sm-9">
-				 <select class="form-control" name="fortale">
+				 <select name="fortale[]" multiple="" id="el2">
 							<option value="Isomentrico">Isomentrico</option>
 							<option value="Isotonico con carga">Isotonico con carga</option>
 						    <option value="Sin carga">Sin carga</option>

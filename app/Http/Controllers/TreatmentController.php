@@ -90,12 +90,16 @@ class TreatmentController extends Controller
       "coordinacion_marcha_trat" => $request->coordinacion_marcha_trat,
       "disocion_marcha_trat" => $request->disocion_marcha_trat,
       "consulta_id" => $request->consulta_id,
-      "metodo" => $request->metodo,
+      "metodo" => json_encode($request->metodo),
       "reduccion" => $request->reduccion,
-      "fortale" => $request->fortale,
+      "fortale" => json_encode($request->fortale),
       "tratamiento" => $request->tratamiento,
       "evento" => $request->evento_id,
-      "paciente" => $request->paciente 
+      "paciente" => $request->paciente,
+      "intensidad" => $request->intensidad,
+      "tiempo" => $request->tiempo,
+      "ciclo" => json_encode($request->ciclo),
+      "magneto" => json_encode($request->magneto)
     ]);
 	
 
