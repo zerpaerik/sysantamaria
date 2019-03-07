@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<h3>Servicio PROGRAMADO: {{$data->title}}</h3>
+	<h3>Servicio PROGRAMADO:</h3>
     <p>Paciente: {{$data->nompac}} {{$data->apepac}} </p>
 	<p>Especialista: {{$data->nombrePro}} {{$data->apellidoPro}} </p>
 	@if($data->tipo==1)
