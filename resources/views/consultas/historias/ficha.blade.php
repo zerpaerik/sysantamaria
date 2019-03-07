@@ -36,8 +36,8 @@
  <p style="text-align: right; margin-top: -30px; margin-right: 100px;"><strong>TIEMPO:</strong>{{$f->tiempo_trat}}</p>
 
  <p style="text-align: left;"><strong>ULTRASONIDO:</strong></p> 
- <p style="text-align: right; margin-top: -30px; margin-right: 400px;"><strong>TIEMPO:</strong></p>
- <p style="text-align: right; margin-top: -30px; margin-right: 100px;"><strong>MAGNETO:</strong></p>
+ <p style="text-align: right; margin-top: -30px; margin-right: 400px;"><strong>TIEMPO:</strong>{{$f->tiempo}}</p>
+ <p style="text-align: right; margin-top: -30px; margin-right: 100px;"><strong>MAGNETO:</strong>{{$f->magneto}}</p>
 
  <p style="text-align: left;"><strong>LASER:</strong></p> 
  <p style="text-align: right; margin-top: -30px; margin-right: 400px;"><strong>CORRIENTE:</strong></p>

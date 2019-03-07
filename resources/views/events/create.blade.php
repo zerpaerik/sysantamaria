@@ -18,7 +18,7 @@
 				<div class="col-md-1">
 			<label class="col-sm-4 control-label">EVA</label>
 						<div class="col-sm-6">
-							<select class="form-control" name="eva_eval">
+							<select name="eva_eval">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -125,7 +125,7 @@
 				<div class="col-md-2">
 			<label class="col-sm-3 control-label">Dolor</label>
 						<div class="col-sm-3">
-							<select class="form-control" name="dolor_eval">
+							<select name="dolor_eval">
 							<option value="Quemante">Quemante</option>
 							<option value="Punzante">Punzante</option>
 							<option value="Electrico">Electrico</option>
