@@ -231,7 +231,7 @@ class EventController extends Controller
 
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
