@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('layouts.app');
 })->middleware('auth');
 
+Route::get('seleccion-movimiento', 'Config\SidenavRouterController@getView')->name('generics.router');
+
+Route::get('get-opts/{opt}', 'Config\SidenavRouterController@getOpts');
+
 Route::get('roles', 'Users\RoleController@index')->name('role.index')->middleware('auth');
 Route::get('role-create', 'Users\RoleController@createView')->name('role.create')->middleware('auth');
 Route::post('role/create', 'Users\RoleController@create')->middleware('auth');

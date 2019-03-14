@@ -39,81 +39,181 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
+    <span class="hidden-xs">Admisión</span>
+  </a>
+  <ul class="dropdown-menu">
+   <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Pacientes/Clientes</a>
+        <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('pacientes.create')}}"><i class="fa fa-list-alt"></i> Registro de pacientes</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('consultas.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('proximacita.index')}}"><i class="fa fa-list-alt"></i> Control de citas/Evaluaciones</a>
+          </li>
+
+
+        </ul>      
+    </li>
+    <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Movimientos de caja</a>
+        <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Registro de ingresos/Gastos</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
+          </li>
+
+          <li>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Consolidado de ingresos/<br>Gastos ambos turnos</a>
+          </li>
+
+
+        </ul>      
+    </li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-inbox"></i>
+    <span class="hidden-xs">Asistencial</span>
+  </a>
+  <ul class="dropdown-menu">
+     <li>
+      <a href="{{route('historias.index')}}"><i class="fa fa-circle-o"></i> Historia Clínica</a>
+    </li> 
+    <li>
+      <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
+    </li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-refresh"></i>
     <span class="hidden-xs">Existencias</span>
   </a>
   <ul class="dropdown-menu">
    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Productos</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Almacen Central</a>
         <ul class="dropdown-menu">
 
           <li>
-            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Almacen Central</a>
+            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Ingreso de Productos</a>
           </li>
 
 
           <li>
-            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
-          </li>
-
-
-        </ul>      
-    </li>
-    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
-        <ul class="dropdown-menu">
-
-          <li>
-            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
-          </li>
-
-
-          <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
+            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Transferencias de Productos Requeridos</a>
           </li>
 
           <li>
-            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
+            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Alerta de Stock</a>
           </li>
 
 
-        </ul>      
-    </li>
-
-    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
-          </li>
-        </ul>      
-    </li>
-
-
-    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
-          </li>
-
-          <li>
-            <!--{{route('productos.trans')}}-->
-            <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
-          </li>
-
-           <li>
-            <!--{{route('productos.trans')}}-->
-            <a href="{{route('punziones.index')}}"><i class="fa fa-refresh"></i> Punziones</a>
-          </li>
-
-
-        </ul>      
-    </li>
-	
-	<li>
-        <a href="{{route('ventas.index')}}"><i class="fa fa-plus-circle"></i> Listado de Ventas</a>
+        </ul>
       </li>
+    </ul>
+  </li>      
+</li>
 
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-refresh"></i>
+    <span class="hidden-xs">Comisiones</span>
+  </a>
+  <ul class="dropdown-menu">
+   <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Liquidación de Médicos</a>
+        <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Especialistas</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Médico General</a>
+          </li>
+
+
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Liquidación Personal</a>
+          <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Tecnólogo</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Técnico Administrativo</a>
+          </li>
+
+          </ul>      
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Liquidación Otros</a>
+          <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Trainer</a>
+          </li>
+
+
+          <li>
+            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Instructor</a>
+          </li>
+
+          </ul>      
+      </li>
+    </ul>
+  </li>      
+</li>
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-inbox"></i>
+    <span class="hidden-xs">Gestión</span>
+  </a>
+  <ul class="dropdown-menu">
+     <li>
+      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Ingresos y Gastos</a>
+    </li> 
+    <li>
+      <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
+    </li>
+    <li>
+      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Atenciones</a>
+    </li>
+    <li>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
+    </li>
+    <li>
+      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
+    </li>
+    <li>
+      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
+    </li>
+    <li>
+      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+    </li>    
   </ul>
 </li>
 
