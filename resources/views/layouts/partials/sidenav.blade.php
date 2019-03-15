@@ -73,14 +73,20 @@
 
 
           <li>
-            <a href="{{route('gastos.index')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
+            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
           </li>
 
           <li>
-            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Consolidado de ingresos/<br>Gastos ambos turnos</a>
+            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Consolidado de ingresos/<br>Gastos ambos turnos</a></a>
+            <ul class="dropdown-menu"> 
+              <li>
+                <a href="{{route('solicitar.consolidado')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Detallado</a>
+              </li>
+              <li>
+                <a href="{{route('solicitar.diario')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Consolidado</a>
+              </li>
+            </ul>
           </li>
-
-
         </ul>      
     </li>
   </ul>
@@ -112,16 +118,16 @@
         <ul class="dropdown-menu">
 
           <li>
-            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Ingreso de Productos</a>
+            <a href="{{route('productos.in')}}"><i class="fa fa-list-alt"></i> Ingreso de Productos</a>
           </li>
 
 
           <li>
-            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Transferencias de Productos Requeridos</a>
+            <a href="{{route('productos.trans')}}"><i class="fa fa-list-alt"></i> Transferencias de Productos Requeridos</a>
           </li>
 
           <li>
-            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Alerta de Stock</a>
+            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Alerta de Stock</a>
           </li>
 
 

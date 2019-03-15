@@ -172,7 +172,7 @@ Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.searc
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
 Route::get('atenciones-search', 'AtencionesController@search')->name('atenciones.search')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');
-Route::post('atenciones/create', 'AtencionesController@create')->middleware('auth');
+Route::post('guardar-atencion', 'AtencionesController@create')->middleware('auth');
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
@@ -439,8 +439,8 @@ Route::get('service/punziones','ServiceController@punziones');
 /**
  * Reportes
  */
-Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
-Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado');
+Route::get('reporte-solicitar_diario', 'ReportesController@formDiario')->name('solicitar.consolidado');
+Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado')->name('solicitar.diario');
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');

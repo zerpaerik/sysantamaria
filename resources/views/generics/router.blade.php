@@ -34,6 +34,8 @@
 									<option value="3">Ventas</option>
 									<option value="4">Punziones</option>
 									<option value="5">Gastos</option>
+									<option value="6">Otros Ingresos</option>
+
 								</select>
 							</div>
 						</div>
@@ -78,6 +80,8 @@ function Select2Test(){
                     url = 'punziones-create';
                 }else if($(this).val() == 5){
                     url = 'gastos-create';
+                }else if($(this).val() == 6){
+                    url = 'ingresos-create';
                 }else {
                     url = window.location.href;
                 }
