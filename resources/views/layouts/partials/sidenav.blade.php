@@ -73,7 +73,7 @@
 
 
           <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
+            <a href="{{route('gastos.index')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
           </li>
 
           <li>

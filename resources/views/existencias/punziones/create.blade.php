@@ -149,7 +149,7 @@
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar" onclick="form.submit()" >
 
-						<a href="{{route('punziones.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
+						<a href="{{route('generics.router')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>			
 				</form>	
 			</div>

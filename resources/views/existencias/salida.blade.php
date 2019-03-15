@@ -65,12 +65,16 @@
 							<option value="EF">Efectivo</option>
 							<option value="TJ">Tarjeta</option>
 						</select>
+						<br>
+						<br>
 						</div>	
 
-				
+
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" class="col-sm-2 btn btn-primary"  style="float:right;">
-						</div>				
+							<input type="submit" class="col-sm-2 btn btn-primary">
+							<a href="{{route('generics.router')}}" style="margin-left:15px;" class="col-sm-2 btn btn-danger">Volver</a>
+						</div>
+
 
 					</form>	
 					</div>			
