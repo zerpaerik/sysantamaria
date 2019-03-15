@@ -82,7 +82,8 @@
               <th>Fecha</th>
               <th>Cierre</th>
               <th>Registrado Por:</th>
-              <th>Recibo:</th>
+              <th>Recibos:</th>
+              <th>Acciòn</th>
            
             </tr>
           </thead>
@@ -99,14 +100,21 @@
                 <td>{{$c->name}},{{$c->lastname}}</td>
                 <td>
                   @if($c->cierre_matutino > 0)
-                  <a target="_blank" href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM</a>
+                  <a target="_blank" href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Consolidado</a>
+                  <a target="_blank" href="{{asset('recibo_caja_verd')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Detallado</a>
                   @else
-                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT</a>
+                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Consolidado</a>
+
+                   <a target="_blank"  href="{{asset('recibo_caja_ver2d')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Detallado</a>
+
                   @endif
+                </td>
+                <td>
                   @if(\Auth::user()->role_id <> 6)               
                   <a class="btn btn-danger" href="caja-delete-{{$c->id}}"  onclick="return confirm('¿Desea Reversar este Cierre de Caja?')">Reversar</a> 
                   @endif
                 </td>
+                
 
             
 

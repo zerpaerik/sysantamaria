@@ -135,6 +135,10 @@ class EventController extends Controller
       ->get()->first();
     if(!$exists){
 
+      $precioeva = DB::table('evaluaciones')
+      ->select('*')
+      ->where('id','=',$request->evaluaciones)
+      ->first();
 
      $evt = new Event;
         $evt->paciente=$request->paciente;
@@ -142,7 +146,7 @@ class EventController extends Controller
         $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
         $evt->time=$request->time;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
-        $evt->monto=$request->monto;
+        $evt->monto=$precioeva->precio;
         $evt->sede=$request->session()->get('sede');
         $evt->comollego=$request->comollego;
         $evt->evaluacion=$request->evaluaciones;
@@ -150,10 +154,7 @@ class EventController extends Controller
         $evt->save();
 
 
-      $precioeva = DB::table('evaluaciones')
-      ->select('*')
-      ->where('id','=',$request->evaluaciones)
-      ->first();
+
      
 
       $credito = Creditos::create([

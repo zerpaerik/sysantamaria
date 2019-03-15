@@ -131,7 +131,10 @@ Route::get('caja-delete-{id}','CajaController@delete');
 
 
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
+Route::get('recibo_caja_verd/{id}','ReportesController@recibo_caja_verd');
 Route::get('recibo_caja_ver2/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2');
+Route::get('recibo_caja_ver2d/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2d');
+
 
 Route::get('events/si','Events\EventController@si');
 Route::get('events/no','Events\EventController@no');

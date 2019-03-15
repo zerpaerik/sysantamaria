@@ -64,20 +64,24 @@
         </ul>      
     </li>
     <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Movimientos de caja</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Movimientos de Caja</a>
         <ul class="dropdown-menu">
 
           <li>
-            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Registro de ingresos/Gastos</a>
+            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Registro Ingresos/Gastos</a>
           </li>
 
 
           <li>
-            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle de ingresos/Gastos por</a>
+            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle Ingresos/Gastos</a>
           </li>
 
           <li>
-            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Consolidado de ingresos/<br>Gastos ambos turnos</a></a>
+          <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de Gastos</a>
+          </li>
+
+          <li>
+            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Consolidado Ingresos/Gastos</a>
             <ul class="dropdown-menu"> 
               <li>
                 <a href="{{route('solicitar.consolidado')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Detallado</a>
