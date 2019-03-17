@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos del Dia</span>
+					<span><strong>Movimientos del Dia</strong></span>
 
 				</div>
 
@@ -31,7 +31,7 @@
 			</div>
 					{!! Form::open(['method' => 'get', 'route' => ['movimientos.index']]) !!}
 
-
+			<br>
 			<div class="row">
 				<div class="col-md-4">
 					<label>Fecha de Consulta</label>
@@ -41,7 +41,7 @@
 				<div class="col-md-4">
 					<label>Tipo de Ingreso</label>
 					<select name="tipo" id="tipo">
-						<option value="">Seleccione</option>
+						<option value="" selected disabled hidden>Seleccione</option>
 						<option value="1">Atenciones</option>
 						<option value="2">Consultas</option>
 						<option value="3">Ventas</option>
@@ -54,11 +54,13 @@
 				</div>
 					
 				<div class="col-md-4">
-					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info', 'style' => 'margin-top:25px; width:75px' )) !!}
 					{!! Form::close() !!}
 
 				</div>
-			</div>	
+			</div>
+			<br>
+			<hr class="page-header"></hr>	
 		@if($tipo==1)
 
             <span><strong>ATENCIONES</strong></span>
@@ -182,7 +184,7 @@
 				</table>
 			</div>
 
-					<br>
+			<br>
 		 @elseif($tipo==3)
 
 			 <span><strong>VENTAS</strong></span>
@@ -395,6 +397,7 @@
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Estatus</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
@@ -586,7 +589,7 @@
 $(document).ready(function() {
       LoadTimePickerScript(DemoTimePicker);
       LoadSelect2Script(function (){
-            $("#el2").select2();
+            $("#tipo").select2();
             $("#el1").select2();
             $("#el3").select2({disabled : true});
       });
