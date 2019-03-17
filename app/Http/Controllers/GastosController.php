@@ -71,7 +71,8 @@ class GastosController extends Controller
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
 		  
-		return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);
+		    return redirect()->route('movimientos.index');
+
 	}    
 
   public function delete($id){

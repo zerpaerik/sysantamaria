@@ -136,7 +136,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
               $ventas->save();
 			  
        Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
-      return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
+    return redirect()->route('movimientos.index');
 		}
     
     }

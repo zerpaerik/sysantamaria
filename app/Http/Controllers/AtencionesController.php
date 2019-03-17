@@ -53,7 +53,7 @@ class AtencionesController extends Controller
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
-                    ->join('users as u','u.id','a.usuario')
+          ->join('users as u','u.id','a.usuario')
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
           ->orderby('a.id','desc')
@@ -348,7 +348,7 @@ class AtencionesController extends Controller
     }
     	 Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
 
-    return redirect()->route('atenciones.index');
+    return redirect()->route('movimientos.index');
   }
 
   public function personal(){

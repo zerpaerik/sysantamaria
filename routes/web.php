@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('seleccion-movimiento', 'Config\SidenavRouterController@getView')->name('generics.router');
 
+Route::get('movimientos', 'Config\SidenavRouterController@getMov')->name('movimientos.index');
+
 Route::get('get-opts/{opt}', 'Config\SidenavRouterController@getOpts');
 
 Route::get('roles', 'Users\RoleController@index')->name('role.index')->middleware('auth');
@@ -181,6 +183,11 @@ Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenc
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
 Route::get('atenciones-atender', 'AtencionesController@atender');
+
+//index ingresos todos
+
+
+
 
 
 

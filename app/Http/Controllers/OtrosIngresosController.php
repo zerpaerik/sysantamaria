@@ -78,7 +78,8 @@ class OtrosIngresosController extends Controller
 		  $historial->detalle = $request->monto;
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
-		return redirect()->action('OtrosIngresosController@index', ["created" => true, "ingresos" => Creditos::all()]);
+		    return redirect()->route('movimientos.index');
+
 	}    
 
   public function delete($id){
