@@ -71,6 +71,10 @@
             <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Registro Ingresos/Gastos</a>
           </li>
 
+           <li>
+          <a href="{{route('movimientos.index')}}"><i class="fa fa-random"></i> Registros del Dia</a>
+          </li>
+
 
           <li>
             <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle Ingresos/Gastos</a>
