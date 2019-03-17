@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Route::get('seleccion-movimiento', 'Config\SidenavRouterController@getView')->name('generics.router');
 
-Route::get('movimientos', 'Config\SidenavRouterController@getMov')->name('movimientos.index');
 
 Route::get('get-opts/{opt}', 'Config\SidenavRouterController@getOpts');
 
@@ -185,6 +184,9 @@ Route::get('atenciones-delete-{id}','AtencionesController@delete');
 Route::get('atenciones-atender', 'AtencionesController@atender');
 
 //index ingresos todos
+
+Route::get('movimientos', 'MovimientosController@index')->name('movimientos.index');
+
 
 
 
