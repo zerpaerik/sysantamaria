@@ -25,9 +25,9 @@
 				<form class="form-horizontal" role="form" method="post" action="gastos/create">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Descripciòn</label>
+						<label class="col-sm-1 control-label" style="width: 95px;">Descripción</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="descripcion" placeholder="descripcion" data-toggle="tooltip" data-placement="bottom" title="descripcion">
+							<input type="text" class="form-control" name="descripcion" placeholder="descripción" data-toggle="tooltip" data-placement="bottom" title="descripcion">
 						</div>
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-4">

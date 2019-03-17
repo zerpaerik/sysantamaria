@@ -25,16 +25,16 @@
 				<form class="form-horizontal" role="form" method="post" action="ingresos/create">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Descripciòn</label>
+						<label class="col-sm-1 control-label" style="width: 85px;">Descripción</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="descripcion" placeholder="descripcion" data-toggle="tooltip" data-placement="bottom" title="descripcion">
+							<input type="text" class="form-control" name="descripcion" placeholder="descripción" data-toggle="tooltip" data-placement="bottom" title="descripcion">
 						</div>
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" name="monto" placeholder="monto" data-toggle="tooltip" data-placement="bottom" title="monto">
+							<input type="text" class="form-control" name="monto" placeholder="monto" data-toggle="tooltip" data-placement="bottom" title="monto" style="width: 85px;">
 						</div>
 
-						<label class="col-sm-1 control-label">Tipo de Ingreso</label>
+						<label class="col-sm-1 control-label" style="width: 95px;">Tipo de Ingreso</label>
 						<div class="col-sm-3">
 							<select id="el2" name="tipo_ingreso">
 								    <option value="0">Seleccione el Tipo de Ingreso</option>
@@ -42,14 +42,12 @@
 									<option value="TJ">Tarjeta</option>
 							</select>
 						</div>
-					
-										
+					</div>
+						<div class="col-sm-12">
+							<input type="submit" style="margin-top: -20px;" class="col-sm-2 btn btn-primary" value="Agregar" onclick="form.submit()" >
 
-						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar" onclick="form.submit()" >
-
-						<a href="{{route('ingresos.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
-					</div>			
+							<a href="{{route('generics.router')}}" style="margin-left:15px; margin-top: -20px;" class="col-sm-2 btn btn-danger">Volver</a>
+						</div>			
 				</form>	
 			</div>
 		</div>

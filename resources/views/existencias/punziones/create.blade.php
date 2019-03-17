@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Agregar Punziòn</strong></span>
+					<span><strong>Agregar Punzión</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -82,6 +82,7 @@
 
 
 					<div class="row">
+            <div class="col-xs-12">
 
 				
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Seleccionados</label>
@@ -145,11 +146,13 @@
               <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
             </div>
           </div>
-					
-						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar" onclick="form.submit()" >
+					     <div class="col-sm-12">
+    						<br>
+    						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar" onclick="form.submit()" >
 
-						<a href="{{route('generics.router')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
+    						<a href="{{route('generics.router')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
+               </div>
+            </div>
 					</div>			
 				</form>	
 			</div>
