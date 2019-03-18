@@ -172,7 +172,7 @@
           <ul class="dropdown-menu">
 
           <li>
-            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Tecnólogo</a>
+            <a href="{{route('comporpagartec.index')}}"><i class="fa fa-plus-square-o"></i> Tecnólogo</a>
           </li>
 
 
@@ -208,13 +208,13 @@
   </a>
   <ul class="dropdown-menu">
      <li>
-      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Ingresos y Gastos</a>
+      <a href="{{route('movimientos.index')}}"><i class="fa fa-circle-o"></i> Ingresos y Gastos</a>
     </li> 
     <li>
-      <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
+      <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
     <li>
-      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Atenciones</a>
+      <a href="{{route('atenciones.index')}}"><i class="fa fa-hospital-o"></i> Atenciones</a>
     </li>
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
@@ -223,7 +223,7 @@
       <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
     <li>
-      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
+      <a href="{{route('compagadas.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
     </li>
     <li>
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
