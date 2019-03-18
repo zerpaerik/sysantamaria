@@ -12,13 +12,14 @@
 		
 			
 			<br>
+			<h4 class="page-header"></h4>
 			<br><br>
 
 			<div class="row">
-				<div class="col-md-1">
-			<label class="col-sm-4 control-label">EVA</label>
+				<div class="col-md-2">
+			<label class="col-sm-2 control-label">EVA</label>
 						<div class="col-sm-6">
-							<select name="eva_eval">
+							<select id="el18" name="eva_eval">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -35,11 +36,12 @@
 					</div>
 
 						<div class="col-md-3">
-			<label class="col-sm-4 control-label">Frecuencia</label>
+			<label class="col-sm-4 control-label">Frecuencia del dolor</label>
 						<div class="col-sm-8">
-							<select class="form-control" name="frecuencia_eval">
-							<option value="1MHZ">1MHZ</option>
-							<option value="3MHZ">3MHZ</option>
+							<!--cambio en los valores 1MHZ y 3MHZ-->
+							<select id="el1" name="frecuencia_eval">
+							<option value="continuo">Contínuo</option>
+							<option value="intermitente">Intermitente</option>
 						
 						</select>
 						</div>	
@@ -48,11 +50,9 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Exacervación</label>
 						<div class="col-sm-8">
-							<select class="form-control" name="exac_eval">
+							<select id="el2" name="exac_eval">
 							<option value="Actividad">Actividad</option>
 							<option value="Reposo">Reposo</option>
-
-							<option value="Levantarse">Levantarse</option>
 							<option value="Dia">Dia</option>
 							<option value="Noche">Noche</option>
 
@@ -64,7 +64,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Forma de Inicio</label>
 						<div class="col-sm-8">
-							<select class="form-control" name="inicio_eval">
+							<select id="el3" name="inicio_eval">
 							<option value="Progesivo">Progesivo</option>
 							<option value="Subito">Subito</option>
 						</select>
@@ -73,7 +73,7 @@
 					</div>
 
 					<div class="col-md-1">
-					<input type="text" name="inicio_tiempo_eval" placeholder="Tiempo" style="max-width: 100px;">
+					<input type="text" name="inicio_tiempo_eval" placeholder="Tiempo" style="max-width: 90px;">
 					</div>
 
 			</div> 
@@ -87,8 +87,8 @@
 					</div>
 
 						<div class="col-md-3">
-			<label class="col-sm-4 control-label"></label>
-						<div class="col-sm-6">Tiempo
+			<label class="col-sm-4 control-label">Tiempo</label>
+						<div class="col-sm-6">
 							<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 100px;">
 						</div>	
 					</div>
@@ -96,7 +96,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Ciclo</label>
 						<div class="col-sm-8">
-							<select  name="ciclo" multiple="" id="el3">
+							<select  name="ciclo" multiple="" id="el4" placeholder="Seleccione uno o más">
 							<option value="Continuo">Continuo</option>
 							<option value="50%">50%</option>
 							<option value="20%">20%</option>
@@ -109,7 +109,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Magneto</label>
 						<div class="col-sm-8">
-							<select  name="magneto" multiple="" id="el4">
+							<select  name="magneto" multiple="" id="el5" placeholder="Seleccione uno o más">
 							<option value="Vascularizacion">Vascularizacion</option>
 							<option value="Inflamaciòn">Inflamaciòn</option>
 						    <option value="Dolor">Dolor</option>
@@ -125,7 +125,7 @@
 				<div class="col-md-2">
 			<label class="col-sm-3 control-label">Dolor</label>
 						<div class="col-sm-3">
-							<select name="dolor_eval">
+							<select id="el6" name="dolor_eval" style="width: 130px;">
 							<option value="Quemante">Quemante</option>
 							<option value="Punzante">Punzante</option>
 							<option value="Electrico">Electrico</option>
@@ -137,7 +137,7 @@
 						<div class="col-md-3">
 			<label class="col-sm-4 control-label">Retractación</label>
 						<div class="col-sm-6">
-							<select class="form-control" name="retraccion_eval">
+							<select id="el7" name="retraccion_eval">
 							<option value="Fascia">Fascia</option>
 							<option value="Muscular">Muscular</option>
 						    <option value="Articular">Articular</option>
@@ -150,7 +150,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Parestesia</label>
 						<div class="col-sm-6">
-							<select class="form-control" name="parestecia_eval">
+							<select id="el8" name="parestecia_eval">
 							<option value="Si">Si</option>
 							<option value="No">No</option>
 						</select>
@@ -160,7 +160,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Hiperalgesia</label>
 						<div class="col-sm-6">
-							<select class="form-control" name="hiperalgesia_eval">
+							<select id="el9" name="hiperalgesia_eval">
 							<option value="Si">Si</option>
 							<option value="No">No</option>
 						</select>
@@ -178,26 +178,26 @@
 		<div class="row">
 			<div class="col-md-4">
 
-			<label class="col-sm-3">Limitacion</label>
+			<label class="col-sm-3">Limitación</label>
 			<div class="col-sm-6">
-				<input type="text" name="limitacion_eval">
+				<input type="text" name="limitacion_eval" placeholder="Limitación">
 			</div>  
 			</div>
 
 						<div class="col-md-4">
 
 
-			<label class="col-sm-3">Localizacion</label>
+			<label class="col-sm-3">Localización</label>
 			<div class="col-sm-6">
-				<input type="text" name="localizacion_eval">
+				<input type="text" name="localizacion_eval" placeholder="Localización">
 			</div>  
 			</div>
 
 			<div class="col-md-4">
 
-			<label class="col-sm-3">Irradiacion</label>
+			<label class="col-sm-3">Irradiación</label>
 			<div class="col-sm-6">
-                             <select class="form-control" name="irradiacion_eval">
+                             <select id="el10" name="irradiacion_eval">
 							<option value="Si">Si</option>
 							<option value="No">No</option>
 						</select>			
@@ -209,9 +209,9 @@
 	      				<div class="col-md-4">
 
 
-			<label class="col-sm-3">Observacion</label>
+			<label class="col-sm-3">Observación</label>
 			<div class="col-sm-6">
-				<input type="text" name="observaciones_eval">
+				<input type="text" name="observaciones_eval" placeholder="Observación">
 			</div> 
 			</div> 
 						<div class="col-md-4">
@@ -219,7 +219,7 @@
 
 			<label class="col-sm-3">Diagnostico</label>
 			<div class="col-sm-9">
-				<select id="el1"  name="diagnostico_eval">
+				<select id="el11"  name="diagnostico_eval">
 			    @foreach($ciex as $lab)
 				<option value="{{$lab->codigo}}-{{$lab->nombre}}">{{$lab->codigo}}-{{$lab->nombre}}</option>
 				@endforeach
@@ -227,15 +227,15 @@
 			</div>  
 			</div>
 		</div>																				
-
+			<h4 class="page-header"></h4>
 			<h3 class="col-sm-12">Tratamiento</h3>
 			<div class="row">
 
 			<div class="col-md-4">
-
+			<br>
 			<label class="col-sm-3">Tratamiento</label>
 			<div class="col-sm-9">
-				 <select class="form-control" name="tratamiento">
+				 <select id="el12" name="tratamiento">
 							<option value="CHc">CHC</option>
 							<option value="CF">CF</option>
 						    <option value="Tiempo">Tiempo</option>
@@ -248,7 +248,7 @@
 			
 			<label class="col-sm-3">Ultrasonido</label>
 			<div class="col-sm-9">
-				 <select class="form-control" name="frecuencia_ultrasonido_trat">
+				 <select id="el13" name="frecuencia_ultrasonido_trat">
 							<option value="Frecuencia">Frecuencia</option>
 							<option value="Intensidad">Intensidad</option>
 						    <option value="Ciclo">Ciclo</option>
@@ -262,7 +262,7 @@
 			
 			<label class="col-sm-3">Laser</label>
 			<div class="col-sm-9">
-				 <select class="form-control" name="dolor_laser_trat">
+				 <select id="el14" name="dolor_laser_trat">
 							<option value="Dolor">Dolor</option>
 							<option value="Tenosinovitis">Tenosinovitis</option>
 						    <option value="TensionRepetitiva">Tension Repetitiva</option>
@@ -278,7 +278,7 @@
 
 			<label class="col-sm-3">Corriente</label>
 			<div class="col-sm-9">
-				 <select class="form-control" name="rusa_corriente_trat">
+				 <select id="el15" name="rusa_corriente_trat">
 							<option value="Rusa">Rusa</option>
 							<option value="interferencial">interferencial</option>
 						    <option value="alto vontaje">alto vontaje</option>
@@ -293,7 +293,7 @@
    
 			<label class="col-sm-3">Estiramiento</label>
 			<div class="col-sm-9">
-				<input type="text" name="estiramiento_trat">
+				<input type="text" name="estiramiento_trat" placeholder="Estiramiento">
 			</div>  
            		
            	</div>
@@ -303,7 +303,7 @@
 
 			<label class="col-sm-4">M.Terapeutico</label>
 			<div class="col-sm-8">
-				 <select  name="metodo[]" multiple="" id="el6">
+				 <select  name="metodo[]" multiple="" id="el16" placeholder="M.Terapeutico">
 							<option value="Klapp">Klapp</option>
 							<option value="William">William</option>
 						    <option value="Wilson">Wilson</option>
@@ -324,9 +324,9 @@
            	<div class="col-md-4">
 
 
-			<label class="col-sm-3">Fortalecimiento</label>
+			<label class="col-sm-3" style="width: 98px;">Fortalecimiento</label>
 			<div class="col-sm-9">
-				 <select name="fortale[]" multiple="" id="el2">
+				 <select name="fortale[]" multiple="" id="el17" placeholder="Seleccione uno o más">
 							<option value="Isomentrico">Isomentrico</option>
 							<option value="Isotonico con carga">Isotonico con carga</option>
 						    <option value="Sin carga">Sin carga</option>
@@ -342,8 +342,8 @@
 
 			<label class="col-sm-3">Reduccion Marcha</label>
 			<div class="col-sm-9">
-				 <select id="reduc"  class="form-control" name="rrrrr">
-				 			<option value="">Seleccione</option>
+				 <select id="reduc" name="rrrrr">
+				 			<option value="" selected disabled hidden>Seleccione</option>
 							<option value="1">Si</option>
 							<option value="2">No</option>
 					
@@ -352,11 +352,10 @@
            		
            	</div>
 
-           	<div class="col-md-4">
+           	<div class="col-md-3">
 
 
-			<label class="col-sm-3"></label>
-			<div class="col-sm-9" id="origen1">
+			<div class="col-md-10" id="origen1">
 					
 			</div>
            		
@@ -540,9 +539,22 @@ function Select2Test(){
 	$("#el2").select2();
 	$("#el1").select2();
 	$("#el3").select2();
-  $("#el5").select2();
-   $("#el6").select2();
-  $("#el4").select2();
+ 	$("#el4").select2();
+    $("#el5").select2();
+  	$("#el6").select2();
+  	$("#el7").select2();
+	$("#el8").select2();
+	$("#el9").select2();
+  	$("#el10").select2();
+   	$("#el11").select2();
+ 	$("#el12").select2();
+  	$("#el13").select2();
+	$("#el14").select2();
+	$("#el15").select2();
+  	$("#el16").select2();
+   	$("#el17").select2();
+ 	$("#el18").select2();
+ 	$("#reduc").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
@@ -567,7 +579,6 @@ function DemoTimePicker(){
 </script>
 
 <script type="text/javascript">
-      $(document).ready(function(){
         $('#reduc').on('change',function(){
           var link;
           if ($(this).val() ==  1) {
@@ -581,14 +592,12 @@ function DemoTimePicker(){
                  url:  link,
                  success: function(a) {
                     $('#origen1').html(a);
+                    $("#redux").select2();
                  }
           });
 
         });
         
-
-      });
-       
     </script>
 
 
