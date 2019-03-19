@@ -212,6 +212,9 @@ class ServiceController extends Controller
   
 
       if($request->tipo == 1){ // servicios
+
+           $servicios = Servicios::where('id','=',$request->servicio_id)->first();
+
   
 
       $evt = Service::create([
@@ -223,7 +226,7 @@ class ServiceController extends Controller
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"."Servicio-".$servicios->detalle
       ]);
 
 	  } else if($request->tipo == 2){//consultas
