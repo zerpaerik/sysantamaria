@@ -52,8 +52,10 @@
 								<td>{{$ana->preciounidad}}</td>
 								<td>{{$ana->precioventa}}</td>
 
-								<td><a class="btn btn-warning" href="existencias-edit-{{$ana->id}}">Editar</a></td>
-								<td><a href="existencias-delete-{{$ana->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td>
+									<a class="btn btn-warning" href="existencias-edit-{{$ana->id}}">Editar</a>
+									<a href="existencias-delete-{{$ana->id}}" class="btn btn-danger">Eliminar</a>
+								</td>
 							</tr>
 						@endforeach
 					</tbody>

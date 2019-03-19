@@ -118,6 +118,9 @@
       <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluaciòn</a>
       </li>
+       <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+      </li> 
   </ul>
 </li>
 
@@ -281,11 +284,7 @@
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
     </a>
-    <ul class="dropdown-menu">
-
-       <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
-      </li>  
+    <ul class="dropdown-menu"> 
    
          <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
