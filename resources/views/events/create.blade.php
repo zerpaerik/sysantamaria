@@ -406,6 +406,7 @@
 					<label class="col-sm-4 control-label">Compresas</label>
 					<div class="col-sm-6">
 			 			<select id="el19" name="Trata_compresas">
+			 			<option value="" selected hidden disabled>Seleccione</option>
 						<option value="CHC">CHC</option>
 						<option value="CF">CF</option>
 					    <option value="Contraste">Contraste</option>
