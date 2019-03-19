@@ -112,6 +112,12 @@
     <li>
       <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>
+      <li>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluaciòn</a>
+      </li>
+      <li>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluaciòn</a>
+      </li>
   </ul>
 </li>
 
@@ -121,28 +127,27 @@
     <span class="hidden-xs">Existencias</span>
   </a>
   <ul class="dropdown-menu">
-   <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Almacen Central</a>
+    <li>
+      <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Almacen Central</a>
+    </li>
+    <li>
+      <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
+    </li>
+    <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
-
           <li>
-            <a href="{{route('productos.in')}}"><i class="fa fa-list-alt"></i> Ingreso de Productos</a>
+            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Pedido Productos</a>
           </li>
-
-
           <li>
-            <a href="{{route('productos.trans')}}"><i class="fa fa-list-alt"></i> Transferencias de Productos Requeridos</a>
+            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Transferir Productos</a>
           </li>
-
           <li>
-            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Alerta de Stock</a>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Transferencia de Productos</a>
           </li>
-
-
-        </ul>
-      </li>
-    </ul>
-  </li>      
+        </ul>      
+    </li>
+  </ul>
 </li>
 
 <li class="dropdown">
@@ -255,7 +260,7 @@
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
-	  <li>
+    <li>
         <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
       </li>
       <li>
@@ -328,21 +333,6 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
-      <span class="hidden-xs"> Control de Evaluaciones</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluaciòn</a>
-      </li>
-      <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluaciòn</a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-copy"></i>
       <span class="hidden-xs">Reportes</span>
     </a>
     <ul class="dropdown-menu">
@@ -367,7 +357,7 @@
        <li>
         <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Còmo llego el Paciente?</a>
       </li>
-	   <li>
+     <li>
         <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
       </li>
     </ul>
@@ -453,27 +443,6 @@
 
           <li>
             <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
-          </li>
-
-
-        </ul>      
-    </li>
-    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
-        <ul class="dropdown-menu">
-
-          <li>
-            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
-          </li>
-
-
-          <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
-          </li>
-
-          
-          <li>
-            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
           </li>
 
 
