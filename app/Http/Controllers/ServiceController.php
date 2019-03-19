@@ -157,7 +157,6 @@ class ServiceController extends Controller
     ->orderby('a.id','desc')
     ->get();   
 
-
     return view('service.edit', 
       [
       'especialistas' => $especialistas,
@@ -209,13 +208,9 @@ class ServiceController extends Controller
    $especialista = Personal::find($request->especialista);
 
     
-  
-
       if($request->tipo == 1){ // servicios
 
-           $servicios = Servicios::where('id','=',$request->servicio_id)->first();
-
-  
+      $servicios = Servicios::where('id','=',$request->servicio_id)->first();
 
       $evt = Service::create([
         "especialista_id" => $request->especialista,
@@ -226,7 +221,7 @@ class ServiceController extends Controller
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"."Servicio-".$servicios->detalle
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista" . "Servicio-".$servicios->detalle
       ]);
 
 	  } else if($request->tipo == 2){//consultas
@@ -243,6 +238,7 @@ class ServiceController extends Controller
       ]);
 
     } else if($request->tipo == 3){//punziones
+
         $evt = Service::create([
         "especialista_id" => $request->especialista,
         "paciente_id" => $request->paciente,
