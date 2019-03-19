@@ -18,22 +18,13 @@ use Carbon\Carbon;
 class ProductoController extends Controller
 {
 
-    public function index(){
-		//	$producto = Producto::all();
+
+      public function index(){
+    //  $producto = Producto::all();
       $producto =Producto::where("almacen",'=', 1)->get();
-			return view('generics.index5', [
-				"icon" => "fa-list-alt",
-				"model" => "existencias",
-        "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre","Còdigo","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
-				"data" => $producto,
-				"fields" => ["id", "nombre","codigo", "medida", "categoria","cantidad","preciounidad","precioventa"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-			]);    	
+      return view('existencias.central',compact('producto'));    
     }
+
 
       public function index2(){
     //  $producto = Producto::all();
@@ -51,6 +42,8 @@ class ProductoController extends Controller
           ]
       ]);     
     }
+
+  
 
     public function createView($extraArgs = []){
     	return view('existencias.create', ["categorias" => Categoria::all(), "medidas" => Medida::all()] + $extraArgs);
