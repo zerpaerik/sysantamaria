@@ -211,6 +211,7 @@ class ServiceController extends Controller
       if($request->tipo == 1){ // servicios
 
       $servicios = Servicios::where('id','=',$request->servicio_id)->first();
+      $paciente = Pacientes::where('id','=',$request->paciente)->first();
 
       $evt = Service::create([
         "especialista_id" => $request->especialista,
@@ -221,7 +222,7 @@ class ServiceController extends Controller
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista" . "Servicio-".$servicios->detalle
+        "title" => $especialista->name." ".$especialista->lastname." "."Especialista" . "Servicio-".$servicios->detalle."Paciente ".$paciente->nombres." ".$paciente->apellidos
       ]);
 
 	  } else if($request->tipo == 2){//consultas
@@ -229,8 +230,7 @@ class ServiceController extends Controller
         "especialista_id" => $request->especialista,
         "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
-        "hora_id" => $request->time,
-        "tipo" => $request->tipo,
+er        "tipo" => $request->tipo,
         "servicio_id" => 1,
         "consulta" =>$request->consulta,
         "punsion" =>4,
