@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Productos en Almacen Central</strong></span>
+					<span><strong>Productos en Almacen local</strong></span>
 					<a href="{{route('existencias.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
@@ -51,6 +51,7 @@
 								@endif
 								<td>{{$ana->preciounidad}}</td>
 								<td>{{$ana->precioventa}}</td>
+
 								<td><a class="btn btn-warning" href="analisis/{{$ana->id}}">Editar</a></td>
 								<td><a href="analisis/{{$ana->id}}" class="btn btn-danger">Eliminar</a></td>
 							</tr>
