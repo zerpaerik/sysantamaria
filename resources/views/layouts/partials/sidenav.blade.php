@@ -120,6 +120,9 @@
       </li>
        <li>
         <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+      </li>
+      <li>
+        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
       </li> 
   </ul>
 </li>
@@ -309,10 +312,7 @@
       </li>
       <li>
         <a href="{{route('service.inicio')}}"><i class="fa fa-plus-circle"></i> Listado de Programacion</a>
-      </li> 
-      <li>
-        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
-      </li>                  
+      </li>                   
     </ul>
   </li>
   <li class="dropdown">
