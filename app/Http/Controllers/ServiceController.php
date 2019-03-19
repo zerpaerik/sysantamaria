@@ -230,7 +230,7 @@ class ServiceController extends Controller
         "especialista_id" => $request->especialista,
         "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
-er        "tipo" => $request->tipo,
+     "tipo" => $request->tipo,
         "servicio_id" => 1,
         "consulta" =>$request->consulta,
         "punsion" =>4,
