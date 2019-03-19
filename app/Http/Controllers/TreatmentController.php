@@ -35,11 +35,11 @@ class TreatmentController extends Controller
       "ficha_eval" => $request->ficha_eval, 
       "eva_eval" =>            $request->eva_eval,
       "frecuencia_eval" =>            $request->frecuencia_eval,
-      "exac_eval" =>            $request->exac_eval,
+      "exac_eval" =>            json_encode($request->exac_eval),
       "inicio_eval" =>            $request->inicio_eval,
       "inicio_tiempo_eval" =>            $request->inicio_tiempo_eval,
-      "dolor_eval" =>            $request->dolor_eval,
-      "retraccion_eval" =>            $request->retraccion_eval,
+      "dolor_eval" =>            json_encode($request->dolor_eval),
+      "retraccion_eval" =>            json_encode($request->retraccion_eval),
       "parestecia_eval" =>            $request->parestecia_eval,
       "hiperalgesia_eval" =>            $request->hiperalgesia_eval,
       "hiperalgesia_zona_eval" =>            $request->hiperalgesia_zona_eval,
@@ -91,7 +91,7 @@ class TreatmentController extends Controller
       "disocion_marcha_trat" => $request->disocion_marcha_trat,
       "consulta_id" => $request->consulta_id,
       "metodo" => json_encode($request->metodo),
-      "reduccion" => $request->reduccion,
+      "reduccion" => json_encode($request->reduc),
       "fortale" => json_encode($request->fortale),
       "tratamiento" => $request->tratamiento,
       "evento" => $request->evento_id,
@@ -99,7 +99,15 @@ class TreatmentController extends Controller
       "intensidad" => $request->intensidad,
       "tiempo" => $request->tiempo,
       "ciclo" => json_encode($request->ciclo),
-      "magneto" => json_encode($request->magneto)
+      "magneto" => json_encode($request->magneto),
+      //nuevos campos
+      "actividad_exar" => $request->actividad_exar,
+      "dolor_neuro" => $request->dolor_neuro,
+     // "diagnostico_zona_eval" => $request->diagnostico_zona_eval,
+      "ejercicios" => $request->ejercicios,
+      "trata_compresas" => $request->trata_compresas,
+      "intensidad_comp" => $request->tiempo,
+      "tiempociclo" => $request->tiempociclo
     ]);
 	
 

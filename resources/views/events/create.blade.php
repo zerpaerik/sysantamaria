@@ -51,7 +51,7 @@
 					<div class="col-md-3" style="margin-left: -40px;">
 			<label class="col-sm-4 control-label">Exacervación</label>
 						<div class="col-sm-7" style=" margin-left: 10px;">
-							<select id="el2" name="exac_eval" multiple="" placeholder="Seleccione">
+							<select id="el2" name="exac_eval[]" multiple="" placeholder="Seleccione">
 							<option value="Actividad">Actividad</option>
 							<option value="Reposo">Reposo</option>
 							<option value="Dia">Dia</option>
@@ -102,7 +102,7 @@
 					<div class="col-md-3" style="margin-left: -65px;">
 			<label class="col-sm-4 control-label">Ciclo</label>
 						<div class="col-sm-8">
-							<select  name="ciclo" multiple="" id="el4" placeholder="Seleccione">
+							<select  name="ciclo[]" multiple="" id="el4" placeholder="Seleccione">
 							<option value="Continuo">Continuo</option>
 							<option value="50%">50%</option>
 							<option value="20%">20%</option>
@@ -115,7 +115,7 @@
 					<div class="col-md-3">
 			<label class="col-sm-4 control-label">Magneto</label>
 						<div class="col-sm-8">
-							<select  name="magneto" multiple="" id="el5" placeholder="Seleccione">
+							<select  name="magneto[]" multiple="" id="el5" placeholder="Seleccione">
 							<option value="Vascularizacion">Vascularizacion</option>
 							<option value="Inflamaciòn">Inflamaciòn</option>
 						    <option value="Dolor">Dolor</option>
@@ -131,7 +131,7 @@
 				<div class="col-md-4">
 			<label class="col-sm-3 control-label">Dolor</label>
 						<div class="col-sm-3" style="margin-left: 5px;">
-							<select id="el6" name="dolor_eval" multiple="" placeholder="Seleccione" style="width: 130px;">
+							<select id="el6" name="dolor_eval[]" multiple="" placeholder="Seleccione" style="width: 130px;">
 							<option value="Quemante">Quemante</option>
 							<option value="Punzante">Punzante</option>
 							<option value="Electrico">Electrico</option>
@@ -143,7 +143,7 @@
 						<div class="col-md-3">
 			<label class="col-sm-4 control-label">Retractación</label>
 						<div class="col-sm-6" style="margin-left: 10px;">
-							<select id="el7" name="retraccion_eval" multiple="" placeholder="Seleccione">
+							<select id="el7" name="retraccion_eval[]" multiple="" placeholder="Seleccione">
 							<option value="Fascia">Fascia</option>
 							<option value="Muscular">Muscular</option>
 						    <option value="Articular">Articular</option>
@@ -157,7 +157,7 @@
 						<label class="col-sm-6 control-label">Dolor Neuro</label>
 						<div class="col-sm-6">
 							<!--nuevo name-->
-							<select id="el8" name="Dolor_neuro">
+							<select id="el8" name="dolor_neuro">
 							<option value="" selected hidden disabled>Seleccione</option>
 							<option value="Parestesia">Parestesia</option>
 							<option value="Alodinia">Alodinia</option>
@@ -231,7 +231,7 @@
 
 				<label class="col-sm-3">Diagnostico</label>
 				<div class="col-sm-9">
-					<select id="el11"  name="diagnostico_eval">
+					<select id="el11"  name="diagnostico_zona_eval">
 				    @foreach($ciex as $lab)
 				    <option value="" selected hidden disabled>Seleccione</option>
 					<option value="{{$lab->codigo}}-{{$lab->nombre}}">{{$lab->codigo}}-{{$lab->nombre}}</option>
@@ -241,7 +241,7 @@
 			</div>
 			<!--nuevo name-->
 			<div class="col-md-1">
-				<input type="text" name="diagnostico_cie_eval" placeholder="CIE" style="max-width: 100px;">
+				<input type="text" name="diagnostico_cie_eval" placeholder="CIE-X" style="max-width: 100px;">
 			</div>
 		</div>																				
 				<h4 class="page-header"></h4>
@@ -268,7 +268,7 @@
 							<option value="Frecuencia">Frecuencia</option>
 							<option value="Intensidad">Intensidad</option>
 						    <option value="Ciclo">Ciclo</option>
-						    <option value="Ciclo">Tiempo</option>
+						    <option value="Tiempo">Tiempo</option>
 						</select>	
 					</div> 
 				</div> 
@@ -293,7 +293,7 @@
 					<label class="col-sm-4 control-label">Tipo</label>
 					<div class="col-sm-8">
 						<!--nuevo name-->
-						<select id="el23" name="Tipo_dolor">
+						<select id="el23" name="tipo_dolor">
 						<option value="" selected hidden disabled>Seleccione</option>
 						<option value="Agudo">Agudo</option>
 						<option value="Cronico">Crónico</option>
@@ -307,7 +307,7 @@
            	<div class="col-md-4">
 			<label class="col-sm-3">Corriente</label>
 			<div class="col-sm-9">
-				<select id="el15" name="rusa_corriente_trat" multiple="" placeholder="Seleccione">
+				<select id="el15" name="rusa_corriente_trat[]" multiple="" placeholder="Seleccione">
 					<option value="Rusa">Rusa</option>
 					<option value="interferencial">interferencial</option>
 				    <option value="alto vontaje">alto vontaje</option>
@@ -370,7 +370,7 @@
            	<div class="col-md-4">
 			<label class="col-sm-3">Reduccion de la Marcha</label>
 			<div class="col-sm-9">
-		 		<select id="reduc" name="rrrrr" multiple="" placeholder="Seleccione uno o más">
+		 		<select id="reduc" name="reduc[]" multiple="" placeholder="Seleccione uno o más">
 					<option value="Rolido">Rolido</option>
 					<option value="Sentado">Sentado</option>
 					<option value="Arrastre">Arrastre</option>
@@ -389,7 +389,7 @@
            	<div class="col-md-4">
 				<label class="col-sm-3">Ejercicios de Propiocepción</label>
 					<div class="col-sm-9">
-				 		<select id="redux" name="Ejercicios">
+				 		<select id="redux" name="ejercicios">
 				 			<option value="" selected hidden disabled>Seleccione</option>
 							<option value="Bozu">Bozu</option>
 							<option value="Disco">Disco propedeutico</option>
@@ -405,7 +405,7 @@
 				<div class="col-md-3">
 					<label class="col-sm-4 control-label">Compresas</label>
 					<div class="col-sm-6">
-			 			<select id="el19" name="Trata_compresas">
+			 			<select id="el19" name="trata_compresas">
 			 			<option value="" selected hidden disabled>Seleccione</option>
 						<option value="CHC">CHC</option>
 						<option value="CF">CF</option>
@@ -432,9 +432,9 @@
 					</div>	
 				</div>
 				<div class="col-md-3">
-					<label class="col-sm-4 control-label">Indensidad</label>
+					<label class="col-sm-4 control-label">Intensidad</label>
 					<div class="col-sm-4">
-						<select  name="Intensidad_comp" id="el21">
+						<select  name="intensidad_comp" id="el21">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -467,7 +467,7 @@
 				<div class="col-md-3">
 				<label class="col-sm-4 control-label">Ciclo</label>
 					<div class="col-sm-6">
-						<select id="el22" name="Ciclo_eval">
+						<select id="el22" name="ciclo_eval">
 						<option value="" selected hidden disabled>Seleccione</option>
 						<option value="100%">100%</option>
 						<option value="50%">50%</option>
@@ -480,7 +480,7 @@
 				<div class="col-md-2">
 					<label class="col-sm-4 control-label">Tiempo</label>
 					<div class="col-sm-6">
-						<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 70px;">
+						<input type="text" name="tiempociclo" placeholder="Tiempo" style="max-width: 70px;">
 					</div>	
 				</div>
 
