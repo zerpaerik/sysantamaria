@@ -21,7 +21,7 @@ class ProductoController extends Controller
     public function index(){
 		//	$producto = Producto::all();
       $producto =Producto::where("almacen",'=', 1)->get();
-			return view('generics.index5', [
+			return view('existencias.central', compact([
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
         "model1" => "Productos en Almacen Central",
@@ -32,13 +32,13 @@ class ProductoController extends Controller
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
-			]);    	
+			]));    	
     }
 
       public function index2(){
     //  $producto = Producto::all();
       $producto =Producto::where("almacen",'=', 2)->get();
-      return view('generics.index5', [
+      return view('existencias.local', compact([
         "icon" => "fa-list-alt",
         "model" => "existencias",
         "model1" => "Productos en Almacen Local",
@@ -49,7 +49,7 @@ class ProductoController extends Controller
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
-      ]);     
+      ]));     
     }
 
     public function createView($extraArgs = []){
