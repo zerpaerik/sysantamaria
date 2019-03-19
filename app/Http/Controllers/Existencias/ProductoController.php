@@ -27,7 +27,7 @@ class ProductoController extends Controller
 
       public function index2(){
     //  $producto = Producto::all();
-      $producto =Producto::where("almacen",'=', 1)->get();
+      $producto =Producto::where("almacen",'=', 2)->get();
       return view('existencias.local',compact('producto'));    
     }
 
