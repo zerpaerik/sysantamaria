@@ -351,7 +351,7 @@
 			<div class="col-md-2">
 				<label class="col-sm-4 control-label">Tiempo</label>
 				<div class="col-sm-6">
-					<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 70px;">
+					<input type="text" name="tiempociclo" placeholder="Tiempo" style="max-width: 70px;">
 				</div>	
 			</div>
 
@@ -411,13 +411,13 @@
 
 			<label class="col-sm-3">Fortalecimiento</label>
 			<div class="col-sm-9">
-				 <select name="fortale[]" multiple="" id="el17" placeholder="Seleccione uno o más">
-							<option value="Isomentrico">Isomentrico</option>
-							<option value="Isotonico con carga">Isotonico con carga</option>
-						    <option value="Sin carga">Sin carga</option>
-						    <option value="Bozu">Bozu</option>
-					        <option value="THERABAND">THERABAND</option>
-						</select>	
+				<select name="fortale[]" multiple="" id="el17" placeholder="Seleccione uno o más">
+					<option value="Isomentrico">Isomentrico</option>
+					<option value="Isotonico con carga">Isotonico con carga</option>
+				    <option value="Sin carga">Sin carga</option>
+				    <option value="Bozu">Bozu</option>
+			        <option value="THERABAND">THERABAND</option>
+				</select>	
 			</div>
            		
            	</div>

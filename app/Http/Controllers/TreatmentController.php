@@ -60,7 +60,7 @@ class TreatmentController extends Controller
       "tenosinovitis_laser_trat" =>            $request->tenosinovitis_laser_trat,
       "esguince_laser_trat" =>            $request->esguince_laser_trat,
       "tension_laser_trat" =>            $request->tension_laser_trat,
-      "rusa_corriente_trat" =>            $request->rusa_corriente_trat,
+      "rusa_corriente_trat" =>            json_encode($request->rusa_corriente_trat),
       "interferencial_corriente_trat" =>            $request->interferencial_corriente_trat,
       "alto_corriente_trat" =>            $request->alto_corriente_trat,
       "tens_corriente_trat" =>            $request->tens_corriente_trat,
@@ -107,7 +107,10 @@ class TreatmentController extends Controller
       "ejercicios" => $request->ejercicios,
       "trata_compresas" => $request->trata_compresas,
       "intensidad_comp" => $request->tiempo,
-      "tiempociclo" => $request->tiempociclo
+      "tiempociclo" => $request->tiempociclo,
+      "tiempocompresa" => $request->tiempocompresa,
+      "tipo_dolor" => $request->tipo_dolor,
+      "ciclo_eval" => $request->ciclo_eval
     ]);
 	
 
