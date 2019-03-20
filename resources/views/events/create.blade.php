@@ -247,7 +247,7 @@
 			<div class="row">
 				<br>
 				<br>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<label class="col-sm-4">Compresas</label>
 					<div class="col-sm-8">
 						<select id="el12" name="trata_compresas">
@@ -260,8 +260,8 @@
 				</div>
 				<div class="col-md-3">
 					<label class="col-sm-4 control-label">Tiempo</label>
-					<div class="col-sm-8">
-						<input type="text" name="tiempocompresa" placeholder="Tiempo">
+					<div class="col-sm-6">
+						<input type="text" name="tiempocompresa" placeholder="Tiempo" style="max-width: 90px;">
 					</div>	
 				</div>
 				<div class="col-md-3">
