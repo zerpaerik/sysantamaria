@@ -221,14 +221,12 @@
 	      	<div class="col-md-4">
 
 
-			<label class="col-sm-3">Observación</label>
-			<div class="col-sm-6">
-				<input type="text" name="observaciones_eval" placeholder="Observación">
-			</div> 
+				<label class="col-sm-3">Observación</label>
+					<div class="col-sm-6">
+						<input type="text" name="observaciones_eval" placeholder="Observación">
+					</div> 
 			</div> 
 			<div class="col-md-4">
-
-
 				<label class="col-sm-3">Diagnostico</label>
 				<div class="col-sm-9">
 					<select id="el11"  name="diagnostico_zona_eval">
@@ -243,64 +241,92 @@
 			<div class="col-md-1">
 				<input type="text" name="diagnostico_cie_eval" placeholder="CIE-X" style="max-width: 100px;">
 			</div>
-		</div>																				
-				<h4 class="page-header"></h4>
-				<h3 class="col-sm-12">Tratamiento</h3>
-				<div class="row">
+			</div>																				
+			<h4 class="page-header"></h4>
+			<h3 class="col-sm-12">Tratamiento</h3>
+			<div class="row">
 				<br>
 				<br>
-				<div class="col-md-3">
-					<label class="col-sm-4">Tratamiento</label>
+				<div class="col-md-4">
+					<label class="col-sm-4">Compresas</label>
 					<div class="col-sm-8">
-						<select id="el12" name="tratamiento">
+						<select id="el12" name="trata_compresas">
 							<option value="" selected hidden disabled>Seleccione</option>
-							<option value="CHc">CHC</option>
+							<option value="CHC">CHC</option>
 							<option value="CF">CF</option>
-						    <option value="Tiempo">Tiempo</option>
+						    <option value="Combinada">Combinada</option>
 						</select>	
 					</div>
-				</div>  
-				<div class="col-md-3">
-					<label class="col-sm-4">Ultrasonido</label>
-					<div class="col-sm-8">
-						<select id="el13" name="frecuencia_ultrasonido_trat">
-							<option value="" selected hidden disabled>Seleccione</option>
-							<option value="Frecuencia">Frecuencia</option>
-							<option value="Intensidad">Intensidad</option>
-						    <option value="Ciclo">Ciclo</option>
-						    <option value="Tiempo">Tiempo</option>
-						</select>	
-					</div> 
-				</div> 
-				<div class="col-md-3">
-					<label class="col-sm-4">Laser</label>
-					<div class="col-sm-8">
-						<select id="el14" name="dolor_laser_trat">
-							<option value="" selected hidden disabled>Seleccione</option>
-							<option value="ControlDeDolor">Control de dolor</option>
-							<option value="Esguince">Esguince</option>
-						    <option value="TensionRepetitiva">Tension Repetitiva</option>
-						    <option value="Tenosinovitis">Tenosinovitis</option>
-							<option value="TendinitisAquilea">Tendinitis Aquilea</option>
-							<option value="ArtritisReumatoidea">Tendinitis Reumatoidea</option>
-						    <option value="FascetePlantar">Fascete Plantar</option>
-						    <option value="Neuralgea">Neuralgea</option>
-						    <option value="HombroConglado">Hombro Conglado</option>
-						</select>	
-					</div> 
 				</div>
 				<div class="col-md-3">
-					<label class="col-sm-4 control-label">Tipo</label>
-					<div class="col-sm-8">
-						<!--nuevo name-->
-						<select id="el23" name="tipo_dolor">
-						<option value="" selected hidden disabled>Seleccione</option>
-						<option value="Agudo">Agudo</option>
-						<option value="Cronico">Crónico</option>
-					</select>
+					<label class="col-sm-4 control-label">Tiempo</label>
+					<div class="col-sm-8" >
+						<input type="text" name="tiempocompresa" placeholder="Tiempo">
 					</div>	
+				</div>  
+			</div>
+		<br>
+		<div class="row">
+			<div class="col-md-1">
+				<label class="col-sm-1">Ultrasonido:</label>	
+			</div>
+			<div class="col-md-3">
+				<label class="col-sm-4 control-label">Frecuencia</label>
+				<div class="col-sm-6">
+					<select id="el20" name="frecuencia_eval">
+					<option value="" selected hidden disabled>Seleccione</option>
+					<option value="1MHZ">1MHZ</option>
+					<option value="3MHZ">3MHZ</option>
+					</select>
+				</div>	
+			</div>
+			<div class="col-md-3" style="max-width: 250px;">
+				<label class="col-sm-4 control-label">Intensidad</label>
+				<div class="col-sm-5">
+					<select  name="intensidad_comp" id="el21">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+
+				</select>
 				</div>
-           </div>
+			</div>
+			<div class="col-md-3">
+			<label class="col-sm-3 control-label">Ciclo</label>
+				<div class="col-sm-8">
+					<select id="el22" name="ciclo_eval">
+					<option value="" selected hidden disabled>Seleccione</option>
+					<option value="100%">100%</option>
+					<option value="50%">50%</option>
+					<option value="20%">20%</option>
+					<option value="10%">10%</option>
+					</select>
+				</div>	
+			</div>
+			<div class="col-md-2">
+				<label class="col-sm-4 control-label">Tiempo</label>
+				<div class="col-sm-6">
+					<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 70px;">
+				</div>	
+			</div> 
+		</div>
 
            <div class="row">
            	<br>
@@ -399,93 +425,12 @@
            	</div>
 
            </div>
-           <br>
-           <!-- CAMPOS NUEVOS -->
-				<div class="row">
-				<div class="col-md-3">
-					<label class="col-sm-4 control-label">Compresas</label>
-					<div class="col-sm-6">
-			 			<select id="el19" name="trata_compresas">
-			 			<option value="" selected hidden disabled>Seleccione</option>
-						<option value="CHC">CHC</option>
-						<option value="CF">CF</option>
-					    <option value="Contraste">Contraste</option>
-						</select>
-					</div>	
-				</div>
-
-				<div class="col-md-3">
-				<label class="col-sm-4 control-label">Frecuencia</label>
-					<div class="col-sm-6">
-						<select id="el20" name="frecuencia_eval">
-						<option value="" selected hidden disabled>Seleccione</option>
-						<option value="1MHZ">1MHZ</option>
-						<option value="3MHZ">3MHZ</option>
-						</select>
-					</div>	
-				</div>
-
-				<div class="col-md-2">
-					<label class="col-sm-4 control-label">Tiempo</label>
-					<div class="col-sm-6">
-						<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 70px;">
-					</div>	
-				</div>
-				<div class="col-md-3">
-					<label class="col-sm-4 control-label">Intensidad</label>
-					<div class="col-sm-4">
-						<select  name="intensidad_comp" id="el21">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-	
-					</select>
-					</div>
-
-				</div>
-
 			</div>
 			<br>
-			<div class="row">
-				<div class="col-md-3">
-				<label class="col-sm-4 control-label">Ciclo</label>
-					<div class="col-sm-6">
-						<select id="el22" name="ciclo_eval">
-						<option value="" selected hidden disabled>Seleccione</option>
-						<option value="100%">100%</option>
-						<option value="50%">50%</option>
-						<option value="20%">20%</option>
-						<option value="10%">10%</option>
-						</select>
-					</div>	
-				</div>
-
-				<div class="col-md-2">
-					<label class="col-sm-4 control-label">Tiempo</label>
-					<div class="col-sm-6">
-						<input type="text" name="tiempociclo" placeholder="Tiempo" style="max-width: 70px;">
-					</div>	
-				</div>
-
+			<!-- BOTÓN REGISTRAR-->
+			<div class="col-sm-12">
+				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
 			</div>
-			<!-- FIN DE CAMPOS NUEVOS-->
 
 	
 
@@ -519,13 +464,7 @@
 						
 					</div>
           <hr>
-
-    
-			
-		
-			<div class="col-sm-12">
-				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
-			</div>
+          <!--AQUÍ ESTABA EL BOTÓN REGISTRAR-->
 		</div>
 		</div>
 	</form>
