@@ -260,8 +260,36 @@
 				</div>
 				<div class="col-md-3">
 					<label class="col-sm-4 control-label">Tiempo</label>
-					<div class="col-sm-8" >
+					<div class="col-sm-8">
 						<input type="text" name="tiempocompresa" placeholder="Tiempo">
+					</div>	
+				</div>
+				<div class="col-md-3">
+					<label class="col-sm-4">Laser</label>
+					<div class="col-sm-8">
+						<select id="el14" name="dolor_laser_trat">
+							<option value="" selected hidden disabled>Seleccione</option>
+							<option value="ControlDeDolor">Control de dolor</option>
+							<option value="Esguince">Esguince</option>
+						    <option value="TensionRepetitiva">Tension Repetitiva</option>
+						    <option value="Tenosinovitis">Tenosinovitis</option>
+							<option value="TendinitisAquilea">Tendinitis Aquilea</option>
+							<option value="ArtritisReumatoidea">Tendinitis Reumatoidea</option>
+						    <option value="FascetePlantar">Fascete Plantar</option>
+						    <option value="Neuralgea">Neuralgea</option>
+						    <option value="HombroConglado">Hombro Conglado</option>
+						</select>	
+					</div> 
+				</div>
+				<div class="col-md-3">
+					<label class="col-sm-4 control-label">Tipo</label>
+					<div class="col-sm-8">
+						<!--nuevo name-->
+						<select id="el23" name="tipo_dolor">
+						<option value="" selected hidden disabled>Seleccione</option>
+						<option value="Agudo">Agudo</option>
+						<option value="Cronico">Crónico</option>
+					</select>
 					</div>	
 				</div>  
 			</div>
@@ -325,7 +353,8 @@
 				<div class="col-sm-6">
 					<input type="text" name="tiempo" placeholder="Tiempo" style="max-width: 70px;">
 				</div>	
-			</div> 
+			</div>
+
 		</div>
 
            <div class="row">
