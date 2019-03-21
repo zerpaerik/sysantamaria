@@ -455,7 +455,9 @@
            </div>
 			</div>
 			<br>
-
+			<div class="col-sm-12">
+				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
+			</div>
 
 	
 
@@ -489,9 +491,7 @@
 						
 					</div>
           <hr>
-			<div class="col-sm-12">
-				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
-			</div>
+
 		</div>
 		</div>
 	</form>
