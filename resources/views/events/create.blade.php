@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-2">
 			<label class="col-sm-2 control-label">EVA</label>
-						<div class="col-sm-6">
+						<div class="col-sm-7">
 							<select id="el18" name="eva_eval">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -84,7 +84,7 @@
 
 			</div> 
 
-				<div class="row">
+		<!--<div class="row">
 				<div class="col-md-3">
 			<label class="col-sm-4 control-label">Intensidad</label>
 						<div class="col-sm-6">
@@ -111,26 +111,12 @@
 						</select>
 						</div>	
 					</div>
-
-					<div class="col-md-3">
-			<label class="col-sm-4 control-label">Magneto</label>
-						<div class="col-sm-8">
-							<select  name="magneto[]" multiple="" id="el5" placeholder="Seleccione">
-							<option value="Vascularizacion">Vascularizacion</option>
-							<option value="Inflamaciòn">Inflamaciòn</option>
-						    <option value="Dolor">Dolor</option>
-						    <option value="Regeneraciòn">Regeneraciòn</option>
-						    <option value="ConsolidaHueso">ConsolidaHueso</option>
-						</select>
-						</div>	
-					</div>
-
-			</div> 
-			<br>
+			</div>--> 
 			<div class="row">
-				<div class="col-md-4">
+			<br>
+			<div class="col-md-4">
 			<label class="col-sm-3 control-label">Dolor</label>
-						<div class="col-sm-3" style="margin-left: 5px;">
+						<div class="col-sm-6">
 							<select id="el6" name="dolor_eval[]" multiple="" placeholder="Seleccione" style="width: 130px;">
 							<option value="Quemante">Quemante</option>
 							<option value="Punzante">Punzante</option>
@@ -140,8 +126,8 @@
 						</div>	
 					</div>
 
-						<div class="col-md-3">
-			<label class="col-sm-4 control-label">Retractación</label>
+						<div class="col-md-4">
+			<label class="col-sm-3 control-label">Retractación</label>
 						<div class="col-sm-6" style="margin-left: 10px;">
 							<select id="el7" name="retraccion_eval[]" multiple="" placeholder="Seleccione">
 							<option value="Fascia">Fascia</option>
@@ -153,8 +139,8 @@
 						</div>	
 					</div>
 
-					<div class="col-md-3" style="margin-left: -50px;">
-						<label class="col-sm-6 control-label">Dolor Neuro</label>
+					<div class="col-md-4">
+						<label class="col-sm-3 control-label">Dolor Neurológico</label>
 						<div class="col-sm-6">
 							<!--nuevo name-->
 							<select id="el8" name="dolor_neuro">
@@ -186,7 +172,6 @@
 		<br>
 		<div class="row">
 			<div class="col-md-4">
-
 				<label class="col-sm-3">Limitación</label>
 				<div class="col-sm-6">
 					<input type="text" name="limitacion_eval" placeholder="Limitación">
@@ -219,19 +204,17 @@
 		<br>  
 	      <div class="row">
 	      	<div class="col-md-4">
-
-
 				<label class="col-sm-3">Observación</label>
 					<div class="col-sm-6">
 						<input type="text" name="observaciones_eval" placeholder="Observación">
 					</div> 
 			</div> 
 			<div class="col-md-4">
-				<label class="col-sm-3">Diagnostico</label>
+				<label class="col-sm-3">Diagnóstico</label>
 				<div class="col-sm-9">
-					<select id="el11"  name="diagnostico_zona_eval">
+					<select id="el11"  name="diagnostico_eval">
+					<option value="" selected hidden disabled>Seleccione</option>
 				    @foreach($ciex as $lab)
-				    <option value="" selected hidden disabled>Seleccione</option>
 					<option value="{{$lab->codigo}}-{{$lab->nombre}}">{{$lab->codigo}}-{{$lab->nombre}}</option>
 					@endforeach
 				    </select>
@@ -312,26 +295,26 @@
 				<label class="col-sm-4 control-label">Intensidad</label>
 				<div class="col-sm-5">
 					<select  name="intensidad_comp" id="el21">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-						<option value="13">13</option>
-						<option value="14">14</option>
-						<option value="15">15</option>
-						<option value="16">16</option>
-						<option value="17">17</option>
-						<option value="18">18</option>
-						<option value="19">19</option>
-						<option value="20">20</option>
+						<option value="0.1">0.1</option>
+						<option value="0.2">0.2</option>
+						<option value="0.3">0.3</option>
+						<option value="0.4">0.4</option>
+						<option value="0.5">0.5</option>
+						<option value="0.6">0.6</option>
+						<option value="0.7">0.7</option>
+						<option value="0.8">0.8</option>
+						<option value="0.9">0.9</option>
+						<option value="1.0">1.0</option>
+						<option value="1.1">1.1</option>
+						<option value="1.2">1.2</option>
+						<option value="1.3">1.3</option>
+						<option value="1.4">1.4</option>
+						<option value="1.5">1.5</option>
+						<option value="1.6">1.6</option>
+						<option value="1.7">1.7</option>
+						<option value="1.8">1.8</option>
+						<option value="1.9">1.9</option>
+						<option value="2.0">2.0</option>
 
 				</select>
 				</div>
@@ -356,8 +339,24 @@
 			</div>
 
 		</div>
+		<div class="row">
+			<br>
+			<div class="col-md-3">
+				<label class="col-sm-4 control-label">Magneto</label>
+					<div class="col-sm-8">
+						<select  name="magneto[]" multiple="" id="el5" placeholder="Seleccione">
+							<option value="Vascularizacion">Vascularizacion</option>
+							<option value="Inflamación">Inflamacion</option>
+						    <option value="Dolor">Dolor</option>
+						    <option value="Regeneración">Regeneracion</option>
+						    <option value="ConsolidaHueso">ConsolidaHueso</option>
+						</select>
+					</div>	
+			</div>
 
-           <div class="row">
+		</div> 
+
+        <div class="row">
            	<br>
            	<div class="col-md-4">
 			<label class="col-sm-3">Corriente</label>
@@ -402,7 +401,7 @@
            		
            	</div>
            	
-           </div>
+        </div>
 
             <div class="row">
            	<br>
@@ -423,7 +422,7 @@
            	</div>
 
            	<div class="col-md-4">
-			<label class="col-sm-3">Reduccion de la Marcha</label>
+			<label class="col-sm-3">Reeducación de la Marcha</label>
 			<div class="col-sm-9">
 		 		<select id="reduc" name="reduc[]" multiple="" placeholder="Seleccione uno o más">
 					<option value="Rolido">Rolido</option>
@@ -456,10 +455,7 @@
            </div>
 			</div>
 			<br>
-			<!-- BOTÓN REGISTRAR-->
-			<div class="col-sm-12">
-				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
-			</div>
+
 
 	
 
@@ -493,7 +489,9 @@
 						
 					</div>
           <hr>
-          <!--AQUÍ ESTABA EL BOTÓN REGISTRAR-->
+			<div class="col-sm-12">
+				<input onclick="form.submit()"  type="submit" value="Registrar" class="btn btn-success" class="form-control">
+			</div>
 		</div>
 		</div>
 	</form>
