@@ -9,7 +9,16 @@
 	<img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
 	<br>
 	<CENTER><p><strong>FICHA DE EVALUACIÓN TERAPEUTICA</strong></p></CENTER>
+	<div style="width: 100%;">
+        <fieldset style="border: 1px solid #000; border-radius: 5px;">
+            <legend style="border-radius: 5px;"><strong>DATOS DEL PACIENTE</strong></legend>
+            <p style="margin-bottom: 8px;"><strong>Nombre: </strong>{{$paciente->nombres}}, {{$paciente->apellidos}}</p>
+            <p style="margin-left:380px;margin-top: -30px;"><strong>DNI: </strong>{{$paciente->dni}}</p>
+            <p style="margin-bottom: 8px;"><strong>Edad: </strong>{{$edad}}</p>
+            <p style="margin-left:380px;margin-top: -30px;"><strong>Sexo: </strong>{{$paciente->sexo}}</p>
 
+        </fieldset> 
+     </div>
 	<p style="text-align: center;"><strong>EVALUACIÓN</strong></p>
 
 	<p style="text-align: left;"><strong>FECHA: </strong>{{$ficha->created_at}}</p>

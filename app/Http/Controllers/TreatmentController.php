@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Treatment;
 use App\Models\Pacientes;
 use DB;
+use Carbon\Carbon;
 
 use Toastr;
 
@@ -17,7 +18,7 @@ class TreatmentController extends Controller
 
 
       $historias = DB::table('treatments as a')
-        ->select('a.id','a.created_at','a.paciente','p.nombres','p.apellidos','p.dni')
+        ->select('a.id','a.created_at','a.paciente','p.nombres','p.apellidos','p.dni','p.sexo','p.fechanac')
     ->join('pacientes as p','p.id','=','a.paciente')
   //  ->groupBy('pacienteId')
     ->get();
@@ -37,11 +38,12 @@ class TreatmentController extends Controller
       $paciente = Pacientes::where('id','=',$ficha->paciente)->first();
 
      
+      $edad = Carbon::parse($paciente->fechanac)->age;
 
-       $view = \View::make('consultas.historias.ficha')->with('ficha', $ficha)->with('paciente', $paciente);
-       $pdf = \App::make('dompdf.wrapper');
-       $pdf->loadHTML($view);
-       return $pdf->stream('ficha_pdf');
+      $view = \View::make('consultas.historias.ficha')->with('ficha', $ficha)->with('paciente', $paciente)->with('edad', $edad);
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      return $pdf->stream('ficha_pdf');
 
   }
 
@@ -53,11 +55,11 @@ class TreatmentController extends Controller
       "ficha_eval" => $request->ficha_eval, 
       "eva_eval" =>            $request->eva_eval,
       "frecuencia_eval" =>            $request->frecuencia_eval,
-      "exac_eval" => json_encode(array_values($request->exac_eval)),//json_encode($request->exac_eval),
+      "exac_eval" => json_encode($request->exac_eval),
       "inicio_eval" =>            $request->inicio_eval,
       "inicio_tiempo_eval" =>            $request->inicio_tiempo_eval,
-      "dolor_eval" => json_encode(array_values($request->dolor_eval)), //json_encode($request->dolor_eval),
-      "retraccion_eval" => json_encode(array_values($request->retraccion_eval)),//json_encode($request->retraccion_eval),
+      "dolor_eval" => json_encode($request->dolor_eval),
+      "retraccion_eval" => json_encode($request->retraccion_eval),
       "parestecia_eval" =>            $request->parestecia_eval,
       "hiperalgesia_eval" =>            $request->hiperalgesia_eval,
       "hiperalgesia_zona_eval" =>            $request->hiperalgesia_zona_eval,
@@ -78,7 +80,7 @@ class TreatmentController extends Controller
       "tenosinovitis_laser_trat" =>            $request->tenosinovitis_laser_trat,
       "esguince_laser_trat" =>            $request->esguince_laser_trat,
       "tension_laser_trat" =>            $request->tension_laser_trat,
-      "rusa_corriente_trat" => json_encode(array_values($request->rusa_corriente_trat)),//json_encode($request->rusa_corriente_trat),
+      "rusa_corriente_trat" => json_encode($request->rusa_corriente_trat),
       "interferencial_corriente_trat" =>            $request->interferencial_corriente_trat,
       "alto_corriente_trat" =>            $request->alto_corriente_trat,
       "tens_corriente_trat" =>            $request->tens_corriente_trat,
@@ -108,16 +110,16 @@ class TreatmentController extends Controller
       "coordinacion_marcha_trat" => $request->coordinacion_marcha_trat,
       "disocion_marcha_trat" => $request->disocion_marcha_trat,
       "consulta_id" => $request->consulta_id,
-      "metodo" => json_encode(array_values($request->metodo)),//json_encode($request->metodo),
-      "reduccion" => json_encode(array_values($request->reduc)),//json_encode($request->reduc),
-      "fortale" => json_encode(array_values($request->fortale)),//json_encode($request->fortale),
+      "metodo" => json_encode($request->metodo),
+      "reduccion" => json_encode($request->reduc),
+      "fortale" => json_encode($request->fortale),
       "tratamiento" => $request->tratamiento,
       "evento" => $request->evento_id,
       "paciente" => $request->paciente,
       //"intensidad" => $request->intensidad,
       //"tiempo" => $request->tiempo,
       //"ciclo" => json_encode($request->ciclo),
-      "magneto" => json_encode(array_values($request->magneto)),//json_encode($request->magneto),
+      "magneto" => json_encode($request->magneto),
       "actividad_exar" => $request->actividad_exar,
       "dolor_neuro" => $request->dolor_neuro,
      // "diagnostico_zona_eval" => $request->diagnostico_zona_eval,
