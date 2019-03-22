@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Historias de Pacientes</span>
+					<span>Fichas Terapèuticas de Pacientes</span>
 
 				</div>
 				<div class="box-icons">
@@ -31,8 +31,8 @@
 						<tr>
 							<th>Paciente</th>
 							<th>DNI</th>
-							<th>Registro</th>
-							<th>Reportes</th>
+							<th>Fecha</th>
+							<th>Reporte</th>
 
 
 						</tr>
@@ -44,8 +44,8 @@
 								<td>{{$h->dni}}</td>
 								<td>{{$h->created_at}}</td>
 								<td>
-								<a  class="btn btn-danger" href="historiasp-ver-{{$h->pacienteId}}">Ver</a>
-								<a  target="_blank" class="btn btn-success" href="historias-{{$h->id}}">Historia</a>	
+								<a target="_blank" class="btn btn-danger" href="ficha-{{$h->id}}">Ver Ficha</a>
+									
 								</td>
 							</tr>
 						@endforeach
@@ -54,8 +54,8 @@
 						<tr>
 							<th>Paciente</th>
 							<th>DNI</th>
-							<th>Registro</th>
-							<th>Historia</th>
+							<th>Fecha</th>
+							<th>Reporte</th>
 						</tr>
 					</tfoot>
 				</table>

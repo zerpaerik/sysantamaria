@@ -109,6 +109,9 @@
      <li>
       <a href="{{route('historias.index')}}"><i class="fa fa-circle-o"></i> Historia Clínica</a>
     </li> 
+     <li>
+      <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
+    </li> 
     <li>
       <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>

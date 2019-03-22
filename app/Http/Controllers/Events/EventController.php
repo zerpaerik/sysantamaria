@@ -239,6 +239,7 @@ class EventController extends Controller
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',$f1)
+    ->orderBy('EventId','desc')
     ->get();
 
   } else {
@@ -251,6 +252,7 @@ class EventController extends Controller
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
         ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
+    ->orderBy('EventId','desc')
     ->get();
 
 

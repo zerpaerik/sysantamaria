@@ -5,18 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Treatment;
 use App\Models\Pacientes;
+use DB;
 
 use Toastr;
 
 class TreatmentController extends Controller
 {
 
+
+    public function index(){
+
+
+      $historias = DB::table('treatments as a')
+        ->select('a.id','a.created_at','a.paciente','p.nombres','p.apellidos','p.dni')
+    ->join('pacientes as p','p.id','=','a.paciente')
+  //  ->groupBy('pacienteId')
+    ->get();
+
+
+   
+        return view('treatment.index', ["historias" => $historias]);
+  }
+
+
+
       public function report($id){
 
 
-      $ficha = Treatment::where('paciente','=',$id)->get();
+      $ficha = Treatment::where('id','=',$id)->first();
 
-      $paciente = Pacientes::where('id','=',$id)->first();
+      $paciente = Pacientes::where('id','=',$ficha->paciente)->first();
 
      
 

@@ -421,8 +421,11 @@ Route::post('historial/create','HistorialController@create')->name('historials.c
 Route::post('observacion-create','ConsultaController@create')->name('observacions.create');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
+
+Route::get('fichast', 'TreatmentController@index')->name('fichast.index')->middleware('auth');
 Route::post('treatment/create','TreatmentController@create')->middleware('auth');
 Route::get('ficha-{id}', 'TreatmentController@report');
+
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
 Route::get('historias-{id}', 'ConsultaController@report');
 Route::get('historiasp-ver-{id}', 'ConsultaController@ver');
