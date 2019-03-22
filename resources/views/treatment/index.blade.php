@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Fichas Terapèuticas de Pacientes</span>
+					<span>Fichas Terapéuticas de Pacientes</span>
 
 				</div>
 				<div class="box-icons">
