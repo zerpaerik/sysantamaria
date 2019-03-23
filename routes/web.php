@@ -277,6 +277,9 @@ Route::get('cuentasporcobrar/{id}', 'CuentasporCobrarController@delete')->middle
 Route::get('cuentasporcobrar-edit-{id}', 'CuentasporCobrarController@editView')->name('cuentasporcobrar.edit');
 Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
+Route::get('cuentasporcobrar-create', 'CuentasporCobrarController@createView')->name('cuentasporcobrar.create')->middleware('auth');
+Route::post('guardar-cuentasporcobrar', 'CuentasporCobrarController@create')->middleware('auth');
+
 Route::get('historialcobros', 'HistorialCobrosController@index')->name('historialcobros.index')->middleware('auth');
 Route::get('historialcobros-search', 'HistorialCobrosController@search')->name('historialcobros.search')->middleware('auth');
 Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
