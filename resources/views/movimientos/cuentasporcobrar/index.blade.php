@@ -46,6 +46,7 @@
 					<thead>
 						<tr>
 							<th>Id</th>
+							<th>Fecha</th>
 							<th>Paciente</th>
 							<th>DNI</th>
 							<th>Monto</th>
@@ -59,6 +60,7 @@
 						@foreach($cuentasporcobrar as $d)
 						<tr>
 						<td>{{$d->id}}</td>
+						<td>{{$d->created_at}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->dni}}</td>
 						<td>{{$d->monto}}</td>
