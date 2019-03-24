@@ -14,6 +14,7 @@ use App\Models\HistorialCobros;
 use App\Models\Servicios;
 use App\Models\Pacientes;
 use App\Models\Paquetes;
+use App\User;
 use Auth;
 use Toastr;
 
@@ -110,20 +111,40 @@ class CuentasporCobrarController extends Controller
                     $atencion = $searchAtencionID->id;
 					$paciente = $searchAtencionID->id_paciente;
 				    $monto = $searchAtencionID->monto;
+            $origen= $searchAtencionID->origen;
+            $origen_usuario= $searchAtencionID->origen_usuario;
+            $paciente= $searchAtencionID->id_paciente;
+            $tipo_factura=$searchAtencionID->tipo_factura;
+            $numero_serie=$searchAtencionID->numero_serie;
+            $numero_factura=$searchAtencionID->numero_factura;
+
+            $es_laboratorio=$searchAtencionID->es_laboratorio;
+            $es_servicio=$searchAtencionID->es_servicio;
+            $es_paquete=$searchAtencionID->es_paquete;
+            $servicio=$searchAtencionID->id_servicio;
+            $lab=$searchAtencionID->id_laboratorio;
+            $paquete=$searchAtencionID->id_paquete;
+            $comollego=$searchAtencionID->comollego;
+            $tp=$searchAtencionID->tipopago;
+
+
+
+    
+
 
 
 
                     $p = Atenciones::find($request->id);
                     $p->pendiente = $pendiente-$request->monto;
-					$p->abono = $abono + $request->monto;
+					          $p->abono = $abono + $request->monto;
                     $res = $p->save();
 					
-					$historialcobros = new HistorialCobros();
+					          $historialcobros = new HistorialCobros();
                     $historialcobros->id_atencion = $atencion;
                     $historialcobros->id_paciente = $paciente;
                     $historialcobros->monto= $monto;
                     $historialcobros->abono = $abono + $request->monto;
-					$historialcobros->abono_parcial = $request->monto;
+					          $historialcobros->abono_parcial = $request->monto;
                     $historialcobros->pendiente = $p->pendiente;
                     $historialcobros->save();
 					
@@ -135,13 +156,86 @@ class CuentasporCobrarController extends Controller
                     $creditos->tipo_ingreso = $request->tipopago;
                     $creditos->descripcion = 'CUENTAS POR COBRAR';
                     $creditos->save();
+
+                   $usuario=User::where('id','=',$origen_usuario)->first();
+
+              if($usuario->esp==0){
+              $paq = new Atenciones();
+              $paq->tipo_factura = $tipo_factura;               
+              $paq->numero_serie = $numero_serie;             
+              $paq->numero_factura = $numero_factura;              
+              $paq->id_paciente = $paciente;
+              $paq->origen = $origen;
+              $paq->origen_usuario = $origen_usuario;
+              $paq->id_laboratorio =  $lab;
+              $paq->id_servicio =  $servicio;
+              $paq->id_paquete = $paquete;
+              $paq->comollego = $comollego;
+              $paq->es_servicio =$es_servicio;
+              $paq->es_paquete =$es_laboratorio;
+              $paq->es_laboratorio =$es_paquete;
+              $paq->serv_prog = FALSE;
+              $paq->tipopago = $tp;
+              $paq->porc_pagar =10;
+              $paq->porcentaje = ($request->monto*10)/100;
+              $paq->pendiente = $pendiente-$request->monto;
+              $paq->monto = $monto;
+              $paq->abono = $request->monto;
+              $paq->estatus = 2;
+              $paq->usuario = Auth::user()->id;
+              $paq->save(); 
+            }elseif($usuario->esp==1){
+               $paq = new Atenciones();
+              $paq->tipo_factura = $tipo_factura;               
+              $paq->numero_serie = $numero_serie;             
+              $paq->numero_factura = $numero_factura;              
+              $paq->id_paciente = $paciente;
+              $paq->origen = $origen;
+              $paq->origen_usuario = $origen_usuario;
+              $paq->id_laboratorio =  $lab;
+              $paq->id_servicio =  $servicio;
+              $paq->id_paquete = $paquete;
+              $paq->comollego = $comollego;
+              $paq->es_paquete =  true;
+              $paq->serv_prog = FALSE;
+              $paq->tipopago = $tp;
+              $paq->porc_pagar =15;
+              $paq->porcentaje = ($request->monto*15)/100;
+              $paq->pendiente = $pendiente-$request->monto;
+              $paq->monto = $monto;
+              $paq->abono = $request->monto;
+              $paq->estatus = 2;
+              $paq->usuario = Auth::user()->id;
+              $paq->save(); 
+
+            }elseif ($usuario->esp==2) {
+               $paq = new Atenciones();
+              $paq->tipo_factura = $tipo_factura;               
+              $paq->numero_serie = $numero_serie;             
+              $paq->numero_factura = $numero_factura;              
+              $paq->id_paciente = $paciente;
+              $paq->origen = $origen;
+              $paq->origen_usuario = $origen_usuario;
+              $paq->id_laboratorio =  $lab;
+              $paq->id_servicio =  $servicio;
+              $paq->id_paquete = $paquete;
+              $paq->comollego = $comollego;
+              $paq->es_paquete =  true;
+              $paq->serv_prog = FALSE;
+              $paq->tipopago = $tp;
+              $paq->porc_pagar =0;
+              $paq->porcentaje = 5;
+              $paq->pendiente = $pendiente-$request->monto;
+              $paq->monto = $monto;
+              $paq->abono = $request->monto;
+              $paq->estatus = 2;
+              $paq->usuario = Auth::user()->id;
+              $paq->save(); 
+            }else{
+
+            }
 					
-					$historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Cuentas por Cobrar';
-		  $historial->detalle = $request->monto;
-          $historial->id_usuario = \Auth::user()->id;
-          $historial->save();
+			
 
 
 

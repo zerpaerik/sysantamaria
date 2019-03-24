@@ -33,13 +33,14 @@ class MovimientosController extends Controller
   		$fecha=$request->fecha;
 
   $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
           ->join('users as u','u.id','a.usuario')
+          ->where('a.estatus','=',1)
           ->whereNotIn('a.monto',[0,0.00,99999])
          // ->where('a.created_at', '=',$fecha)
           ->whereDate('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
@@ -88,13 +89,14 @@ class MovimientosController extends Controller
      } else {
 
      	 $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.estatus','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
           ->join('users as u','u.id','a.usuario')
+          ->where('a.estatus','=',1)
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
           ->orderby('a.id','desc')

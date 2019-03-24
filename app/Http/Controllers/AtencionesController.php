@@ -30,13 +30,14 @@ class AtencionesController extends Controller
 
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
           ->join('users as u','u.id','a.usuario')
+          ->where('a.estatus','=',1)
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',$request->fecha)
           ->orderby('a.id','desc')
@@ -47,13 +48,14 @@ class AtencionesController extends Controller
         } else {
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
           ->join('users as e','e.id','a.origen_usuario')
           ->join('paquetes as f','f.id','a.id_paquete')
           ->join('users as u','u.id','a.usuario')
+          ->where('a.estatus','=',1)
           ->whereNotIn('a.monto',[0,0.00,99999])
           ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
           ->orderby('a.id','desc')
@@ -802,19 +804,20 @@ class AtencionesController extends Controller
   private function elasticSearch($initial,$nombre,$apellido)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','cr.tipo_ingreso')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','cr.tipo_ingreso')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
     ->join('creditos as cr','cr.id_atencion','a.id')
+    ->where('a.estatus','=',1)
     ->whereNotIn('a.monto',[0,0.00])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('b.nombres','like','%'.$nombre.'%')
     ->where('b.apellidos','like','%'.$apellido.'%')
     ->orderby('a.id','desc')
-    ->paginate(20);
+    ->get();
 	
     return $atenciones;
   }
