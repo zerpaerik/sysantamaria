@@ -83,6 +83,16 @@
 							</select>
 						</div>	
 
+						<label class="col-sm-1 control-label">Tipo</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="tipoe" required="">
+							<option value="">Seleccione</option>
+							<option value="0">General</option>
+							<option value="1">Especialista</option>
+							<option value="2">Trainer</option>
+						</select>
+						</div>
+
 
 						<input type="hidden" name="id" value="{{$id}}">
 

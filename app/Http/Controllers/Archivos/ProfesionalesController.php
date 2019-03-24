@@ -55,13 +55,38 @@ class ProfesionalesController extends Controller
 		  'usuario' => 	Auth::user()->id,
    		]);
 
+
+     if($request->tipo==0){
       $users= User::create([
         'name' => $request->name,
         'lastname' => $request->apellidos,
         'tipo' => 2,
-        'dni' => $request->dni
+        'dni' => $request->dni,
+        'esp' =>0
 
       ]);
+    } elseif($request->tipo==1) {
+      $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->apellidos,
+        'tipo' => 2,
+        'dni' => $request->dni,
+        'esp' =>1
+
+      ]);
+
+
+    } else {
+       $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->apellidos,
+        'tipo' => 2,
+        'dni' => $request->dni,
+        'esp' =>2
+
+      ]);
+
+    }
 	  
 	      $historial = new Historiales();
           $historial->accion ='Registro';
@@ -110,7 +135,8 @@ class ProfesionalesController extends Controller
       $res = $p->save();
       User::where('dni', $request->dni)
           ->update([
-            "tipo" => $request->tipo
+            "tipo" => $request->tipo,
+            "esp" => $request->tipoe
           ]);
       return redirect()->action('Archivos\ProfesionalesController@index', ["edited" => $res]);
     }

@@ -25,12 +25,15 @@ class ComporPagarController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as pa','pa.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00,99999])
-        ->whereNotIn('a.porc_pagar',[0,0.00,99999])
-                ->whereNotIn('a.porcentaje',[0,0.00,99999])
-    ->whereNotIn('a.origen',[1])
+    ->whereNotIn('a.porc_pagar',[99999])
+    ->whereNotIn('a.porcentaje',[0,0.00,99999])
+    ->where('a.pagado_com','=',NULL)
+    //->whereNotIn('a.origen',[1])
     //->whereDate('a.created_at', '=',Carbon::today()->toDateString())
     ->orderby('a.id','desc')
     ->get();
+
+   
     $aten = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())
                       ->whereNotIn('monto',[0,0.00])
                       ->whereNotIn('origen_usuario',[99999999])
