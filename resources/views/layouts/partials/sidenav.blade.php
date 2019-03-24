@@ -1,40 +1,5 @@
 @if(\Auth::user()->role_id == 4)
 
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle">
-    <i class="fa fa-inbox"></i>
-    <span class="hidden-xs">Archivos</span>
-  </a>
-  <ul class="dropdown-menu">
-     <li>
-      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Empresas</a>
-    </li> 
-    <li>
-      <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
-    </li>
-    <li>
-      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros medicos</a>
-    </li>
-    <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
-    </li>
-    <li>
-      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
-    </li>
-    <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
-    </li>
-    <li>
-      <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
-    </li>    
-  </ul>
-</li>
 
 <li class="dropdown">
   <a href="#" class="dropdown-toggle">
@@ -240,7 +205,39 @@
     </li>
     <li>
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
-    </li>    
+    </li> 
+    <li>
+            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Archivos</a>
+            <ul class="dropdown-menu"> 
+              <li>
+      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Empresas</a>
+    </li> 
+    <li>
+      <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
+    </li>
+    <li>
+      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros medicos</a>
+    </li>
+    <li>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+    </li>
+    <li>
+      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
+    </li>
+    <li>
+      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
+    </li>
+    <li>
+      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
+    </li>
+    <li>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+    </li>
+    <li>
+      <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
+    </li>  
+            </ul>
+          </li>   
   </ul>
 </li>
 
