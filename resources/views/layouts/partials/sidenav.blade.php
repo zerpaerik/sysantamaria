@@ -95,6 +95,18 @@
               </li>
             </ul>
           </li>
+
+          <li>
+            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Cobros</a>
+            <ul class="dropdown-menu"> 
+              <li>
+                <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-plus-square-o"></i> Cuentas por Cobrar</a>
+              </li>
+              <li>
+                <a href="{{route('historialcobros.index')}}"><i class="fa fa-plus-square-o"></i> Historial de Cobros</a>
+              </li>
+            </ul>
+          </li>
         </ul>      
     </li>
   </ul>
@@ -166,20 +178,8 @@
   </a>
   <ul class="dropdown-menu">
    <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Liquidación de Médicos</a>
-        <ul class="dropdown-menu">
-
-          <li>
-            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Especialistas</a>
-          </li>
-
-
-          <li>
-            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Médico General</a>
-          </li>
-
-
-        </ul>
+      <a href="{{route('comporpagar.index')}}" class="dropdown-toggle"><i class="fa fa-tasks"></i> Liquidación de Médicos</a>
+       
       </li>
       <li>
         <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Liquidación Personal</a>
@@ -191,22 +191,7 @@
 
 
           <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Técnico Administrativo</a>
-          </li>
-
-          </ul>      
-      </li>
-      <li>
-        <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Liquidación Otros</a>
-          <ul class="dropdown-menu">
-
-          <li>
-            <a href="{{route('generics.router')}}"><i class="fa fa-plus-square-o"></i> Trainer</a>
-          </li>
-
-
-          <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Instructor</a>
+            <a href="{{route('compunziones.index')}}"><i class="fa fa-plus-square-o"></i> Técnico Administrativo</a>
           </li>
 
           </ul>      
@@ -259,45 +244,6 @@
   </ul>
 </li>
 
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Movimientos</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('atenciones.index')}}"><i class="fa fa-plus-circle"></i> Ingreso de Atenciones</a>
-      </li>
-      <li>
-        <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de Gastos</a>
-      </li>
-      <li>
-        <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
-      </li>
-       <li>
-        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
-      </li>
-      <li>
-        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>s
-      </li>
-      <li>
-        <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
-      </li>
-    <li>
-        <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
-      </li>
-      <li>
-        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
-      </li>
-      <li>
-        <a href="{{route('compunziones.index')}}"><i class="fa fa-list-alt"></i> Comis. Punziones.</a>
-      </li>
-      <li>
-        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
-      </li>
-
-    </ul>
-  </li>
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">

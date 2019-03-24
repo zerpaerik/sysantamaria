@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Comisiones Por Pagar Punziones</span>
+					<span>Comisiones/Liquidaciòn Tècnico Administrativo</span>
 
 				</div>
 

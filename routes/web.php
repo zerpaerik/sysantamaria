@@ -216,6 +216,7 @@ Route::get('labpagados', 'LaboratoriosPagadosController@index')->name('labpagado
 
 
 Route::get('comporpagar', 'ComporPagarController@index')->name('comporpagar.index')->middleware('auth');
+Route::get('comporpagar1', 'ComporPagarController@index1')->name('comporpagar.index1')->middleware('auth');
 Route::get('comporpagar-search', 'ComporPagarController@search')->name('comporpagar.search')->middleware('auth');
 Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');
 Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('auth');

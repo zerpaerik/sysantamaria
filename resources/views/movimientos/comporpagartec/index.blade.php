@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Comisiones por Pagar Tecnólogo</strong></span>
+					<span><strong>Comisiones/Liquidaciòn Tecnòlogos</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
