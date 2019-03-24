@@ -33,24 +33,12 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha'))
-					<p class="help-block">
-						{{ $errors->first('fecha') }}
-					</p>
-					@endif
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
-					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha2'))
-					<p class="help-block">
-						{{ $errors->first('fecha2') }}
-					</p>
-					@endif
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
@@ -58,6 +46,18 @@
 
 				</div>
 			</div>	
+			<div class="row">
+
+				<form action="reporte/pagadas" method="get">
+
+					<input type="hidden" value="{{$f1}}" name="f1">
+				    <input type="hidden" value="{{$f2}}" name="f2">
+						
+				<button style="margin-left: 15px;" target="_blank" type="submit">Generar Reporte</button>
+			   </form>
+				
+			</div>
+
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">

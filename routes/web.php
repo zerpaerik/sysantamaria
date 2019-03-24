@@ -242,6 +242,8 @@ Route::get('pagarcomp/{id}', 'ComisionesPunzionesController@pagarcom')->middlewa
 
 
 Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.index')->middleware('auth');
+Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
+
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
 Route::get('reversar/{id}', 'ComisionesPagadasController@reversar')->middleware('auth');
 
