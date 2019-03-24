@@ -235,6 +235,8 @@ class CuentasporCobrarController extends Controller
 
             }
 					
+
+             
 			
 
 
