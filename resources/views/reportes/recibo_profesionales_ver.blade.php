@@ -84,12 +84,12 @@
     @else
     <td style="padding: 0;text-align: left;text-overflow: ellipsis;">{{substr($recibo->paquete,0,18)}} </td>
     @endif
-    <td style="padding: 0;text-align: left;text-overflow: ellipsis;">{{ $recibo->porcentaje}}.00</td></tr>
+    <td style="padding: 0;text-align: left;text-overflow: ellipsis;">{{ $recibo->porcentaje}}</td></tr>
   @endforeach
  </tbody>
 
   @foreach($totalrecibo as $recibo)
- <p><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}.00</p>
+ <p><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}</p>
   @endforeach
 
 
