@@ -1,4 +1,6 @@
 <div>
+		<img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
+
 	<div class="text-center title-header col-12">
 		<center><strong>HOJA DE EVALUACIÓN</strong> </center>
 	</div>
