@@ -73,10 +73,14 @@ class PrenatalController extends Controller
 	
       public function show($id)
     {
-        $data = Prenatal::where('paciente', $id)->first();
-        $paciente = Paciente::where('id',$data->id)->first();
+        $data = Prenatal::where('paciente','=', $id)->first();
+        $paciente = Paciente::where('id','=',$id)->first();
+
+        dd($data);
+        die();
+
         return view('prenatal.show',[
-        	'data' => $data,
+        	'prenatal' => $data,
         	'paciente' => $paciente
         ]);
     }
@@ -108,7 +112,7 @@ class PrenatalController extends Controller
     {
 
     	$paciente = Paciente::where('id',$id)->first();
-    	$prenatal = Prenatal::where('paciente',$id)->groupBy('paciente')->get();
+    	$prenatal = Prenatal::where('paciente',$id)->first();
     	$view = \View::make('prenatal.reporte')->with('paciente', $paciente)->with('prenatal', $prenatal);
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -122,7 +126,7 @@ class PrenatalController extends Controller
     {
 
     	$paciente = Paciente::where('id',$id)->first();
-    	$prenatal = Prenatal::where('paciente',$id)->get();
+    	$prenatal = Prenatal::where('paciente',$id)->first();
 		
 		return view('prenatal.show',[
     		 'paciente' => $paciente,

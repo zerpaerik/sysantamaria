@@ -14,27 +14,25 @@
 	</div> 
 </div>
 
-@foreach($prenatal as $pre)					
 
 <div style="width: 100%;">
 	<fieldset style="border: 1px solid #000; border-radius: 5px;">
 		<div style="font-weight: bold; font-size: 14px">
-			FECHA DE EVALUACIÒN: {{$pre->created_at}}
+			FECHA DE EVALUACIÒN: {{$prenatal->created_at}}
 		</div>
 		<br>
 
-		<p style="text-align: left;"><strong>PROCEDIMIENTO: </strong>{{$pre->procedimiento}}</p>
+		<p style="text-align: left;"><strong>PROCEDIMIENTO: </strong>{{$prenatal->procedimiento}}</p>
 
-		<p style="text-align: left;"><strong>EVOLUCIÓN: </strong>{{$pre->evolucion}}</p>
+		<p style="text-align: left;"><strong>EVOLUCIÓN: </strong>{{$prenatal->evolucion}}</p>
 
 		<div style="font-weight: bold; font-size: 14px">
-			OBSERVACIÓN: {{$pre->observacion}}
+			OBSERVACIÓN: {{$prenatal->observacion}}
 		<br>
 		<br>
 		</div>
 	</fieldset>
 </div>
-@endforeach
 
 
 
