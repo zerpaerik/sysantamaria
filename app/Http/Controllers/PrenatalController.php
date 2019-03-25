@@ -47,19 +47,7 @@ class PrenatalController extends Controller
       $prenatal = DB::table('prenatals as a')
     	->select( 'a.id',
     		'a.paciente',
-    		'a.chc',
-			'a.elect',
-			'a.ej',
-			'a.cf',
-			'a.laser',
-			'a.masaje',
-			'a.us',
       'a.id_profesional',
-			'a.mag',
-			'a.otros',
-			'a.desf',
-			'a.man',
-			'a.fav',
       'a.observacion',
 			'a.created_at',
 			 'p.nombres',
@@ -94,21 +82,10 @@ class PrenatalController extends Controller
     }
 
     public function create(Request $request)
-    {
-    		Prenatal::create([
+    { 	Prenatal::create([
 		    'paciente' =>$request->paciente,
-				'chc' =>$request->chc,
-				'elect' =>$request->elect,
-				'ej' =>$request->ej,
-				'cf' =>$request->cf,
-				'laser' =>$request->laser,
-				'masaje' =>$request->masaje,
-				'us' =>$request->us,
-				'mag' =>$request->mag,
-				'otros' =>$request->otros,
-				'desf' =>$request->desf,
-				'man' =>$request->man,
-				'fav' =>$request->fav,
+        'procedimiento' => str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->procedimiento)),
+        'evolucion' => $request->evolucion,
         'id_profesional' => $request->profesional,
         'observacion' =>$request->observacion
 				
@@ -134,7 +111,6 @@ class PrenatalController extends Controller
     	$prenatal = Prenatal::where('paciente',$id)->get();
     	$view = \View::make('prenatal.reporte')->with('paciente', $paciente)->with('prenatal', $prenatal);
         $pdf = \App::make('dompdf.wrapper');
-		$pdf->setPaper(array(0,0,867.00,480.00));
         $pdf->loadHTML($view);
         return $pdf->stream('resultados_ver');
     }
