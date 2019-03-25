@@ -256,7 +256,7 @@
       </li>  
          
        <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Próximas Citas</a>
+        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Control de citas/Evaluaciones</a>
       </li>              
     </ul>
   </li>
@@ -604,7 +604,7 @@
       </li>  
          
        <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Próximas Citas</a>
+        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Programación de citas/Evaluaciones</a>
       </li>              
     </ul>
   </li>
@@ -705,7 +705,7 @@
   <ul class="dropdown-menu">
     
     <li>
-      <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
+      <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>    
   </ul>
 </li>
@@ -719,31 +719,19 @@
    <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Productos</a>
         <ul class="dropdown-menu">
-
-        
-          <li>
+           <li>
             <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
           </li>
-
-
         </ul>      
     </li>
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
-
           <li>
-            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
+            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Pedido Productos</a>
           </li>
-
-
-      
-
-
         </ul>      
     </li>
-
-
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
         <ul class="dropdown-menu">
@@ -781,7 +769,7 @@
       </li>  
          
        <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Próximas Citas</a>
+        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Control de citas/Evaluaciones</a>
       </li>                
     </ul>
   </li>
@@ -885,7 +873,7 @@
       </li>  
          
        <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Próximas Citas</a>
+        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Control de citas/Evaluaciones</a>
       </li>                 
     </ul>
   </li>
