@@ -60,8 +60,11 @@
 			</div>	
 
 			<div class="row">
-				<div class="col-md-1">
-				<strong>Cantidad:</strong>{{$cantidad->cantidad}}
+				<div class="col-md-2">
+				<strong>Cant.Atenciones:</strong>{{$cantidad->cantidad}}
+			    </div>
+			    <div class="col-md-2">
+				<strong>Total Monto:</strong>{{$monto->monto}}
 			    </div>
 			    <div class="col-md-2">
 				<strong>Total Abono:</strong>{{$abono->monto}}
@@ -72,9 +75,7 @@
 			    <div class="col-md-2">
 				<strong>Total Comision:</strong>{{$comision->monto}}
 			    </div>
-				<div class="col-md-2">
-				<strong>Total Atenciones:</strong>{{$monto->monto}}
-			    </div>
+				
 				
 			</div>
 
@@ -145,8 +146,6 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 
 
