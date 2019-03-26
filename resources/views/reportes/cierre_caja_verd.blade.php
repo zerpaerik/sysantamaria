@@ -301,3 +301,35 @@
 		</tr>
 	</table>
 </div>
+
+<div style="font-weight: bold; font-size: 14px">
+		PUNZIONES
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Paciente</th>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+		    <th>TipoIngreso</th>
+
+		</tr>
+		@foreach ($punziones as $con)
+			<tr>
+				<td>{{ $con->nombres }},{{ $con->apellidos }}</td>
+				<td>{{ $con->nombre }}</td>
+				<td>{{ $con->cantidad }}</td>
+				<td>{{ $con->precio }}</td>
+				<td>{{ $con->tipo_ingreso }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalpunziones->monto }}</td>
+		</tr>
+	</table>
+</div>

@@ -122,8 +122,14 @@
 		</tr>
 		<tr>
 			<td>Métodos Anticonceptivos</td>
-			<td>{{ $metodos->cantidad }}</td>
-			<td>{{ $metodos->monto }}</td>
+			<td>{{ $metodos->cantidad}}</td>
+			<td>{{ $metodos->monto}}</td>
+		</tr>
+
+			<tr>
+			<td>Punziones</td>
+			<td>{{ $punziones->cantidad}}</td>
+			<td>{{ $punziones->monto }}</td>
 		</tr>
 		
 	</table>
