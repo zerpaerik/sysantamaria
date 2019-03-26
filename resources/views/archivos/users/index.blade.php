@@ -30,6 +30,7 @@
 							<th>Apellidos</th>
 							<th>Email</th>
 							<th>Rol</th>
+							<th>Acciones:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,6 +41,9 @@
 								<td>{{$user->lastname}}</td>
 								<td>{{$user->email}}</td>
 						        <td>{{$user->rol}}</td>
+						        <td>
+									<a class="btn btn-danger" href="user-delete-{{$user->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+								</td>
 
 							
 							</tr>
