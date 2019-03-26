@@ -111,36 +111,13 @@
 					<br>
 					<div class="row">
 
-            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios seleccionados</label>
+           
             <!-- sheepIt Form -->
             <div id="laboratorios" class="embed ">
                 <!-- Form template-->
                 <div id="laboratorios_template" class="template row">
 
-                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
-                    <div class="col-sm-3">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
-                        <option value="1">Seleccionar laboratorio</option>
-                        @foreach($laboratorios as $pac)
-                          <option value="{{$pac->id}}">
-                            {{$pac->name}}-Precio:{{$pac->preciopublico}}
-                          </option>
-                        @endforeach
-                      </select>
-                    </div>
-
-                    <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-2">
-                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
-
-                      <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
-                    </div>
-
-                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Abono</label>
-                    <div class="col-sm-2">
-
-                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
-                    </div>
+                   
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                 </div>
@@ -151,11 +128,7 @@
                 <!-- /No forms template-->
                 
                 <!-- Controls -->
-                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
-                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar laboratorio</span></a></div>
-                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
-                </div>
+             
                 <!-- /Controls -->
             </div>
             <!-- /sheepIt Form --> 
