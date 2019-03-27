@@ -197,7 +197,7 @@
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
     </li>
     <li>
-      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
+      <a href="{{route('produccion.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
     <li>
       <a href="{{route('compagadas.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
@@ -545,7 +545,7 @@
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
     </li>
     <li>
-      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
+      <a href="{{route('produccion.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
     <li>
       <a href="{{route('compagadas.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>

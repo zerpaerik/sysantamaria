@@ -374,7 +374,7 @@ Route::get('punziones', 'Existencias\PunzionesController@index')->name('punzione
 Route::get('punziones-create', 'Existencias\PunzionesController@createView')->name('punziones.create');
 Route::post('punzion/create', 'Existencias\PunzionesController@create');
 
-
+Route::get('produccion', 'ProduccionController@index')->name('produccion.index');
 
 Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
 Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
