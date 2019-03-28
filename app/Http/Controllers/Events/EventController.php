@@ -150,7 +150,6 @@ class EventController extends Controller
         $evt->sede=$request->session()->get('sede');
         $evt->comollego=$request->comollego;
         $evt->evaluacion=$request->evaluaciones;
-        $evt->metodopago=$request->metodopago;
         $evt->usuario =Auth::user()->id;
         $evt->save();
 
@@ -162,7 +161,7 @@ class EventController extends Controller
         "origen" => 'CONSULTAS',
         "descripcion" => 'CONSULTAS',
         "monto" => $precioeva->precio,
-        "tipo_ingreso" => 'EF',
+        "tipo_ingreso" => $request->metodopago,
         "id_event" => $evt->id
       ]);
 	  

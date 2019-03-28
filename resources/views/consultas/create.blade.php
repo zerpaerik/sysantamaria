@@ -80,8 +80,8 @@
 						<div class="col-sm-3">
 							<select id="el6" name="metodopago" required="required">
 								<option value="" selected hidden disabled>Seleccione</option>
-								<option value="efectivo">Efectivo</option>
-								<option value="tarjeta">Tarjeta</option>
+								<option value="EF">EF</option>
+								<option value="TJ">TJ</option>
 							</select>
 						</div>
 							<hr><hr>	
