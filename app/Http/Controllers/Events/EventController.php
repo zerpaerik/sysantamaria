@@ -150,6 +150,7 @@ class EventController extends Controller
         $evt->sede=$request->session()->get('sede');
         $evt->comollego=$request->comollego;
         $evt->evaluacion=$request->evaluaciones;
+        $evt->metodopago=$request->metodopago;
         $evt->usuario =Auth::user()->id;
         $evt->save();
 

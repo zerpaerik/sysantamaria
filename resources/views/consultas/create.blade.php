@@ -76,26 +76,37 @@
 									@endforeach
 								</select>
 							</div>
+						<label class="col-sm-1 control-label">Método de pago</label>
+						<div class="col-sm-3">
+							<select id="el6" name="metodopago" required="required">
+								<option value="" selected hidden disabled>Seleccione</option>
+								<option value="efectivo">Efectivo</option>
+								<option value="tarjeta">Tarjeta</option>
+							</select>
+						</div>
 							<hr><hr>	
+			<div class="row">
+				<div class="col-md-6">
+				<label class="col-sm-4">Cómo llego a Santa Maria FISIOCENTER?:</label>
+	            <div class="col-sm-7">
+	              <select id="el5" name="comollego">
+	                  <option value="Seleccione">Seleccione</option>
+	                  <option value="Vallas publicitarias externas">Vallas publicitarias externas</option>
+	                  <option value="Carteles publicitarios en el mismo local">Carteles publicitarios en el mismo local</option>
+	                  <option value="Recomendación por pacientes">Recomendación por pacientes</option>
+	                  <option value="Recomendación por médicos">Recomendación por médicos</option>
+	                  <option value="Redes sociales (Facebook, Instagram, Twitter)s">Redes sociales (Facebook, Instagram, Twitter)</option>
+	                  <option value="Radio (AM/FM/XM)">Radio (AM/FM/XM)</option>
+	                  <option value="Radio por Internet">Radio por Internet</option>
+	                  <option value="Televisión">Televisión</option>
+	                  <option value="Motor de búsqueda (Google, Bing, Yahoo!">Motor de búsqueda (Google, Bing, Yahoo!)</option>
+	                  <option value="Otros">Otros</option>
 
-							    <label class="col-sm-3 control-label">Còmo llego a Santa Maria FISIOCENTER?:</label>
-            <div class="col-sm-3">
-              <select id="el5" name="comollego">
-                  <option value="Seleccione">Seleccione</option>
-                  <option value="Vallas publicitarias externas">Vallas publicitarias externas</option>
-                  <option value="Carteles publicitarios en el mismo local">Carteles publicitarios en el mismo local</option>
-                  <option value="Recomendación por pacientes">Recomendación por pacientes</option>
-                  <option value="Recomendación por médicos">Recomendación por médicos</option>
-                  <option value="Redes sociales (Facebook, Instagram, Twitter)s">Redes sociales (Facebook, Instagram, Twitter)</option>
-                  <option value="Radio (AM/FM/XM)">Radio (AM/FM/XM)</option>
-                  <option value="Radio por Internet">Radio por Internet</option>
-                  <option value="Televisión">Televisión</option>
-                  <option value="Motor de búsqueda (Google, Bing, Yahoo!">Motor de búsqueda (Google, Bing, Yahoo!)</option>
-                  <option value="Otros">Otros</option>
 
-
-              </select>
-            </div>					
+	              </select>
+	            </div>
+	            </div>
+            </div>
 
 						<br>
 						<input onclick="form.submit()"  type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
@@ -113,12 +124,14 @@
 $(document).ready(function() {
 	LoadTimePickerScript(DemoTimePicker);
 	LoadSelect2Script(function (){
-		$("#el2").select2();
 		$("#el1").select2();
-		$("#el4").select2();
-				$("#el5").select2();
-
+		$("#el2").select2();
 		$("#el3").select2({disabled : true});
+		$("#el4").select2();
+		$("#el5").select2();
+		$("#el6").select2();
+
+		
 	});
 	WinMove();
 });

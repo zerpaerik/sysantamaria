@@ -16,12 +16,7 @@
 
 
           <li>
-            <a href="{{route('consultas.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
-          </li>
-
-
-          <li>
-            <a href="{{route('proximacita.index')}}"><i class="fa fa-list-alt"></i> Control de citas/Evaluaciones</a>
+            <a href="{{route('service.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
           </li>
 
 
@@ -41,11 +36,11 @@
 
 
           <li>
-            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle Ingresos/Gastos</a>
+            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Cierre de caja</a>
           </li>
 
           <li>
-          <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de Gastos</a>
+          <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Gastos del día</a>
           </li>
 
           <li>
@@ -87,18 +82,15 @@
     </li> 
      <li>
       <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
-    </li> 
-    <li>
-      <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
        <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Registrar Evaluación</a>
       </li>
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
@@ -170,10 +162,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
     </ul>
   </li>
@@ -241,25 +233,6 @@
 </li>
 
 
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Consultas</span>
-    </a>
-    <ul class="dropdown-menu"> 
-   
-         <li>
-        <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
-      </li>  
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li>  
-         
-       <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Control de citas/Evaluaciones</a>
-      </li>              
-    </ul>
-  </li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
@@ -435,18 +408,15 @@
     </li> 
      <li>
       <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
-    </li> 
-    <li>
-      <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
        <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Registrar Evaluación</a>
       </li>
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
@@ -518,10 +488,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
     </ul>
   </li>
@@ -589,25 +559,6 @@
 </li>
 
 
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Consultas</span>
-    </a>
-    <ul class="dropdown-menu"> 
-   
-         <li>
-        <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
-      </li>  
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li>  
-         
-       <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Programación de citas/Evaluaciones</a>
-      </li>              
-    </ul>
-  </li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
@@ -784,18 +735,15 @@
     </li> 
      <li>
       <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
-    </li> 
-    <li>
-      <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
        <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Registrar Evaluación</a>
       </li>
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
@@ -863,18 +811,15 @@
     </li> 
      <li>
       <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
-    </li> 
-    <li>
-      <a href="{{route('prenatal.index')}}"><i class="fa fa-users"></i> Ficha de Evaluación</a>
     </li>
       <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Evaluación</a>
+        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
       </li>
       <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Evaluación</a>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
       </li>
        <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Listar Consultas</a>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Registrar Evaluación</a>
       </li>
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
