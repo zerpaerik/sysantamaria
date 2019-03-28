@@ -182,9 +182,7 @@
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
-    <li>
-      <a href="{{route('atenciones.index')}}"><i class="fa fa-hospital-o"></i> Atenciones</a>
-    </li>
+   
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
     </li>
@@ -196,6 +194,26 @@
     </li>
     <li>
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+    </li>
+    <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>
+        <ul class="dropdown-menu">
+          <li>
+
+            <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
+      </li>
+       <li>
+        <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
+      </li>
+       <li>
+        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llego el Paciente?</a>
+      </li>
+     <li>
+        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      </li>
+
+
+        </ul>      
     </li> 
     <li>
             <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Archivos</a>
@@ -233,20 +251,7 @@
 </li>
 
 
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Programaciones</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
-      </li>
-      <li>
-        <a href="{{route('service.inicio')}}"><i class="fa fa-plus-circle"></i> Listado de Programacion</a>
-      </li>                   
-    </ul>
-  </li>
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
@@ -508,9 +513,7 @@
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
-    <li>
-      <a href="{{route('atenciones.index')}}"><i class="fa fa-hospital-o"></i> Atenciones</a>
-    </li>
+   
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
     </li>
@@ -522,57 +525,29 @@
     </li>
     <li>
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
-    </li> 
-    <li>
-            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Archivos</a>
-            <ul class="dropdown-menu"> 
-              <li>
-      <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Empresas</a>
-    </li> 
-    <li>
-      <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
     </li>
     <li>
-      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros medicos</a>
-    </li>
-    <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
-    </li>
-    <li>
-      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
-    </li>
-    <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
-    </li>
-    <li>
-      <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
-    </li>  
-            </ul>
-          </li>   
-  </ul>
-</li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>
+        <ul class="dropdown-menu">
+          <li>
 
-
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Programaciones</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
+            <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
       </li>
-      <li>
-        <a href="{{route('service.inicio')}}"><i class="fa fa-plus-circle"></i> Listado de Programacion</a>
-      </li>                   
-    </ul>
-  </li>
+       <li>
+        <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
+      </li>
+       <li>
+        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llego el Paciente?</a>
+      </li>
+     <li>
+        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      </li>
+
+
+        </ul>      
+    </li>
+
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
