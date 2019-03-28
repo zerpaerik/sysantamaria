@@ -8,7 +8,10 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\Events\Event;
 use App\Models\Creditos;
+use App\Models\Punziones;
+use App\Models\Ventas;
 use App\Models\Historiales;
 use App\Models\HistorialCobros;
 use Auth;
@@ -47,6 +50,15 @@ class MovimientosController extends Controller
           ->orderby('a.id','desc')
           ->get();
 
+           $totalatenciones = Atenciones::whereDate('created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+                                        ->where('estatus','=',1)
+                                        ->whereNotIn('monto',[0,0.00,99999])
+                                        ->select(DB::raw('SUM(abono) as monto'))
+                                        ->first();
+
+                    if ($totalatenciones->monto == 0) {
+                }
+
 
 
     $consultas = DB::table('events as e')
@@ -55,17 +67,38 @@ class MovimientosController extends Controller
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
-        ->join('users as u','u.id','e.usuario')
-          ->whereDate('e.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+    ->join('users as u','u.id','e.usuario')
+    ->whereDate('e.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
     ->get();
+
+
+    $totalconsultas = Event::whereDate('created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+                    if ($totalconsultas->monto == 0) {
+                }
+
+
+
 
      $ventas = DB::table('ventas as a')
             ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
-          ->whereDate('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+            ->whereDate('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
             ->orderby('a.id','desc')
             ->get();
+
+     $totalventas = Ventas::whereDate('created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+                    if ($totalventas->monto == 0) {
+                }
+
+
+
 
 
 
@@ -79,12 +112,27 @@ class MovimientosController extends Controller
                     ->orderby('a.created_at','desc')
                     ->get(); 
 
+          $totalpunziones = Punziones::whereDate('created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+                                        ->select(DB::raw('SUM(precio) as monto'))
+                                        ->first();
+
+                    if ($totalpunziones->monto == 0) {
+                }
+
        $ingresos = DB::table('creditos as a')
             ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
             ->orderby('a.id','desc')
           ->whereDate('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
             ->where('a.origen','=','OTROS INGRESOS')
             ->get(); 
+
+
+       $totalingresos = Creditos::whereDate('created_at', [date('Y-m-d 00:00:00', strtotime($fecha))])
+                                        ->where('origen','=','OTROS INGRESOS')
+                                        ->select(DB::raw('SUM(monto) as monto'))
+                                        ->first();
+
+                  
 
      } else {
 
@@ -102,6 +150,14 @@ class MovimientosController extends Controller
           ->orderby('a.id','desc')
           ->get();
 
+            $totalatenciones = Atenciones::whereDate('created_at', '=',Carbon::today()->toDateString())                 ->where('estatus','=',1)
+                                        ->whereNotIn('monto',[0,0.00,99999])
+                                        ->select(DB::raw('SUM(abono) as monto'))
+                                        ->first();
+
+                    if ($totalatenciones->monto == 0) {
+                }
+
     $consultas = DB::table('events as e')
     ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
@@ -112,6 +168,14 @@ class MovimientosController extends Controller
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
     ->get();
 
+        $totalconsultas = Event::whereDate('created_at','=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+                    if ($totalconsultas->monto == 0) {
+                }
+
+
      $ventas = DB::table('ventas as a')
             ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
             ->join('users as e','e.id','a.id_usuario')
@@ -119,6 +183,13 @@ class MovimientosController extends Controller
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')
             ->get();
+
+     $totalventas = Ventas::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+                    if ($totalventas->monto == 0) {
+                }
 
 
 
@@ -132,12 +203,24 @@ class MovimientosController extends Controller
                     ->orderby('a.created_at','desc')
                     ->get(); 
 
+       $totalpunziones = Punziones::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                        ->select(DB::raw('SUM(precio) as monto'))
+                                        ->first();
+
+                    if ($totalpunziones->monto == 0) {
+                }
+
        $ingresos = DB::table('creditos as a')
             ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
             ->orderby('a.id','desc')
             ->whereDate('a.created_at','=', Carbon::now()->toDateString())
             ->where('a.origen','=','OTROS INGRESOS')
             ->get(); 
+
+        $totalingresos = Creditos::whereDate('created_at','=', Carbon::now()->toDateString())
+                                        ->where('origen','=','OTROS INGRESOS')
+                                        ->select(DB::raw('SUM(monto) as monto'))
+                                        ->first();
 
             $fecha = Carbon::now()->toDateString(); 
 
@@ -150,6 +233,11 @@ class MovimientosController extends Controller
 
   	 return view('movimientos.index',[
       'atenciones' => $atenciones,
+      'totalatenciones' => $totalatenciones,
+      'totalconsultas' => $totalconsultas,
+      'totalpunziones' => $totalpunziones,
+      'totalingresos' => $totalingresos,
+      'totalventas' => $totalventas,
       'ventas' => $ventas,
       'consultas' => $consultas,
       'punziones' => $punziones,

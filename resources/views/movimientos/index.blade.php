@@ -64,6 +64,12 @@
 		@if($tipo==1)
 
             <span><strong>ATENCIONES</strong></span>
+            <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total Abono:</strong>{{$totalatenciones->monto}}
+            	</div>
+            	
+            </div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -132,6 +138,12 @@
 		@elseif($tipo==2)
 
 		       <span><strong>CONSULTAS</strong></span>
+		        <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalconsultas->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -188,6 +200,12 @@
 		 @elseif($tipo==3)
 
 			 <span><strong>VENTAS</strong></span>
+			   <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalventas->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -228,6 +246,12 @@
 					<br>
 		@elseif($tipo==4)
 			 <span><strong>PUNZIONES</strong></span>
+			  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalpunziones->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -274,6 +298,12 @@
 			<br>
 	   @elseif($tipo==5)
 			 <span><strong>OTROS INGRESOS</strong></span>
+			  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalingresos->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -321,6 +351,12 @@
 		@else
 
 		 <span><strong>ATENCIONES</strong></span>
+		  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total Abono:</strong>{{$totalatenciones->monto}}
+            	</div>
+            	
+            </div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -388,6 +424,12 @@
 		<br>
 
 		       <span><strong>CONSULTAS</strong></span>
+		         <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalconsultas->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -444,6 +486,12 @@
 					<br>
 
 			 <span><strong>VENTAS</strong></span>
+			  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalventas->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -483,6 +531,12 @@
 			</div>
 					<br>
 			 <span><strong>PUNZIONES</strong></span>
+			 <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalpunziones->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -528,6 +582,12 @@
 			</div>
 			<br>
 			 <span><strong>OTROS INGRESOS</strong></span>
+			 <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalingresos->monto}}
+            	</div>
+            	
+            </div>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
