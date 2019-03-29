@@ -14,4 +14,8 @@ class SidenavRouterController extends Controller
     public function getMov (Request $request){
     	return view('movimientos.index');
     }
+
+    public function getLog (Request $request){
+    	return view('generics.logview');
+    }
 }

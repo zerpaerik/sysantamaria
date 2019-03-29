@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('generics.logview');
 })->middleware('auth');
 
 Route::get('seleccion-movimiento', 'Config\SidenavRouterController@getView')->name('generics.router');
