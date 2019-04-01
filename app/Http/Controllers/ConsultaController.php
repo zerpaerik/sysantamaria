@@ -160,6 +160,7 @@ class ConsultaController extends Controller
     $consulta->spo2 =$request->spo2;
     $consulta->peso =$request->peso;
     $consulta->talla =$request->talla;
+    $consulta->exa =$request->exa;
 	  $consulta->paciente_id =$request->paciente_id;
     $consulta->personal =$request->personal;
 		$consulta->save();
