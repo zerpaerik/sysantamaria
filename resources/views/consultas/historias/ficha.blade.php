@@ -65,11 +65,11 @@
 
 	<p style="text-align: left;"><strong>ULTRASONIDO: FRECUENCIA: </strong>{{$ficha->frecuencia_eval}}</p>
 
-	<p style="text-align: left; margin-top: -35px; margin-left: 330px;"><strong>INTENSIDAD: </strong>{{$ficha->intensidad_comp}}</p>
+	<p style="text-align: left; margin-top: -35px; margin-left: 310px;"><strong>INTENSIDAD: </strong>{{$ficha->intensidad_comp}}</p>
 
-	<p style="text-align: left; margin-top: -35px; margin-left: 490px;"><strong>CICLO: </strong>{{$ficha->ciclo_eval}}</p>
+	<p style="text-align: left; margin-top: -35px; margin-left: 460px;"><strong>CICLO: </strong>{{$ficha->ciclo_eval}}</p>
 
-	<p style="text-align: left; margin-top: -35px; margin-left: 595px;"><strong>TIEMPO: </strong>{{$ficha->tiempociclo}}</p>
+	<p style="text-align: left; margin-top: -35px; margin-left: 580px;"><strong>TIEMPO:</strong>{{$ficha->tiempociclo}}</p>
 
 	<p style="text-align: left;"><strong>MAGNETO: </strong>{{$ficha->magneto}}</p>
 

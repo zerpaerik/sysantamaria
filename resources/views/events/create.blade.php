@@ -346,9 +346,9 @@
 					<div class="col-sm-8">
 						<select  name="magneto[]" multiple="" id="el5" placeholder="Seleccione">
 							<option value="Vascularizacion">Vascularizacion</option>
-							<option value="Inflamación">Inflamacion</option>
+							<option value="Inflamacion">Inflamacion</option>
 						    <option value="Dolor">Dolor</option>
-						    <option value="Regeneración">Regeneracion</option>
+						    <option value="Regeneracion">Regeneracion</option>
 						    <option value="ConsolidaHueso">ConsolidaHueso</option>
 						</select>
 					</div>	
