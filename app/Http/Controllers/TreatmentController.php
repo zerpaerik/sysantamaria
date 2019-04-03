@@ -111,7 +111,7 @@ class TreatmentController extends Controller
       "disocion_marcha_trat" => $request->disocion_marcha_trat,
       "consulta_id" => $request->consulta_id,
       "metodo" => str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->metodo)),
-      "reduccion" => str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->reduc)),
+      "reduc" => str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->reduc)),
       "fortale" => str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->fortale)),
       "tratamiento" => $request->tratamiento,
       "evento" => $request->evento_id,

@@ -81,7 +81,7 @@
 	<p style="text-align: left;"><strong>ESTIRAMIENTO: </strong>{{$ficha->estiramiento_trat}}</p> 
 	<p style="text-align: left;"><strong>MÉTODO TERAPEUTICO: </strong>{{$ficha->metodo}}</p> 
 	<p style="text-align: left;"><strong>FORTALECIMIENTO: </strong>{{$ficha->fortale}}</p> 
-	<p style="text-align: left;"><strong>REEDUCACIÓN DE LA MARCHA: </strong>{{$ficha->reduccion}}</p>
+	<p style="text-align: left;"><strong>REEDUCACIÓN DE LA MARCHA: </strong>{{$ficha->reduc}}</p>
 	<p style="text-align: left;"><strong>EJERCICIOS DE PROPIECPCIÓN: </strong>{{$ficha->ejercicios}}</p> 
 		
 	</body>
