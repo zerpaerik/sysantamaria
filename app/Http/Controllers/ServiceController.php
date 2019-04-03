@@ -255,10 +255,7 @@ class ServiceController extends Controller
 
     }
 
-    $calendar = Calendar::addEvents($this->getEvents())
-    ->setOptions([
-      'locale' => 'es',
-    ]);
+  
 	
 	 Toastr::success('Registrado Exitosamente.', 'Programaciòn!', ['progressBar' => true]);
     return redirect()->action('ServiceController@index');
