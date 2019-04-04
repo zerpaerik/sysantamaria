@@ -265,7 +265,7 @@ class PunzionesController extends Controller
       $creditos->delete();
 
       Toastr::success('Eliminado Exitosamente.', 'Punzion!', ['progressBar' => true]);
-      return redirect()->route('punziones.index');
+      return redirect()->route('movimientos.index');
 
 
 
