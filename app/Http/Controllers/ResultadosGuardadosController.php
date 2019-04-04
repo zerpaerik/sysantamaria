@@ -8,8 +8,10 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
+use App\Models\Personal;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Informe;
 use Carbon\Carbon;
 use Auth;
 
@@ -21,10 +23,7 @@ class ResultadosGuardadosController extends Controller
 	public function index(Request $request){
 
 
-      if(! is_null($request->fecha)) {
-
-    $f1 = $request->fecha;
-    $f2 = $request->fecha2;    
+      if(! is_null($request->paciente)) {   
 
 
         $resultadosguardados = DB::table('atenciones as a')
@@ -34,12 +33,19 @@ class ResultadosGuardadosController extends Controller
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('personals as p','a.atendido','p.id')
-        ->where('a.es_paquete','<>',1)
+        ->where('a.id_paciente','=',$request->paciente)
+        //->where('a.es_paquete','<>',1)
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        //->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.atendido','<>',NULL)
-        ->orderby('a.fecha_atencion','desc')
+        ->orderby('a.id','desc')
         ->get();
+
+        $total = Atenciones::where('id_paciente','=',$request->paciente)
+                       ->where('atendido','=',NULL)
+                        ->whereNotIn('monto',[0,0.00])
+                      ->select(DB::raw('COUNT(*) as cantidad'))
+                      ->first();
 
       } else {
 
@@ -53,13 +59,27 @@ class ResultadosGuardadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.atendido','<>',NULL)
-        ->where('a.es_paquete','<>',1)
-        ->orderby('a.fecha_atencion','desc')
+        //->where('a.es_paquete','<>',1)
+        ->orderby('a.id','desc')
         ->get();
+
+        $total = Atenciones::where('id_paciente','=',$request->paciente)
+                       ->where('atendido','=',333)
+                      ->select(DB::raw('COUNT(*) as cantidad'))
+                      ->first();
 
       }
 
-       return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados]); 
+      $informe = Informe::all();
+      $personal = Personal::all();
+
+      $pacientes = DB::table('pacientes as a')
+      ->select('a.id','a.nombres','a.apellidos','a.dni','b.id_paciente')
+      ->join('atenciones as b','b.id_paciente','a.id')
+      ->groupBy('a.id')
+      ->get();
+
+       return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados, 'personal' => $personal, 'pacientes' => $pacientes,'total' => $total]); 
 	}
 
    public function search(Request $request){

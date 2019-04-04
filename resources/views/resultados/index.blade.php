@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<select id="el2" name="paciente">
-							<option>Seleccione un Paciente</option>
+							<option selected hidden disabled>Seleccione un Paciente</option>
 							@foreach($pacientes as $p)
 								    <option value="{{$p->id}}">{{$p->apellidos}},{{$p->nombres}}</option>
 							@endforeach
