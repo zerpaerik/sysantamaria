@@ -373,6 +373,8 @@ Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->
 Route::get('punziones', 'Existencias\PunzionesController@index')->name('punziones.index');
 Route::get('punziones-create', 'Existencias\PunzionesController@createView')->name('punziones.create');
 Route::post('punzion/create', 'Existencias\PunzionesController@create');
+Route::get('punzion-delete-{id}','Existencias\PunzionesController@delete');
+
 
 Route::get('produccion', 'ProduccionController@index')->name('produccion.index');
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
 use App\Models\Config\{Sede, Proveedor};
 use App\Models\Punziones;
+use App\Models\Pun;
 use App\Models\Personal;
 use App\Models\Creditos;
 use App\Models\Pacientes;
@@ -30,7 +31,7 @@ class PunzionesController extends Controller
 
 
       $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.paciente','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','id_pun','a.id_producto','a.cantidad','a.usuario','a.paciente','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -60,7 +61,7 @@ class PunzionesController extends Controller
 
 
                 	  $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -96,17 +97,14 @@ class PunzionesController extends Controller
     }
 
 
-          public function delete($id){
-      $p = Requerimientos::find($id);
-      $res = $p->delete();
-      
-       Toastr::success('Eliminado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
-        return redirect()->action('Existencias\RequerimientosController@index', ["created" => false]);
-    }
-
+     
 
 
     public function create(Request $request){
+
+          $pun = new Pun();
+          $pun->precio =$request->precio;
+          $pun->save();
 
    
     if (isset($request->id_laboratorio)) {
@@ -122,12 +120,14 @@ class PunzionesController extends Controller
           $lab->tipo_ingreso = $request->tipo_ingreso;
           $lab->tipo_servicio = $request->tipo_servicio;
           $lab->usuario = Auth::user()->id;
+          $lab->id_pun= $pun->id;
           $lab->save();
 
 
           $pfrom = Producto::where("id", '=', $laboratorio['laboratorio'])->get()->first();
 	      $pfrom->cantidad = $pfrom->cantidad - $request->monto_abol['laboratorios'][$key]['abono'];
 	      $wasSubs = $pfrom->save();
+
 
 
         } 
@@ -174,6 +174,7 @@ class PunzionesController extends Controller
           $creditos->monto= $request->precio;
           $creditos->tipo_ingreso = $request->tipo_ingreso;
           $creditos->descripcion = 'VENTA DE PUNZIONES';
+          $creditos->id_punzion = $pun->id;
           $creditos->save();
 
     return redirect()->route('punziones.index');
@@ -234,6 +235,41 @@ class PunzionesController extends Controller
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
       return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
+    }
+
+    public function delete($id){
+
+
+    $getPunz= Punziones::where('id_pun','=',$id)->get();
+
+      foreach($getPunz as $value)
+       {
+        $productsId = $value->id_producto;
+        $cantidadv = $value->cantidad;
+
+        $p = Producto::where("id", "=", $productsId)->get()->first();
+        $p->cantidad = $p->cantidad + $cantidadv;
+        $p->update();
+        
+      } 
+
+ 
+  
+      $pun= Pun::find($id);
+      $pun->delete();
+
+      $punziones= Punziones::where('id_pun','=',$id);
+      $punziones->delete();
+
+      $creditos= Creditos::where('id_punzion','=',$id);
+      $creditos->delete();
+
+      Toastr::success('Eliminado Exitosamente.', 'Punzion!', ['progressBar' => true]);
+      return redirect()->route('punziones.index');
+
+
+
+
     }
 
        
