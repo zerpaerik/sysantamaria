@@ -37,7 +37,7 @@
 				<p class="col-sm-6"><strong>Antecedentes.OPERACIONES:</strong> {{ $consulta->fra }}</p>
 				<p class="col-sm-6"><strong>Antecedentes.TRATAMIENTOS HABITUALES:</strong> {{ $consulta->ope }}</p>
 				<p class="col-sm-6"><strong>Antecedentes.ALERGIAS:</strong> {{ $consulta->aler }}</p>
-			    <p class="col-sm-6"><strong>Examen Físico:</strong> Funciones Vitales</p>
+			    <p class="col-sm-12"><strong>Examen Físico:</strong> Funciones Vitales</p>
 			    <p class="col-sm-1"><strong>P/A:</strong> {{ $consulta->pa }}</p>
 			    <p class="col-sm-1"><strong>FC:</strong> {{ $consulta->fc }}</p>
 			    <p class="col-sm-1"><strong>FR:</strong> {{ $consulta->fr }}</p>
@@ -48,7 +48,7 @@
 				<p class="col-sm-6"><strong>Examen General:</strong> {{ $consulta->exa }}</p>
 				<p class="col-sm-6"><strong>Diag.Presuntivo:</strong> {{ $consulta->pres }}</p>
 				<p class="col-sm-6"><strong>CIE-X:</strong> {{ $consulta->ciex }}</p>
-				<p class="col-sm-12"><strong>Exámenes Auxiliares:</strong> {{ $consulta->aux }}</p>
+				<p class="col-sm-6"><strong>Exámenes Auxiliares:</strong> {{ $consulta->aux }}</p>
 				<p class="col-sm-6"><strong>Diag.Definitivo:</strong> {{ $consulta->def }}</p>
 			    <p class="col-sm-6"><strong>CIE-X:</strong> {{ $consulta->ciex2 }}</p>
 				<p class="col-sm-6"><strong>Diag.Topográfico:</strong> {{ $consulta->top }}</p>
