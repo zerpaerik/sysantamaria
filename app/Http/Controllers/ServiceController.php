@@ -206,12 +206,12 @@ class ServiceController extends Controller
 
 
    $especialista = Personal::find($request->especialista);
+   $paciente = Pacientes::find($request->paciente);
 
     
       if($request->tipo == 1){ // servicios
 
       $servicios = Servicios::where('id','=',$request->servicio_id)->first();
-      $paciente = Pacientes::where('id','=',$request->paciente)->first();
 
       $evt = Service::create([
         "especialista_id" => $request->especialista,
@@ -222,10 +222,12 @@ class ServiceController extends Controller
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista" . "Servicio-".$servicios->detalle."Paciente ".$paciente->nombres." ".$paciente->apellidos
+        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Servicio-".$servicios->detalle."Paciente ".$paciente->nombres." ".$paciente->apellidos
       ]);
 
 	  } else if($request->tipo == 2){//consultas
+
+      $evaluaciones = Evaluaciones::where('id','=',$request->consulta)->first();
         $evt = Service::create([
         "especialista_id" => $request->especialista,
         "paciente_id" => $request->paciente,
@@ -234,10 +236,11 @@ class ServiceController extends Controller
         "servicio_id" => 1,
         "consulta" =>$request->consulta,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
+        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Consulta-".$evaluaciones->nombre."Paciente ".$paciente->nombres." ".$paciente->apellidos
       ]);
 
     } else if($request->tipo == 3){//punziones
+      $punsion= Punsion::where('id','=',$request->punzion)->first();
 
         $evt = Service::create([
         "especialista_id" => $request->especialista,
@@ -248,7 +251,7 @@ class ServiceController extends Controller
         "servicio_id" => 1,
         "consulta" =>10,
         "punsion" =>$request->punzion,
-        "title" => $especialista->name." ".$especialista->lastname." "."Especialista"
+        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Punzion-".$punsion->nombre."Paciente ".$paciente->nombres." ".$paciente->apellidos
       ]);
 
     } else {
