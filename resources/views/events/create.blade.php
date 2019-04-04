@@ -128,7 +128,7 @@
 
 						<div class="col-md-4">
 			<label class="col-sm-3 control-label">Retractación</label>
-						<div class="col-sm-6" style="margin-left: 10px;">
+						<div class="col-sm-6">
 							<select id="el7" name="retraccion_eval[]" multiple="" placeholder="Seleccione">
 							<option value="Fascia">Fascia</option>
 							<option value="Muscular">Muscular</option>
@@ -179,7 +179,7 @@
 			</div>
 				<div class="col-md-4">
 				<label class="col-sm-3">Localización</label>
-				<div class="col-sm-6" style="margin-left: 5px;">
+				<div class="col-sm-6">
 					<input type="text" name="localizacion_eval" placeholder="Localización">
 				</div>  
 				</div>
@@ -212,17 +212,19 @@
 			<div class="col-md-4">
 				<label class="col-sm-3">Diagnóstico</label>
 				<div class="col-sm-9">
-					<select id="el11"  name="diagnostico_eval">
+					<input type="text" name="diagnostico_eval" style="width: 280px;">
+				</div>  
+			</div>
+			<div class="col-md-4">
+				<label class="col-sm-3">CIE-X</label>
+				<div class="col-sm-9">
+					<select id="el11"  name="diagnostico_cie_eval">
 					<option value="" selected hidden disabled>Seleccione</option>
 				    @foreach($ciex as $lab)
 					<option value="{{$lab->codigo}}-{{$lab->nombre}}">{{$lab->codigo}}-{{$lab->nombre}}</option>
 					@endforeach
 				    </select>
 				</div>  
-			</div>
-			<!--nuevo name-->
-			<div class="col-md-1">
-				<input type="text" name="diagnostico_cie_eval" placeholder="CIE-X" style="max-width: 100px;">
 			</div>
 			</div>																				
 			<h4 class="page-header"></h4>
@@ -284,7 +286,7 @@
 			<div class="col-md-3">
 				<label class="col-sm-4 control-label">Frecuencia</label>
 				<div class="col-sm-6">
-					<select id="el20" name="frecuencia_eval">
+					<select id="el20" name="frecuencia_ultrasonido_trat">
 					<option value="" selected hidden disabled>Seleccione</option>
 					<option value="1MHZ">1MHZ</option>
 					<option value="3MHZ">3MHZ</option>
@@ -394,7 +396,6 @@
 						     <option value="Codman">Codman</option>
 						     <option value="Burguer">Burguer</option>
 						     <option value="KaltenBron">KaltenBron</option>
-						     <option value="FNP">FNP</option>
 						    <option value="Feldenkrais">Feldenkrais</option>
 						</select>	
 			</div>
