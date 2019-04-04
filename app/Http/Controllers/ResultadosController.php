@@ -13,35 +13,75 @@ use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Informe;
 use Auth;
+use Carbon\Carbon;
+
 
 
 class ResultadosController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
+
+    if(!is_null($request->paciente)){
 
 
       	$resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','pa.detalle as paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('paquetes as pa','pa.id','a.id_paquete')
+        ->where('a.id_paciente','=',$request->paciente)
+        ->where('a.atendido','=',NULL)
+        ->whereNotIn('a.monto',[0,0.00])
+        //->whereNotIn('a.es_paquete',[1])
+        //->where('a.resultado','=', NULL)
+        ->orderby('a.id','desc')
+        ->get();
+
+
+          $total = Atenciones::where('id_paciente','=',$request->paciente)
+                       ->where('atendido','=',NULL)
+                        ->whereNotIn('monto',[0,0.00])
+                      ->select(DB::raw('COUNT(*) as cantidad'))
+                      ->first();
+
+      } else {
+
+        $resultados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','pa.detalle as paquete')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->where('a.atendido','=',NULL)
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereNotIn('a.es_paquete',[1])
-        ->where('a.resultado','=', NULL)
+        ->where('a.created_at','=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
         ->get();
+
+        $total = Atenciones::where('id_paciente','=',$request->paciente)
+                       ->where('atendido','=',333)
+                      ->select(DB::raw('COUNT(*) as cantidad'))
+                      ->first();
+
+
+
+      }
 
 
       
         $informe = Informe::all();
         $personal = Personal::all();
 
-         return view('resultados.index', ['resultados' => $resultados, 'personal' => $personal]); 
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni','b.id_paciente')
+        ->join('atenciones as b','b.id_paciente','a.id')
+        ->groupBy('a.id')
+        ->get();
+
+         return view('resultados.index', ['resultados' => $resultados, 'personal' => $personal, 'pacientes' => $pacientes,'total' => $total]); 
 	}
 
   public function search(Request $request)
