@@ -62,11 +62,11 @@
 						</div>
 							
 					</div>
-					<div class="col-md-1" style="margin-left: -45px;">
+					<div class="col-md-2" style="margin-left: -45px;"><strong>T.A.</strong>
 							<input type="text" name="actividad_exar" placeholder="Tipo de actividad" style="max-width: 110px;">
 						</div>
 
-					<div class="col-md-3" style="margin-left: 20px;">
+					<div class="col-md-3" style="margin-left: -50px;">
 					<label class="col-sm-3 control-label">Forma de Inicio</label>
 						<div class="col-sm-8">
 							<select id="el3" name="inicio_eval">
