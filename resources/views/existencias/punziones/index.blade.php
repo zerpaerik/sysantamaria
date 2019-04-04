@@ -84,6 +84,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
+						    <th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -98,6 +99,10 @@
 						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>
+								<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
