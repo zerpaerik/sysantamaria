@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Historia Clìnica</title>
+	<title>Historia Clínica</title>
 
 </head>
 <body>
 
 	 <img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
 	<br><br>
-	<CENTER><p><strong>HISTORIA CLINICA</strong></p></CENTER>
+	<CENTER><p><strong>HISTORIA CLÍNICA</strong></p></CENTER>
 <br>
 
      <div style="width: 100%;">
@@ -36,7 +36,7 @@
             <p style="margin-left:380px;margin-top: -30px;">Identifación:{{$historias->dni}}</p>
             <p style="margin-bottom: 8px;">Teléfono:{{$historias->telefono}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Referencia:{{$historias->direccion}}</p>
-             <p style="margin-bottom: 8px;">Direcciòn:{{$historias->direccion}}<</p>
+             <p style="margin-bottom: 8px;">Dirección:{{$historias->direccion}}<</p>
              <p style="margin-bottom: 8px;">Ocupación:{{$historias->ocupacion}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Grado Instrucción:{{$historias->gradoinstruccion}}</p>
             <p style="margin-bottom: 8px;">Fecha Nacimiento:{{$historias->fechanac}}</p>
@@ -50,7 +50,7 @@
              <p>1. Motivo de Consulta:{{$historias->motivo}}</p>
              <p>2. Causa Relacionada:{{$historias->causa}}</p>
              <p>3. Tiempo Lesión:{{$historias->tiempo}}</p>
-             <p>4. Evolución de Enfermedad:{{$historias->enf}}</p>
+             <p>4. Evolución de Enfermedad: {{$historias->evoenf}}</p>
 
         </fieldset> 
      </div>
@@ -64,8 +64,6 @@
              <p>3. Alérgicos:{{$historias->aler}}</p>
              <p>4. Medicación Habitual:{{$historias->ope}}</p>
              <br>
-             <p>b) Familiares</p>
-
 
         </fieldset> 
      </div>
@@ -79,7 +77,7 @@
             <p style="margin-bottom: 8px;">F/R:{{$historias->fr}}X'</p>
             <p style="margin-left:380px;margin-top: -30px;">Peso:{{$historias->peso}}Kg</p>
             <p style="margin-bottom: 8px;">Talla: {{$historias->talla}}Mtrs</p>
-            <p style="margin-left:380px;margin-top: -30px;">Temperatura:{{$historias->peso}}T</p>
+            <p style="margin-left:380px;margin-top: -30px;">Temperatura:{{$historias->temp}}T</p>
             
             <p>2) Examen General: {{$historias->exa}}</p>
           
@@ -94,10 +92,8 @@
              <p>6) Diágnóstico Topográfico: {{$historias->top}}</p>
           <p>7) Plan de Tratamiento: {{$historias->plan}}</p>
             <p>8) Número de Sesiones: {{$historias->ses}}</p>
-
-
- 
-        </fieldset> 
+        </fieldset>
+        <p><strong>Atentido Por:</strong> {{ $historias->personal }}</p> 
      </div>
 
    

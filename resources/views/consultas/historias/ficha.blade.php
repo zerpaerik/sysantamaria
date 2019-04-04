@@ -29,7 +29,7 @@
 
 	<p style="text-align: left;"><strong>EXACERVACIÓN: </strong>{{$ficha->exac_eval}}</p>
 
-	<p style="text-align: left;"><strong>ACTIVIDAD: </strong>{{$ficha->actividad_exar}}</p>
+	<p style="text-align: left;"><strong>TIPO DE ACTIVIDAD: </strong>{{$ficha->actividad_exar}}</p>
 
 	<p style="text-align: left;"><strong>FORMA DE INICIO: </strong>{{$ficha->inicio_eval}}</p>
 
@@ -63,7 +63,7 @@
 
 	<p style="text-align: left; margin-top: -35px; margin-left: 200px;"><strong>TIEMPO COMPRESA: </strong>{{$ficha->tiempocompresa}}</p>
 
-	<p style="text-align: left;"><strong>ULTRASONIDO: FRECUENCIA: </strong>{{$ficha->frecuencia_eval}}</p>
+	<p style="text-align: left;"><strong>ULTRASONIDO: FRECUENCIA: </strong>{{$ficha->frecuencia_ultrasonido_trat}}</p>
 
 	<p style="text-align: left; margin-top: -35px; margin-left: 310px;"><strong>INTENSIDAD: </strong>{{$ficha->intensidad_comp}}</p>
 
