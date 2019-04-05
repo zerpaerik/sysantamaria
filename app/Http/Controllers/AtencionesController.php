@@ -243,8 +243,8 @@ class AtencionesController extends Controller
               $s->abono = 0;
               $s->porcentaje =0;
               $s->estatus = 1;
-          
               $s->usuario = Auth::user()->id;
+              $s->id_paq= $paq->id;
               $s->save(); 
              
          }
@@ -282,7 +282,8 @@ class AtencionesController extends Controller
               $l->abono = 0;
               $l->porcentaje =0;
               $l->estatus = 1;
-                            $l->usuario = Auth::user()->id;
+              $l->usuario = Auth::user()->id;
+              $l->id_paq= $paq->id;
               $l->save(); 
 
          }
@@ -502,8 +503,8 @@ class AtencionesController extends Controller
               $s->abono = 0;
               $s->porcentaje =0;
               $s->estatus = 1;
-          
               $s->usuario = Auth::user()->id;
+              $s->id_paq= $paq->id;
               $s->save(); 
              
          }
@@ -541,7 +542,8 @@ class AtencionesController extends Controller
               $l->abono = 0;
               $l->porcentaje =0;
               $l->estatus = 1;
-                            $l->usuario = Auth::user()->id;
+              $l->usuario = Auth::user()->id;
+              $l->id_paq= $paq->id;
               $l->save(); 
 
          }
@@ -825,6 +827,9 @@ class AtencionesController extends Controller
    public function delete($id){
     $atenciones = Atenciones::find($id);
     $atenciones->delete();
+
+    $atenciones1 = Atenciones::where('id_paq','=',$id);
+    $atenciones1->delete();
 	
 	$creditos = Creditos::where('id_atencion','=',$id);
     $creditos->delete();

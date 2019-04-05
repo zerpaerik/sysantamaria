@@ -35,7 +35,7 @@ class ResultadosController extends Controller
         ->where('a.id_paciente','=',$request->paciente)
         ->where('a.atendido','=',NULL)
         ->whereNotIn('a.monto',[0,0.00])
-        //->whereNotIn('a.es_paquete',[1])
+        ->whereNotIn('a.es_paquete',[1])
         //->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
         ->get();
@@ -56,6 +56,7 @@ class ResultadosController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->where('a.atendido','=',NULL)
+                ->whereNotIn('a.es_paquete',[1])
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.created_at','=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
