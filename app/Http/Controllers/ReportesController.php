@@ -484,14 +484,11 @@ class ReportesController extends Controller
             $atenciones->monto = 0;
         }
 
-        $punziones = Creditos::where('origen', 'VENTA DE PUNZIONES')
-                                    //->whereNotIn('monto',[0,0.00,99999])
-                                    //->whereBetween('created_at', [strtotime($fechainic),strtotime($fecha)])
-                                     ->whereRaw("created_at > ? AND created_at <= ?", 
+        $punziones = Punziones::whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fecha))
                                     //->where('created_at','<=',$fecha)
                                    // ->whereBetween('created_at', [$fecha, $fecha])
-                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(precio) as monto'))
                                     ->first();
                            
                                 
