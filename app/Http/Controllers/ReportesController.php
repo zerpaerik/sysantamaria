@@ -915,16 +915,16 @@ class ReportesController extends Controller
 
       
 
-        $efectivo = Creditos::where('tipo_ingreso', 'EF')
-                            ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        $efectivo = Creditos::where('tipo_ingreso','=','EF')
+                            ->whereDate('created_at','=',$request->fecha)
                             ->select(DB::raw('SUM(monto) as monto'))
                             ->first();
         if (is_null($efectivo->monto)) {
             $efectivo->monto = 0;
         }
 
-        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
-                            ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        $tarjeta = Creditos::where('tipo_ingreso','=','TJ')
+                           ->whereDate('created_at','=',$request->fecha)
                             ->select(DB::raw('SUM(monto) as monto'))
                             ->first();
 
