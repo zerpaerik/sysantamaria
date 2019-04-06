@@ -423,42 +423,24 @@ class ReportesController extends Controller
      public function recibo_caja_ver2(Request $request,$id,$fecha1=NULL,$fecha2=NULL) 
     {
       
-
-
-    
-
-    if(!is_null($request->fecha1) && (!is_null($request->fecha2))){
-
-        $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
-        ->join('users as b','b.id','a.usuario')
-        ->whereDate('a.fecha','=',$request->fecha1)
-        ->first(); 
-        
-        $fechamañana=$cajamañana->created_at; 
-
- 
-        
-
-   } else {
-
-     $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+      $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
-      $fechamañana=$cajamañana->created_at; 
-}
+      $fechamañana=$cajamañana->created_at;   
     
       
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->where('a.id','=',$id)
         ->first();
 
         $fecha=$caja->created_at;
+
+      
 
 
            
@@ -540,7 +522,7 @@ class ReportesController extends Controller
                             ->select(DB::raw('origen, descripcion, monto'))
                             ->get();
 
-        $efectivo = Creditos::where('tipo_ingreso', 'EF')
+        $efectivo = Creditos::where('tipo_ingreso','EF')
                             ->whereNotIn('monto',[0,0.00,99999])
                             ->whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fecha))
@@ -550,7 +532,7 @@ class ReportesController extends Controller
             $efectivo->monto = 0;
         }
 
-        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+        $tarjeta = Creditos::where('tipo_ingreso','TJ')
                             ->whereNotIn('monto',[0,0.00,99999])
                             ->whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fecha))
@@ -570,13 +552,6 @@ class ReportesController extends Controller
          $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto + $punziones->monto;
 
     
-
-        
- 
-
-       // $fecha = $caja->fecha;
-
-       
        $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','ventas','punziones','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta','caja'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
