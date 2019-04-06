@@ -62,20 +62,6 @@
 							</select>
 						</div>
 
-						<label class="col-sm-1 control-label">Fecha</label>
-						<div class="col-sm-3">
-							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date" required="required">
-						</div>
-						<label class="col-sm-1 control-label">Hora</label>
-							<div class="col-sm-3">
-								<select id="el3" name="time">
-									@foreach($tiempos as $tiempo)
-										<option value="{{$tiempo->id}}">
-											{{$tiempo->start_time}} {{$tiempo->end_time}}
-										</option>
-									@endforeach
-								</select>
-							</div>
 						<label class="col-sm-1 control-label">Método de pago</label>
 						<div class="col-sm-3">
 							<select id="el6" name="metodopago" required="required">
@@ -84,11 +70,9 @@
 								<option value="TJ">TJ</option>
 							</select>
 						</div>
-							<hr><hr>	
-			<div class="row">
-				<div class="col-md-6">
-				<label class="col-sm-4">Cómo llego a Santa Maria FISIOCENTER?:</label>
-	            <div class="col-sm-7">
+								
+				<label class="col-sm-1 control-label">Cómo Llego?:</label>
+	            <div class="col-sm-3">
 	              <select id="el5" name="comollego">
 	                  <option value="Seleccione">Seleccione</option>
 	                  <option value="Vallas publicitarias externas">Vallas publicitarias externas</option>
@@ -105,8 +89,6 @@
 
 	              </select>
 	            </div>
-	            </div>
-            </div>
 
 						<br>
 						<input onclick="form.submit()"  type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">

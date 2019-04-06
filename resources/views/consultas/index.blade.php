@@ -10,8 +10,6 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Lista de Consultas</span>
-					<a href="{{route('consultas.create')}}" class="btn btn-success">Agregar</a>
-
 				</div>
 
 
@@ -34,16 +32,12 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Seleccione una Fecha', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha'))
-					<p class="help-block">
-						{{ $errors->first('fecha') }}
-					</p>
-					@endif
-
-					
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
+				</div>
+				<div class="col-md-2">
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
 
@@ -64,7 +58,6 @@
 							<th>Eval</th>
 						    <th>Como Llego</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 							<th>Registrado Por</th>
 							<th>Acciones:</th>
 						</tr>
@@ -79,17 +72,13 @@
 						<td>{{$d->nombreEval}}</td>
 						<td>{{$d->comollego}}</td>
 						<td>{{$d->date}}</td>
-						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						<td>{{$d->username}}-{{$d->userlast}}</td>
 						<td>
 						<a  class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>	
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
-
-
-
-						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
 						@endif
 							
@@ -107,7 +96,6 @@
 							<th>Eval</th>
 						    <th>Como Llego</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 							<th>Registrado Por</th>
 							<th>Acciones:</th>
 						</tr>
@@ -119,6 +107,9 @@
 </div>
 
 </body>
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 
 

@@ -92,7 +92,6 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -102,7 +101,6 @@
 						<td>{{$d->name}} {{$d->apepro}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->date}}</td>
-						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						
 						
 					</tr>
@@ -115,7 +113,6 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 					</tfoot>
 				</table>
 			</div>

@@ -23,7 +23,7 @@ class ProduccionController extends Controller
 
    public function index(Request $request){
 
-   	if((!is_null($request->fecha)) && (is_null($request->fecha))){
+   	if((!is_null($request->fecha)) && (!is_null($request->fecha2))){
 
 
    		$f1=$request->fecha;
@@ -31,10 +31,9 @@ class ProduccionController extends Controller
 
 
    		 $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','r.start_time','r.end_time')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
-        ->join('rangoconsultas as r','r.id','a.time')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
         ->get();
@@ -109,10 +108,9 @@ class ProduccionController extends Controller
  
 
        $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','r.start_time','r.end_time')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
-        ->join('rangoconsultas as r','r.id','a.time')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.profesional','=',$request->pro)
         ->orderby('a.id','desc')
@@ -187,10 +185,9 @@ class ProduccionController extends Controller
 
 
       $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','r.start_time','r.end_time')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
-        ->join('rangoconsultas as r','r.id','a.time')
         ->where('a.profesional','=',$request->pro)
         ->orderby('a.id','desc')
         ->get();
@@ -254,10 +251,9 @@ class ProduccionController extends Controller
 
 
             $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','r.start_time','r.end_time')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
-        ->join('rangoconsultas as r','r.id','a.time')
         ->orderby('a.id','desc')
         ->get();
 

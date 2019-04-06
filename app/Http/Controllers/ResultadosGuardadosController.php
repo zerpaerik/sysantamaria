@@ -42,8 +42,9 @@ class ResultadosGuardadosController extends Controller
         ->get();
 
         $total = Atenciones::where('id_paciente','=',$request->paciente)
-                       ->where('atendido','=',NULL)
+                       ->where('atendido','<>',NULL)
                         ->whereNotIn('monto',[0,0.00])
+                        ->whereNotIn('es_paquete',[1])
                       ->select(DB::raw('COUNT(*) as cantidad'))
                       ->first();
 

@@ -117,7 +117,6 @@ class EventController extends Controller
       "paciente" => "required", 
       "especialista" => "required", 
       "date" => "required", 
-      "time" => "required",
       "title" => "required"
     ]);
 
@@ -130,11 +129,7 @@ class EventController extends Controller
 
     $paciente = Paciente::find($request->paciente);
 
-    $exists = Event::where("date", "=", Carbon::createFromFormat('d/m/Y', $request->date))
-      ->where("time", "=", $request->time)
-      ->get()->first();
-    if(!$exists){
-
+   
       $precioeva = DB::table('evaluaciones')
       ->select('*')
       ->where('id','=',$request->evaluaciones)
@@ -143,8 +138,7 @@ class EventController extends Controller
      $evt = new Event;
         $evt->paciente=$request->paciente;
         $evt->profesional=$request->especialista;
-        $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
-        $evt->time=$request->time;
+        $evt->date=Carbon::today()->toDateString();
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=$precioeva->precio;
         $evt->sede=$request->session()->get('sede');
@@ -155,8 +149,7 @@ class EventController extends Controller
 
 
 
-     
-
+    
       $credito = Creditos::create([
         "origen" => 'CONSULTAS',
         "descripcion" => 'CONSULTAS',
@@ -171,12 +164,7 @@ class EventController extends Controller
 		  $historial->detalle = $paciente->nombres . " " . $paciente->apellidos . " Paciente.";
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
-    }
-
-    $calendar = Calendar::addEvents($this->getEvents())
-    ->setOptions([
-      'locale' => 'es',
-    ]);
+   
     return redirect()->action('Events\EventController@all');
 
   }
@@ -229,31 +217,33 @@ class EventController extends Controller
        if(! is_null($request->fecha)) {
 
     $f1 = $request->fecha;
+   $f2= $request->fecha2; 
 
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->join('users as u','u.id','e.usuario')
-    ->whereDate('e.created_at','=',$f1)
+    ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->orderBy('EventId','desc')
     ->get();
 
   } else {
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
         ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
     ->orderBy('EventId','desc')
     ->get();
+
+     $f1 = Carbon::today()->toDateString();
+   $f2= Carbon::today()->toDateString();
 
 
 
@@ -261,7 +251,9 @@ class EventController extends Controller
   
 
     return view('consultas.index',[
-      'eventos' => $event
+      'eventos' => $event,
+      'f1' => $f1,
+      'f2' => $f2
     ]);
   }  
 

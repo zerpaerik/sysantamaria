@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span><strong>Movimientos del Dia</strong></span>
+					<span><strong>Ingresos</strong></span>
 
 				</div>
 
@@ -33,9 +33,14 @@
 
 			<br>
 			<div class="row">
-				<div class="col-md-4">
-					<label>Fecha de Consulta</label>
+				<div class="col-md-2">
+					<label>Fecha Inicio</label>
 					<input type="date" value="{{$fecha}}" name="fecha" style="line-height: 20px">
+				</div>
+
+				<div class="col-md-2">
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$fecha2}}" name="fecha2" style="line-height: 20px">
 				</div>
 
 				<div class="col-md-4">
