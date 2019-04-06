@@ -47,10 +47,10 @@
             <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Consolidado Ingresos/Gastos</a>
             <ul class="dropdown-menu"> 
               <li>
-                <a href="{{route('solicitar.consolidado')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Detallado</a>
+                <a href="{{route('solicitar.diario')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Detallado</a>
               </li>
               <li>
-                <a href="{{route('solicitar.diario')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Consolidado</a>
+                <a href="{{route('solicitar.consolidado')}}"><i class="fa fa-plus-square-o"></i> Atención Diaria Consolidado</a>
               </li>
             </ul>
           </li>
