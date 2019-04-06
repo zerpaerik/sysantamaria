@@ -187,13 +187,13 @@ class ReportesController extends Controller
             $cuentasXcobrar->monto = 0;
         }
 
-         $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+         $ventas = Creditos::where('origen','VENTA DE PRODUCTOS')
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
-        if ($metodos->cantidad == 0) {
-            $metodos->monto = 0;
+        if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
         }
 
         $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
@@ -228,14 +228,14 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto + $punziones->monto;
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto + $punziones->monto;
 
         
  
 
 
        
-       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','punziones','metodos','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos'));
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','punziones','ventas','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');

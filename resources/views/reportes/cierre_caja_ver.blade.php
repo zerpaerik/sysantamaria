@@ -123,9 +123,9 @@
 			<td>{{ $cuentasXcobrar->monto }}</td>
 		</tr>
 		<tr>
-			<td>Métodos Anticonceptivos</td>
-			<td>{{ $metodos->cantidad}}</td>
-			<td>{{ $metodos->monto}}</td>
+			<td>Ventas</td>
+			<td>{{ $ventas->cantidad}}</td>
+			<td>{{ $ventas->monto}}</td>
 		</tr>
 
 			<tr>
