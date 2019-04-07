@@ -163,7 +163,7 @@
   </a>
   <ul class="dropdown-menu">
      <li>
-      <a href="{{route('movimientos.index')}}"><i class="fa fa-circle-o"></i> Ingresos y Gastos</a>
+      <a href="{{route('movimientos.index')}}"><i class="fa fa-circle-o"></i>Ingresos</a>
     </li> 
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
@@ -449,7 +449,7 @@
   </a>
   <ul class="dropdown-menu">
      <li>
-      <a href="{{route('movimientos.index')}}"><i class="fa fa-circle-o"></i> Ingresos y Gastos</a>
+      <a href="{{route('movimientos.index')}}"><i class="fa fa-circle-o"></i>Ingresos</a>
     </li> 
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
