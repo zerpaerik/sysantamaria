@@ -104,8 +104,8 @@
 						@else
 						<td>{{$d->paquete}}</td>
 						@endif
-						<td>{{$d->monto}}.00</td>
-						<td>{{$d->abono}}.00</td>
+						<td>{{$d->monto}}</td>
+						<td>{{$d->abono}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
 
@@ -226,7 +226,7 @@
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
 								<td>{{$atec->cantidad}}</td>
-						        <td>{{$atec->monto}}.00</td>
+						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 							</tr>
@@ -277,7 +277,7 @@
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
 								<td>{{$atec->cantidad}}</td>
-						        <td>{{$atec->precio}}.00</td>
+						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
@@ -325,7 +325,7 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->descripcion}}</td>
-						<td>{{$d->monto}}.00</td>
+						<td>{{$d->monto}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
 
@@ -391,8 +391,8 @@
 						@else
 						<td>{{$d->paquete}}</td>
 						@endif
-						<td>{{$d->monto}}.00</td>
-						<td>{{$d->abono}}.00</td>
+						<td>{{$d->monto}}</td>
+						<td>{{$d->abono}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
 
@@ -511,7 +511,7 @@
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
 								<td>{{$atec->cantidad}}</td>
-						        <td>{{$atec->monto}}.00</td>
+						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 							</tr>
@@ -561,7 +561,7 @@
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
 								<td>{{$atec->cantidad}}</td>
-						        <td>{{$atec->precio}}.00</td>
+						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
@@ -608,7 +608,7 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->descripcion}}</td>
-						<td>{{$d->monto}}.00</td>
+						<td>{{$d->monto}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
 
