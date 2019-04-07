@@ -77,10 +77,6 @@ margin-top: -20px;
 		<p><strong>Especialista: {{ $paciente->nombreEval}}</strong></p>
 	</div>
 	
-	<div class="servicios">
-		<p><strong>Hora de cita: {{ $paciente->start_time}} {{ $paciente->end_time}}</strong></p>
-	</div>
-
 	<div class="total">
 		<p><strong>Monto: {{ $paciente->monto}}</strong></p>
 	</div>

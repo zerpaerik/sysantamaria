@@ -30,15 +30,31 @@
 				<div class="no-move"></div>
 				
 			</div>
+			{!! Form::open(['method' => 'get', 'route' => ['cuentasporcobrar.index']]) !!}
 
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-md-2">
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
+				</div>
+				<div class="col-md-2">
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
+				</div>
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				<div class="col-md-2">
 				<strong>Monto por Cobrar:</strong>{{$aten->monto}}
 			   </div>
-			   <div class="col-sm-4">
+			   <div class="col-md-2">
 				<strong>Total Items:</strong>{{$total->total}}
 			   </div>
-			 </div>
+			</div>	
+
+				
 
 			<div class="box-content no-padding">
 

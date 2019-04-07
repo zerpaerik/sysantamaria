@@ -26,18 +26,26 @@ class CuentasporCobrarController extends Controller
 	public function index(Request $request)
   {
 
+    if(!is_null($request->fecha)){
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2; 
+
+
     $cuentasporcobrar = DB::table('atenciones as a')
     ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
+    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
     ->orderby('a.id','desc')
     ->get(); 
 
     $aten = Atenciones::whereNotIn('origen_usuario',[99999999])
+                      ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                       ->where('pendiente','>',0)
                       ->whereNotIn('monto',[0,0.00,99999])
                       ->select(DB::raw('SUM(pendiente) as monto'))
@@ -45,12 +53,45 @@ class CuentasporCobrarController extends Controller
 
       $totalorigen = Atenciones::where('pendiente','>',0)
                                      //->whereNotIn('origen_usuario',[99999999])
+                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->whereNotIn('monto',[0,0.00,99999])
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+} else {
+   $f1 = Carbon::today()->toDateString();
+    $f2 = Carbon::today()->toDateString(); 
+
+ $cuentasporcobrar = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+    ->where('a.pendiente','>',0)
+    ->whereNotIn('a.monto',[0,0.00])
+    ->orderby('a.id','desc')
+    ->get(); 
+
+    $aten = Atenciones::whereNotIn('origen_usuario',[99999999])
+                      ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                      ->where('pendiente','>',0)
+                      ->whereNotIn('monto',[0,0.00,99999])
+                      ->select(DB::raw('SUM(pendiente) as monto'))
+                      ->first();
+
+      $totalorigen = Atenciones::where('pendiente','>',0)
+                                     //->whereNotIn('origen_usuario',[99999999])
+                                    ->whereDate('created_at', '=',Carbon::today()->toDateString())
                                      ->whereNotIn('monto',[0,0.00,99999])
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
 
+
+
+}
         
-        return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar,'aten' => $aten,'total' => $totalorigen]); 
+        return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar,'aten' => $aten,'total' => $totalorigen,'f1' => $f1,'f2' => $f2]); 
   }
 
 

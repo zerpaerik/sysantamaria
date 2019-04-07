@@ -113,19 +113,46 @@ class ServiceController extends Controller
       'data' => $services,
     ]);
   }  
-  public function inicio()
+  public function inicio(Request $request)
   {
+    if(!is_null($request->fecha)){
+
+      $f1=$request->fecha;
+      $f2=$request->fecha2;
+
     $services = DB::table('services as s')
     ->select('s.id as SerId','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
+    ->whereBetween('s.date',[$f1,$f2])
     ->get(); 
+
+  } else {
+
+
+    $f1=Carbon::today()->toDateString();
+      $f2=Carbon::today()->toDateString();
+
+     $services = DB::table('services as s')
+    ->select('s.id as SerId','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
+    ->join('personals as pro','pro.id','=','s.especialista_id')
+    ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
+    ->join('servicios as sr','sr.id','=','s.servicio_id')
+    ->join('pacientes as pc','pc.id','=','s.paciente_id')
+    ->whereDate('s.date','>=',Carbon::today()->toDateString())
+    ->get(); 
+
+
+
+  }
     
 
     return view('service.inicio',[
-      'data' => $services
+      'data' => $services,
+      'f1' => $f1,
+      'f2' => $f2
     ]);           
   }
 
@@ -261,7 +288,7 @@ class ServiceController extends Controller
   
 	
 	 Toastr::success('Registrado Exitosamente.', 'Programaciòn!', ['progressBar' => true]);
-    return redirect()->action('ServiceController@index');
+    return redirect()->action('ServiceController@inicio');
 
   
 

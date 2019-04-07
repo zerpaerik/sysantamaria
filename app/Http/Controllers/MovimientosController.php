@@ -63,10 +63,9 @@ class MovimientosController extends Controller
 
 
     $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->join('users as u','u.id','e.usuario')
       ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
@@ -161,10 +160,9 @@ class MovimientosController extends Controller
                 }
 
     $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
         ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())

@@ -312,10 +312,9 @@ public function editView_consulta($id)
   public function ticket_ver($id) 
   {
     $paciente = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.evaluacion','e.title','e.profesional','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','eva.nombre as nombreEval')
+    ->select('e.id as EventId','e.paciente','e.evaluacion','e.title','e.profesional','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->where('e.id','=',$id)
     ->first();

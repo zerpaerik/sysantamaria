@@ -68,14 +68,14 @@ class ProduccionController extends Controller
 			               ->first(); 
 
 	   $sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','pr.name as nomate','pr.lastname as apeate')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.fecha_atencion','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','pr.name as nomate','pr.lastname as apeate')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->join('personals as pr','pr.id','a.atendido')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.atendido','<>',NULL)
         ->whereNotIn('a.monto',[0,0.00])
         //->whereNotIn('a.es_paquete',[1])
@@ -83,14 +83,14 @@ class ProduccionController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-          $totalsesiones = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+          $totalsesiones = Atenciones::whereBetween('fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
                                             ->where('atendido','<>',NULL)
 		                                    ->select(DB::raw('SUM(abono) as monto'))
 		                                    ->first();
 
 				            if ($totalsesiones->monto == 0) {
 				        }
-	      $totals = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+	      $totals = Atenciones::whereBetween('fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
 	                       ->where('atendido','<>',NULL)
 			               ->select(DB::raw('COUNT(*) as cantidad'))
 			               ->first(); 
@@ -152,26 +152,26 @@ class ProduccionController extends Controller
 			               ->first(); 
 
 	   $sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','pr.name as nomate','pr.lastname as apeate')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.fecha_atencion','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','pr.name as nomate','pr.lastname as apeate')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->join('personals as pr','pr.id','a.atendido')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.atendido','=',$request->pro)
         ->orderby('a.id','desc')
         ->get();
 
-          $totalsesiones = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+          $totalsesiones = Atenciones::whereBetween('fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
                                             ->where('atendido','=',$request->pro)
 		                                    ->select(DB::raw('SUM(abono) as monto'))
 		                                    ->first();
 
 				            if ($totalsesiones->monto == 0) {
 				        }
-	      $totals = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+	      $totals = Atenciones::whereBetween('fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
                            ->where('atendido','=',$request->pro)
 			               ->select(DB::raw('COUNT(*) as cantidad'))
 			               ->first(); 
