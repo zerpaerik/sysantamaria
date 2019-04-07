@@ -31,7 +31,7 @@
           </li>
 
            <li>
-          <a href="{{route('movimientos.index')}}"><i class="fa fa-random"></i> Registros del Dia</a>
+          <a href="{{route('movimientos.index1')}}"><i class="fa fa-random"></i> Registros del Dia</a>
           </li>
 
 
@@ -317,7 +317,7 @@
           </li>
 
            <li>
-          <a href="{{route('movimientos.index')}}"><i class="fa fa-random"></i> Registros del Dia</a>
+          <a href="{{route('movimientos.index1')}}"><i class="fa fa-random"></i> Registros del Dia</a>
           </li>
 
 
@@ -569,7 +569,7 @@
           </li>
 
            <li>
-          <a href="{{route('movimientos.index')}}"><i class="fa fa-random"></i> Registros del Dia</a>
+          <a href="{{route('movimientos.index1')}}"><i class="fa fa-random"></i> Registros del Dia</a>
           </li>
 
 

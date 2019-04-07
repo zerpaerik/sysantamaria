@@ -186,11 +186,7 @@ Route::get('atenciones-atender', 'AtencionesController@atender');
 //index ingresos todos
 
 Route::get('movimientos', 'MovimientosController@index')->name('movimientos.index');
-
-
-
-
-
+Route::get('movimientos1', 'MovimientosController@index1')->name('movimientos.index1');
 
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
