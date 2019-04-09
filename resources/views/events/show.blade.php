@@ -4,7 +4,6 @@
 	<p>Paciente: {{$data->nombres}} {{$data->apellidos}} </p>
 	<p>Doctor: {{$data->nombrePro}} {{$data->apellidoPro}}</p>
 	<p>Fecha de cita: {{$data->date}}</p>
-	<p>Hora: {{$data->start_time}} Hasta las {{$data->end_time}}</p>
     <p>Evaluación: {{$data->evaluacion}}</p>
 	<br>
 
