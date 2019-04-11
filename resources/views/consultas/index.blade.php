@@ -75,8 +75,11 @@
 						<td>{{$d->username}}-{{$d->userlast}}</td>
 						<td>
 						<a  class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>	
-
+						
+						@if(\Auth::user()->role_id <> 7)
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
+
+						@endif
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 

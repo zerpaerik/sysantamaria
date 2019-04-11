@@ -300,12 +300,6 @@
             <a href="{{route('service.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
           </li>
 
-
-          <li>
-            <a href="{{route('proximacita.index')}}"><i class="fa fa-list-alt"></i> Control de citas/Evaluaciones</a>
-          </li>
-
-
         </ul>      
     </li>
     <li>
@@ -322,7 +316,7 @@
 
 
           <li>
-            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle Ingresos/Gastos</a>
+            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Cierre de caja</a>
           </li>
 
           <li>
@@ -553,11 +547,6 @@
           </li>
 
 
-          <li>
-            <a href="{{route('proximacita.index')}}"><i class="fa fa-list-alt"></i> Control de citas/Evaluaciones</a>
-          </li>
-
-
         </ul>      
     </li>
     <li>
@@ -572,6 +561,9 @@
           <a href="{{route('movimientos.index1')}}"><i class="fa fa-random"></i> Registros del Dia</a>
           </li>
 
+          <li>
+            <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Cierre de caja</a>
+          </li>
 
           <li>
             <a href="{{route('cierre.index')}}"><i class="fa fa-plus-square-o"></i> Detalle Ingresos/Gastos</a>
@@ -615,21 +607,6 @@
     <span class="hidden-xs">Asistencial</span>
   </a>
   <ul class="dropdown-menu">
-     <li>
-      <a href="{{route('historias.index')}}"><i class="fa fa-circle-o"></i> Historia Clínica</a>
-    </li> 
-     <li>
-      <a href="{{route('fichast.index')}}"><i class="fa fa-circle-o"></i> Fichas Terapeuticas</a>
-    </li>
-      <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Tratamiento</a>
-      </li>
-      <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Tratamiento</a>
-      </li>
-       <li>
-        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Registrar Evaluación</a>
-      </li>
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programación</a>
       </li> 
@@ -643,9 +620,6 @@
   </a>
   <ul class="dropdown-menu">
     <li>
-      <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Almacen Central</a>
-    </li>
-    <li>
       <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
     </li>
     <li>
@@ -654,16 +628,25 @@
           <li>
             <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Pedido Productos</a>
           </li>
-          <li>
-            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Transferir Productos</a>
-          </li>
-          <li>
-            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Transferencia de Productos</a>
-          </li>
         </ul>      
     </li>
   </ul>
 </li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs">Control de Sesiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Registrar Sesión</a>
+      </li>
+      <li>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Sesiones</a>
+      </li>
+    </ul>
+  </li>
 
 
 
@@ -711,25 +694,11 @@
       </li> 
   </ul>
 </li>
-    <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-copy"></i>
-      <span class="hidden-xs">Control de Sesiones</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Registrar Sesión</a>
-      </li>
-      <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Sesiones</a>
-      </li>
-    </ul>
-  </li>
 
-  <li class="dropdown">
+<li class="dropdown">
   <a href="#" class="dropdown-toggle">
     <i class="fa fa-refresh"></i>
-    <span class="hidden-xs">Admisión</span>
+    <span class="hidden-xs">Existencias</span>
   </a>
   <ul class="dropdown-menu">
    <li>
@@ -752,10 +721,25 @@
 
 
         </ul>      
+    <li>
+      <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
     </li>
-  
   </ul>
-</li>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-cog"></i>
+      <span class="hidden-xs">Administración</span>
+    </a>
+    <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li>   
+         
+    </ul>
+  </li>
+
 
 
 

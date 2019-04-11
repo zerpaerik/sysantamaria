@@ -32,7 +32,9 @@
 							<th>Cantidad</th>
 							<th>Precio Unidad</th>
 							<th>Precio Venta</th>
+							@if(\Auth::user()->role_id <> 7)
 							<th>Acciones</th>
+							@endif
 
 							
 						</tr>
@@ -51,11 +53,12 @@
 								@endif
 								<td>{{$ana->preciounidad}}</td>
 								<td>{{$ana->precioventa}}</td>
-
+								@if(\Auth::user()->role_id <> 7)
 								<td>
 									<a class="btn btn-warning" href="existencias-edit-{{$ana->id}}">Editar</a>
 									<a href="existencias-delete-{{$ana->id}}" class="btn btn-danger">Eliminar</a>
 								</td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>
