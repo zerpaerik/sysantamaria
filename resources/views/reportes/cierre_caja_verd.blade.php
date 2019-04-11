@@ -153,7 +153,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalpaquetes->monto }}</td>
+			<td width="80">{{ $totalpaquetes->abono }}</td>
 		</tr>
 	</table>
 </div>
