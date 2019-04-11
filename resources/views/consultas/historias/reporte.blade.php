@@ -15,7 +15,7 @@
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>RESUMEN DATOS GENERALES DE INGRESO</strong></legend>
             <p style="margin-bottom: 8px;">Nombre:{{$historias->nombres}},{{$historias->apellidos}}</p>
-            <p style="margin-left:380px;margin-top: -30px;">Historia Clìnica:{{$historias->historia}}</p>
+            <p style="margin-bottom: 8px;">Historia Clínica:{{$historias->historia}}</p>
             <p style="margin-bottom: 8px;">Fecha de Ingreso:{{date('d-m-Y', strtotime($historias->created_at))}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Hora de Ingreso:{{date('H:i:s', strtotime($historias->created_at))}}</p>
             <p style="margin-bottom: 8px;">Counter:{{Auth::user()->name}}</p>

@@ -297,7 +297,7 @@
 
 
           <li>
-            <a href="{{route('consultas.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
+            <a href="{{route('service.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
           </li>
 
 
@@ -549,7 +549,7 @@
 
 
           <li>
-            <a href="{{route('consultas.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
+            <a href="{{route('service.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
           </li>
 
 
@@ -742,7 +742,7 @@
 
 
           <li>
-            <a href="{{route('consultas.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
+            <a href="{{route('service.inicio')}}"><i class="fa fa-list-alt"></i> Programación de citas</a>
           </li>
 
 
