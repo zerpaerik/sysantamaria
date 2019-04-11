@@ -304,11 +304,12 @@ class ReportesController extends Controller
                                     ->first();
 
          $paquetes = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.estatus','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('paquetes as c','c.id','a.id_paquete')
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.es_paquete','=', 1)
+        ->where('a.estatus','=',1)
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?", 
                                      array($fechainic, $fecha))
         ->whereNotIn('a.monto',[0,0.00])
@@ -316,6 +317,7 @@ class ReportesController extends Controller
         ->get();
 
         $totalpaquetes = Atenciones::where('es_paquete',1)
+                                   ->where('estatus','=',1)
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
                                     ->select(DB::raw('SUM(abono) as abono'))
@@ -662,11 +664,12 @@ class ReportesController extends Controller
                                     ->first();
 
          $paquetes = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.estatus','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('paquetes as c','c.id','a.id_paquete')
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.es_paquete','=', 1)
+                ->where('a.estatus','=',1)
         ->whereRaw("a.created_at > ? AND a.created_at <= ?", 
                                      array($fechamañana, $fecha))
         ->whereNotIn('a.monto',[0,0.00])
@@ -674,6 +677,7 @@ class ReportesController extends Controller
         ->get();
 
         $totalpaquetes = Atenciones::where('es_paquete',1)
+        ->where('estatus','=',1)
                                     ->whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fecha))
                                     ->select(DB::raw('SUM(abono) as abono'))
@@ -760,6 +764,7 @@ class ReportesController extends Controller
      
 
        // $fecha = $caja->fecha;
+
 
        
 
