@@ -118,6 +118,12 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
                   ->update([
                       'cantidad' => $cantidadactual - $request->cantidadplus,
                   ]);
+           $ventas = new Ventas();
+              $ventas->id_producto = $request->producto;
+              $ventas->monto = $request->monto;
+              $ventas->cantidad= $request->cantidadplus;
+              $ventas->id_usuario = Auth::user()->id;
+              $ventas->save();
 				  
 		      $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
@@ -125,19 +131,34 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
               $creditos->monto= $request->monto;
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
+              $creditos->id_venta= $ventas->id;
               $creditos->save();
 			  
-			  $ventas = new Ventas();
-              $ventas->id_producto = $request->producto;
-              $ventas->monto = $request->monto;
-              $ventas->cantidad= $request->cantidadplus;
-              $ventas->id_usuario = Auth::user()->id;
-              $ventas->save();
+			 
 			  
        Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
     return redirect()->route('movimientos.index');
 		}
     
+    }
+
+    public function deleteventas($id){
+
+      $ventas= Ventas::where('id','=',$id)->first();
+
+      $p = Producto::find($ventas->id_producto);
+      $p->cantidad= $p->cantidad - $ventas->cantidad;
+      $res = $p->save();
+
+      $creditos= Creditos::where('id_venta','=',$id)->first();
+      $creditos->delete();
+
+      $ventasp= Ventas::where('id','=',$id)->first();
+      $ventasp->delete();
+
+       Toastr::success('Eliminado Exitosamente', 'Venta!', ['progressBar' => true]);
+    return redirect()->route('movimientos.index');
+
     }
 
     public function transfer(Request $request){

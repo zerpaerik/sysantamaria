@@ -377,6 +377,8 @@ Route::get('produccion', 'ProduccionController@index')->name('produccion.index')
 
 Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
 Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
+Route::get('ventas-delete-{id}', 'Existencias\ProductoController@deleteventas');
+
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
 Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
 Route::get('requerimientos2', 'Existencias\RequerimientosController@index3')->name('requerimientos.index3')->middleware('auth');
