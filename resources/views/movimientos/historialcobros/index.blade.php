@@ -71,7 +71,9 @@
 							<th>Monto Total Abonado</th>
 							<th>Monto Pendiente</th>
 							<th>Fecha</th>
+							@if(\Auth::user()->role_id <> 6)
 							<th>Acciones</th>
+							@endif
 						</tr>
 					</thead>
 					<tbody>
@@ -86,13 +88,13 @@
 								<td>{{$atec->abono}}</td>
 								<td>{{$atec->pendiente}}</td>
 								<td>{{$atec->updated_at}}</td>
+								@if(\Auth::user()->role_id <> 6)
 								<td>
-									@if(\Auth::user()->role_id = 5)							 
+																 
 									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
-
-									@endif
 									
 								</td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>
