@@ -213,6 +213,7 @@
 							<th>Monto</th>
 							<th>Usuario</th>
 						    <th>Fecha</th>
+						    <th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -225,6 +226,11 @@
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>
+									 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
+								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+							      @endif
+								</td>
 							</tr>
 						@endforeach
 		
@@ -498,6 +504,7 @@
 							<th>Monto</th>
 							<th>Usuario</th>
 						    <th>Fecha</th>
+						    <th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -510,6 +517,11 @@
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>
+									 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
+								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+							      @endif
+								</td>
 							</tr>
 						@endforeach
 		
