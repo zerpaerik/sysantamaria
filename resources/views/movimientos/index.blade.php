@@ -231,12 +231,9 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
-							    @if(\Auth::user()->role_id == 4)	
-									<a _blank" class="btn btn-danger" href="ventas-delete-{{$atec->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
-								@elseif(\Auth::user()->role_id == 5)
-								<a _blank" class="btn btn-danger" href="ventas-delete-{{$atec->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
-								@else
-								@endif	
+							    @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
+								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+							      @endif	
 								</td>
 							</tr>
 						@endforeach
@@ -526,12 +523,9 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
-								@if(\Auth::user()->role_id == 4)	
-									<a _blank" class="btn btn-danger" href="ventas-delete-{{$atec->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
-								@elseif(\Auth::user()->role_id == 5)
-								<a _blank" class="btn btn-danger" href="ventas-delete-{{$atec->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
-								@else
-								@endif	
+								 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
+								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+							      @endif
 								</td>
 							</tr>
 						@endforeach
