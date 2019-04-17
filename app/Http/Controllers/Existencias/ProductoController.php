@@ -229,13 +229,12 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
     }
 
     public function getExist($prod, $sede){
-      $ex = Producto::where('id', '=', $prod)->where("sede_id", "=", $sede)->where("almacen",'=', 1)
-      ->get(["cantidad"])->first();
+      $ex = Producto::where('id', '=', $prod)->where("almacen",'=',2)->get(["cantidad"])->first();
       $prod = Producto::where('id', '=', $prod)->get()->first();
       if($ex){
-        return response()->json(["existencia" => $ex, "exists" => true, "medida" => $prod->medida]);
+        return response()->json(["existencia" => $ex, "exists" => true, "medida" => $prod->medida,"precioventa" => $prod->precioventa]);
       }else{
-        return response()->json(["exists" => false, "medida" => $prod->medida]);
+        return response()->json(["exists" => false, "medida" => $prod->medida,"precioventa" => $prod->precioventa]);
       }
     }
 

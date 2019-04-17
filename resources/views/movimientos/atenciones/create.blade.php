@@ -80,7 +80,7 @@
                     <div class="col-sm-2">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="number" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
                     </div>
 
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono</label>
@@ -158,7 +158,7 @@
                     <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Monto</label>
                     <div class="col-sm-2">
 
-                      <input id="paquetes_#index#_monto" name="monto_p[paquetes][#index#][monto] type="text" class="number form-control montop" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                      <input id="paquetes_#index#_monto" name="monto_p[paquetes][#index#][monto] type="text" class="number form-control montop" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
                     </div>
 
                     <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Abono</label>

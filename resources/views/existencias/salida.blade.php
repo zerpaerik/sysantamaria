@@ -56,7 +56,7 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" id="monto" name="monto" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
+							<input type="number" class="form-control" id="precioventa" name="monto" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required" disabled="">
 						</div>
 						
 						<label class="col-sm-1 control-label">TipoPago</label>
@@ -107,9 +107,11 @@
       	if(res.exists){
       		$("#cantidad").val(res.existencia.cantidad);
       		$("#medida").val(res.medida);
+      		$("#precioventa").val(res.precioventa);
       	}else{
       		$("#medida").val(res.medida);
       		$("#cantidad").val(0);
+      		$("#precioventa").val(0);
       	}
       }
     });
