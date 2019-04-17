@@ -140,14 +140,11 @@ class ReportesController extends Controller
             $atenciones->monto = 0;
         }
 
-        $punziones = Creditos::where('origen','VENTA DE PUNZIONES')
-                                    //->whereNotIn('monto',[0,0.00,99999])
-                                    //->whereBetween('created_at', [strtotime($fechainic),strtotime($fecha)])
-                                    ->whereRaw("created_at >= ? AND created_at <= ?", 
+        $punziones = Punziones::whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
                                     //->where('created_at','<=',$fecha)
                                    // ->whereBetween('created_at', [$fecha, $fecha])
-                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(precio) as monto'))
                                     ->first();
                            
                                 
@@ -201,7 +198,7 @@ class ReportesController extends Controller
                             ->select(DB::raw('origen, descripcion, monto'))
                             ->get();
 
-        $efectivo = Creditos::where('tipo_ingreso', 'EF')
+        $efectivo = Creditos::where('tipo_ingreso','EF')
                             ->whereNotIn('monto',[0,0.00,99999])
                             ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
@@ -211,7 +208,7 @@ class ReportesController extends Controller
             $efectivo->monto = 0;
         }
 
-        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+        $tarjeta = Creditos::where('tipo_ingreso','TJ')
                             ->whereNotIn('monto',[0,0.00,99999])
                             ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))

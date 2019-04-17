@@ -106,6 +106,15 @@ class PunzionesController extends Controller
           $pun->precio =$request->precio;
           $pun->save();
 
+          $creditos = new Creditos();
+          $creditos->origen = 'VENTA DE PUNZIONES';
+          $creditos->id_atencion =NULL;
+          $creditos->monto= $request->precio;
+          $creditos->tipo_ingreso = $request->tipo_ingreso;
+          $creditos->descripcion = 'VENTA DE PUNZIONES';
+          $creditos->id_punzion = $pun->id;
+          $creditos->save();
+
    
     if (isset($request->id_laboratorio)) {
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
@@ -168,14 +177,7 @@ class PunzionesController extends Controller
 
 
 
-          $creditos = new Creditos();
-          $creditos->origen = 'VENTA DE PUNZIONES';
-          $creditos->id_atencion =NULL;
-          $creditos->monto= $request->precio;
-          $creditos->tipo_ingreso = $request->tipo_ingreso;
-          $creditos->descripcion = 'VENTA DE PUNZIONES';
-          $creditos->id_punzion = $pun->id;
-          $creditos->save();
+         
 
     return redirect()->route('punziones.index');
 
