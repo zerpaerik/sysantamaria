@@ -8,6 +8,7 @@ use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
 use App\Models\Config\{Sede, Proveedor};
 use App\Models\Punziones;
 use App\Models\Pun;
+use App\Models\Punsion;
 use App\Models\Personal;
 use App\Models\Creditos;
 use App\Models\Pacientes;
@@ -93,7 +94,7 @@ class PunzionesController extends Controller
 
     public function createView(){
 
-    	return view('existencias.punziones.create', ["productos" => Producto::where('almacen','=',2)->where('categoria','=',6)->get(["id", "nombre","codigo"]),"personal" => Personal::where('estatus','=',1)->get(),"pacientes" => Pacientes::where('estatus','=',1)->get()]);
+    	return view('existencias.punziones.create', ["productos" => Producto::where('almacen','=',2)->where('categoria','=',6)->get(["id", "nombre","codigo"]),"personal" => Personal::where('estatus','=',1)->get(),"pacientes" => Pacientes::where('estatus','=',1)->get(),"punsion" => Punsion::where('estatus','=',1)->get()]);
     }
 
 
@@ -143,42 +144,8 @@ class PunzionesController extends Controller
       }
     }
 
-          if($request->tipo_servicio == 2){
-
-          $comision = new ComisionPunzion();
-          $comision->paciente = $request->paciente;
-          $comision->origen =$request->origen;
-          $comision->monto= 5;
-          $comision->comision= 5;
-          $comision->usuario = Auth::user()->id;
-          $comision->save();
-
-      } else if($request->tipo_servicio == 3){
-
-      	 $comision = new ComisionPunzion();
-          $comision->paciente = $request->paciente;
-          $comision->origen =$request->origen;
-          $comision->monto= 3;
-          $comision->comision= 3;
-          $comision->usuario = Auth::user()->id;
-          $comision->save();
-
-       } else {
-
-       	$comision = new ComisionPunzion();
-          $comision->paciente = $request->paciente;
-          $comision->origen =$request->origen;
-          $comision->monto= 5;
-          $comision->comision= 5;
-          $comision->usuario = Auth::user()->id;
-          $comision->save();
-
-      }
-
-
-
-         
-
+        
+        
     return redirect()->route('punziones.index');
 
     }
@@ -272,6 +239,16 @@ class PunzionesController extends Controller
 
 
 
+    }
+
+     public function getExist($tipo, $sede){
+      $ex = Punsion::where('id', '=', $tipo)->get()->first();
+      $tipo = Punsion::where('id', '=', $tipo)->get()->first();
+      if($ex){
+        return response()->json(["punsion" => $ex, "exists" => true, "precio" => $tipo->precio]);
+      }else{
+        return response()->json(["exists" => false, "precio" => $tipo->precio]);
+      }
     }
 
        

@@ -54,16 +54,19 @@
 
 			  <label class="col-sm-1 control-label">Precio</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Nombre">
+							<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Nombre" disabled="">
 			  </div>
 
 			  <label class="col-sm-1 control-label">TipoServicio</label>
 						<div class="col-sm-3">
-							<select id="el4" name="tipo_servicio">
-									<option value="1">Punzion seca</option>
-									<option value="2">Aplicación de taipe</option>
-								    <option value="3">Aplicación de inyectable</option>
-							</select>
+						 <select id="prod" name="tipo_servicio">
+            <option value="0">Seleccione un producto</option>
+               @foreach($punsion as $p)
+                  <option value="{{$p->id}}">
+                    {{$p->nombre}}
+                  </option>
+                @endforeach
+            </select>
 			   </div>
 
 
@@ -139,12 +142,7 @@
           <hr>
 
           <div class="form-group form-inline">
-            <div class="col-sm-8 col-sm-offset-7">
-              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
-                Total Solicitados:
-              </div>
-              <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
-            </div>
+            
           </div>
 					     <div class="col-sm-12">
     						<br>
@@ -290,7 +288,7 @@ function Select2Test(){
 	$("#el1").select2();
 	$("#el3").select2();
   $("#el5").select2();
-  $("#el4").select2();
+  $("#tipo").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
@@ -312,6 +310,94 @@ function DemoTimePicker(){
 		stepMinute: 10
 	});
 }
+</script>
+
+<script type="text/javascript">
+
+  window.onunload = clear;
+
+  function clear(){
+    window.sessionStorage.clear();
+  };
+
+  function getQuan(evt){
+    
+    evt.preventDefault();
+    var prod = $("#prod").val();
+    if(prod < 1) return;
+
+    $.ajax({
+      url: "punzion/"+prod+"/"+$("#sede").val(),
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: "get",
+      success: function(res){
+        if(res.exists){
+          $("#precio").val(res.precio);
+       
+        }else{
+      
+          $("#precio").val(0);
+        }
+      }
+    });
+  }   
+
+</script>
+
+<script>
+
+  $("#prod").on('change', getQuan);
+  $("#sede").on('change', getQuan);
+
+  $("#updatepro").on('click', function(evt){
+    evt.preventDefault();
+
+    if($('#prod').val() < 1) return;
+
+    var cs = window.sessionStorage.getItem("currentTime");
+    if(!cs){
+      cs = new Date().getTime();
+      window.sessionStorage.setItem("currentTime", cs);
+    }
+
+    var d = {
+      "code" :  cs,
+      "proveedor" : $('#provee').val(),
+      "id" : $('#prod').val(),
+      "sede" : $("#sede").val(),
+      "cantidadplus" : $('#cantidadplus').val() * -1
+    };
+
+    $.ajax({
+      url: "producto/",
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: "patch",
+      data: d,
+      success: function(res){
+        if(res.success){
+          $( "#table-b" ).append( "<tr><td>Salida</td><td>"+$("#prod").val()+"</td><td>"+$('#cantidadplus').val()+"</td></tr>" );         
+          $('#cantidad').val(res.producto.cantidad);
+          $('#cantidadplus').val(0);              
+          $("#successalrt").toggleClass("invisible");
+          setTimeout(function(){
+            $("#successalrt").toggleClass("invisible");
+          }, 3000)
+        };
+      }
+    });
+  });
+
+  $(document).ready(function() {
+    LoadSelect2Script(function (){
+      $("#provee").select2();
+      $("#sede").select2();
+      $("#prod").select2();
+    });
+  });
 </script>
 
 

@@ -372,6 +372,9 @@ Route::get('punziones-create', 'Existencias\PunzionesController@createView')->na
 Route::post('punzion/create', 'Existencias\PunzionesController@create');
 Route::get('punzion-delete-{id}','Existencias\PunzionesController@delete');
 
+Route::get('punzion/{tipo}/{sede}', 'Existencias\PunzionesController@getExist');
+
+
 
 Route::get('produccion', 'ProduccionController@index')->name('produccion.index');
 

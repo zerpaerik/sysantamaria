@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Punsion extends Model
 {
     protected $fillable = [
-    	'nombre','estatus'
+    	'nombre','estatus','precio'
     ];
 
    
