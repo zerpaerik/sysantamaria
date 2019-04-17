@@ -54,7 +54,7 @@
 
 			  <label class="col-sm-1 control-label">Precio</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Nombre" disabled="">
+							<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Nombre" readonly="">
 			  </div>
 
 			  <label class="col-sm-1 control-label">TipoServicio</label>
