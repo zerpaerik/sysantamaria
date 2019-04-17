@@ -56,7 +56,7 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" id="precioventa" name="monto" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required" disabled="">
+							<input type="number" class="form-control" id="precioventa" name="monto" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required" readonly="">
 						</div>
 						
 						<label class="col-sm-1 control-label">TipoPago</label>
@@ -93,6 +93,7 @@
 	};
 
 	function getQuan(evt){
+		
 		evt.preventDefault();
 		var prod = $("#prod").val();
 		if(prod < 1) return;
