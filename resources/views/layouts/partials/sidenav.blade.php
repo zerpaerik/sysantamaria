@@ -168,10 +168,7 @@
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
-   
-    <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
-    </li>
+
     <li>
       <a href="{{route('produccion.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
@@ -179,13 +176,20 @@
       <a href="{{route('compagadas.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
     </li>
     <li>
-      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
+        </li>
+        <li>
+          <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>
         <ul class="dropdown-menu">
           <li>
-
             <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
       </li>
        <li>
@@ -202,9 +206,9 @@
         </ul>      
     </li> 
     <li>
-            <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Archivos</a>
-            <ul class="dropdown-menu"> 
-              <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Archivos</a>
+      <ul class="dropdown-menu"> 
+    <li>
       <a href="{{route('empresas.index')}}"><i class="fa fa-circle-o"></i> Empresas</a>
     </li> 
     <li>
@@ -215,18 +219,6 @@
     </li>
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
-    </li>
-    <li>
-      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
-    </li>
-    <li>
-      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
-    </li>
-    <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
@@ -448,10 +440,7 @@
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
-   
-    <li>
-      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Derivaciones</a>
-    </li>
+
     <li>
       <a href="{{route('produccion.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
@@ -459,7 +448,15 @@
       <a href="{{route('compagadas.index')}}"><i class="fa fa-renren"></i> Pagos por Comisiones</a>
     </li>
     <li>
-      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-dropbox"></i> Tarifarios/Convenios</a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
+        </li>
+        <li>
+          <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>

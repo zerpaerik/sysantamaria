@@ -249,7 +249,7 @@ class ServiceController extends Controller
         "servicio_id" => $request->servicio_id,
         "consulta" =>10,
         "punsion" =>4,
-        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Servicio-".$servicios->detalle."Paciente ".$paciente->nombres." ".$paciente->apellidos
+        "title" => "Especialista: ".$especialista->name." ".$especialista->lastname." "."Servicio: ".$servicios->detalle." Paciente: ".$paciente->nombres." ".$paciente->apellidos
       ]);
 
 	  } else if($request->tipo == 2){//consultas
