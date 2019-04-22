@@ -322,7 +322,7 @@ public function editView_consulta($id)
 
     $view = \View::make('consultas.ticket_consulta')->with('paciente', $paciente);
     $pdf = \App::make('dompdf.wrapper');
-    $pdf->setPaper('A5', 'landscape');
+    $pdf->setPaper(array(0,0,800.00,3000.00));
     $pdf->loadHTML($view);
     
     return $pdf->stream('ticket_ver');

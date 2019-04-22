@@ -386,6 +386,27 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
         return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad]);
 	}
 
+  public function ticketventas($id){
+
+       $ventas = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('productos as b','b.id','a.id_producto')
+            ->where('a.id','=',$id)
+            ->first();
+
+            dd($ventas);
+            die();
+
+
+
+
+
+
+
+
+  }
+
    
 	
     	
