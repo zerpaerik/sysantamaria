@@ -45,9 +45,10 @@
 		padding: 8px 5px;
 	}
 </style>
+<img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
 
 <div>
-	<div class="text-center title-header col-12">
+	<div class="text-center title-header col-12" style="margin-top: -85px;">
 		<center><strong>REPORTE CONSOLIDADO</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
 	</div>

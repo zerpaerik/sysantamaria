@@ -57,39 +57,48 @@ margin-top: -20px;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Ticket de Atenciòn</title>
+	<title>Ticket de Atención</title>
 </head>
 <body>
 
-
-	<div class="paciente">
-		<p><strong>{{$ticket->nombres}},{{$ticket->apellidos}}</strong></p>
-	</div>
-	<div class="paciente">
-		<p><strong>DNI: {{$ticket->dni}}</strong></p>
+	<div class="" style="font-size: 35px; text-align: center; margin-bottom: -15px;">
+		<img src="/var/www/html/sysantamaria/public/img/logo2.png" style="width: 30%;"/>
 	</div>
 
-	<div class="fecha">
-		<p><strong>{{ $ticket->created_at}}</strong></p>
-	</div>
-	<div class="servicios">
-		<p><strong>{{ $ticket->detalle}}</strong></p>
+
+	<div class="" style="font-size: 40px; text-align: center;margin-bottom:-40px;margin-top: 2px;">
+		<p><strong>SANTA MARÍA</strong></p>
+	    <p><strong>TICKET:{{ $ticket->id}}</strong></p>
 	</div>
 
-	<div class="acuenta">
-		<p><strong>A Cuenta:{{ $ticket->abono}}</strong></p>
+    <div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>FECHA:{{ $ticket->created_at}}</strong></p>
 	</div>
 
-	<div class="pendiente">
-		<p><strong>Deuda: {{ $ticket->pendiente}}</strong></p>
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}}</strong></p>
+		<p><strong>DNI:{{ $ticket->dni}}</strong></p>
 	</div>
 
-	<div class="" style="margin-left: 50px; margin-top: -25px;">
-		<p><strong>Origen:{{ $ticket->nompac}},{{ $ticket->apepac}}</strong></p>
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>DETALLE:{{ $ticket->detalle}}
+		</strong></p>
 	</div>
 
-	<div class="total">
-		<p><strong>{{ $ticket->monto}}</strong></p>
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>ORIGEN:{{ $ticket->nompac}},{{ $ticket->apepac}}</strong></p>
+	</div>
+
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>MONTO: {{ $ticket->monto}}</strong></p>
+	</div>
+
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+		<p><strong>PAGADO:{{ $ticket->abono}}</strong></p>
+	</div>
+
+	<div class="" style="font-size: 40px; text-align: left;">
+		<p><strong>RESTA: {{ $ticket->pendiente}}</strong></p>
 	</div>
 
 

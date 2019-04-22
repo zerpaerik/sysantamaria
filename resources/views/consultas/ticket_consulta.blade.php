@@ -57,28 +57,32 @@ margin-top: -20px;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Ticket de Atenciòn</title>
+	<title>Ticket de Atención</title>
 </head>
 <body>
 
-
-<div class="paciente">
-		<p><strong>Paciente: {{$paciente->nombres}} {{$paciente->apellidos}}</strong></p>
+	<div class="" style="font-size: 35px; text-align: center; margin-bottom: -15px;">
+		<img src="/var/www/html/sysantamaria/public/img/logo2.png" style="width: 30%;"/>
 	</div>
 
-	<div class="fecha">
-		<p><strong>Fecha de cita: {{ $paciente->date}}</strong></p>
-	</div>
-	<div class="servicios">
-		<p><strong>Especialista: {{ $paciente->nombrePro}} {{ $paciente->apellidoPro}}</strong></p>
-	</div>
+	<div class="paciente">
+			<p><strong>Paciente: {{$paciente->nombres}} {{$paciente->apellidos}}</strong></p>
 
-	<div class="servicios">
-		<p><strong>Especialista: {{ $paciente->nombreEval}}</strong></p>
-	</div>
-	
-	<div class="total">
-		<p><strong>Monto: {{ $paciente->monto}}</strong></p>
-	</div>
+		</div>
+
+		<div class="fecha">
+			<p><strong>Fecha de cita: {{ $paciente->date}}</strong></p>
+		</div>
+		<div class="servicios">
+			<p><strong>Especialista: {{ $paciente->nombrePro}} {{ $paciente->apellidoPro}}</strong></p>
+		</div>
+
+		<div class="servicios">
+			<p><strong>Especialista: {{ $paciente->nombreEval}}</strong></p>
+		</div>
+		
+		<div class="total">
+			<p><strong>Monto: {{ $paciente->monto}}</strong></p>
+		</div>	
 </body>
 </html>

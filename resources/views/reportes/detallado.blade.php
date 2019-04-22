@@ -46,8 +46,10 @@
 	}
 </style>
 
+<img src="/var/www/html/sysantamaria/public/img/logo2.png"  style="width: 20%;"/>
+
 <div>
-	<div class="text-center title-header col-12">
+	<div class="text-center title-header col-12" style="margin-top: -85px;">
 				<center><strong>REPORTE DETALLADO</strong> </center><
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
 	</div>
@@ -74,6 +76,7 @@
 			<th>Ticket</th>
 			<th>Detalle</th>
 			<th>Paciente</th>
+			<th>DNI</th>
 			<th>Monto Total</th>
 		    <th>Monto Abonado</th>
 		</tr>
@@ -82,6 +85,7 @@
 				<td>{{ $serv->id }}</td>
 				<td>{{ $serv->servicio }}</td>
 				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td>{{ $serv->dni }}</td>
 				<td>{{ $serv->monto }}</td>
 				<td>{{ $serv->abono }}</td>
 			</tr>

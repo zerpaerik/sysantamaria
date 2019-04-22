@@ -846,6 +846,7 @@ class ReportesController extends Controller
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
         $pdf = \App::make('dompdf.wrapper');
         //$pdf->setPaper(array(0,0,867.00,343.80));
+        $pdf->setPaper(array(0,0,800.00,3000.00));
         $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
     }
