@@ -117,7 +117,7 @@
 
 						<a  class="btn btn-success" href="atenciones-edit-{{$d->id}}">Editar</a>	
 
-						<a _blank" class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
+						<a class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
 
 						@endif
 							
@@ -180,7 +180,7 @@
 
 
 
-						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
 						@endif
 							
@@ -240,7 +240,7 @@
 							    @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 							      @endif
-							    <a href="ventas-ticket-{{$atec->id}}" class="btn btn-primary">Ticket</a>	
+							    <a target="_blank" href="ventas-ticket-{{$atec->id}}" class="btn btn-primary">Ticket</a>	
 								</td>
 							</tr>
 						@endforeach
@@ -487,7 +487,7 @@
 
 
 
-						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
 						@endif
 							
