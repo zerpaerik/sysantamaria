@@ -16,9 +16,7 @@ use App\Models\Historiales;
 use App\Models\HistorialCobros;
 use Auth;
 
-
 class MovimientosController extends Controller
-
 {
 
 	public function index(Request $request)
@@ -103,7 +101,7 @@ class MovimientosController extends Controller
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -194,7 +192,7 @@ class MovimientosController extends Controller
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -333,7 +331,7 @@ public function index1(Request $request)
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -424,7 +422,7 @@ public function index1(Request $request)
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
@@ -432,6 +430,7 @@ public function index1(Request $request)
                      ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
                     ->orderby('a.created_at','desc')
                     ->get(); 
+
 
        $totalpunziones = Punziones::whereDate('created_at', '=',Carbon::today()->toDateString())
                                         ->select(DB::raw('SUM(precio) as monto'))
