@@ -289,7 +289,10 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
-									@if(\Auth::user()->role_id <> 6)	
+									 @if(\Auth::user()->role_id == 4)	
+									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									@endif
+									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
 									@endif
 								</td>
@@ -583,7 +586,10 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
-								   @if(\Auth::user()->role_id <> 6)	
+								   @if(\Auth::user()->role_id == 4)	
+									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									@endif
+									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
 									@endif
 								</td>
