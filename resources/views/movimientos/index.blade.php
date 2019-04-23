@@ -297,12 +297,11 @@
 								<td>
 									 @if(\Auth::user()->role_id == 4)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
-									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
-									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-primary">Ticket</a>
 								</td>
 							</tr>
 						@endforeach
@@ -603,12 +602,11 @@
 								<td>
 								   @if(\Auth::user()->role_id == 4)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
-									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
-									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-primary">Ticket</a>
 								</td>
 							</tr>
 						@endforeach

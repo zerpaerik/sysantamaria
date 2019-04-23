@@ -158,7 +158,7 @@
                     <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Monto</label>
                     <div class="col-sm-2">
 
-                      <input id="paquetes_#index#_monto" name="monto_p[paquetes][#index#][monto] type="text" class="number form-control montop" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                      <input id="paquetes_#index#_monto" name="monto_p[paquetes][#index#][monto] type="text" class="number form-control montop" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" readonly="">
                     </div>
 
                     <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Abono</label>
