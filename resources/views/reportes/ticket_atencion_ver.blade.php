@@ -68,25 +68,25 @@ margin-top: -20px;
 
 	<div class="" style="font-size: 40px; text-align: center;margin-bottom:-40px;margin-top: 2px;">
 		<p><strong>SANTA MARÍA</strong></p>
-	    <p><strong>TICKET:{{ $ticket->id}}</strong></p>
+	    <p><strong>TICKET: {{ $ticket->id}}</strong></p>
 	</div>
 
     <div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
-		<p><strong>FECHA:{{ $ticket->created_at}}</strong></p>
+		<p><strong>FECHA: {{ $ticket->created_at}}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
-		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}}</strong></p>
-		<p><strong>DNI:{{ $ticket->dni}}</strong></p>
+		<p><strong>PACIENTE: {{ $ticket->nombres}},{{ $ticket->apellidos}}</strong></p>
+		<p><strong>DNI: {{ $ticket->dni}}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
-		<p><strong>DETALLE:{{ $ticket->detalle}}
+		<p><strong>DETALLE: {{ $ticket->detalle}}
 		</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
-		<p><strong>ORIGEN:{{ $ticket->nompac}},{{ $ticket->apepac}}</strong></p>
+		<p><strong>ORIGEN: {{ $ticket->nompac}},{{ $ticket->apepac}}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
@@ -94,7 +94,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
-		<p><strong>PAGADO:{{ $ticket->abono}}</strong></p>
+		<p><strong>PAGADO: {{ $ticket->abono}}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;">

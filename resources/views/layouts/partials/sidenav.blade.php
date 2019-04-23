@@ -114,6 +114,9 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
           <li>
+            <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingreso de Productos</a>
+          </li>
+          <li>
             <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Pedido Productos</a>
           </li>
           <li>

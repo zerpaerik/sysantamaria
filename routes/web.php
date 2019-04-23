@@ -371,7 +371,7 @@ Route::get('punziones', 'Existencias\PunzionesController@index')->name('punzione
 Route::get('punziones-create', 'Existencias\PunzionesController@createView')->name('punziones.create');
 Route::post('punzion/create', 'Existencias\PunzionesController@create');
 Route::get('punzion-delete-{id}','Existencias\PunzionesController@delete');
-
+Route::get('punzion-ticket-{id}', 'Existencias\PunzionesController@ticketpunziones');
 Route::get('punzion/{tipo}/{sede}', 'Existencias\PunzionesController@getExist');
 
 

@@ -84,7 +84,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
-						    <th></th>
+						    <th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -101,6 +101,7 @@
 								<td>{{$atec->created_at}}</td>
 								<td>
 								<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+								<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 
 								</td>
 							</tr>
@@ -113,6 +114,7 @@
 							<th>Monto</th>
 							<th>Usuario</th>
 						    <th>Fecha</th>
+						    <th>Acciones</th>
 
 					</tfoot>
 

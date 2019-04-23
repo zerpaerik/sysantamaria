@@ -395,12 +395,14 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
             ->where('a.id','=',$id)
             ->first();
 
-            dd($ventas);
-            die();
 
 
-
-
+    $view = \View::make('existencias.ventas.ticket')->with('ventas', $ventas);
+    $pdf = \App::make('dompdf.wrapper');
+    $pdf->setPaper(array(0,0,800.00,3000.00));
+    $pdf->loadHTML($view);
+    
+    return $pdf->stream('ticket_ver');
 
 
 

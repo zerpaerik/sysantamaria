@@ -78,6 +78,7 @@
 							<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
+							<th>Registrado Por</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
@@ -93,6 +94,7 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
+						<td>{{$d->username}},{{$d->userlast}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
 						@elseif($d->es_laboratorio =='1')
@@ -125,6 +127,7 @@
 						   <th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
+							<th>Registrado Por</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
@@ -151,6 +154,7 @@
 						<tr>
 							<th>Paciente</th>
 							<th>Especialista</th>
+							<th>Registrado Por</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
@@ -161,6 +165,7 @@
 						<tr>
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
+						<td>{{$d->username}},{{$d->userlast}}</td>
 						<td>{{$d->monto}}.00</td>
 						<td>{{$d->date}}</td>
 						<td>
@@ -186,6 +191,7 @@
 					<tfoot>
 						    <th>Paciente</th>
 							<th>Especialista</th>
+							<th>Registrado Por</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
@@ -229,6 +235,7 @@
 								<td>
 									 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 								<a href="ventas-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+								<a href="ventas-ticket-{{$atec->id}}" class="btn btn-primary">Ticket</a>
 							      @endif
 								</td>
 							</tr>
@@ -267,7 +274,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
-						    <th></th>
+						    <th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -285,9 +292,11 @@
 								<td>
 									 @if(\Auth::user()->role_id == 4)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 								</td>
 							</tr>
@@ -304,6 +313,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
+						    <th>Acciones</th>
 					</tfoot>
 				</table>
 			</div>
@@ -562,7 +572,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
-						    <th></th>
+						    <th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -580,9 +590,11 @@
 								<td>
 									 @if(\Auth::user()->role_id == 4)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 									@if(\Auth::user()->role_id == 5)	
 									<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+									<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 									@endif
 								</td>
 							</tr>
@@ -599,6 +611,7 @@
 							<th>Monto</th>
 							<th>Registrado Por:</th>
 						    <th>Fecha</th>
+						    <th>Acciones</th>
 					</tfoot>
 				</table>
 			</div>
