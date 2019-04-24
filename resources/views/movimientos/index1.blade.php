@@ -385,6 +385,7 @@
 							<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
+							<th>Registrado Por</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
@@ -400,6 +401,7 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
+						<td>{{$d->username}},{{$d->userlast}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
 						@elseif($d->es_laboratorio =='1')
@@ -432,6 +434,7 @@
 						   <th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
+							<th>Registrado Por</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
@@ -457,6 +460,7 @@
 						<tr>
 							<th>Paciente</th>
 							<th>Especialista</th>
+							<th>Registrado Por</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
@@ -467,6 +471,7 @@
 						<tr>
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
+						<td>{{$d->username}},{{$d->userlast}}</td>
 						<td>{{$d->monto}}.00</td>
 						<td>{{$d->date}}</td>
 						<td>
@@ -492,6 +497,7 @@
 					<tfoot>
 						    <th>Paciente</th>
 							<th>Especialista</th>
+							<th>Registrado Por</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
