@@ -799,20 +799,21 @@ class ReportesController extends Controller
 	 public function verTicket($id){
        
     $searchtipo = DB::table('atenciones')
-    ->select('id','es_servicio','es_laboratorio','es_paquete')
+    ->select('id','es_servicio','es_laboratorio','es_paquete','atendido')
     ->where('id','=', $id)
     ->first();
 
     $es_servicio = $searchtipo->es_servicio;
     $es_laboratorio = $searchtipo->es_laboratorio;
     $es_paquete = $searchtipo->es_paquete;
+    $atendido= $searchtipo->atendido;
                
-        
+  if(is_null($atendido)){
     
     if (!is_null($es_servicio)) {
 
     $ticket = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
     ->join('users as b','b.id','a.origen_usuario')
     ->join('pacientes as c','c.id','a.id_paciente')
     ->join('servicios as e','e.id','a.id_servicio')
@@ -824,7 +825,7 @@ class ReportesController extends Controller
     }elseif(!is_null($es_paquete)){
 
     $ticket = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
     ->join('users as b','b.id','a.origen_usuario')
     ->join('pacientes as c','c.id','a.id_paciente')
     ->join('paquetes as e','e.id','a.id_paquete')
@@ -834,7 +835,7 @@ class ReportesController extends Controller
     }else{
 
     $ticket = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
     ->join('users as b','b.id','a.origen_usuario')
     ->join('pacientes as c','c.id','a.id_paciente')
     ->join('analises as e','e.id','a.id_laboratorio')
@@ -843,6 +844,47 @@ class ReportesController extends Controller
 
 
       }
+    } else {
+       if (!is_null($es_servicio)) {
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','at.lastname as apeate')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('servicios as e','e.id','a.id_servicio')
+    ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+        
+       
+
+    }elseif(!is_null($es_paquete)){
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','apeate')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('paquetes as e','e.id','a.id_paquete')
+        ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+
+    }else{
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->join('users as b','b.id','a.origen_usuario','at.name as nomate','at.lastname as apeate')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('analises as e','e.id','a.id_laboratorio')
+        ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+
+
+      }
+
+
+    }
 
     if(!is_null($ticket)){
         return $ticket;

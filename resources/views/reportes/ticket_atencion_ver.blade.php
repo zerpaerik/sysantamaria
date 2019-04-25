@@ -72,7 +72,11 @@ margin-top: -20px;
 	</div>
 
     <div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+    	@if($ticket->fecha_atencion == NULL)
 		<p><strong>FECHA: {{ $ticket->created_at}}</strong></p>
+		@else
+	    <p><strong>FECHA: {{ $ticket->fecha_atencion}}</strong></p>
+		@endif
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
@@ -85,10 +89,15 @@ margin-top: -20px;
 		<p><strong>DETALLE: {{ $ticket->detalle}}
 		</strong></p>
 	</div>
-
+    
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+	    	@if($ticket->fecha_atencion == NULL)
 		<p><strong>ORIGEN: {{ $ticket->nompac}},</strong></p>
 		<p><strong>{{ $ticket->apepac}}.</strong></p>
+		@else
+		<p><strong>ORIGEN: {{ $ticket->nomate}},</strong></p>
+		<p><strong>{{ $ticket->apeate}}.</strong></p>
+		@endif
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
