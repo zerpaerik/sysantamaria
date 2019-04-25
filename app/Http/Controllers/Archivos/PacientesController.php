@@ -39,33 +39,10 @@ class PacientesController extends Controller
 
    public function indexr(Request $request){
 
- if($request->mes == '01'){
-        $mes='Enero';
-       }elseif($request->mes == '02'){
-        $mes='Febrero';
-        }elseif($request->mes == '03'){
-        $mes='Marzo';
-        }elseif($request->mes == '04'){
-        $mes='Abril';
-        }elseif($request->mes == '05'){
-        $mes='Mayo';
-        }elseif($request->mes == '06'){
-        $mes='Junio';
-        }elseif($request->mes == '07'){
-        $mes='Julio';
-        }elseif($request->mes == '08'){
-        $mes='Agosto';
-        }elseif($request->mes == '09'){
-        $mes='Septiembre';
-        }elseif($request->mes == '10'){
-        $mes='Octubre';
-        }elseif($request->mes == '11'){
-        $mes='Noviembre';
-        }elseif($request->mes == '12'){
-        $mes='Diciembre';
-        }else{
-          $mes='Ninguno';
-        }
+ if(!is_null($request->fecha)){
+
+      $f1=$request->fecha;
+      $f2=$request->fecha2;
 
 
      // $pacientes =Pacientes::where("estatus", '=', 1)->get();
@@ -74,17 +51,35 @@ class PacientesController extends Controller
         ->select('a.id','a.nombres','a.apellidos','a.direccion','a.created_at','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
         ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
-        ->whereMonth('a.created_at','=',$request->mes)
+        ->whereBetween('a.created_at',[$f1,$f2])
         ->get(); 
 
          $total = DB::table('pacientes as a')
         ->select(DB::raw('COUNT(a.id) as total'))
-        ->whereMonth('a.created_at','=',$request->mes)
+        ->whereBetween('a.created_at',[$f1,$f2])
         ->first();
 
+      } else {
+
+        $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.created_at','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
+        ->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->whereDate('a.created_at','>=',Carbon::today()->toDateString())
+        ->get(); 
+
+         $total = DB::table('pacientes as a')
+        ->select(DB::raw('COUNT(a.id) as total'))
+        ->whereDate('a.created_at','>=',Carbon::today()->toDateString())
+        ->first();
+      }
       
     
-      return view('archivos.pacientes.reporte', ['pacientes' => $pacientes,'mes' => $mes,'total' => $total]);  
+      return view('archivos.pacientes.reporte', ['pacientes' => $pacientes,'total' => $total, 'f1' => $f1,
+      'f2' => $f2]);  
   }
 
 

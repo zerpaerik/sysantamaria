@@ -798,45 +798,57 @@ class ReportesController extends Controller
 	
 	 public function verTicket($id){
        
-                $searchtipo = DB::table('atenciones')
-                ->select('id','es_servicio','es_laboratorio')
-                ->where('id','=', $id)
-                ->first();
-           
-                $es_servicio = $searchtipo->es_servicio;
-                $es_laboratorio = $searchtipo->es_laboratorio;
-				
-		
-                if (!is_null($es_servicio)) {
+    $searchtipo = DB::table('atenciones')
+    ->select('id','es_servicio','es_laboratorio')
+    ->where('id','=', $id)
+    ->first();
 
-                $ticket = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
-                ->join('users as b','b.id','a.origen_usuario')
-                ->join('pacientes as c','c.id','a.id_paciente')
-                ->join('servicios as e','e.id','a.id_servicio')
-                ->where('a.id','=', $id)
-                ->first();
-				
-			 
+    $es_servicio = $searchtipo->es_servicio;
+    $es_laboratorio = $searchtipo->es_laboratorio;
+    $es_paquete = $searchtipo->es_paquete;
+               
+        
+    
+    if (!is_null($es_servicio)) {
 
-                } else {
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('servicios as e','e.id','a.id_servicio')
+    ->where('a.id','=', $id)
+    ->first();
+        
+       
 
-                $ticket = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
-                ->join('users as b','b.id','a.origen_usuario')
-                ->join('pacientes as c','c.id','a.id_paciente')
-                ->join('analises as e','e.id','a.id_laboratorio')
-                ->where('a.id','=', $id)
-                ->first();
+    }elseif(!is_null($es_paquete)){
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('paquetes as e','e.id','a.id_paquete')
+    ->where('a.id','=', $id)
+    ->first();
+
+    }else{
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('analises as e','e.id','a.id_laboratorio')
+    ->where('a.id','=', $id)
+    ->first();
 
 
-                }
+      }
 
-        if(!is_null($ticket)){
-            return $ticket;
-         }else{
-            return false;
-         }  
+    if(!is_null($ticket)){
+        return $ticket;
+     }else{
+        return false;
+      }  
 
      }
 	
@@ -1050,6 +1062,88 @@ class ReportesController extends Controller
 
 
 
+    }
+
+    public function historialp(Request $request){
+
+        if(!is_null($request->paciente)){
+
+    
+       $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.usuarioinforme','a.resultado','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','b.telefono','b.direccion','b.fechanac')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->whereNotIn('a.monto',[0,0.00,99999])
+    ->where('b.dni','=',$request->paciente)
+    ->get();
+
+
+
+
+    $event = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.created_at','e.atendidopor','e.atendido','e.title','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name as nomate','u.lastname as apeate')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('users as u','u.id','e.atendidopor')
+    ->where('p.dni','=',$request->paciente)
+    ->get();
+
+     $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','a.personal','a.aplicado','c.name','c.lastname','b.nombres','b.apellidos','b.dni','b.telefono','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->where('b.dni','=',$request->paciente)
+        ->orderBy('a.created_at','asc')
+        ->get(); 
+
+   } else {
+
+     $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.usuarioinforme','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->whereNotIn('a.monto',[0,0.00,99999])
+    ->orderby('a.id','desc')
+    ->get();
+
+
+   
+
+
+    $event = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.created_at','e.atendidopor','e.atendido','e.title','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name as nomate','u.lastname as apeate')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('users as u','u.id','e.atendidopor')
+    ->get();
+
+     $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','a.personal','a.aplicado','c.name','c.lastname','b.nombres','b.apellidos','b.dni','b.telefono','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->orderBy('a.created_at','asc')
+        ->get(); 
+
+
+
+
+   }
+
+
+
+       $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
+
+        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atenciones" => $atenciones]);
     }
 
 

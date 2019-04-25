@@ -192,17 +192,14 @@
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>
         <ul class="dropdown-menu">
-          <li>
-            <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
-      </li>
        <li>
         <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
       </li>
        <li>
-        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llego el Paciente?</a>
+        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llegó el Paciente?</a>
       </li>
-     <li>
-        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
       </li>
 
 
@@ -464,18 +461,14 @@
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Reportes</a>
         <ul class="dropdown-menu">
-          <li>
-
-            <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
-      </li>
        <li>
         <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
       </li>
        <li>
-        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llego el Paciente?</a>
+        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Cómo llegó el Paciente?</a>
       </li>
-     <li>
-        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
       </li>
 
 

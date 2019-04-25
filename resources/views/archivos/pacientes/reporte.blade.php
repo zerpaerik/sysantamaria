@@ -30,34 +30,33 @@
 
 
 
-      <div class="row">
-     
- <div class="col-md-3">
-			         <select id="el1" name="mes">
-									<option value="01">Enero</option>
-								    <option value="02">Febrero</option>
-									<option value="03">Marzo</option>
-									<option value="04">Abril</option>
-									<option value="05">Mayo</option>
-									<option value="06">Junio</option>
-									<option value="07">Julio</option>
-									<option value="08">Agosto</option>
-									<option value="09">Septiembre</option>
-									<option value="10">Octubre</option>
-									<option value="11">Noviembre</option>
-									<option value="12">Diciembre</option>
+<div class="row">
+				<div class="col-md-2">
+					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha'))
+					<p class="help-block">
+						{{ $errors->first('fecha') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
+					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha2'))
+					<p class="help-block">
+						{{ $errors->first('fecha2') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
 
-					</select>
-        </div>
-      
-     
-        <div class="col-md-2">
-            {!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
-            {!! Form::close() !!}
-
-        </div>
+				</div>
          <div class="col-md-2">
-                     <p><strong>Mes Consultado: </strong>{{$mes}}</p>
                      <p><strong>Total Clientes: </strong>{{$total->total}}</p>
             
         </div>
@@ -195,7 +194,7 @@ function AllTables(){
 function MakeSelect2(){
 	$('select').select2();
 	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+		$(this).find('label input[type=text]').attr('placeholder', 'Buscar');
 	});
 }
 $(document).ready(function() {

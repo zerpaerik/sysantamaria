@@ -476,4 +476,6 @@ Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesiona
 
 
 Route::get('historial', 'HistorialesController@index')->name('historial.index')->middleware('auth');
-Route::get('historial-search', 'HistorialesController@search')->name('historial.search')->middleware('auth');
+Route::get('historial-search', 'HistorialesController@search')->name('historial.search')->middleware('auth');	
+
+Route::get('historial_pacientes', 'ReportesController@historialp')->name('historial.pacientes');
