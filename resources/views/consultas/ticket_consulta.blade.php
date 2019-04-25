@@ -75,13 +75,16 @@ margin-top: -20px;
 		</div>
 
 		<div class="" style="font-size: 40px; text-align: left; margin-bottom:-15px;">
-			<p><strong>PACIENTE: {{$paciente->nombres}}, {{$paciente->apellidos}}</strong></p>
+			<p><strong>PACIENTE: {{$paciente->nombres}},</strong></p>
+			<p><strong>{{$paciente->apellidos}}.</strong></p>
 			<p><strong>DNI: {{ $paciente->dni}}</strong></p>
 		</div>
 
 		
 		<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-			<p><strong>ESPECIALISTA: {{ $paciente->nombrePro}}, {{ $paciente->apellidoPro}}
+			<p><strong>ESPECIALISTA: {{ $paciente->nombrePro}},
+			</strong></p>
+			<p><strong>{{ $paciente->apellidoPro}}.
 			</strong></p>
 		</div>
 

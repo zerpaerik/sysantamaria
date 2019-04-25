@@ -77,13 +77,15 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px;">
-		<p><strong>PACIENTE: {{ $punziones->nombres }}, {{ $punziones->apellidos }}</strong></p>
+		<p><strong>PACIENTE: {{ $punziones->nombres }},</strong></p>
+		<p><strong>{{ $punziones->apellidos }}.</strong></p>
 		<p><strong>DNI: {{ $punziones->dni }}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px;">
-		<p><strong>ESPECIALISTA: {{ $punziones->nomper }}, {{ $punziones->apeper }}
+		<p><strong>ESPECIALISTA: {{ $punziones->nomper }},
 		</strong></p>
+		<p><strong>{{ $punziones->apeper }}.</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px;">
