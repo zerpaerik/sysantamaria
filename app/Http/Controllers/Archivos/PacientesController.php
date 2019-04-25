@@ -67,12 +67,13 @@ class PacientesController extends Controller
         $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.nombres','a.apellidos','a.direccion','a.created_at','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
         ->join('users as c','c.id','a.usuario')
-        ->where('a.estatus','=', 1)
+        ->where('a.estatus','=', 9)
         ->whereDate('a.created_at','>=',Carbon::today()->toDateString())
         ->get(); 
 
          $total = DB::table('pacientes as a')
         ->select(DB::raw('COUNT(a.id) as total'))
+         ->where('estatus','=', 9)
         ->whereDate('a.created_at','>=',Carbon::today()->toDateString())
         ->first();
       }

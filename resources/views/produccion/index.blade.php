@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="col-md-3">
-					<label>Tipo</label>
+					<label>Especialistas</label>
 					<select name="pro" id="el1">
 						<option value="">Seleccione</option>
 						@foreach($personal as $p)
@@ -90,6 +90,7 @@
 						<tr>
 							<th>Paciente</th>
 							<th>Especialista</th>
+							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 						</tr>
@@ -99,6 +100,7 @@
 						<tr>
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
 						<td>{{$d->name}} {{$d->apepro}}</td>
+						<td>{{$d->nombre}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->date}}</td>
 						

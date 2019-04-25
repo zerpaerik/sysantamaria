@@ -23,17 +23,19 @@ class ProduccionController extends Controller
 
    public function index(Request $request){
 
-   	if((!is_null($request->fecha)) && (!is_null($request->fecha2))){
+   	if((!is_null($request->fecha)) && (!is_null($request->fecha2)) && (is_null($request->pro))){
 
+          
 
    		$f1=$request->fecha;
    		$f2=$request->fecha2;
 
 
    		 $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','a.evaluacion','e.nombre')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
+        ->join('evaluaciones as e','e.id','a.evaluacion')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
         ->get();
@@ -96,8 +98,11 @@ class ProduccionController extends Controller
 			               ->first(); 
 
 
-   	}elseif((!is_null($request->fecha)) && (!is_null($request->pro))){
+   	}elseif((!is_null($request->fecha)) && (!is_null($request->fecha2)) && (!is_null($request->pro))){
 
+
+
+     
 
 
    			$f1=$request->fecha;
@@ -105,12 +110,13 @@ class ProduccionController extends Controller
 
            
 
- 
 
-       $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+      
+         $consultas = DB::table('events as a')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','a.evaluacion','e.nombre')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
+        ->join('evaluaciones as e','e.id','a.evaluacion')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.profesional','=',$request->pro)
         ->orderby('a.id','desc')
@@ -178,16 +184,19 @@ class ProduccionController extends Controller
 
 
 
-   	}elseif(!is_null($request->pro)){
+   	}elseif(!is_null($request->pro) && (is_null($request->fecha))){
 
    		  $f1 = Carbon::today()->toDateString();
           $f2 = Carbon::today()->toDateString(); 
+     
+     
 
-
-      $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+     
+         $consultas = DB::table('events as a')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','a.evaluacion','e.nombre')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
+        ->join('evaluaciones as e','e.id','a.evaluacion')
         ->where('a.profesional','=',$request->pro)
         ->orderby('a.id','desc')
         ->get();
@@ -250,17 +259,22 @@ class ProduccionController extends Controller
           $f2 = Carbon::today()->toDateString(); 
 
 
-            $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+          
+         $consultas = DB::table('events as a')
+        ->select('a.id','a.profesional','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','a.evaluacion','e.nombre')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
+        ->join('evaluaciones as e','e.id','a.evaluacion')
+        ->where('a.profesional','=',0)
         ->orderby('a.id','desc')
         ->get();
 
         $totalconsultas = Event::select(DB::raw('SUM(monto) as monto'))
+                                    ->where('profesional','=',0)
                                     ->first();
 
         $totalc = Event::select(DB::raw('COUNT(*) as cantidad'))
+                                            ->where('profesional','=',0)
                                     ->first();
 
       $punziones = DB::table('punziones as a')
@@ -269,17 +283,20 @@ class ProduccionController extends Controller
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
+                    ->where('a.id_producto','=',0)
                     ->orderby('a.created_at','desc')
                     ->get(); 
 
 
 		             $totalpunziones = Punziones::select(DB::raw('SUM(precio) as monto'))
+                                         ->where('id_producto','=',0)
 		                                    ->first();
 
 				            if ($totalpunziones->monto == 0) {
 				        }
           
 			           $totalp = Punziones::select(DB::raw('COUNT(*) as cantidad'))
+                                                                ->where('id_producto','=',0)
 			               ->first(); 
 
 	   $sesiones = DB::table('atenciones as a')
@@ -290,18 +307,21 @@ class ProduccionController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->join('personals as pr','pr.id','a.atendido')
+        ->where('a.id','=',0)
         ->orderby('a.id','desc')
         ->get();
 
           $totalsesiones = Atenciones::select(DB::raw('SUM(abono) as monto'))
                                              ->where('atendido','<>',NULL)
+                                                     ->where('id','=',0)
 		                                    ->first();
 
 				            if ($totalsesiones->monto == 0) {
 				        }
 	      $totals = Atenciones::select(DB::raw('COUNT(*) as cantidad'))
-                                                       ->where('atendido','<>',NULL)
-			                                           ->first(); 
+                                        ->where('atendido','<>',NULL)
+                                        ->where('id','=',0)
+			                         ->first(); 
 
 
    	}
