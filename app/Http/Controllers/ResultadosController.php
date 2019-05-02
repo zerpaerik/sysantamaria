@@ -75,7 +75,7 @@ class ResultadosController extends Controller
 
       
         $informe = Informe::all();
-        $personal = Personal::all();
+        $personal = Personal::where('estatus','=',1)->get();
 
         $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.nombres','a.apellidos','a.dni','b.id_paciente')
