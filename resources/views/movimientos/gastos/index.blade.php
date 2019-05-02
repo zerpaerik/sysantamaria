@@ -63,7 +63,9 @@
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
-							<th>Acciones:</th>
+							@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)
+							<th>Acciones</th>
+							@endif
 						</tr>
 					</thead>
 					<tbody>
@@ -76,13 +78,12 @@
 						<td>{{$d->created_at}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
 
+						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)
 						<td>
-						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
-																	    @if(\Auth::user()->role_id <> 6)	
-
+						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>
 						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
-						@endif
 						</td>
+						@endif
 
 				        @endforeach
 				    </tr>
@@ -94,7 +95,9 @@
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
-							<th>Acciones:</th>
+							@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)
+							<th>Acciones</th>
+							@endif
 						</tr>
 					</tfoot>
 				</table>
