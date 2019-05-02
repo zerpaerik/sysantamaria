@@ -29,15 +29,19 @@ class ServiceController extends Controller
 
 	public function index(Request $request)
   	{
+
     if($request->isMethod('get')){
       $calendar = false;
-      return view('service.index', ["calendar" => $calendar, "especialistas" =>   Personal::all()]);
+      return view('service.index', ["calendar" => $calendar, "especialistas" => Personal::all(), "selectedDoc" => ["name" => "", "lastname" => "", "tipo" => ""]]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
         'locale' => 'es',
       ]);
-      return view('service.index',[ "calendar" => $calendar, "especialistas" => Personal::all()]);
+      return view(
+        'service.index', 
+        [ "calendar" => $calendar, "especialistas" => Personal::all(), "selectedDoc" => Personal::find($request->especialista)]
+      );
     }
   }
   private static function toggleType($type){

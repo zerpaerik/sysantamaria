@@ -35,7 +35,7 @@ class ResultadosController extends Controller
         ->where('a.id_paciente','=',$request->paciente)
         ->where('a.atendido','=',NULL)
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereNotIn('a.es_paquete',[1])
+        //->whereNotIn('a.es_paquete',[1])
         //->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
         ->get();

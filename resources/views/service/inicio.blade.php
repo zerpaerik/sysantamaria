@@ -71,11 +71,12 @@
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						<td>
-						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
+													 
 
 						<a class="btn btn-primary" href="service-{{$d->SerId}}">Ver</a>
 
-						<a  class="btn btn-success" href="services-edit-{{$d->SerId}}">Editar</a>	
+						<a  class="btn btn-success" href="services-edit-{{$d->SerId}}">Editar</a>
+						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)
 
 						<a _blank" class="btn btn-warning" href="services-delete-{{$d->SerId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 						@endif
