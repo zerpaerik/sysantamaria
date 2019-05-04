@@ -82,8 +82,10 @@
 						<td>{{$d->name}},{{$d->lastname}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
-						@else
+						@elseif($d->es_laboratorio =='1')
 						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
 						@endif
 						<td>{{$d->fecha_atencion}}</td>
 						<td>{{$d->nomper}},{{$d->apeper}}</td>
