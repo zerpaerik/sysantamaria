@@ -799,16 +799,16 @@ class ReportesController extends Controller
 	 public function verTicket($id){
        
     $searchtipo = DB::table('atenciones')
-    ->select('id','es_servicio','es_laboratorio','es_paquete','atendido')
+    ->select('id','es_servicio','es_laboratorio','es_paquete','atendido','fecha_atencion')
     ->where('id','=', $id)
     ->first();
 
     $es_servicio = $searchtipo->es_servicio;
     $es_laboratorio = $searchtipo->es_laboratorio;
     $es_paquete = $searchtipo->es_paquete;
-    $atendido= $searchtipo->atendido;
+    $fecha_atencion= $searchtipo->fecha_atencion;
                
-  if(is_null($atendido)){
+  if($fecha_atencion == NULL){
     
     if (!is_null($es_servicio)) {
 
