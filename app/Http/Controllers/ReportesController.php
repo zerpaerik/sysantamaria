@@ -935,11 +935,11 @@ class ReportesController extends Controller
     }elseif(!is_null($es_paquete)){
 
     $ticket = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','apeate')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','at.lastname as apeate')
     ->join('users as b','b.id','a.origen_usuario')
     ->join('pacientes as c','c.id','a.id_paciente')
     ->join('paquetes as e','e.id','a.id_paquete')
-        ->join('personals as at','at.id','a.atendido')
+    ->join('personals as at','at.id','a.atendido')
     ->where('a.id','=', $id)
     ->first();
 
