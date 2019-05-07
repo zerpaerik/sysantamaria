@@ -905,6 +905,68 @@ class ReportesController extends Controller
         return $pdf->stream('ticket_ver');
     }
 
+    public function ticket_ver1($id) {
+
+    $searchtipo = DB::table('atenciones')
+    ->select('id','es_servicio','es_laboratorio','es_paquete','atendido','fecha_atencion')
+    ->where('id','=', $id)
+    ->first();
+
+
+    $es_servicio = $searchtipo->es_servicio;
+    $es_laboratorio = $searchtipo->es_laboratorio;
+    $es_paquete = $searchtipo->es_paquete;
+    $fecha_atencion= $searchtipo->fecha_atencion;
+
+
+     if (!is_null($es_servicio)) {
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','at.lastname as apeate')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('servicios as e','e.id','a.id_servicio')
+    ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+        
+       
+
+    }elseif(!is_null($es_paquete)){
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','c.dni','e.detalle','a.created_at','a.abono','a.pendiente','a.monto','at.name as nomate','apeate')
+    ->join('users as b','b.id','a.origen_usuario')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('paquetes as e','e.id','a.id_paquete')
+        ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+
+    }else{
+
+    $ticket = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.atendido','a.fecha_atencion','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.dni','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+    ->join('users as b','b.id','a.origen_usuario','at.name as nomate','at.lastname as apeate')
+    ->join('pacientes as c','c.id','a.id_paciente')
+    ->join('analises as e','e.id','a.id_laboratorio')
+        ->join('personals as at','at.id','a.atendido')
+    ->where('a.id','=', $id)
+    ->first();
+
+
+      }
+
+
+
+        $view = \View::make('reportes.ticket_atencion_ver1')->with('ticket', $ticket);
+        $pdf = \App::make('dompdf.wrapper');
+        //$pdf->setPaper(array(0,0,867.00,343.80));
+        $pdf->setPaper(array(0,0,800.00,3000.00));
+        $pdf->loadHTML($view);
+        return $pdf->stream('ticket_ver1');
+    }
+
     public function formDiario()
     {
         return view('reportes.form_diario');

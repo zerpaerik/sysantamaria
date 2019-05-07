@@ -319,6 +319,8 @@ Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
 
 Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
+Route::get('ticket1-ver-{id}', 'ReportesController@ticket_ver1')->name('ticket.ver1');
+
 
 
 Route::get('generalatenciones', 'ReporteIngresosController@indexa')->name('generalatenciones.indexa')->middleware('auth');

@@ -89,7 +89,7 @@
 						@endif
 						<td>{{$d->fecha_atencion}}</td>
 						<td>{{$d->nomper}},{{$d->apeper}}</td>
-						<td><a target="_blank" class="btn btn-primary" href="ticket-ver-{{$d->id}}">Ver Ticket</a></td>
+						<td><a target="_blank" class="btn btn-primary" href="ticket1-ver-{{$d->id}}">Ver Ticket</a></td>
 		
 						</tr>
 						@endforeach	
