@@ -116,6 +116,13 @@ class PunzionesController extends Controller
           $creditos->id_punzion = $pun->id;
           $creditos->save();
 
+    /////////////
+
+   if($request->id_laboratorio==NULL){
+
+      dd('con producto');
+
+
    
     if (isset($request->id_laboratorio)) {
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
@@ -143,6 +150,23 @@ class PunzionesController extends Controller
         } 
       }
     }
+
+} else {
+
+          $lab = new Punziones();
+          $lab->id_producto = 1;
+          $lab->cantidad = 0;
+          $lab->precio =$request->precio;
+          $lab->origen = $request->origen;
+          $lab->paciente = $request->paciente;
+          $lab->tipo_ingreso = $request->tipo_ingreso;
+          $lab->tipo_servicio = $request->tipo_servicio;
+          $lab->usuario = Auth::user()->id;
+          $lab->id_pun= $pun->id;
+          $lab->save();
+}
+
+    //////////
 
         
         
