@@ -172,6 +172,10 @@
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
     </li>
 
+      <li>
+      <a href="{{route('historialcobrosp.index')}}"><i class="fa fa-users"></i> Pagos a Cuenta</a>
+    </li>
+
     <li>
       <a href="{{route('produccion.index')}}"><i class="fa fa-circle-o"></i> Producción</a>
     </li>
@@ -439,6 +443,10 @@
     </li> 
     <li>
       <a href="{{route('pacientes.indexr')}}"><i class="fa fa-users"></i> Pacientes/clientes</a>
+    </li>
+
+    <li>
+      <a href="{{route('historialcobrosp.index')}}"><i class="fa fa-users"></i> Pagos a Cuenta</a>
     </li>
 
     <li>

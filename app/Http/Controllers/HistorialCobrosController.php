@@ -50,6 +50,43 @@ class HistorialCobrosController extends Controller
         return view('movimientos.historialcobros.index', ["atenciones" => $atenciones]);
 	}
 
+  public function indexp(Request $request){
+
+
+
+      if(! is_null($request->paciente)) {
+
+ 
+
+        $atenciones = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->where('a.id_paciente','=',$request->paciente)
+        ->orderby('a.id','ASC')
+        ->get();
+
+      } else {
+
+        
+        $atenciones = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->where('a.id_paciente','=',8989898988)
+        ->orderby('a.id','ASC')
+        ->get();
+
+      }
+
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni','b.id_paciente')
+        ->join('historialcobros as b','b.id_paciente','a.id')
+        ->groupBy('a.id')
+        ->get();
+       
+        return view('movimientos.historialcobros.indexp', ["atenciones" => $atenciones,"pacientes" => $pacientes]);
+  }
+
+
    
 	
 
