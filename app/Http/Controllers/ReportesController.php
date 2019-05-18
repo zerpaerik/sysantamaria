@@ -1233,7 +1233,14 @@ class ReportesController extends Controller
 
 
 
-       $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
+       //$pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
+
+       $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni','a.estatus')
+        ->join('atenciones as b','b.id_paciente','a.id')
+        ->join('events as c','c.paciente','a.id')
+        ->where('a.estatus','=', 1)
+        ->get();  
 
         return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"atenciones" => $atenciones]);
     }
