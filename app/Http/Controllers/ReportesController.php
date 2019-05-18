@@ -1211,6 +1211,7 @@ class ReportesController extends Controller
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->orderby('a.id','desc')
+    ->where('a.id','=',989898989898)
     ->get();
 
 
@@ -1222,6 +1223,7 @@ class ReportesController extends Controller
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.atendidopor')
+     ->where('e.id','=',989898989898)
     ->get();
 
    

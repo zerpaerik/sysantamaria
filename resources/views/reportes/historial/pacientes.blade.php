@@ -58,7 +58,6 @@
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
-							<th>Adjuntado Por:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,11 +76,7 @@
 						
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
-						@if($d->usuarioinforme <> NULL)
-						<td>{{$d->usuarioinforme}}</td>
-						@else
-						<td style="background: #82FA58;">No se ha adjuntado informe</td>
-						@endif
+						
 
 					</tr>
 						@endforeach
@@ -95,7 +90,6 @@
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
-							<th>Adjuntado Por:</th>
 					</tfoot>
 				</table>
 			</div>
