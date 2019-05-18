@@ -1240,6 +1240,7 @@ class ReportesController extends Controller
         ->join('atenciones as b','b.id_paciente','a.id')
         ->join('events as c','c.paciente','a.id')
         ->where('a.estatus','=', 1)
+        ->groupBy('a.id')
         ->get();  
 
         return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"atenciones" => $atenciones]);
