@@ -11,6 +11,7 @@ use App\Models\Creditos;
 use App\Models\Punziones;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Models\Pacientes;
 use App\Models\Events\Event;
 use PDF;
 use Auth;
