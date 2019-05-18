@@ -1196,14 +1196,7 @@ class ReportesController extends Controller
     ->where('p.dni','=',$request->paciente)
     ->get();
 
-     $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','a.personal','a.aplicado','c.name','c.lastname','b.nombres','b.apellidos','b.dni','b.telefono','b.dni','d.nombre as producto')
-        ->join('users as c','c.id','a.id_usuario')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('productos as d','d.id','a.id_producto')
-        ->where('b.dni','=',$request->paciente)
-        ->orderBy('a.created_at','asc')
-        ->get(); 
+
 
    } else {
 
@@ -1230,15 +1223,7 @@ class ReportesController extends Controller
     ->join('users as u','u.id','e.atendidopor')
     ->get();
 
-     $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','a.personal','a.aplicado','c.name','c.lastname','b.nombres','b.apellidos','b.dni','b.telefono','b.dni','d.nombre as producto')
-        ->join('users as c','c.id','a.id_usuario')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('productos as d','d.id','a.id_producto')
-        ->orderBy('a.created_at','asc')
-        ->get(); 
-
-
+   
 
 
    }
@@ -1247,7 +1232,7 @@ class ReportesController extends Controller
 
        $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
 
-        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atenciones" => $atenciones]);
+        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"atenciones" => $atenciones]);
     }
 
 
