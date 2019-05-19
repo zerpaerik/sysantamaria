@@ -10,7 +10,6 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Movimientos/Cuentas Por Cobrar</span>
-					<a href="{{route('cuentasporcobrar.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
 
