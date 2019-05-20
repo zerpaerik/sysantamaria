@@ -154,7 +154,7 @@
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 0,
         iniFormsCount: 0,
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?'
@@ -169,7 +169,7 @@
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 0,
         iniFormsCount: 0,
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?'
