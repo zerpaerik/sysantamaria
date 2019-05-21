@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span><strong>Ingresos</strong></span>
+					<span><strong>Ingresosssss</strong></span>
 
 				</div>
 
@@ -106,6 +106,8 @@
 						<td>{{$d->abono}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
+
+					    <a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$d->id}}">Ver Detalle</a>
 
 						<a target="_blank" class="btn btn-primary" href="ticket-ver-{{$d->id}}">Ver Ticket</a>
 
@@ -414,6 +416,8 @@
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
 
+							<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$d->id}}">Ver Detalle</a>
+
 						<a target="_blank" class="btn btn-primary" href="ticket-ver-{{$d->id}}">Ver Ticket</a>
 
 					    @if(\Auth::user()->role_id <> 6)	
@@ -680,6 +684,18 @@
 	</div>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalle de Atenciòn</h4>
+              </div>
+              <div class="modal-body"></div>
+            </div>
+          </div>
+        </div>
+
 </body>
 
 
@@ -724,11 +740,38 @@ function getAva (){
     });     
 }
 
+function view(e){
+        var id = $(e).attr('data-id');
+        
+        $.ajax({
+            type: "GET",
+            url: "/atenciones/view/"+id,
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    };
+
 function DemoTimePicker(){
       $('#input_date').datepicker({
       setDate: new Date(),
       minDate: 0});
 }
 </script>
+<style type="text/css">
+		.modal-backdrop.in {
+		    filter: alpha(opacity=50);
+		    opacity: 0;
+		    z-index: 0;
+		}
+
+		.modal {
+			top:35px;
+		}
+</style>
 @endsection
 @endsection
