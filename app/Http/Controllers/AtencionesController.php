@@ -794,6 +794,7 @@ class AtencionesController extends Controller
       $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
       $atencion->es_servicio =  true;
       $atencion->tipopago = $request->tipopago;
+      $atencion->observacion = $request->observacion;
       $atencion->pendiente = (float)$request->monto_s['servicios'][0]['monto'] - (float)$request->monto_abos['servicios'][0]['abono'];
       $atencion->monto = $request->monto_s['servicios'][0]['monto'];
       $atencion->abono = $request->monto_abos['servicios'][0]['abono'];
@@ -805,6 +806,7 @@ class AtencionesController extends Controller
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->observacion = $request->observacion;
       $atencion->pendiente = (float)$request->monto_s['laboratorios'][0]['monto'] - (float)$request->monto_abos['laboratorios'][0]['abono'];
       $atencion->monto = $request->monto_l['laboratorios'][0]['monto'];
       $atencion->abono = $request->monto_abol['laboratorios'][0]['abono'];
@@ -817,6 +819,7 @@ class AtencionesController extends Controller
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->observacion = $request->observacion;
       $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
       $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
       $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];

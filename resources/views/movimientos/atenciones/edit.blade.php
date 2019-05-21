@@ -240,6 +240,17 @@
           @endif
 					
           <hr>
+          <div class="row">
+
+            <label for="paquetes_#index#_abonop" class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i>Observaciòn</label>
+                    <div class="col-sm-12">
+
+                      <input type="text" name="observacion" placeholder="Observaciòn" class="number form-control" value="{{ $atencion->observacion }}" data-toggle="tooltip" data-placement="bottom" >
+                    </div>
+
+          </div>
+
+          <hr>
           <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
