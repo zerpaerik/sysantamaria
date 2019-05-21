@@ -94,7 +94,9 @@
 					<tfoot>
 						<tr>
 							<th>Id</th>
+							<th>Fecha</th>
 							<th>Paciente</th>
+							<th>DNI</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Monto Pendiente</th>

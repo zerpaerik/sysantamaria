@@ -205,7 +205,7 @@ class CuentasporCobrarController extends Controller
                     $creditos->save();
 
                    $usuario=User::where('id','=',$origen_usuario)->first();
-
+/*
               if($usuario->esp==0){
               $paq = new Atenciones();
               $paq->tipo_factura = $tipo_factura;               
@@ -281,12 +281,12 @@ class CuentasporCobrarController extends Controller
             }else{
 
             }
+
+            */
 					
 
              
-			
-
-
+		
 
       return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
     }
