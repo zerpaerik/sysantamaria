@@ -248,6 +248,16 @@
             <!-- /sheepIt Form --> 
             
           </div>
+
+          <div class="row">
+
+            <label for="paquetes_#index#_abonop" class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i>Observaciòn</label>
+                    <div class="col-sm-12">
+
+                      <input type="text" name="observacion" placeholder="Observaciòn" class="number form-control" data-toggle="tooltip" data-placement="bottom" >
+                    </div>
+
+          </div>
           <hr>
 
            

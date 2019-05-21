@@ -30,7 +30,7 @@ class AtencionesController extends Controller
 
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.observacion','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -48,7 +48,7 @@ class AtencionesController extends Controller
         } else {
 
           $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.observacion','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -124,6 +124,7 @@ class AtencionesController extends Controller
               $paq->es_paquete =  true;
 			        $paq->serv_prog = FALSE;
               $paq->tipopago = $request->tipopago;
+              $paq->observacion = $request->observacion;
               $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
               $paq->porc_pagar =10;
               $paq->porcentaje = ($paq->abono * 10)/100;
@@ -149,6 +150,7 @@ class AtencionesController extends Controller
               $paq->tipopago = $request->tipopago;
               $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
               $paq->porc_pagar =15;
+                            $paq->observacion = $request->observacion;
               $paq->porcentaje = ($paq->abono * 15)/100;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
               $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
@@ -172,6 +174,7 @@ class AtencionesController extends Controller
               $paq->serv_prog = FALSE;
               $paq->tipopago = $request->tipopago;
               $paq->porc_pagar =0;
+              $paq->observacion = $request->observacion;
               $paq->porcentaje = 5;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
               $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
@@ -240,6 +243,7 @@ class AtencionesController extends Controller
               $s->porc_pagar = 0;
               $s->pendiente = 0;
               $s->monto = 99999;
+                            $s->observacion = $request->observacion;
               $s->abono = 0;
               $s->porcentaje =0;
               $s->estatus = 1;
@@ -281,6 +285,7 @@ class AtencionesController extends Controller
               $l->monto = 99999;
               $l->abono = 0;
               $l->porcentaje =0;
+              $l->observacion = $request->observacion;
               $l->estatus = 1;
               $l->usuario = Auth::user()->id;
               $l->id_paq= $paq->id;
@@ -334,6 +339,7 @@ class AtencionesController extends Controller
 			  $serv->serv_prog =  $programa;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = 0;
+              $serv->observacion = $request->observacion;
               $serv->comollego = $request->comollego;
               $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
@@ -381,7 +387,8 @@ class AtencionesController extends Controller
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
           $lab->porc_pagar = 0;
-		  $lab->serv_prog = FALSE;
+		      $lab->serv_prog = FALSE;
+          $lab->observacion = $request->observacion;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
@@ -436,6 +443,7 @@ class AtencionesController extends Controller
         $paq->serv_prog = FALSE;
               $paq->tipopago = $request->tipopago;
               $paq->porc_pagar = 0;
+                        $paq->observacion = $request->observacion;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
               $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
               $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
@@ -500,6 +508,7 @@ class AtencionesController extends Controller
               $s->porc_pagar = 0;
               $s->pendiente = 0;
               $s->monto = 99999;
+                                      $s->observacion = $request->observacion;
               $s->abono = 0;
               $s->porcentaje =0;
               $s->estatus = 1;
@@ -537,6 +546,7 @@ class AtencionesController extends Controller
         $l->serv_prog = FALSE;
               $l->tipopago = $request->tipopago;
               $l->porc_pagar = 0;
+                                      $l->observacion = $request->observacion;
               $l->pendiente = 0;
               $l->monto = 99999;
               $l->abono = 0;
@@ -594,6 +604,7 @@ class AtencionesController extends Controller
         $serv->serv_prog =  $programa;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = 0;
+                                      $serv->observacion = $request->observacion;
               $serv->comollego = $request->comollego;
               $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
@@ -641,6 +652,7 @@ class AtencionesController extends Controller
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
           $lab->porc_pagar = 0;
+          $lab->observacion = $request->observacion;
       $lab->serv_prog = FALSE;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
@@ -670,6 +682,26 @@ class AtencionesController extends Controller
     	 Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
 
     return redirect()->route('movimientos.index');
+  }
+
+
+  public function show($id){
+
+     $atenciones = DB::table('atenciones as a')
+          ->select('a.id','a.tipo_factura','a.observacion','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->join('servicios as c','c.id','a.id_servicio')
+          ->join('analises as d','d.id','a.id_laboratorio')
+          ->join('users as e','e.id','a.origen_usuario')
+          ->join('paquetes as f','f.id','a.id_paquete')
+          ->join('users as u','u.id','a.usuario')
+          ->where('a.estatus','=',1)
+          ->whereNotIn('a.monto',[0,0.00,99999])
+          ->where('a.id','=',$id)
+          ->first();
+
+       return view('movimientos.atenciones.show', compact('atenciones'));
+
   }
 
   public function personal(){
