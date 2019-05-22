@@ -87,7 +87,7 @@ class CuentasporCobrarController extends Controller
 }
 
     $pacientes = DB::table('pacientes as a')
-    ->select('a.id','a.nombres','a.apellidos','a.dni', 'b.pendiente', 'b.monto','b.id_laboratorio',,'b.id_servicio','b.id_paquete','b.porcentaje','b.abono','e.detalle as servicio','g.name','g.lastname','f.name as laboratorio')
+    ->select('a.id','a.nombres','a.apellidos','a.dni', 'b.pendiente', 'b.monto','b.id_laboratorio','b.id_servicio','b.id_paquete','b.porcentaje','b.abono')
     ->join('atenciones as b', 'a.id', 'b.id_paciente')
     ->where('b.pendiente','>',0)
     ->whereNotIn('b.monto',[0,0.00])
