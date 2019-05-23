@@ -88,10 +88,10 @@
 								<td>{{$atec->abono}}</td>
 								<td>{{$atec->pendiente}}</td>
 								<td>{{$atec->updated_at}}</td>
-								@if(\Auth::user()->role_id <> 6)
 								<td>
-								 <a target="_blank" href="{{asset('recibo_cobro_ver')}}/{{$atec->id}}" class="btn btn-xs btn-primary">Recibo</a>
-																 
+							     <a target="_blank" href="{{asset('recibo_cobro_ver')}}/{{$atec->id}}" class="btn btn-xs btn-primary">Recibo</a>
+								@if(\Auth::user()->role_id <> 6)
+														 
 									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 									
 								</td>
