@@ -285,6 +285,10 @@ Route::get('historialcobros', 'HistorialCobrosController@index')->name('historia
 Route::get('historialcobros-search', 'HistorialCobrosController@search')->name('historialcobros.search')->middleware('auth');
 Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
 
+
+Route::get('recibo_cobro_ver/{id}','ReportesController@recibo_cobro_ver');
+
+
 Route::get('historialcobrosp', 'HistorialCobrosController@indexp')->name('historialcobrosp.index')->middleware('auth');
 
 Route::get('labpagados', 'LaboratoriosPagadosController@index')->name('labpagados.index')->middleware('auth');
