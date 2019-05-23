@@ -58,6 +58,18 @@
 
 				</div>
 			</div>	
+			<div class="row">
+				<div class="col-md-2">
+					<strong>Items:{{$totalc->cantidad}}</strong>
+					
+				</div>
+
+				<div class="col-md-2">
+					<strong>Abonado:{{$totalm->monto}}</strong>
+					
+				</div>
+				
+			</div>
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">

@@ -35,6 +35,16 @@ class HistorialCobrosController extends Controller
         ->orderby('a.id','ASC')
         ->get();
 
+        $totalm = HistorialCobros::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                      ->select(DB::raw('SUM(abono_parcial) as monto'))
+                      ->first();
+
+        $totalc = HistorialCobros::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+
+
       } else {
 
         
@@ -45,9 +55,17 @@ class HistorialCobrosController extends Controller
         ->orderby('a.id','ASC')
         ->get();
 
+         $totalm = HistorialCobros::whereDate('created_at', '=',Carbon::today()->toDateString())
+                      ->select(DB::raw('SUM(abono_parcial) as monto'))
+                      ->first();
+                      
+        $totalc = HistorialCobros::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
       }
        
-        return view('movimientos.historialcobros.index', ["atenciones" => $atenciones]);
+        return view('movimientos.historialcobros.index', ["atenciones" => $atenciones,"totalm" => $totalm,"totalc" => $totalc]);
 	}
 
   public function indexp(Request $request){
