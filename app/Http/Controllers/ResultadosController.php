@@ -41,7 +41,7 @@ class ResultadosController extends Controller
 
 
           $total = Atenciones::where('id_paciente','=',$request->paciente)
-        ->whereNull('a.atendido')
+        ->whereNull('atendido')
                         ->whereNotIn('monto',[0,0.00])
                           ->whereNotIn('es_paquete',[1])
                       ->select(DB::raw('COUNT(*) as cantidad'))
