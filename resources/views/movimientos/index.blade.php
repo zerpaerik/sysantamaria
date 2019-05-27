@@ -120,7 +120,7 @@
 
 						<a  class="btn btn-success" href="atenciones-edit-{{$d->id}}">Editar</a>	
 
-						<a class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
+						<a class="btn btn-danger" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
 
 						@endif
 							
@@ -183,7 +183,7 @@
 
 
 
-						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						<a class="btn btn-danger" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
 						@endif
 							
@@ -358,7 +358,7 @@
 
 						<a  class="btn btn-success" href="ingresos-edit-{{$d->id}}">Editar</a>	
 
-						<a  class="btn btn-warning" href="ingresos-delete-{{$d->id}}">Eliminar</a>	
+						<a  class="btn btn-danger" href="ingresos-delete-{{$d->id}}">Eliminar</a>	
 							@endif
 
 						</td>
@@ -429,7 +429,7 @@
 
 						<a  class="btn btn-success" href="atenciones-edit-{{$d->id}}">Editar</a>	
 
-						<a class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
+						<a class="btn btn-danger" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
 
 						@endif
 							
@@ -491,7 +491,7 @@
 
 
 
-						<a class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						<a class="btn btn-danger" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
 						@endif
 							
