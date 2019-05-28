@@ -52,7 +52,7 @@ class ResultadosGuardadosController extends Controller
       } else {
 
          $resultadosguardados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper','pq.detalle as paquete')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.fecha_atencion','a.pendiente','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper','pq.detalle as paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -60,14 +60,12 @@ class ResultadosGuardadosController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->join('personals as p','a.atendido','p.id')
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
-        ->where('a.atendido','<>',NULL)
-        //->where('a.es_paquete','<>',1)
+        ->whereDate('a.fecha_atencion', '=',date('Y-m-d'))
         ->orderby('a.id','desc')
         ->get();
 
-        $total = Atenciones::where('id_paciente','=',$request->paciente)
-                       ->where('atendido','=',333)
+        $total = Atenciones::where('fecha_atencion','=',date('Y-m-d'))
+                     ->whereNotIn('monto',[0,0.00])
                       ->select(DB::raw('COUNT(*) as cantidad'))
                       ->first();
 
