@@ -52,6 +52,7 @@
 						<option value="3">Ventas</option>
 						<option value="4">Punziones</option>
 					    <option value="5">Otros Ingresos</option>
+					    <option value="6">Cuentas por Cobrar</option>
 
 						
 					</select>
@@ -376,6 +377,70 @@
 					</tfoot>
 				</table>
 			</div>
+		@elseif($tipo==6)
+			 <span><strong>CUENTAS POR COBRAR</strong></span>
+			  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalcobros->monto}}
+            	</div>
+            	
+            </div>
+				<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+					<thead>
+						<tr>
+						    <th>Nº Atenciòn</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
+							@if(\Auth::user()->role_id <> 6)
+							<th>Acciones</th>
+							@endif
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($cobros as $atec)	
+
+							<tr>
+								<td>{{$atec->id_atencion}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->dni}}</td>
+								<td>{{$atec->monto}}</td>
+								<td>{{$atec->abono_parcial}}</td>
+								<td>{{$atec->abono}}</td>
+								<td>{{$atec->pendiente}}</td>
+								<td>{{$atec->updated_at}}</td>
+								<td>
+							     <a target="_blank" href="{{asset('recibo_cobro_ver')}}/{{$atec->id}}" class="btn btn-xs btn-primary">Recibo</a>
+								@if(\Auth::user()->role_id <> 6)
+														 
+									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+									
+								</td>
+								@endif
+							</tr>
+						@endforeach
+                      
+					</tbody>
+					<tfoot>
+						  <th>Nº Atenciòn</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
+							@if(\Auth::user()->role_id <> 6)
+							<th>Acciones</th>
+							@endif
+					</tfoot>
+				</table>
+			</div>
 
 		@else
 
@@ -678,6 +743,70 @@
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
+					</tfoot>
+				</table>
+			</div>
+
+		<span><strong>CUENTAS POR COBRAR</strong></span>
+			  <div class="row">
+            	<div class="col-md-2">
+            		<strong>Total:</strong>{{$totalcobros->monto}}
+            	</div>
+            	
+            </div>
+				<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+					<thead>
+						<tr>
+						    <th>Nº Atenciòn</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
+							@if(\Auth::user()->role_id <> 6)
+							<th>Acciones</th>
+							@endif
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($cobros as $atec)	
+
+							<tr>
+								<td>{{$atec->id_atencion}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->dni}}</td>
+								<td>{{$atec->monto}}</td>
+								<td>{{$atec->abono_parcial}}</td>
+								<td>{{$atec->abono}}</td>
+								<td>{{$atec->pendiente}}</td>
+								<td>{{$atec->updated_at}}</td>
+								<td>
+							     <a target="_blank" href="{{asset('recibo_cobro_ver')}}/{{$atec->id}}" class="btn btn-xs btn-primary">Recibo</a>
+								@if(\Auth::user()->role_id <> 6)
+														 
+									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+									
+								</td>
+								@endif
+							</tr>
+						@endforeach
+                      
+					</tbody>
+					<tfoot>
+						  <th>Nº Atenciòn</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
+							@if(\Auth::user()->role_id <> 6)
+							<th>Acciones</th>
+							@endif
 					</tfoot>
 				</table>
 			</div>

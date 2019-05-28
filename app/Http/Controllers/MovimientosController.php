@@ -131,6 +131,17 @@ class MovimientosController extends Controller
                                         ->select(DB::raw('SUM(monto) as monto'))
                                         ->first();
 
+        $cobros = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
+        ->orderby('a.id','ASC')
+        ->get();
+
+        $totalcobros = HistorialCobros::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
+                      ->select(DB::raw('SUM(abono_parcial) as monto'))
+                      ->first();
+
                   
 
      } else {
@@ -219,6 +230,17 @@ class MovimientosController extends Controller
                                         ->where('origen','=','OTROS INGRESOS')
                                         ->select(DB::raw('SUM(monto) as monto'))
                                         ->first();
+       $cobros = DB::table('historialcobros as a')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->whereDate('a.created_at','=', Carbon::now()->toDateString())
+        ->orderby('a.id','ASC')
+        ->get();
+
+        $totalcobros = HistorialCobros::whereDate('created_at','=', Carbon::now()->toDateString())
+                      ->select(DB::raw('SUM(abono_parcial) as monto'))
+                      ->first();
+
 
             $fecha = Carbon::now()->toDateString(); 
             $fecha2 = Carbon::now()->toDateString(); 
@@ -243,7 +265,9 @@ class MovimientosController extends Controller
       'ingresos' => $ingresos,
       'fecha' => $fecha,
       'fecha2' => $fecha2,
-      'tipo' => $tipo
+      'tipo' => $tipo,
+      'cobros' => $cobros,
+      'totalcobros' => $totalcobros
 
     ]);
 
