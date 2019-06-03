@@ -69,6 +69,7 @@
         <form action="/cierre-caja-create" method="post">
         {{ csrf_field() }}
         <input type="hidden" value="{{$total->monto}}" name="total">
+        <input type="hidden" value="{{$debitos->monto}}" name="debitos">
         <input type="submit" class="btn btn-danger" value="Cerrar Turno">
       </form>
       <a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$hoy}}">VistaPrevia</a>

@@ -41,6 +41,11 @@ class CajaController extends Controller
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
+
+
+        $debitos = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
       
 
         $mensaje;                      
@@ -74,7 +79,11 @@ class CajaController extends Controller
 	                   ->first();
       
 
-		$mensaje;	                   
+		$mensaje;	
+
+          $debitos = Debitos::whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();                   
 
 
     	
@@ -95,6 +104,7 @@ class CajaController extends Controller
 
 	    return view('caja.index',[
 	    	'total' => $aten,
+            'debitos' => $debitos,
 	    	'mensaje' => $mensaje,
 	    	'caja' => $caja,
 	    	'fecha' => Carbon::now()->toDateString(),
@@ -318,10 +328,10 @@ class CajaController extends Controller
 
         if (count($caja) == 0) {
             Caja::create([
-                'cierre_matutino' => $request->total,
+                'cierre_matutino' => $request->total - $request->debitos,
                 'cierre_vespertino' => 0,
                 'fecha' => Carbon::now()->toDateString(),
-                'balance' => $request->total,
+                'balance' => $request->total - $request->debitos,
                 'usuario' => Auth::user()->id
             ]);
         }
@@ -330,9 +340,9 @@ class CajaController extends Controller
         {
              Caja::create([
                 'cierre_matutino' => 0,
-                'cierre_vespertino' => $request->total - $caja[0]->cierre_matutino,
+                'cierre_vespertino' => $request->total - $caja[0]->cierre_matutino - $request->debitos,
                 'fecha' => Carbon::now()->toDateString(),
-                'balance' => $request->total,
+                'balance' => $request->total - $request->debitos,
                 'usuario' => Auth::user()->id
             ]);
         }
