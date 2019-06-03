@@ -888,6 +888,19 @@ class AtencionesController extends Controller
       return redirect()->action('ResultadosController@index', ["edited" => $res]);
     }
 
+    public function atenderdelete($id){
+
+     
+      $p = Atenciones::where('id','=',$id)->first();
+      $p->atendido = NULL;
+      $p->fecha_atencion = NULL;
+      $res = $p->save();
+
+      Toastr::success('Atenciòn Reversado', 'Paciente!', ['progressBar' => true]);
+      return redirect()->action('ResultadosGuardadosController@index', ["edited" => $res]);
+    }
+
+
 
 
 

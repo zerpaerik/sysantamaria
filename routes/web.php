@@ -184,8 +184,7 @@ Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenc
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
 Route::get('atenciones-atender', 'AtencionesController@atender');
-
-//index ingresos todos
+Route::get('atender-delete-{id}', 'AtencionesController@atenderdelete');
 
 Route::get('movimientos', 'MovimientosController@index')->name('movimientos.index');
 Route::get('movimientos1', 'MovimientosController@index1')->name('movimientos.index1');

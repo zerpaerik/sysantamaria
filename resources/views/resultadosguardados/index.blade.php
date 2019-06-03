@@ -89,7 +89,13 @@
 						@endif
 						<td>{{$d->fecha_atencion}}</td>
 						<td>{{$d->nomper}},{{$d->apeper}}</td>
-						<td><a target="_blank" class="btn btn-primary" href="ticket1-ver-{{$d->id}}">Ver Ticket</a></td>
+						<td>
+						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)
+
+							<a class="btn btn-danger" href="atender-delete-{{$d->id}}">Reversar</a>
+					    @endif
+							<a target="_blank" class="btn btn-primary" href="ticket1-ver-{{$d->id}}">Ver Ticket</a>
+						</td>
 		
 						</tr>
 						@endforeach	
