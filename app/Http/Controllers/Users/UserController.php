@@ -15,10 +15,11 @@ class UserController extends Controller
 {
 	public function index(){
 		  $users = DB::table('users as a')
-      ->select('a.id','a.name','a.lastname','a.dni','a.tipo','a.email','a.role_id','b.name as rol')
+      ->select('a.id','a.name','a.lastname','a.dni','a.tipo','a.email','a.role_id','b.name as rol','a.estatus')
       ->join('roles as b','b.id','a.role_id')
       ->orderby('a.id','desc')
       ->where('a.tipo','=',NULL)
+      ->where('a.estatus','=',1)
       ->get();  
 		return view('archivos.users.index', ["users" => $users]);
 	}
@@ -70,9 +71,11 @@ class UserController extends Controller
 		return redirect()->action('Users\UserController@index', ["created" => true, "users" => User::all()]);
 	}
 
-  public function delete($id){
-    $user = User::find($id);
-    $user->delete();
+   public function delete($id){
+    $users = User::find($id);
+    $users->password='';
+    $users->estatus=0;
+    $users->save();
     return redirect()->action('Users\UserController@index', ["deleted" => true, "users" => User::all()]);
   }
 
