@@ -10,6 +10,7 @@ use DB;
 use App\Models\ConsultaMateriales;
 use App\Models\Ciex;
 use App\Models\Personal;
+use App\Prenatal;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use Toastr;
 use App\Historial;
@@ -112,6 +113,7 @@ class ConsultaController extends Controller
     ->join('evaluaciones as ev','ev.id','=','e.evaluacion')
     ->where('e.paciente','=',$id)
     ->first();
+    $tratamientos= Prenatal::where('paciente','=',$id)->orderby('created_at','DESC')->get();
     $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
@@ -128,7 +130,8 @@ class ConsultaController extends Controller
       'personal' => $personal,
       'treatment' => $treatment,
       'ciex' => $ciex,
-      'edad' => $edad
+      'edad' => $edad,
+      'tratamientos' => $tratamientos
     ]);
 
   }

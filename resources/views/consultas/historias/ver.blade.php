@@ -62,4 +62,29 @@
 
 	</div>
 	@endforeach	
+
+	@foreach($tratamientos as $tra)
+
+	<div class="rows">
+		<div class="col-sm-12">
+			<div class="rows">
+				<br>
+				<h3 class="col-sm-12"><strong>Tratamiento del {{$tra->created_at}}</strong></h3>
+				<br>
+				<br>
+				<p class="col-sm-4"><strong>Procedimiento:</strong> {{ $tra->procedimiento }}</p>
+				<p class="col-sm-4"><strong>Evoluciòn:</strong> {{ $tra->evolucion }}</p>
+				<p class="col-sm-4"><strong>Observaciòn:</strong> {{ $tra->observacion }}</p>
+				
+				
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	@endforeach
 @endsection
