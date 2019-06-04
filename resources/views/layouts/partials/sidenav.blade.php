@@ -515,11 +515,11 @@
       </li>
       <li>
         <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
-      </li>     
+      </li> 
+      @endif    
       <li>
         <a href="{{route('proveedores.index')}}"><i class="fa fa-hospital-o"></i> Proveedores</a>
       </li>       
-      @endif
     </ul>
   </li>
 
