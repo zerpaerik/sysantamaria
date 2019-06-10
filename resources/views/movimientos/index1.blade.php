@@ -229,7 +229,7 @@
 
 							<tr>
 								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
+								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
@@ -286,7 +286,7 @@
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nomper}},{{$atec->apeper}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
+								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
@@ -593,7 +593,7 @@
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nomper}},{{$atec->apeper}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nombre}}-<strong>Còdigo:</strong>{{$atec->codigo}}</td>
+								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>

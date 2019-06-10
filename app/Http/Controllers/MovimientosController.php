@@ -355,9 +355,9 @@ public function index1(Request $request)
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
-                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
                     ->whereDate('a.created_at','=',$fecha)
@@ -445,10 +445,10 @@ public function index1(Request $request)
 
 
 
-    $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','d.codigo','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+  $punziones = DB::table('punziones as a')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
                     ->join('users as c','c.id','a.usuario')
-                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
                      ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
