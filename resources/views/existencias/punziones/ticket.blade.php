@@ -94,11 +94,6 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px;">
-		<p><strong>CODIGO: {{ $punziones->codigo }}
-		</strong></p>
-	</div>
-
-	<div class="" style="font-size: 40px;">
 		<p><strong>CANTIDAD: {{ $punziones->cantidad }}
 		</strong></p>
 	</div>
