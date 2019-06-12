@@ -94,52 +94,59 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
     }
 
       public function addCant(Request $request){
-		  
-		 
-	
-       $searchProduct = DB::table('productos')
-                    ->select('*')
-					->where('almacen','=','2')
-                    ->where('id','=', $request->producto)
-					->where('almacen','=','2')
-                    ->first(); 
-					
 
-                    $nombre = $searchProduct->nombre;
-					$cantidadactual = $searchProduct->cantidad;
-					
-		
-		if( $request->cantidadplus > $cantidadactual){
-		 Toastr::error('Cantidad excede Maximo en stock', 'Error!', ['progressBar' => true]);
-		 return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
-		} else {
-			
-		  Producto::where('id', $request->producto)
+
+        if (isset($request->id_laboratorio)) {
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        if (!is_null($laboratorio['laboratorio'])) {
+
+
+           $searchProduct = DB::table('productos')
+                    ->select('*')
+                    ->where('almacen','=','2')
+                    ->where('id','=', $laboratorio['laboratorio'])
+                    ->first();   
+
+          $cantidadactual = $searchProduct->cantidad;
+          $precio = $searchProduct->precioventa;
+
+          if($request->monto_l['laboratorios'][$key]['monto'] == NULL){
+            $preciov= $precio;
+          } else {
+            $preciov=$request->monto_l['laboratorios'][$key]['monto']; 
+          }
+
+
+
+
+          $lab = new Ventas();
+          $lab->id_producto =  $laboratorio['laboratorio'];
+          $lab->monto =  $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->id_usuario = Auth::user()->id;
+          $lab->save();
+
+          Producto::where('id', $laboratorio['laboratorio'])
                   ->update([
-                      'cantidad' => $cantidadactual - $request->cantidadplus,
+                      'cantidad' => $cantidadactual - $request->monto_abol['laboratorios'][$key]['abono'],
                   ]);
-           $ventas = new Ventas();
-              $ventas->id_producto = $request->producto;
-              $ventas->monto = $request->monto;
-              $ventas->cantidad= $request->cantidadplus;
-              $ventas->id_usuario = Auth::user()->id;
-              $ventas->save();
-				  
-		      $creditos = new Creditos();
+
+              $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
-              $creditos->monto= $request->monto;
-              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->monto= $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
+              $creditos->tipo_ingreso ='EF';
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
-              $creditos->id_venta= $ventas->id;
+              $creditos->id_venta= $lab->id;
               $creditos->save();
-			  
-			 
-			  
-       Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
-    return redirect()->route('movimientos.index');
-		}
-    
+
+        } 
+      }
+    }
+
+     Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
+      return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
+		 
     }
 
     public function deleteventas($id){
