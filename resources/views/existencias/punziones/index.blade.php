@@ -100,7 +100,9 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
+					            @if(\Auth::user()->role_id <> 6)	
 								<a href="punzion-delete-{{$atec->id_pun}}" class="btn btn-danger">Eliminar</a>
+								@endif
 								<a target="_blank" href="punzion-ticket-{{$atec->id_pun}}" class="btn btn-success">Ticket</a>
 
 								</td>
