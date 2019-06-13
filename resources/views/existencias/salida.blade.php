@@ -88,7 +88,7 @@
                 <!-- /Form template-->
                 
                 <!-- No forms template -->
-                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún laboratorios</div>
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
                 <!-- /No forms template-->
                 
                 <!-- Controls -->
