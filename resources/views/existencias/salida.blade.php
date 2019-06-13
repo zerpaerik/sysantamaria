@@ -3,33 +3,34 @@
 @section('content')
 <br>
 <div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Agregar Venta</strong></span>
-				</div>
-				<div class="box-icons">
-					<a class="collapse-link">
-						<i class="fa fa-chevron-up"></i>
-					</a>
-					<a class="expand-link">
-						<i class="fa fa-expand"></i>
-					</a>
-				</div>
-				<div class="no-move"></div>
-			</div>
-			<div class="box-content">
-				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="producto/add">
-					{{ csrf_field() }}
-					<div class="form-group">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <div class="box-name">
+          <i class="fa fa-users"></i>
+          <span><strong>Agregar Venta</strong></span>
+        </div>
+        <div class="box-icons">
+          <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+          <a class="expand-link">
+            <i class="fa fa-expand"></i>
+          </a>
+        </div>
+        <div class="no-move"></div>
+      </div>
+      <div class="box-content">
+        <h4 class="page-header"></h4>
+        <form class="form-horizontal" role="form" method="post" action="producto/add">
+          {{ csrf_field() }}
+          <div class="form-group">
 
-					<div class="row">
+          <div class="row">
 
-            
-				
+           
+
+        
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Productos seleccionados</label>
             <!-- sheepIt Form -->
             <div id="laboratorios" class="embed ">
@@ -43,7 +44,7 @@
                         <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
-                            {{$pac->nombre}} Còdigo:{{$pac->codigo}} 
+                            {{$pac->nombre}}
                           </option>
                         @endforeach
                       </select>
@@ -101,8 +102,8 @@
                 
             </div>
             <!-- /sheepIt Form --> 
-						
-					</div>
+            
+          </div>
           <hr>
 
              <div class="form-group form-inline">
@@ -125,16 +126,16 @@
 
         
 
-					
-						<br>
-						<input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
+          
+            <br>
+            <input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 
-						<a href="{{route('ventas.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
-					</div>			
-				</form>	
-			</div>
-		</div>
-	</div>
+            <a href="{{route('ventas.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
+          </div>      
+        </form> 
+      </div>
+    </div>
+  </div>
 </div>
 @section('scripts')
 <script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
@@ -220,7 +221,7 @@
 
       $.ajax({
          type: "GET",
-         url:  "product/getProduct/"+$(this).val(),34
+         url:  "product/getProduct/"+$(this).val(),
          success: function(a) {
             $('#laboratorios_'+id+'_montoHidden').val(a.precioventa);
             $('#laboratorios_'+id+'_monto').val(a.precioventa);
@@ -270,31 +271,31 @@ function calculo_general() {
 
 // Run Select2 on element
 function Select2Test(){
-	$("#el2").select2();
-	$("#el1").select2();
-	$("#el3").select2();
+  $("#el2").select2();
+  $("#el1").select2();
+  $("#el3").select2();
   $("#el5").select2();
   $("#el4").select2();
 }
 $(document).ready(function() {
-	// Load script of Select2 and run this
-	LoadSelect2Script(Select2Test);
-	LoadTimePickerScript(DemoTimePicker);
-	WinMove();
+  // Load script of Select2 and run this
+  LoadSelect2Script(Select2Test);
+  LoadTimePickerScript(DemoTimePicker);
+  WinMove();
 });
 
 function DemoTimePicker(){
-	$('#input_date').datepicker({
-	setDate: new Date(),
-	minDate: 0});
-	$('#input_time').timepicker({
-		setDate: new Date(),
-		stepMinute: 10
-	});
-	$('#input_time2').timepicker({
-		setDate: new Date(),
-		stepMinute: 10
-	});
+  $('#input_date').datepicker({
+  setDate: new Date(),
+  minDate: 0});
+  $('#input_time').timepicker({
+    setDate: new Date(),
+    stepMinute: 10
+  });
+  $('#input_time2').timepicker({
+    setDate: new Date(),
+    stepMinute: 10
+  });
 }
 </script>
 

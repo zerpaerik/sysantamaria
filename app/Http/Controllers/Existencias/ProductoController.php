@@ -89,8 +89,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
     }
 
     public function getProduct($id){
-      $p = Producto::find($id);
-      return response()->json(["producto" => $p], 200);
+      return Producto::findOrFail($id);
     }
 
       public function addCant(Request $request){
