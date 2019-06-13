@@ -213,7 +213,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
       $p->precioventa = $request->venta;
       $res = $p->save();
 
-      $pl = Producto::where('codigo','=',$request->codigo)->first();
+      $pl = Producto::where('nombre','=',$request->nombre)->first();
       $p->nombre = $request->nombre;
       $p->categoria = $request->categoria;
       $p->medida = $request->medida;
