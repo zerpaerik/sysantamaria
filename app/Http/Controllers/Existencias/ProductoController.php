@@ -212,6 +212,16 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
       $p->preciounidad = $request->unidad;
       $p->precioventa = $request->venta;
       $res = $p->save();
+
+      $pl = Producto::where('codigo','=',$request->codigo)->first();
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+      $p->codigo = $request->codigo;
+      $p->preciounidad = $request->unidad;
+      $p->precioventa = $request->venta;
+      $res = $pl->save();
       return redirect()->action('Existencias\ProductoController@index', ["edited" => $res]);
     }
 	
