@@ -170,14 +170,14 @@ class CuentasporCobrarController extends Controller
 
 
   
-
+					
 					          $historialcobros = new HistorialCobros();
                     $historialcobros->id_atencion = $atencion;
                     $historialcobros->id_paciente = $paciente;
                     $historialcobros->monto= $monto;
                     $historialcobros->abono = $abono + $request->monto;
 					          $historialcobros->abono_parcial = $request->monto;
-                    $historialcobros->pendiente = $p->pendiente;
+                    $historialcobros->pendiente = $pendiente-$request->monto;
                     $historialcobros->save();
 					
 					
