@@ -44,7 +44,7 @@
                         <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
-                            {{$pac->nombre}}
+                            {{$pac->nombre}} Còdigo:{{$pac->codigo}} 
                           </option>
                         @endforeach
                       </select>
