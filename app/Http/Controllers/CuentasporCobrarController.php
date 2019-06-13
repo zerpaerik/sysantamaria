@@ -169,7 +169,14 @@ class CuentasporCobrarController extends Controller
 
 
 
-  
+    
+
+
+
+
+                    $p = Atenciones::find($request->id);
+                    $p->pendiente = $pendiente-$request->monto;
+                    $res = $p->save();
 					
 					          $historialcobros = new HistorialCobros();
                     $historialcobros->id_atencion = $atencion;
@@ -190,90 +197,12 @@ class CuentasporCobrarController extends Controller
                     $creditos->save();
 
                    $usuario=User::where('id','=',$origen_usuario)->first();
-/*
-              if($usuario->esp==0){
-              $paq = new Atenciones();
-              $paq->tipo_factura = $tipo_factura;               
-              $paq->numero_serie = $numero_serie;             
-              $paq->numero_factura = $numero_factura;              
-              $paq->id_paciente = $paciente;
-              $paq->origen = $origen;
-              $paq->origen_usuario = $origen_usuario;
-              $paq->id_laboratorio =  $lab;
-              $paq->id_servicio =  $servicio;
-              $paq->id_paquete = $paquete;
-              $paq->comollego = $comollego;
-              $paq->es_servicio =$es_servicio;
-              $paq->es_paquete =$es_laboratorio;
-              $paq->es_laboratorio =$es_paquete;
-              $paq->serv_prog = FALSE;
-              $paq->tipopago = $tp;
-              $paq->porc_pagar =10;
-              $paq->porcentaje = ($request->monto*10)/100;
-              $paq->pendiente = $pendiente-$request->monto;
-              $paq->monto = $monto;
-              $paq->abono = $request->monto;
-              $paq->estatus = 2;
-              $paq->usuario = Auth::user()->id;
-              $paq->save(); 
-            }elseif($usuario->esp==1){
-               $paq = new Atenciones();
-              $paq->tipo_factura = $tipo_factura;               
-              $paq->numero_serie = $numero_serie;             
-              $paq->numero_factura = $numero_factura;              
-              $paq->id_paciente = $paciente;
-              $paq->origen = $origen;
-              $paq->origen_usuario = $origen_usuario;
-              $paq->id_laboratorio =  $lab;
-              $paq->id_servicio =  $servicio;
-              $paq->id_paquete = $paquete;
-              $paq->comollego = $comollego;
-              $paq->es_paquete =  true;
-              $paq->serv_prog = FALSE;
-              $paq->tipopago = $tp;
-              $paq->porc_pagar =15;
-              $paq->porcentaje = ($request->monto*15)/100;
-              $paq->pendiente = $pendiente-$request->monto;
-              $paq->monto = $monto;
-              $paq->abono = $request->monto;
-              $paq->estatus = 2;
-              $paq->usuario = Auth::user()->id;
-              $paq->save(); 
 
-            }elseif ($usuario->esp==2) {
-               $paq = new Atenciones();
-              $paq->tipo_factura = $tipo_factura;               
-              $paq->numero_serie = $numero_serie;             
-              $paq->numero_factura = $numero_factura;              
-              $paq->id_paciente = $paciente;
-              $paq->origen = $origen;
-              $paq->origen_usuario = $origen_usuario;
-              $paq->id_laboratorio =  $lab;
-              $paq->id_servicio =  $servicio;
-              $paq->id_paquete = $paquete;
-              $paq->comollego = $comollego;
-              $paq->es_paquete =  true;
-              $paq->serv_prog = FALSE;
-              $paq->tipopago = $tp;
-              $paq->porc_pagar =0;
-              $paq->porcentaje = 5;
-              $paq->pendiente = $pendiente-$request->monto;
-              $paq->monto = $monto;
-              $paq->abono = $request->monto;
-              $paq->estatus = 2;
-              $paq->usuario = Auth::user()->id;
-              $paq->save(); 
-            }else{
 
-            }
+            
+    Toastr::success('Registrado Exitosamente.', 'Cuenta Por Cobrar!', ['progressBar' => true]);
 
-            */
-					
-
-             
-		
-
-      return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
+    return redirect()->route('cuentasporcobrar.index');
     }
 
   private function elasticSearch($nom, $ape)
