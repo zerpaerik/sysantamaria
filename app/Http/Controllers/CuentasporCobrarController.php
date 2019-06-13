@@ -169,16 +169,8 @@ class CuentasporCobrarController extends Controller
 
 
 
-    
+  
 
-
-
-
-                    $p = Atenciones::find($request->id);
-                    $p->pendiente = $pendiente-$request->monto;
-					          $p->abono = $abono + $request->monto;
-                    $res = $p->save();
-					
 					          $historialcobros = new HistorialCobros();
                     $historialcobros->id_atencion = $atencion;
                     $historialcobros->id_paciente = $paciente;
