@@ -367,7 +367,7 @@ Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->
 Route::get('existencias-trans', 'Existencias\ProductoController@productTransView')->name('productos.trans');
 Route::get('existencias-delete-{id}','Existencias\ProductoController@delete');
 Route::get('existencia/{prod}/{sede}', 'Existencias\ProductoController@getExist');
-Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
+Route::get('product/getProduct/{id}', 'Existencias\ProductoController@getProduct');
 Route::post('transfer', 'Existencias\ProductoController@transfer');
 Route::post('entrada', 'Existencias\ProductoController@entrada');
 Route::post('producto/add', 'Existencias\ProductoController@addCant');
