@@ -143,7 +143,7 @@ class HistorialCobrosController extends Controller
     
     $atec = Atenciones::find($id);
     $atec->pendiente=$pendiente + $abono;
-    $atec->abono= $abonado - $abono;
+   // $atec->abono= $abonado - $abono;
     $atec->update();
 
 
