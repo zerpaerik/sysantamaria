@@ -134,7 +134,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
               $creditos->monto= $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
-              $creditos->tipo_ingreso =$request->tipopago;
+              $creditos->tipo_ingreso ='EF';
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
               $creditos->id_venta= $lab->id;
               $creditos->save();

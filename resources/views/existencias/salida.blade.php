@@ -104,6 +104,13 @@
             <!-- /sheepIt Form --> 
             
           </div>
+            <label class="col-sm-1 control-label">TipoPago</label>
+            <div class="col-sm-3">
+              <select class="form-control" name="tipopago">
+              <option value="EF">Efectivo</option>
+              <option value="TJ">Tarjeta</option>
+            </select>
+            </div>  
           <hr>
 
              <div class="form-group form-inline">
