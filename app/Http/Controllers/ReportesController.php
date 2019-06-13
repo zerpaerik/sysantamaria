@@ -150,11 +150,8 @@ class ReportesController extends Controller
 
         $atenciones = Creditos::where('origen', 'ATENCIONES')
                                     ->whereNotIn('monto',[0,0.00,99999])
-                                    //->whereBetween('created_at', [strtotime($fechainic),strtotime($fecha)])
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
-                                    //->where('created_at','<=',$fecha)
-                                   // ->whereBetween('created_at', [$fecha, $fecha])
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
                            
@@ -448,31 +445,32 @@ class ReportesController extends Controller
       
 
 
-    
+   if(!is_null($request->fecha1)){
 
-    if(!is_null($request->fecha1) && (!is_null($request->fecha2))){
 
-        $cajamañana=DB::table('cajas as  a')
+
+      $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
-        ->whereDate('a.fecha','=',$request->fecha1)
-        ->first(); 
-        
-        $fechamañana=$cajamañana->created_at; 
+        ->whereDate('fecha','=',$request->fecha1)
+        ->first();  
 
- 
-        
+      $fechamañana=$cajamañana->created_at; 
 
-   } else {
+       
 
-     $cajamañana=DB::table('cajas as  a')
+    } else {
+
+        $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
-      $fechamañana=$cajamañana->created_at; 
-}
+      $fechamañana=$cajamañana->created_at;   
+
+
+    }
     
       
       $caja = DB::table('cajas as  a')
