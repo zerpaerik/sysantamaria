@@ -382,7 +382,7 @@ public function index1(Request $request)
                 }
 
        $ingresos = DB::table('creditos as a')
-            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.tipo_ingreso')
             ->orderby('a.id','desc')
             ->whereDate('a.created_at','=',$fecha)
             ->where('a.origen','=','OTROS INGRESOS')
