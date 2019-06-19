@@ -35,7 +35,7 @@ class MovimientosController extends Controller
       $fecha2=$request->fecha2;
 
   $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.tipopago','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -61,12 +61,13 @@ class MovimientosController extends Controller
 
 
     $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->join('users as u','u.id','e.usuario')
-      ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
+    ->join('creditos as cr','cr.id_event','e.id')
+    ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
     ->get();
 
 
@@ -80,10 +81,11 @@ class MovimientosController extends Controller
 
 
 
-     $ventas = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+    $ventas = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo','cr.tipo_ingreso')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
             ->orderby('a.id','desc')
             ->get();
@@ -101,14 +103,16 @@ class MovimientosController extends Controller
 
 
     $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos','cr.tipo_ingreso')
                     ->join('users as c','c.id','a.usuario')
                     ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
+                    ->join('creditos as cr','cr.id_punzion','a.id_pun')
                     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
                     ->orderby('a.created_at','desc')
                     ->get(); 
+
 
           $totalpunziones = Punziones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
                                         ->select(DB::raw('SUM(precio) as monto'))
@@ -119,7 +123,7 @@ class MovimientosController extends Controller
                 }
 
        $ingresos = DB::table('creditos as a')
-            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.tipo_ingreso')
             ->orderby('a.id','desc')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha2))])
             ->where('a.origen','=','OTROS INGRESOS')
@@ -147,7 +151,7 @@ class MovimientosController extends Controller
      } else {
 
      	 $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.estatus','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.tipopago','a.id_paciente','a.origen_usuario','a.estatus','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -168,12 +172,13 @@ class MovimientosController extends Controller
                     if ($totalatenciones->monto == 0) {
                 }
 
-    $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+   $consultas = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
-        ->join('users as u','u.id','e.usuario')
+    ->join('users as u','u.id','e.usuario')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
     ->get();
 
@@ -184,11 +189,11 @@ class MovimientosController extends Controller
                     if ($totalconsultas->monto == 0) {
                 }
 
-
-     $ventas = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+    $ventas = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo','cr.tipo_ingreso')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')
             ->get();
@@ -202,15 +207,17 @@ class MovimientosController extends Controller
 
 
 
-    $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+     $punziones = DB::table('punziones as a')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos','cr.tipo_ingreso')
                     ->join('users as c','c.id','a.usuario')
                     ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
-                     ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+                    ->join('creditos as cr','cr.id_punzion','a.id_pun')
+                    ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
                     ->orderby('a.created_at','desc')
                     ->get(); 
+
 
        $totalpunziones = Punziones::whereDate('created_at', '=',Carbon::today()->toDateString())
                                         ->select(DB::raw('SUM(precio) as monto'))
@@ -220,7 +227,7 @@ class MovimientosController extends Controller
                 }
 
        $ingresos = DB::table('creditos as a')
-            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.tipo_ingreso')
             ->orderby('a.id','desc')
             ->whereDate('a.created_at','=', Carbon::now()->toDateString())
             ->where('a.origen','=','OTROS INGRESOS')
@@ -289,7 +296,7 @@ public function index1(Request $request)
       $fecha=$request->fecha;
 
   $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -315,11 +322,12 @@ public function index1(Request $request)
 
 
     $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
     ->join('users as u','u.id','e.usuario')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereDate('e.created_at','=',$fecha)
     ->get();
 
@@ -334,10 +342,11 @@ public function index1(Request $request)
 
 
 
-     $ventas = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+   $ventas = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo','cr.tipo_ingreso')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->whereDate('a.created_at','=',$fecha)
             ->orderby('a.id','desc')
             ->get();
@@ -353,13 +362,13 @@ public function index1(Request $request)
 
 
 
-
-    $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+ $punziones = DB::table('punziones as a')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos','cr.tipo_ingreso')
                     ->join('users as c','c.id','a.usuario')
                     ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
+                    ->join('creditos as cr','cr.id_punzion','a.id_pun')
                     ->whereDate('a.created_at','=',$fecha)
                     ->orderby('a.created_at','desc')
                     ->get(); 
@@ -390,7 +399,7 @@ public function index1(Request $request)
      } else {
 
        $atenciones = DB::table('atenciones as a')
-          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.id_paciente','a.origen_usuario','a.estatus','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
+          ->select('a.id','a.tipo_factura','a.numero_serie','a.usuario','a.numero_factura','a.created_at','a.tipopago','a.id_paciente','a.origen_usuario','a.estatus','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','u.name as username','u.lastname as userlast')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('servicios as c','c.id','a.id_servicio')
           ->join('analises as d','d.id','a.id_laboratorio')
@@ -411,12 +420,13 @@ public function index1(Request $request)
                     if ($totalatenciones->monto == 0) {
                 }
 
-    $consultas = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast')
+$consultas = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.monto','e.usuario','e.comollego','e.title','e.created_at','e.evaluacion','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','eva.nombre as nombreEval','u.name as username','u.lastname as userlast','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('evaluaciones as eva','eva.id','=','e.evaluacion')
-        ->join('users as u','u.id','e.usuario')
+    ->join('users as u','u.id','e.usuario')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereDate('e.created_at','=',Carbon::today()->toDateString())
     ->get();
 
@@ -428,10 +438,11 @@ public function index1(Request $request)
                 }
 
 
-     $ventas = DB::table('ventas as a')
-            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+         $ventas = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo','cr.tipo_ingreso')
             ->join('users as e','e.id','a.id_usuario')
             ->join('productos as b','b.id','a.id_producto')
+            ->join('creditos as cr','cr.id_venta','a.id')
             ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
             ->orderby('a.id','desc')
             ->get();
@@ -446,12 +457,13 @@ public function index1(Request $request)
 
 
   $punziones = DB::table('punziones as a')
-                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos')
+                    ->select('a.id','a.id_pun','a.id_producto','a.cantidad','a.usuario','a.origen','a.precio','a.tipo_servicio','a.paciente','a.tipo_ingreso','a.created_at','c.name','c.lastname','d.nombre','p.name as nomper','p.lastname as apeper','b.nombres','b.apellidos','cr.tipo_ingreso')
                     ->join('users as c','c.id','a.usuario')
                     ->join('punsions as d','d.id','a.tipo_servicio')
                     ->join('personals as p','a.origen','p.id')
                     ->join('pacientes as b','a.paciente','b.id')
-                     ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+                    ->join('creditos as cr','cr.id_punzion','a.id_pun')
+                    ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
                     ->orderby('a.created_at','desc')
                     ->get(); 
 
@@ -464,7 +476,7 @@ public function index1(Request $request)
                 }
 
        $ingresos = DB::table('creditos as a')
-            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+            ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.tipo_ingreso')
             ->orderby('a.id','desc')
             ->whereDate('a.created_at','=', Carbon::now()->toDateString())
             ->where('a.origen','=','OTROS INGRESOS')

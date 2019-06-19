@@ -82,6 +82,7 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
 					
@@ -104,6 +105,7 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
+						<td>{{$d->tipopago}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
 
@@ -158,6 +160,7 @@
 							<th>Especialista</th>
 							<th>Registrado Por</th>
 							<th>Monto</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
 						</tr>
@@ -169,6 +172,7 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->username}},{{$d->userlast}}</td>
 						<td>{{$d->monto}}.00</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{$d->date}}</td>
 						<td>
 						<a  class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>	
@@ -220,6 +224,7 @@
 							<th>Cantidad</th>
 							<th>Monto</th>
 							<th>Usuario</th>
+							<th>TipoPago</th>
 						    <th>Fecha</th>
 						    <th></th>
 						</tr>
@@ -233,6 +238,7 @@
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								<td>{{$atec->tipo_ingreso}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
 									 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
@@ -275,6 +281,7 @@
 							<th>Cantidad</th>
 							<th>Monto</th>
 							<th>Registrado Por:</th>
+							<th>TipoPago</th>
 						    <th>Fecha</th>
 						    <th>Acciones</th>
 						</tr>
@@ -290,6 +297,7 @@
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								<td>{{$atec->tipo_ingreso}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
 									 @if(\Auth::user()->role_id == 4)	
@@ -334,6 +342,7 @@
 							<th>Id</th>
 							<th>Descripciòn</th>
 							<th>Monto</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
 						</tr>
@@ -344,6 +353,7 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->descripcion}}</td>
 						<td>{{$d->monto}}</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
 
@@ -391,6 +401,7 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
 					
@@ -413,6 +424,7 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
+					    <td>{{$d->tipopago}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>
 
@@ -466,6 +478,7 @@
 							<th>Especialista</th>
 							<th>Registrado Por</th>
 							<th>Monto</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
 						</tr>
@@ -477,6 +490,7 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->username}},{{$d->userlast}}</td>
 						<td>{{$d->monto}}.00</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{$d->date}}</td>
 						<td>
 						<a  class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>	
@@ -527,6 +541,7 @@
 							<th>Cantidad</th>
 							<th>Monto</th>
 							<th>Usuario</th>
+							<th>TipoPago</th>
 						    <th>Fecha</th>
 						    <th></th>
 						</tr>
@@ -540,6 +555,7 @@
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->monto}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+							    <td>{{$atec->tipo_ingreso}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
 									 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
@@ -582,6 +598,7 @@
 							<th>Cantidad</th>
 							<th>Monto</th>
 							<th>Registrado Por:</th>
+							<th>TipoPago</th>
 						    <th>Fecha</th>
 						    <th>Acciones</th>
 						</tr>
@@ -597,6 +614,7 @@
 								<td>{{$atec->cantidad}}</td>
 						        <td>{{$atec->precio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								<td>{{$atec->tipo_ingreso}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td>
 									 @if(\Auth::user()->role_id == 4)	
@@ -640,6 +658,7 @@
 							<th>Id</th>
 							<th>Descripciòn</th>
 							<th>Monto</th>
+							<th>TipoPago</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
 						</tr>
@@ -650,6 +669,7 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->descripcion}}</td>
 						<td>{{$d->monto}}</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
 
