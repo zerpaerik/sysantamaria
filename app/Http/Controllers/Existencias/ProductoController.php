@@ -95,6 +95,7 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
       public function addCant(Request $request){
 
 
+
         if (isset($request->id_laboratorio)) {
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
@@ -130,11 +131,14 @@ where("almacen",'=', 1)->get(['id', 'nombre','codigo']),"sedes" => $sedes,"prove
                       'cantidad' => $cantidadactual - $request->monto_abol['laboratorios'][$key]['abono'],
                   ]);
 
+
+
+
               $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
               $creditos->id_atencion = NULL;
               $creditos->monto= $preciov * $request->monto_abol['laboratorios'][$key]['abono'];
-              $creditos->tipo_ingreso ='EF';
+              $creditos->tipo_ingreso =$request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
               $creditos->id_venta= $lab->id;
               $creditos->save();
